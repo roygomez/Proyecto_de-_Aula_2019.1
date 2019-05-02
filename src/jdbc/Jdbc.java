@@ -38,7 +38,7 @@ public class Jdbc {
         } catch (ClassNotFoundException e) {
         }
         
-         con = DriverManager.getConnection("127.0.0.1", "Biblioteca", "3aAo4os3PbK5pceq");
+         con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sistema_blibliotecario?useTimezone=true&serverTimezone=UTC", "biblioteca", "KjjIbLxkqs9vaxsK");
     }
    
 }

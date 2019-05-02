@@ -22,9 +22,11 @@ public class GUI_Crear_Funcionario extends javax.swing.JInternalFrame {
      */
     public GUI_Crear_Funcionario() {
         initComponents();
+        
+        groupSexoBtn.add(rBtn1);
+        groupSexoBtn.add(rBtn2);
     }
-    private String sexo; 
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,6 +36,7 @@ public class GUI_Crear_Funcionario extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        groupSexoBtn = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -53,7 +56,7 @@ public class GUI_Crear_Funcionario extends javax.swing.JInternalFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        txtRol = new javax.swing.JComboBox<>();
+        txtRol = new javax.swing.JComboBox<String>();
         txtTelefono = new javax.swing.JTextField();
         txtPassword = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
@@ -66,41 +69,41 @@ public class GUI_Crear_Funcionario extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
-        setTitle("Craer Funcionaerio");
+        setTitle("Crear Funcionario");
         setVisible(true);
         getContentPane().setLayout(null);
 
         jLabel1.setText("Identificacion: ");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(19, 34, 71, 14);
+        jLabel1.setBounds(19, 34, 120, 14);
 
         jLabel2.setText("Segundo Apellido: ");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(19, 191, 89, 14);
+        jLabel2.setBounds(19, 191, 140, 14);
 
         jLabel3.setText("Primier Apellido: ");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(19, 153, 79, 14);
+        jLabel3.setBounds(19, 153, 130, 14);
 
         jLabel4.setText("Primer Nombre: ");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(19, 74, 77, 14);
+        jLabel4.setBounds(19, 74, 130, 14);
 
         jLabel5.setText("Segundo Nombre: ");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(19, 112, 89, 14);
+        jLabel5.setBounds(19, 112, 140, 14);
 
         jLabel6.setText("Fecha De Nacimiento: ");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(19, 229, 107, 14);
+        jLabel6.setBounds(19, 229, 160, 14);
 
         jLabel7.setText("Correo Electronico: ");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(396, 77, 95, 14);
+        jLabel7.setBounds(396, 77, 160, 14);
 
         jLabel8.setText("Sexo: ");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(396, 34, 31, 14);
+        jLabel8.setBounds(396, 34, 90, 14);
 
         txtIdentificacion.setName("txtIdentificacionF"); // NOI18N
         getContentPane().add(txtIdentificacion);
@@ -134,17 +137,17 @@ public class GUI_Crear_Funcionario extends javax.swing.JInternalFrame {
 
         jLabel10.setText("Telefono: ");
         getContentPane().add(jLabel10);
-        jLabel10.setBounds(400, 120, 49, 14);
+        jLabel10.setBounds(400, 120, 110, 14);
 
         jLabel11.setText("Contraseña");
         getContentPane().add(jLabel11);
-        jLabel11.setBounds(400, 210, 56, 14);
+        jLabel11.setBounds(400, 210, 120, 14);
 
         jLabel12.setText("Cargo: ");
         getContentPane().add(jLabel12);
-        jLabel12.setBounds(410, 170, 36, 14);
+        jLabel12.setBounds(400, 170, 100, 14);
 
-        txtRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administardor", "Auxiliar", "Coordinador" }));
+        txtRol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Administardor", "Auxiliar", "Coordinador" }));
         getContentPane().add(txtRol);
         txtRol.setBounds(570, 170, 178, 20);
         getContentPane().add(txtTelefono);
@@ -160,15 +163,15 @@ public class GUI_Crear_Funcionario extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(187, 315, 77, 23);
+        jButton1.setBounds(187, 315, 120, 40);
 
         jButton2.setText("Volver");
         getContentPane().add(jButton2);
-        jButton2.setBounds(416, 315, 77, 23);
+        jButton2.setBounds(390, 320, 120, 40);
 
         jButton3.setText("Salir");
         getContentPane().add(jButton3);
-        jButton3.setBounds(629, 315, 77, 23);
+        jButton3.setBounds(596, 315, 110, 40);
         getContentPane().add(txtFechaNacimiento);
         txtFechaNacimiento.setBounds(170, 230, 170, 20);
 
@@ -181,11 +184,16 @@ public class GUI_Crear_Funcionario extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if (rBtn1.getText() == "Hombre") {
+        
+        String sexo = ""; 
+        if (rBtn1.isSelected()) {
             sexo = "Masculino";
-        } else if (rBtn2.getText() == "Mujer") {
+        } else if (rBtn2.isSelected()) {
             sexo = "Femenido";
         }
+        
+        char[] arrayC = txtPassword.getPassword(); 
+        String pass = new String(arrayC); 
         
         Funcionario f1 = new Funcionario();
         f1.setApellido1(txtApellido1.getText().trim());
@@ -195,7 +203,7 @@ public class GUI_Crear_Funcionario extends javax.swing.JInternalFrame {
         f1.setIdentificacion(txtIdentificacion.getText().trim());
         f1.setNombre1(txtNombre1.getText().trim());
         f1.setNombre2(txtNombre2.getText().trim());
-        f1.setPassword(txtPassword.getText().trim());
+        f1.setPassword(pass);        
         f1.setSexo(sexo);
         f1.setTelefono(txtTelefono.getText().trim());
         f1.setRol(txtRol.getToolTipText());
@@ -204,12 +212,13 @@ public class GUI_Crear_Funcionario extends javax.swing.JInternalFrame {
         try {
             d.saveRecurso(f1);
         } catch (SQLException ex) {
-            Logger.getLogger(GUI_Crear_Funcionario.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup groupSexoBtn;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

@@ -16,6 +16,8 @@ public class GUI_Principal extends javax.swing.JFrame {
      */
     public GUI_Principal() {
         initComponents();
+        
+        this.setExtendedState(MAXIMIZED_BOTH);
     }
 
     /**
@@ -58,11 +60,11 @@ public class GUI_Principal extends javax.swing.JFrame {
         jdp.setLayout(jdpLayout);
         jdpLayout.setHorizontalGroup(
             jdpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 767, Short.MAX_VALUE)
+            .addGap(0, 777, Short.MAX_VALUE)
         );
         jdpLayout.setVerticalGroup(
             jdpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 490, Short.MAX_VALUE)
+            .addGap(0, 501, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Funcionario");
@@ -178,15 +180,11 @@ public class GUI_Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jdp)
-                .addContainerGap())
+            .addComponent(jdp)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jdp))
+            .addComponent(jdp)
         );
 
         pack();
