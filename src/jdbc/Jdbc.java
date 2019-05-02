@@ -33,7 +33,12 @@ public class Jdbc {
     }
     
     public void conectarme() throws SQLException {
+        try {
+            Class.forName(driver);
+        } catch (ClassNotFoundException e) {
+        }
         
+         con = DriverManager.getConnection("127.0.0.1", "Biblioteca", "3aAo4os3PbK5pceq");
     }
-
+   
 }

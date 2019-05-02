@@ -195,10 +195,10 @@ public class GUI_Crear_Funcionario extends javax.swing.JInternalFrame {
         f1.setIdentificacion(txtIdentificacion.getText().trim());
         f1.setNombre1(txtNombre1.getText().trim());
         f1.setNombre2(txtNombre2.getText().trim());
-        f1.setPassword(txtPassword.getSelectedText().trim());
+        f1.setPassword(txtPassword.getText().trim());
         f1.setSexo(sexo);
         f1.setTelefono(txtTelefono.getText().trim());
-        f1.setRol(txtRol.getToolTipText().trim());
+        f1.setRol(txtRol.getToolTipText());
         
         FuncionarioJdbc d = new  FuncionarioJdbc();
         try {
