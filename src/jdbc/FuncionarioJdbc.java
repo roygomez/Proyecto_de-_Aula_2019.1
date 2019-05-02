@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 
 public class FuncionarioJdbc extends Jdbc {
 
-    private List listaFuncionario;
+    private LinkedList listaFuncionario;
     Jdbc cone = new Jdbc();
 
     public void saveRecurso(Funcionario f1) throws SQLException {
@@ -99,9 +99,9 @@ public class FuncionarioJdbc extends Jdbc {
         return f1;
     }
 
-    public List getRecurso() throws SQLException {
+    public LinkedList getRecurso() throws SQLException {
 
-        listaFuncionario  = new LinkedList();
+        listaFuncionario = new LinkedList();
         PreparedStatement pstt = null;
         ResultSet rs = null;
         try {
