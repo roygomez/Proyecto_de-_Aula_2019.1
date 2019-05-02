@@ -8,6 +8,7 @@ package jdbc;
 import java.awt.List;
 import modelo.*;
 import java.sql.*;
+import java.util.LinkedList;
 import javax.swing.JOptionPane;
 
 public class FuncionarioJdbc extends Jdbc {
@@ -100,14 +101,14 @@ public class FuncionarioJdbc extends Jdbc {
 
     public List getRecurso() throws SQLException {
 
-        listaRecurso = new LinkedList();
+        listaFuncionario = new LinkedList();
         PreparedStatement pstt = null;
         ResultSet rs = null;
         try {
             pstt = this.getCon().prepareStatement("select * from recurso where Serial=?");
             rs = pstt.executeQuery();
             while (rs.next()) {
-                listaRecurso.add(load(rs));
+                listaFuncionario.add(load(rs));
             }
         } finally {
             if (pstt != null) {
@@ -117,18 +118,24 @@ public class FuncionarioJdbc extends Jdbc {
                 rs.close();
             }
         }
-        return listaRecurso;
+        return listaFuncionario;
     }
 
-    private Recurso load(ResultSet rs) throws SQLException {
-        Recurso rcu = new Recurso();
+    private Funcionario load(ResultSet rs) throws SQLException {
+        Funcionario rcu = new Funcionario();
 
-        rcu.setId(rs.getString(1));
-        rcu.setNombre(rs.getString(2));
-        rcu.setTipo(rs.getString(3));
-        rcu.setEstado(rs.getString(4));
-        rcu.setSerial(rs.getString(5));
-        rcu.setObservaciones(rs.getString(6));
+        rcu.setIdPersona(rs.getInt(1));
+        rcu.setNombre1(rs.getString(2));
+        rcu.setApellido1(rs.getString(3));
+        rcu.setApellido2(rs.getString(4));
+        rcu.setCorreo(rs.getString(5));
+        rcu.setFechaNacimiento(rs.getDate(6));
+        rcu.setIdentificacion(rs.getString(7));
+        rcu.setNombre2(rs.getString(8));
+        rcu.setPassword(rs.getString(9));
+        rcu.setRol(rs.getString(10));
+        rcu.setSexo(rs.getString(11));
+        rcu.setTelefono(rs.getString(12));
 
         return rcu;
     }
