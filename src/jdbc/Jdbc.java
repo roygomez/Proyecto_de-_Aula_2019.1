@@ -1,7 +1,6 @@
 package jdbc;
 
 import java.sql.*;
-import modelo.Funcionario;
 
 public class Jdbc {
 
@@ -25,16 +24,16 @@ public class Jdbc {
         this.url = url;
     }
 
-    public void conectarme() throws SQLException {
-
-    }
-
     public Connection getCon() {
         return con;
     }
 
     public void setCon(Connection con) {
         this.con = con;
+    }
+    
+    public void conectarme() throws SQLException {
+        
     }
 
 }

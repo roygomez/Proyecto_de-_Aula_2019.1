@@ -5,7 +5,6 @@
  */
 package jdbc;
 
-import java.awt.List;
 import modelo.*;
 import java.sql.*;
 import java.util.LinkedList;
@@ -19,7 +18,7 @@ public class FuncionarioJdbc extends Jdbc {
     public void saveRecurso(Funcionario f1) throws SQLException {
         PreparedStatement pstt = null;
         try {
-            pstt = this.getCon().prepareStatement("insert into recurso values(?,?,?,?,?,?)");
+            pstt = this.getCon().prepareStatement("insert into funcionario values(?,?,?,?,?,?,?,?,?,?,?,?)");
 
             pstt.setString(1, null);
             pstt.setString(2, f1.getApellido1());
@@ -54,7 +53,7 @@ public class FuncionarioJdbc extends Jdbc {
     public void updateRecurso(Funcionario f1) throws SQLException {
         PreparedStatement pstn = null;
         try {
-            pstn = this.getCon().prepareStatement("update recurso setbNombre =  ? ,Tipo =  ? ,Observaciones =  ? where  Serial =  ? ");
+            pstn = this.getCon().prepareStatement("update funcionario set Nombre =  ? ,Tipo =  ? ,Observaciones =  ? where  Serial =  ? ");
             pstn.setString(2, f1.getApellido1());
             pstn.setString(3, f1.getApellido2());
             pstn.setString(4, f1.getCorreo());
@@ -81,7 +80,7 @@ public class FuncionarioJdbc extends Jdbc {
         ResultSet rs = null;
         try {
 
-            pstt = this.getCon().prepareStatement("select * from recurso where Serial=?");
+            pstt = this.getCon().prepareStatement("select * from funcionario where Serial=?");
             pstt.setString(1, identificacion);
             rs = pstt.executeQuery();
             while (rs.next()) {
@@ -105,7 +104,7 @@ public class FuncionarioJdbc extends Jdbc {
         PreparedStatement pstt = null;
         ResultSet rs = null;
         try {
-            pstt = this.getCon().prepareStatement("select * from recurso where Serial=?");
+            pstt = this.getCon().prepareStatement("select * from funcionario where Serial=?");
             rs = pstt.executeQuery();
             while (rs.next()) {
                 listaFuncionario.add(load(rs));
@@ -143,7 +142,7 @@ public class FuncionarioJdbc extends Jdbc {
     public void DeleteRecurso(String identificacion) throws SQLException {
         PreparedStatement pstn = null;
         try {
-            pstn = this.getCon().prepareStatement("delete from recurso where Serial=?");
+            pstn = this.getCon().prepareStatement("delete from funcionario where Serial=?");
             pstn.setString(1, identificacion);
             pstn.executeUpdate();
         } finally {

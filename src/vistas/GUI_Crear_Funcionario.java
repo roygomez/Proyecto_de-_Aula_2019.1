@@ -5,6 +5,12 @@
  */
 package vistas;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import jdbc.FuncionarioJdbc;
+import modelo.Funcionario;
+
 /**
  *
  * @author Usuario
@@ -17,6 +23,7 @@ public class GUI_Crear_Funcionario extends javax.swing.JInternalFrame {
     public GUI_Crear_Funcionario() {
         initComponents();
     }
+    private String sexo; 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,26 +42,24 @@ public class GUI_Crear_Funcionario extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        txtIdentificacion = new javax.swing.JTextField();
+        txtNombre2 = new javax.swing.JTextField();
+        txtNombre1 = new javax.swing.JTextField();
+        txtApellido1 = new javax.swing.JTextField();
+        txtApellido2 = new javax.swing.JTextField();
+        txtCorreo = new javax.swing.JTextField();
+        rBtn1 = new javax.swing.JRadioButton();
+        rBtn2 = new javax.swing.JRadioButton();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jTextField9 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txtRol = new javax.swing.JComboBox<>();
+        txtTelefono = new javax.swing.JTextField();
+        txtPassword = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        txtFechaNacimiento = new com.toedter.calendar.JDateChooser();
         jLabel13 = new javax.swing.JLabel();
 
         setBackground(java.awt.Color.white);
@@ -97,64 +102,63 @@ public class GUI_Crear_Funcionario extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel8);
         jLabel8.setBounds(396, 34, 31, 14);
 
-        jLabel9.setText("Direccion De Residencia: ");
-        getContentPane().add(jLabel9);
-        jLabel9.setBounds(396, 115, 120, 14);
+        txtIdentificacion.setName("txtIdentificacionF"); // NOI18N
+        getContentPane().add(txtIdentificacion);
+        txtIdentificacion.setBounds(164, 31, 178, 20);
 
-        jTextField1.setName("txtIdentificacionF"); // NOI18N
-        getContentPane().add(jTextField1);
-        jTextField1.setBounds(164, 31, 178, 20);
+        txtNombre2.setName("txtSegundoNombreF"); // NOI18N
+        getContentPane().add(txtNombre2);
+        txtNombre2.setBounds(164, 112, 178, 20);
 
-        jTextField2.setName("txtSegundoNombreF"); // NOI18N
-        getContentPane().add(jTextField2);
-        jTextField2.setBounds(164, 112, 178, 20);
+        txtNombre1.setName("txtPrimerNombreF"); // NOI18N
+        getContentPane().add(txtNombre1);
+        txtNombre1.setBounds(164, 71, 178, 20);
 
-        jTextField3.setName("txtPrimerNombreF"); // NOI18N
-        getContentPane().add(jTextField3);
-        jTextField3.setBounds(164, 71, 178, 20);
+        txtApellido1.setName("txtPrimerApellidoF"); // NOI18N
+        getContentPane().add(txtApellido1);
+        txtApellido1.setBounds(164, 150, 178, 20);
 
-        jTextField4.setName("txtPrimerApellidoF"); // NOI18N
-        getContentPane().add(jTextField4);
-        jTextField4.setBounds(164, 150, 178, 20);
+        txtApellido2.setName("txtSegundoApellidoF"); // NOI18N
+        getContentPane().add(txtApellido2);
+        txtApellido2.setBounds(164, 188, 178, 20);
+        getContentPane().add(txtCorreo);
+        txtCorreo.setBounds(567, 74, 178, 20);
 
-        jTextField5.setName("txtSegundoApellidoF"); // NOI18N
-        getContentPane().add(jTextField5);
-        jTextField5.setBounds(164, 188, 178, 20);
-        getContentPane().add(jTextField7);
-        jTextField7.setBounds(567, 74, 178, 20);
-        getContentPane().add(jTextField8);
-        jTextField8.setBounds(567, 112, 178, 20);
+        rBtn1.setText("Hombre");
+        getContentPane().add(rBtn1);
+        rBtn1.setBounds(567, 30, 63, 23);
 
-        jRadioButton1.setText("Hombre");
-        getContentPane().add(jRadioButton1);
-        jRadioButton1.setBounds(567, 30, 63, 23);
-
-        jRadioButton2.setText("Mujer");
-        getContentPane().add(jRadioButton2);
-        jRadioButton2.setBounds(648, 30, 53, 23);
+        rBtn2.setText("Mujer");
+        getContentPane().add(rBtn2);
+        rBtn2.setBounds(648, 30, 53, 23);
 
         jLabel10.setText("Telefono: ");
         getContentPane().add(jLabel10);
-        jLabel10.setBounds(396, 153, 49, 14);
+        jLabel10.setBounds(400, 120, 49, 14);
 
         jLabel11.setText("Contraseña");
         getContentPane().add(jLabel11);
-        jLabel11.setBounds(396, 229, 56, 14);
+        jLabel11.setBounds(400, 210, 56, 14);
 
         jLabel12.setText("Cargo: ");
         getContentPane().add(jLabel12);
-        jLabel12.setBounds(396, 191, 36, 14);
+        jLabel12.setBounds(410, 170, 36, 14);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administardor", "Auxiliar", "Coordinador" }));
-        getContentPane().add(jComboBox1);
-        jComboBox1.setBounds(567, 188, 178, 20);
-        getContentPane().add(jTextField9);
-        jTextField9.setBounds(567, 150, 178, 20);
-        getContentPane().add(jPasswordField1);
-        jPasswordField1.setBounds(567, 226, 178, 20);
+        txtRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administardor", "Auxiliar", "Coordinador" }));
+        getContentPane().add(txtRol);
+        txtRol.setBounds(570, 170, 178, 20);
+        getContentPane().add(txtTelefono);
+        txtTelefono.setBounds(570, 120, 178, 20);
+        getContentPane().add(txtPassword);
+        txtPassword.setBounds(570, 210, 178, 20);
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Registrar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1);
         jButton1.setBounds(187, 315, 77, 23);
 
@@ -165,8 +169,8 @@ public class GUI_Crear_Funcionario extends javax.swing.JInternalFrame {
         jButton3.setText("Salir");
         getContentPane().add(jButton3);
         jButton3.setBounds(629, 315, 77, 23);
-        getContentPane().add(jDateChooser2);
-        jDateChooser2.setBounds(170, 230, 170, 20);
+        getContentPane().add(txtFechaNacimiento);
+        txtFechaNacimiento.setBounds(170, 230, 170, 20);
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/administrativo.jpg"))); // NOI18N
         getContentPane().add(jLabel13);
@@ -175,13 +179,40 @@ public class GUI_Crear_Funcionario extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        if (rBtn1.getText() == "Hombre") {
+            sexo = "Masculino";
+        } else if (rBtn2.getText() == "Mujer") {
+            sexo = "Femenido";
+        }
+        
+        Funcionario f1 = new Funcionario();
+        f1.setApellido1(txtApellido1.getText().trim());
+        f1.setApellido2(txtApellido2.getText().trim());
+        f1.setCorreo(txtCorreo.getText().trim());
+        f1.setFechaNacimiento(txtFechaNacimiento.getDate());
+        f1.setIdentificacion(txtIdentificacion.getText().trim());
+        f1.setNombre1(txtNombre1.getText().trim());
+        f1.setNombre2(txtNombre2.getText().trim());
+        f1.setPassword(txtPassword.getSelectedText().trim());
+        f1.setSexo(sexo);
+        f1.setTelefono(txtTelefono.getText().trim());
+        f1.setRol(txtRol.getToolTipText().trim());
+        
+        FuncionarioJdbc d = new  FuncionarioJdbc();
+        try {
+            d.saveRecurso(f1);
+        } catch (SQLException ex) {
+            Logger.getLogger(GUI_Crear_Funcionario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -194,17 +225,17 @@ public class GUI_Crear_Funcionario extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JRadioButton rBtn1;
+    private javax.swing.JRadioButton rBtn2;
+    private javax.swing.JTextField txtApellido1;
+    private javax.swing.JTextField txtApellido2;
+    private javax.swing.JTextField txtCorreo;
+    private com.toedter.calendar.JDateChooser txtFechaNacimiento;
+    private javax.swing.JTextField txtIdentificacion;
+    private javax.swing.JTextField txtNombre1;
+    private javax.swing.JTextField txtNombre2;
+    private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JComboBox<String> txtRol;
+    private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 }
