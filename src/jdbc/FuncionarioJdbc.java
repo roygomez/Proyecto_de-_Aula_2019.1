@@ -101,7 +101,7 @@ public class FuncionarioJdbc extends Jdbc {
 
     public List getRecurso() throws SQLException {
 
-        listaFuncionario = new LinkedList();
+        listaFuncionario  = new LinkedList();
         PreparedStatement pstt = null;
         ResultSet rs = null;
         try {
