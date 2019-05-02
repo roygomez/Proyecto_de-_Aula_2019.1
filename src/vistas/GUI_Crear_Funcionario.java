@@ -6,8 +6,6 @@
 package vistas;
 
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import jdbc.FuncionarioJdbc;
 import modelo.Funcionario;
 
@@ -22,11 +20,11 @@ public class GUI_Crear_Funcionario extends javax.swing.JInternalFrame {
      */
     public GUI_Crear_Funcionario() {
         initComponents();
-        
+
         groupSexoBtn.add(rBtn1);
         groupSexoBtn.add(rBtn2);
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -184,36 +182,30 @@ public class GUI_Crear_Funcionario extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
-        String sexo = ""; 
+
+        String sexo = "";
         if (rBtn1.isSelected()) {
             sexo = "Masculino";
         } else if (rBtn2.isSelected()) {
             sexo = "Femenido";
         }
-        
-        char[] arrayC = txtPassword.getPassword(); 
-        String pass = new String(arrayC); 
-        
+
+        char[] arrayC = txtPassword.getPassword();
+        String pass = new String(arrayC);
+
         Funcionario f1 = new Funcionario();
         f1.setApellido1(txtApellido1.getText().trim());
         f1.setApellido2(txtApellido2.getText().trim());
         f1.setCorreo(txtCorreo.getText().trim());
-        f1.setFechaNacimiento(txtFechaNacimiento.getDate());
+        //f1.setFechaNacimiento(txtFechaNacimiento.getDate());
         f1.setIdentificacion(txtIdentificacion.getText().trim());
         f1.setNombre1(txtNombre1.getText().trim());
         f1.setNombre2(txtNombre2.getText().trim());
-        f1.setPassword(pass);        
+        f1.setPassword(pass);
         f1.setSexo(sexo);
         f1.setTelefono(txtTelefono.getText().trim());
         f1.setRol(txtRol.getToolTipText());
-        
-        FuncionarioJdbc d = new  FuncionarioJdbc();
-        try {
-            d.saveRecurso(f1);
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

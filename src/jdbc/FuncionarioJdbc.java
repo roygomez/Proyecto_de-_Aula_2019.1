@@ -21,18 +21,18 @@ public class FuncionarioJdbc extends Jdbc {
             pstt = this.getCon().prepareStatement("insert into funcionario values(?,?,?,?,?,?,?,?,?,?,?,?)");
 
             pstt.setString(1, null);
-            pstt.setString(2, f1.getApellido1());
-            pstt.setString(3, f1.getApellido2());
-            pstt.setString(4, f1.getCorreo());
-            pstt.setString(5, f1.getIdentificacion());
-            pstt.setString(6, f1.getNombre1());
-            pstt.setString(7, f1.getNombre2());
-            pstt.setString(8, f1.getPassword());
-            pstt.setString(9, f1.getRol());
-            pstt.setString(10, f1.getSexo());
-            pstt.setString(11, f1.getTelefono());
+            pstt.setString(2, f1.getIdentificacion());
+            pstt.setString(3, f1.getNombre1());
+            pstt.setString(4, f1.getNombre2());
+            pstt.setString(5, f1.getApellido1());
+            pstt.setString(6, f1.getApellido2());
+            pstt.setDate(7, f1.getFechaNacimiento());
+            pstt.setString(8, f1.getSexo());
+            pstt.setString(9, f1.getCorreo());
+            pstt.setString(10, f1.getTelefono());
+            pstt.setString(11, f1.getPassword());
+            pstt.setString(12, f1.getRol());
             
-
             if ((getRecurso(f1.getIdentificacion())).getIdentificacion() == null) {
                 if (f1.getIdentificacion() != null) {
                     pstt.executeUpdate();
@@ -53,17 +53,20 @@ public class FuncionarioJdbc extends Jdbc {
     public void updateRecurso(Funcionario f1) throws SQLException {
         PreparedStatement pstn = null;
         try {
-            pstn = this.getCon().prepareStatement("update funcionario set Nombre =  ? ,Tipo =  ? ,Observaciones =  ? where  Serial =  ? ");
-            pstn.setString(2, f1.getApellido1());
-            pstn.setString(3, f1.getApellido2());
-            pstn.setString(4, f1.getCorreo());
-            pstn.setString(5, f1.getIdentificacion());
-            pstn.setString(6, f1.getNombre1());
-            pstn.setString(7, f1.getNombre2());
-            pstn.setString(8, f1.getPassword());
-            pstn.setString(9, f1.getRol());
-            pstn.setString(10, f1.getSexo());
-            pstn.setString(11, f1.getTelefono());
+            pstn = this.getCon().prepareStatement("UPDATE funcionario SET ,identificacion = ?,nombre1 = ?,nombre2 = ?,apellido1 = ?,apellido2 = ?,fechaNacimiento = ?,sexo = ?,correo = ?,telefono = ?,password = ?,rol = ? where idPersona = ?");
+            
+            
+            pstn.setString(2, f1.getIdentificacion());
+            pstn.setString(3, f1.getNombre1());
+            pstn.setString(4, f1.getNombre2());
+            pstn.setString(5, f1.getApellido1());
+            pstn.setString(6, f1.getApellido2());
+            pstn.setDate(7, f1.getFechaNacimiento());
+            pstn.setString(8, f1.getSexo());
+            pstn.setString(9, f1.getCorreo());
+            pstn.setString(10, f1.getTelefono());
+            pstn.setString(11, f1.getPassword());
+            pstn.setString(12, f1.getRol());
 
             pstn.executeUpdate();
         } finally {
@@ -80,7 +83,7 @@ public class FuncionarioJdbc extends Jdbc {
         ResultSet rs = null;
         try {
 
-            pstt = this.getCon().prepareStatement("select * from funcionario where Serial=?");
+            pstt = this.getCon().prepareStatement("select * from funcionario where idPersona = ?");
             pstt.setString(1, identificacion);
             rs = pstt.executeQuery();
             while (rs.next()) {
@@ -104,7 +107,7 @@ public class FuncionarioJdbc extends Jdbc {
         PreparedStatement pstt = null;
         ResultSet rs = null;
         try {
-            pstt = this.getCon().prepareStatement("select * from funcionario where Serial=?");
+            pstt = this.getCon().prepareStatement("select * from funcionario where idPersona = ?");
             rs = pstt.executeQuery();
             while (rs.next()) {
                 listaFuncionario.add(load(rs));
@@ -124,17 +127,17 @@ public class FuncionarioJdbc extends Jdbc {
         Funcionario rcu = new Funcionario();
 
         rcu.setIdPersona(rs.getInt(1));
-        rcu.setNombre1(rs.getString(2));
-        rcu.setApellido1(rs.getString(3));
-        rcu.setApellido2(rs.getString(4));
-        rcu.setCorreo(rs.getString(5));
-        rcu.setFechaNacimiento(rs.getDate(6));
-        rcu.setIdentificacion(rs.getString(7));
-        rcu.setNombre2(rs.getString(8));
-        rcu.setPassword(rs.getString(9));
-        rcu.setRol(rs.getString(10));
-        rcu.setSexo(rs.getString(11));
-        rcu.setTelefono(rs.getString(12));
+        rcu.setIdentificacion(rs.getString(2));
+        rcu.setNombre1(rs.getString(3));
+        rcu.setNombre2(rs.getString(4));
+        rcu.setApellido1(rs.getString(5));
+        rcu.setApellido2(rs.getString(6));
+        rcu.setFechaNacimiento(rs.getDate(7));
+        rcu.setSexo(rs.getString(8));
+        rcu.setCorreo(rs.getString(9));
+        rcu.setTelefono(rs.getString(10));
+        rcu.setPassword(rs.getString(11));
+        rcu.setRol(rs.getString(12));
 
         return rcu;
     }
@@ -142,7 +145,7 @@ public class FuncionarioJdbc extends Jdbc {
     public void DeleteRecurso(String identificacion) throws SQLException {
         PreparedStatement pstn = null;
         try {
-            pstn = this.getCon().prepareStatement("delete from funcionario where Serial=?");
+            pstn = this.getCon().prepareStatement("delete from funcionario where idPersona = ?");
             pstn.setString(1, identificacion);
             pstn.executeUpdate();
         } finally {
