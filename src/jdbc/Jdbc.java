@@ -33,12 +33,14 @@ public class Jdbc {
     }
     
     public void conectarme() throws SQLException {
+        con = DriverManager.setConnection(url, "Biblioteca", "3UghTcMJP80k0dny");
         try {
             Class.forName(driver);
-        } catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException cl) {
+            System.out.println(cl.getMessage();
         }
         
-         con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sistema_blibliotecario?useTimezone=true&serverTimezone=UTC", "biblioteca", "KjjIbLxkqs9vaxsK");
+        
     }
    
 }
