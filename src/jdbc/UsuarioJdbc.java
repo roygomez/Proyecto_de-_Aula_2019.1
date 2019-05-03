@@ -1,4 +1,3 @@
-
 package jdbc;
 
 import java.sql.PreparedStatement;
@@ -13,10 +12,10 @@ public class UsuarioJdbc extends Jdbc {
     private LinkedList listaFuncionario;
     Jdbc cone = new Jdbc();
 
-    public void saveRecurso(Usuario f1) throws SQLException {
+    public void saveUsuario(Usuario f1) throws SQLException {
         PreparedStatement pstt = null;
         try {
-            pstt = this.getCon().prepareStatement("insert into usuario values(?,?,?,?,?,?,?,?,?,?,?,?)");
+            pstt = this.getCon().prepareStatement("insert into usuario values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
             pstt.setString(1, null);
             pstt.setString(2, f1.getIdentificacion());
@@ -29,9 +28,13 @@ public class UsuarioJdbc extends Jdbc {
             pstt.setString(9, f1.getCorreo());
             pstt.setString(10, f1.getTelefono());
             pstt.setString(11, f1.getPassword());
-            pstt.setString(12, f1.getRol());
-            
-            if ((getRecurso(f1.getIdentificacion())).getIdentificacion() == null) {
+            pstt.setString(12, f1.getTipoUsuario());
+            pstt.setBoolean(13, f1.isInscrito());
+            pstt.setString(14, f1.getCodigoInstitucional());
+            pstt.setDouble(15, f1.getPagoAnual());
+            pstt.setBoolean(16, f1.isControlPago());
+
+            if ((getUsuario(f1.getIdentificacion())).getIdentificacion() == null) {
                 if (f1.getIdentificacion() != null) {
                     pstt.executeUpdate();
                     JOptionPane.showMessageDialog(null, "El Funcionario fue registrado exitosamente!");
@@ -48,33 +51,36 @@ public class UsuarioJdbc extends Jdbc {
         }
     }
 
-    public void updateRecurso(Usuario f1) throws SQLException {
-        PreparedStatement pstn = null;
+    public void updateUsuario(Usuario f1) throws SQLException {
+        PreparedStatement pstt = null;
         try {
-            pstn = this.getCon().prepareStatement("UPDATE usuario SET ,identificacion = ?,nombre1 = ?,nombre2 = ?,apellido1 = ?,apellido2 = ?,fechaNacimiento = ?,sexo = ?,correo = ?,telefono = ?,password = ?,rol = ? where idPersona = ?");
-            
-            
-            pstn.setString(2, f1.getIdentificacion());
-            pstn.setString(3, f1.getNombre1());
-            pstn.setString(4, f1.getNombre2());
-            pstn.setString(5, f1.getApellido1());
-            pstn.setString(6, f1.getApellido2());
-            pstn.setDate(7, f1.getFechaNacimiento());
-            pstn.setString(8, f1.getSexo());
-            pstn.setString(9, f1.getCorreo());
-            pstn.setString(10, f1.getTelefono());
-            pstn.setString(11, f1.getPassword());
-            pstn.setString(12, f1.getRol());
+            pstt = this.getCon().prepareStatement("UPDATE usuario SET ,identificacion = ?,nombre1 = ?,nombre2 = ?,apellido1 = ?,apellido2 = ?,fechaNacimiento = ?,sexo = ?,correo = ?,telefono = ?,password = ?,rol = ? where idPersona = ?");
 
-            pstn.executeUpdate();
+            pstt.setString(2, f1.getIdentificacion());
+            pstt.setString(3, f1.getNombre1());
+            pstt.setString(4, f1.getNombre2());
+            pstt.setString(5, f1.getApellido1());
+            pstt.setString(6, f1.getApellido2());
+            pstt.setDate(7, f1.getFechaNacimiento());
+            pstt.setString(8, f1.getSexo());
+            pstt.setString(9, f1.getCorreo());
+            pstt.setString(10, f1.getTelefono());
+            pstt.setString(11, f1.getPassword());
+            pstt.setString(12, f1.getTipoUsuario());
+            pstt.setBoolean(13, f1.isInscrito());
+            pstt.setString(14, f1.getCodigoInstitucional());
+            pstt.setDouble(15, f1.getPagoAnual());
+            pstt.setBoolean(16, f1.isControlPago());
+
+            pstt.executeUpdate();
         } finally {
-            if (pstn != null) {
-                pstn.close();
+            if (pstt != null) {
+                pstt.close();
             }
         }
     }
 
-    public Usuario getRecurso(String identificacion) throws SQLException {
+    public Usuario getUsuario(String identificacion) throws SQLException {
 
         Usuario f1 = new Usuario();
         PreparedStatement pstt = null;
@@ -99,7 +105,7 @@ public class UsuarioJdbc extends Jdbc {
         return f1;
     }
 
-    public LinkedList getRecurso() throws SQLException {
+    public LinkedList getUsuario() throws SQLException {
 
         listaFuncionario = new LinkedList();
         PreparedStatement pstt = null;
@@ -135,12 +141,16 @@ public class UsuarioJdbc extends Jdbc {
         rcu.setCorreo(rs.getString(9));
         rcu.setTelefono(rs.getString(10));
         rcu.setPassword(rs.getString(11));
-        rcu.setRol(rs.getString(12));
+        rcu.setTipoUsuario(rs.getString(12));
+        rcu.setInscrito(rs.getBoolean(13));
+        rcu.setCodigoInstitucional(rs.getString(14));
+        rcu.setPagoAnual(rs.getDouble(15));
+        rcu.setControlPago(rs.getBoolean(16));
 
         return rcu;
     }
 
-    public void DeleteRecurso(String identificacion) throws SQLException {
+    public void DeleteUsuario(String identificacion) throws SQLException {
         PreparedStatement pstn = null;
         try {
             pstn = this.getCon().prepareStatement("delete from usuario where idPersona = ?");
@@ -152,5 +162,5 @@ public class UsuarioJdbc extends Jdbc {
             }
         }
     }
-    
+
 }

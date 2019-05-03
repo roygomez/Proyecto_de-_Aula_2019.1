@@ -5,30 +5,23 @@ import java.sql.*;
 import java.util.LinkedList;
 import javax.swing.JOptionPane;
 
-public class FuncionarioJdbc extends Jdbc {
-
-    private LinkedList listaFuncionario;
+public class MultaJdbc extends Jdbc {
+    private LinkedList listaMulta;
     Jdbc cone = new Jdbc();
 
-    public void saveFuncionario(Funcionario f1) throws SQLException {
+    public void saveMulta(Multa f1) throws SQLException {
         PreparedStatement pstt = null;
         try {
-            pstt = getCon().prepareStatement("insert into funcionario values(?,?,?,?,?,?,?,?,?,?,?,?)");
+            pstt = getCon().prepareStatement("insert into multa values(?,?,?,?,?,?)");
 
             pstt.setString(1, null);
-            pstt.setString(2, f1.getIdentificacion());
+            pstt.setInt(2, f1.getIdMulta());
             pstt.setString(3, f1.getNombre1());
             pstt.setString(4, f1.getNombre2());
             pstt.setString(5, f1.getApellido1());
             pstt.setString(6, f1.getApellido2());
-            pstt.setDate(7, f1.getFechaNacimiento());
-            pstt.setString(8, f1.getSexo());
-            pstt.setString(9, f1.getCorreo());
-            pstt.setString(10, f1.getTelefono());
-            pstt.setString(11, f1.getPassword());
-            pstt.setString(12, f1.getRol());
             
-            if ((getFuncionario(f1.getIdentificacion())).getIdentificacion() == null) {
+            if ((getMulta(f1.getIdentificacion())).getIdentificacion() == null) {
                 if (f1.getIdentificacion() != null) {
                     pstt.executeUpdate();
                     JOptionPane.showMessageDialog(null, "El Funcionario fue registrado exitosamente!");
@@ -45,10 +38,10 @@ public class FuncionarioJdbc extends Jdbc {
         }
     }
 
-    public void updateFuncionario(Funcionario f1) throws SQLException {
+    public void updateMulta(Multa f1) throws SQLException {
         PreparedStatement pstn = null;
         try {
-            pstn = getCon().prepareStatement("UPDATE funcionario SET ,identificacion = ?,nombre1 = ?,nombre2 = ?,apellido1 = ?,apellido2 = ?,fechaNacimiento = ?,sexo = ?,correo = ?,telefono = ?,password = ?,rol = ? where idPersona = ?");
+            pstn = this.getCon().prepareStatement("UPDATE multa SET ,identificacion = ?,nombre1 = ?,nombre2 = ?,apellido1 = ?,apellido2 = ?,fechaNacimiento = ?,sexo = ?,correo = ?,telefono = ?,password = ?,rol = ? where idPersona = ?");
             
             
             pstn.setString(2, f1.getIdentificacion());
@@ -56,12 +49,6 @@ public class FuncionarioJdbc extends Jdbc {
             pstn.setString(4, f1.getNombre2());
             pstn.setString(5, f1.getApellido1());
             pstn.setString(6, f1.getApellido2());
-            pstn.setDate(7, f1.getFechaNacimiento());
-            pstn.setString(8, f1.getSexo());
-            pstn.setString(9, f1.getCorreo());
-            pstn.setString(10, f1.getTelefono());
-            pstn.setString(11, f1.getPassword());
-            pstn.setString(12, f1.getRol());
 
             pstn.executeUpdate();
         } finally {
@@ -71,15 +58,15 @@ public class FuncionarioJdbc extends Jdbc {
         }
     }
 
-    public Funcionario getFuncionario(String identificacion) throws SQLException {
+    public Multa getMulta(String idMulta) throws SQLException {
 
-        Funcionario f1 = new Funcionario();
+        Multa f1 = new Multa();
         PreparedStatement pstt = null;
         ResultSet rs = null;
         try {
 
-            pstt = getCon().prepareStatement("select * from funcionario where idPersona = ?");
-            pstt.setString(1, identificacion);
+            pstt = this.getCon().prepareStatement("select * from multa where idMulta = ?");
+            pstt.setString(1, idMulta);
             rs = pstt.executeQuery();
             while (rs.next()) {
                 f1 = load(rs);
@@ -96,16 +83,16 @@ public class FuncionarioJdbc extends Jdbc {
         return f1;
     }
 
-    public LinkedList getFuncionario() throws SQLException {
+    public LinkedList getMulta() throws SQLException {
 
-        listaFuncionario = new LinkedList();
+        listaMulta = new LinkedList();
         PreparedStatement pstt = null;
         ResultSet rs = null;
         try {
-            pstt = getCon().prepareStatement("select * from funcionario where idPersona = ?");
+            pstt = this.getCon().prepareStatement("select * from multa where idMulta = ?");
             rs = pstt.executeQuery();
             while (rs.next()) {
-                listaFuncionario.add(load(rs));
+                listaMulta.add(load(rs));
             }
         } finally {
             if (pstt != null) {
@@ -115,11 +102,11 @@ public class FuncionarioJdbc extends Jdbc {
                 rs.close();
             }
         }
-        return listaFuncionario;
+        return listaMulta;
     }
 
-    private Funcionario load(ResultSet rs) throws SQLException {
-        Funcionario rcu = new Funcionario();
+    private Multa load(ResultSet rs) throws SQLException {
+        Multa rcu = new Multa();
 
         rcu.setIdPersona(rs.getInt(1));
         rcu.setIdentificacion(rs.getString(2));
@@ -137,10 +124,10 @@ public class FuncionarioJdbc extends Jdbc {
         return rcu;
     }
 
-    public void DeleteFuncionario(String identificacion) throws SQLException {
+    public void DeleteMulta(String identificacion) throws SQLException {
         PreparedStatement pstn = null;
         try {
-            pstn = getCon().prepareStatement("delete from funcionario where idPersona = ?");
+            pstn = this.getCon().prepareStatement("delete from multa where idMulta = ?");
             pstn.setString(1, identificacion);
             pstn.executeUpdate();
         } finally {
