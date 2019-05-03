@@ -4,25 +4,9 @@ import java.sql.*;
 
 public class Jdbc {
 
-    private String driver;
-    private String url;
+    private String driver = "com.mysql.jdbc.Driver";
+    private String url = "jdbc:mysql://localhost:3306/sistema_bibliotecario?serverTimezone=UTC";
     private Connection con;
-
-    public String getDriver() {
-        return driver;
-    }
-
-    public void setDriver(String driver) {
-        this.driver = driver;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
 
     public Connection getCon() {
         return con;
@@ -31,16 +15,15 @@ public class Jdbc {
     public void setCon(Connection con) {
         this.con = con;
     }
-    
+
     public void conectarme() throws SQLException {
-        con = DriverManager.setConnection(url, "Biblioteca", "3UghTcMJP80k0dny");
+
         try {
+            setCon(DriverManager.getConnection(url, "biblioteca", "vZ7XPPN5qfPT6EIw"));
             Class.forName(driver);
         } catch (ClassNotFoundException cl) {
-            System.out.println(cl.getMessage();
+            System.out.println(cl.getMessage());
         }
-        
-        
     }
-   
+
 }

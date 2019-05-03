@@ -130,14 +130,12 @@ public class GUI_CrearRecurso extends javax.swing.JInternalFrame {
         r.setTipo(txttipo.getText());
 
         Jdbc cx = new Jdbc();
-        //cx.setDriver("com.mysql.jdbc.Driver");
-        //cx.setUrl("jdbc:mysql://localhost:3306/sistema_bibliotecario?useTimezone=true&serverTimezone=UTC");
         RecursoJdbc rjdbc = new RecursoJdbc();
         try {
             cx.conectarme();
-
             rjdbc.setCon(cx.getCon());
             rjdbc.saveRecurso(r);
+            
         } catch (SQLException ex) {
             Logger.getLogger(GUI_CrearRecurso.class.getName()).log(Level.SEVERE, null, ex);
         }
