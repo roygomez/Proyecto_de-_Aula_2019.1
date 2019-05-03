@@ -5,6 +5,13 @@
  */
 package vistas;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import jdbc.Jdbc;
+import jdbc.UsuarioJdbc;
+import modelo.Usuario;
+
 /**
  *
  * @author Usuario
@@ -16,6 +23,15 @@ public class GUI_Crear_Usuario extends javax.swing.JInternalFrame {
      */
     public GUI_Crear_Usuario() {
         initComponents();
+        
+        groupSexoBtn.add(rBtn1);
+        groupSexoBtn.add(rBtn2);
+        
+        groupInscritoBtn.add(rBtnIsncrito1);
+        groupInscritoBtn.add(rBtnIsncrito2);
+        
+        groupControlPagoBtn.add(rBtncontrol1);
+        groupControlPagoBtn.add(rBtncontrol2);
     }
 
     /**
@@ -27,233 +43,284 @@ public class GUI_Crear_Usuario extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel15 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        groupSexoBtn = new javax.swing.ButtonGroup();
+        groupInscritoBtn = new javax.swing.ButtonGroup();
+        groupControlPagoBtn = new javax.swing.ButtonGroup();
+        txtTipoUsu = new javax.swing.JComboBox<String>();
         jLabel14 = new javax.swing.JLabel();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
+        rBtnIsncrito1 = new javax.swing.JRadioButton();
+        rBtnIsncrito2 = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
-        jTextField11 = new javax.swing.JTextField();
+        txtCodigoInst = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField12 = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField13 = new javax.swing.JTextField();
+        txtPagoAnual = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
         jLabel12 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
         jButton2 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
-        jTextField3 = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
+        txtIdentificacion = new javax.swing.JTextField();
+        txtNombre1 = new javax.swing.JTextField();
+        txtNombre2 = new javax.swing.JTextField();
+        txtApellido1 = new javax.swing.JTextField();
+        txtApellido2 = new javax.swing.JTextField();
+        txtFechaNacimiento = new com.toedter.calendar.JDateChooser();
+        rBtn1 = new javax.swing.JRadioButton();
+        rBtn2 = new javax.swing.JRadioButton();
+        txtCorreo = new javax.swing.JTextField();
+        txtTelefono = new javax.swing.JTextField();
+        txtRol = new javax.swing.JComboBox<String>();
+        txtPassword = new javax.swing.JPasswordField();
+        rBtncontrol1 = new javax.swing.JRadioButton();
+        rBtncontrol2 = new javax.swing.JRadioButton();
 
         setClosable(true);
-        setIconifiable(true);
-        setMaximizable(true);
         setTitle("Crear Usuario");
+        setMinimumSize(new java.awt.Dimension(854, 540));
+        setPreferredSize(new java.awt.Dimension(854, 540));
         getContentPane().setLayout(null);
 
-        jLabel15.setText("Multas:");
-        getContentPane().add(jLabel15);
-        jLabel15.setBounds(447, 39, 59, 14);
-
-        jTextField10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField10ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jTextField10);
-        jTextField10.setBounds(595, 36, 178, 20);
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estudiante Colombo", "Estudiante Exterior", "Estudiante Unicolombo", "Profesor", " " }));
-        getContentPane().add(jComboBox2);
-        jComboBox2.setBounds(130, 311, 178, 20);
+        txtTipoUsu.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Estudiante Colombo", "Estudiante Exterior", "Estudiante Unicolombo", "Profesor", " " }));
+        getContentPane().add(txtTipoUsu);
+        txtTipoUsu.setBounds(190, 330, 178, 20);
 
         jLabel14.setText("Inscrito: ");
         getContentPane().add(jLabel14);
-        jLabel14.setBounds(18, 353, 43, 14);
+        jLabel14.setBounds(40, 370, 100, 14);
 
-        jRadioButton3.setText("Si");
-        jRadioButton3.setName("rbtnSi"); // NOI18N
-        getContentPane().add(jRadioButton3);
-        jRadioButton3.setBounds(130, 349, 33, 23);
+        rBtnIsncrito1.setText("Si");
+        rBtnIsncrito1.setName("rbtnSi"); // NOI18N
+        getContentPane().add(rBtnIsncrito1);
+        rBtnIsncrito1.setBounds(190, 370, 80, 23);
 
-        jRadioButton4.setText("No");
-        jRadioButton4.setName("rbtnNo"); // NOI18N
-        getContentPane().add(jRadioButton4);
-        jRadioButton4.setBounds(204, 351, 39, 23);
-
-        jTextField4.setName("txtPrimerApellidoF"); // NOI18N
-        getContentPane().add(jTextField4);
-        jTextField4.setBounds(130, 156, 178, 20);
-
-        jTextField5.setName("txtSegundoApellidoF"); // NOI18N
-        getContentPane().add(jTextField5);
-        jTextField5.setBounds(130, 194, 178, 20);
-
-        jTextField6.setName(""); // NOI18N
-        getContentPane().add(jTextField6);
-        jTextField6.setBounds(130, 232, 178, 20);
-        getContentPane().add(jTextField7);
-        jTextField7.setBounds(595, 191, 178, 20);
-        getContentPane().add(jTextField8);
-        jTextField8.setBounds(595, 229, 178, 20);
-
-        jRadioButton2.setText("Mujer");
-        jRadioButton2.setName("rbtnMujer"); // NOI18N
-        getContentPane().add(jRadioButton2);
-        jRadioButton2.setBounds(255, 270, 53, 23);
-
-        jRadioButton1.setText("Hombre");
-        jRadioButton1.setName("rbtnHombre"); // NOI18N
-        getContentPane().add(jRadioButton1);
-        jRadioButton1.setBounds(130, 270, 63, 23);
+        rBtnIsncrito2.setText("No");
+        rBtnIsncrito2.setName("rbtnNo"); // NOI18N
+        getContentPane().add(rBtnIsncrito2);
+        rBtnIsncrito2.setBounds(300, 370, 80, 23);
 
         jLabel1.setText("Identificacion: ");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(10, 42, 71, 14);
+        jLabel1.setBounds(40, 60, 130, 14);
 
+        jLabel10.setBackground(new java.awt.Color(0, 204, 204));
         jLabel10.setText("Telefono: ");
         getContentPane().add(jLabel10);
-        jLabel10.setBounds(447, 270, 49, 14);
+        jLabel10.setBounds(480, 250, 80, 14);
 
+        jLabel16.setBackground(new java.awt.Color(0, 204, 204));
         jLabel16.setText("Codigo Institucional: ");
         getContentPane().add(jLabel16);
-        jLabel16.setBounds(447, 77, 101, 14);
+        jLabel16.setBounds(480, 90, 140, 14);
 
-        jLabel17.setText("Pago Anual: ");
+        jLabel17.setBackground(new java.awt.Color(0, 204, 204));
+        jLabel17.setText("Pagó:");
         getContentPane().add(jLabel17);
-        jLabel17.setBounds(447, 118, 109, 14);
+        jLabel17.setBounds(480, 134, 140, 20);
 
-        jLabel18.setText("Control Pago: ");
+        jLabel18.setBackground(new java.awt.Color(0, 204, 204));
+        jLabel18.setText("Pago Anual:");
         getContentPane().add(jLabel18);
-        jLabel18.setBounds(447, 156, 95, 14);
-        getContentPane().add(jTextField9);
-        jTextField9.setBounds(595, 267, 178, 20);
-        getContentPane().add(jTextField11);
-        jTextField11.setBounds(595, 74, 178, 20);
+        jLabel18.setBounds(480, 170, 130, 14);
+        getContentPane().add(txtCodigoInst);
+        txtCodigoInst.setBounds(630, 90, 178, 20);
 
         jLabel6.setText("Fecha De Nacimiento: ");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(10, 235, 107, 14);
+        jLabel6.setBounds(40, 250, 170, 14);
 
         jLabel2.setText("Segundo Apellido: ");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(10, 197, 89, 14);
+        jLabel2.setBounds(40, 210, 150, 14);
 
+        jLabel7.setBackground(new java.awt.Color(0, 204, 204));
         jLabel7.setText("Correo Electronico: ");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(447, 194, 95, 14);
-        getContentPane().add(jTextField12);
-        jTextField12.setBounds(595, 115, 178, 20);
+        jLabel7.setBounds(480, 210, 130, 14);
 
-        jLabel11.setText("Contraseña");
+        jLabel11.setBackground(new java.awt.Color(0, 204, 204));
+        jLabel11.setText("Contraseña:");
         getContentPane().add(jLabel11);
-        jLabel11.setBounds(447, 355, 56, 14);
+        jLabel11.setBounds(480, 350, 130, 14);
 
         jLabel8.setText("Sexo: ");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(10, 274, 31, 14);
-        getContentPane().add(jTextField13);
-        jTextField13.setBounds(595, 153, 178, 20);
+        jLabel8.setBounds(40, 290, 90, 14);
+        getContentPane().add(txtPagoAnual);
+        txtPagoAnual.setBounds(630, 170, 178, 20);
 
         jLabel3.setText("Primier Apellido: ");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(10, 159, 79, 14);
-        getContentPane().add(jPasswordField1);
-        jPasswordField1.setBounds(595, 352, 178, 20);
+        jLabel3.setBounds(40, 180, 140, 14);
 
+        jLabel12.setBackground(new java.awt.Color(0, 204, 204));
         jLabel12.setText("Cargo: ");
         getContentPane().add(jLabel12);
-        jLabel12.setBounds(447, 316, 36, 14);
+        jLabel12.setBounds(480, 310, 80, 14);
 
         jButton1.setText("Registrar Usuario");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1);
-        jButton1.setBounds(233, 438, 115, 23);
+        jButton1.setBounds(170, 440, 150, 40);
 
         jLabel4.setText("Primer Nombre: ");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(10, 80, 77, 14);
-
-        jLabel9.setText("Direccion De Residencia: ");
-        getContentPane().add(jLabel9);
-        jLabel9.setBounds(447, 232, 120, 14);
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administardor", "Auxiliar", "Coordinador" }));
-        getContentPane().add(jComboBox1);
-        jComboBox1.setBounds(595, 313, 178, 20);
+        jLabel4.setBounds(40, 100, 140, 14);
 
         jButton2.setText("Volver");
         getContentPane().add(jButton2);
-        jButton2.setBounds(396, 438, 77, 23);
+        jButton2.setBounds(390, 440, 110, 40);
 
         jLabel5.setText("Segundo Nombre: ");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(10, 121, 89, 14);
-
-        jTextField1.setName("txtIdentificacionF"); // NOI18N
-        getContentPane().add(jTextField1);
-        jTextField1.setBounds(130, 39, 178, 20);
-
-        jTextField2.setName("txtSegundoNombreF"); // NOI18N
-        getContentPane().add(jTextField2);
-        jTextField2.setBounds(130, 118, 178, 20);
+        jLabel5.setBounds(40, 140, 150, 14);
 
         jButton3.setText("Salir");
         getContentPane().add(jButton3);
-        jButton3.setBounds(517, 438, 77, 23);
-
-        jTextField3.setName("txtPrimerNombreF"); // NOI18N
-        getContentPane().add(jTextField3);
-        jTextField3.setBounds(130, 77, 178, 20);
+        jButton3.setBounds(590, 440, 110, 40);
 
         jLabel13.setText("Tipo De Usuario: ");
         getContentPane().add(jLabel13);
-        jLabel13.setBounds(10, 314, 82, 14);
+        jLabel13.setBounds(40, 330, 140, 14);
+
+        txtIdentificacion.setName("txtIdentificacionF"); // NOI18N
+        getContentPane().add(txtIdentificacion);
+        txtIdentificacion.setBounds(190, 60, 178, 20);
+
+        txtNombre1.setName("txtPrimerNombreF"); // NOI18N
+        getContentPane().add(txtNombre1);
+        txtNombre1.setBounds(190, 100, 178, 20);
+
+        txtNombre2.setName("txtSegundoNombreF"); // NOI18N
+        getContentPane().add(txtNombre2);
+        txtNombre2.setBounds(190, 140, 178, 20);
+
+        txtApellido1.setName("txtPrimerApellidoF"); // NOI18N
+        getContentPane().add(txtApellido1);
+        txtApellido1.setBounds(190, 170, 178, 20);
+
+        txtApellido2.setName("txtSegundoApellidoF"); // NOI18N
+        getContentPane().add(txtApellido2);
+        txtApellido2.setBounds(190, 210, 178, 20);
+        getContentPane().add(txtFechaNacimiento);
+        txtFechaNacimiento.setBounds(190, 250, 180, 20);
+
+        rBtn1.setText("Hombre");
+        getContentPane().add(rBtn1);
+        rBtn1.setBounds(190, 290, 63, 23);
+
+        rBtn2.setText("Mujer");
+        getContentPane().add(rBtn2);
+        rBtn2.setBounds(270, 290, 53, 23);
+        getContentPane().add(txtCorreo);
+        txtCorreo.setBounds(630, 210, 178, 20);
+        getContentPane().add(txtTelefono);
+        txtTelefono.setBounds(630, 260, 178, 20);
+
+        txtRol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Administardor", "Auxiliar", "Coordinador" }));
+        getContentPane().add(txtRol);
+        txtRol.setBounds(630, 300, 178, 20);
+        getContentPane().add(txtPassword);
+        txtPassword.setBounds(630, 340, 178, 20);
+
+        rBtncontrol1.setText("Si");
+        rBtncontrol1.setName("rbtnSi"); // NOI18N
+        getContentPane().add(rBtncontrol1);
+        rBtncontrol1.setBounds(630, 130, 80, 23);
+
+        rBtncontrol2.setText("No");
+        rBtncontrol2.setName("rbtnNo"); // NOI18N
+        getContentPane().add(rBtncontrol2);
+        rBtncontrol2.setBounds(740, 130, 80, 23);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField10ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField10ActionPerformed
+        
+        String sexo = "";
+        boolean inscrito = false;
+        boolean controlPago = false;
+        
+        if (rBtn1.isSelected()) {
+            sexo = "Masculino";
+        } else if (rBtn2.isSelected()) {
+            sexo = "Femenido";
+        }
+        
+        if (rBtnIsncrito1.isSelected()) {
+            inscrito = true;
+        } else if (rBtnIsncrito2.isSelected()) {
+            inscrito = false;
+        }
+        
+        if (rBtncontrol1.isSelected()) {
+            controlPago = true;
+        } else if (rBtncontrol2.isSelected()) {
+            controlPago = false;
+        }
+
+        char[] arrayC = txtPassword.getPassword();
+        String pass = new String(arrayC);
+        
+        Usuario u1 = new Usuario();
+        u1.setApellido1(txtApellido1.getText().trim());
+        u1.setApellido2(txtApellido2.getText().trim());
+        u1.setCorreo(txtCorreo.getText().trim());
+        u1.setFechaNacimiento(txtFechaNacimiento.getDate());
+        u1.setIdentificacion(txtIdentificacion.getText().trim());
+        u1.setNombre1(txtNombre1.getText().trim());
+        u1.setNombre2(txtNombre2.getText().trim());
+        u1.setPassword(pass);
+        u1.setSexo(sexo);
+        u1.setTelefono(txtTelefono.getText().trim());        
+        u1.setCodigoInstitucional(txtCodigoInst.getText().trim());
+        u1.setControlPago(controlPago);
+        u1.setInscrito(inscrito);
+        u1.setPagoAnual(Double.parseDouble(txtPagoAnual.getText().trim()));
+        u1.setTipoUsuario(pass);
+        
+        Jdbc cx = new Jdbc();
+        UsuarioJdbc fjdbc = new UsuarioJdbc();
+        try {
+            cx.conectarme();
+            fjdbc.setCon(cx.getCon());
+            fjdbc.saveUsuario(u1);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(GUI_Crear_Usuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup groupControlPagoBtn;
+    private javax.swing.ButtonGroup groupInscritoBtn;
+    private javax.swing.ButtonGroup groupSexoBtn;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
@@ -264,24 +331,24 @@ public class GUI_Crear_Usuario extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JRadioButton rBtn1;
+    private javax.swing.JRadioButton rBtn2;
+    private javax.swing.JRadioButton rBtnIsncrito1;
+    private javax.swing.JRadioButton rBtnIsncrito2;
+    private javax.swing.JRadioButton rBtncontrol1;
+    private javax.swing.JRadioButton rBtncontrol2;
+    private javax.swing.JTextField txtApellido1;
+    private javax.swing.JTextField txtApellido2;
+    private javax.swing.JTextField txtCodigoInst;
+    private javax.swing.JTextField txtCorreo;
+    private com.toedter.calendar.JDateChooser txtFechaNacimiento;
+    private javax.swing.JTextField txtIdentificacion;
+    private javax.swing.JTextField txtNombre1;
+    private javax.swing.JTextField txtNombre2;
+    private javax.swing.JTextField txtPagoAnual;
+    private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JComboBox<String> txtRol;
+    private javax.swing.JTextField txtTelefono;
+    private javax.swing.JComboBox<String> txtTipoUsu;
     // End of variables declaration//GEN-END:variables
 }

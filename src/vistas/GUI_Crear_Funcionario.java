@@ -68,9 +68,8 @@ public class GUI_Crear_Funcionario extends javax.swing.JInternalFrame {
 
         setBackground(java.awt.Color.white);
         setClosable(true);
-        setIconifiable(true);
-        setMaximizable(true);
         setTitle("Crear Funcionario");
+        setPreferredSize(new java.awt.Dimension(792, 437));
         setVisible(true);
         getContentPane().setLayout(null);
 

@@ -5,6 +5,8 @@
  */
 package vistas;
 
+import java.awt.Dimension;
+
 /**
  *
  * @author Usuario
@@ -197,30 +199,55 @@ public class GUI_Principal extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         GUI_Crear_Funcionario cf = new GUI_Crear_Funcionario();
         jdp.add(cf);
+        //Centra en JInternalFrame
+        Dimension desktopSize = jdp.getSize();
+        Dimension FrameSize = cf.getSize();
+        cf.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        //
         cf.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         GUI_Crear_Usuario cu = new GUI_Crear_Usuario();
         jdp.add(cu);
+        //Centra en JInternalFrame
+        Dimension desktopSize = jdp.getSize();
+        Dimension FrameSize = cu.getSize();
+        cu.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        //
         cu.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         GUI_Crear_Material_Bibliografico cmb = new GUI_Crear_Material_Bibliografico();
         jdp.add(cmb);
+        //Centra en JInternalFrame
+        Dimension desktopSize = jdp.getSize();
+        Dimension FrameSize = cmb.getSize();
+        cmb.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        //
         cmb.setVisible(true);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
         GUI_Crear_Prestamo cp = new GUI_Crear_Prestamo();
         jdp.add(cp);
+        //Centra en JInternalFrame
+        Dimension desktopSize = jdp.getSize();
+        Dimension FrameSize = cp.getSize();
+        cp.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        //
         cp.setVisible(true);
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         GUI_Modificar_Funcionario mf = new GUI_Modificar_Funcionario();
         jdp.add(mf);
+        //Centra en JInternalFrame
+        Dimension desktopSize = jdp.getSize();
+        Dimension FrameSize = mf.getSize();
+        mf.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        //
         mf.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
