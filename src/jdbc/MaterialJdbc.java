@@ -14,7 +14,7 @@ public class MaterialJdbc extends Jdbc{
     public void saveMaterial(MaterialBibliografico f1) throws SQLException {
         PreparedStatement pstt = null;
         try {
-            pstt = this.getCon().prepareStatement("insert into Material values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            pstt = this.getCon().prepareStatement("insert into Material values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
             pstt.setString(1, null);
             pstt.setString(2, f1.getCodigoMaterial());

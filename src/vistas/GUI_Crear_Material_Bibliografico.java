@@ -5,6 +5,12 @@
  */
 package vistas;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import jdbc.MaterialJdbc;
+import modelo.MaterialBibliografico;
+
 /**
  *
  * @author Usuario
@@ -42,24 +48,24 @@ public class GUI_Crear_Material_Bibliografico extends javax.swing.JInternalFrame
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
-        jTextField10 = new javax.swing.JTextField();
-        jTextField11 = new javax.swing.JTextField();
-        jTextField12 = new javax.swing.JTextField();
-        jTextField13 = new javax.swing.JTextField();
-        jTextField14 = new javax.swing.JTextField();
+        txtCodigo = new javax.swing.JTextField();
+        txtTipo = new javax.swing.JTextField();
+        txtAutor = new javax.swing.JTextField();
+        txtTitulo = new javax.swing.JTextField();
+        txtDescripcion = new javax.swing.JTextField();
+        txtEdicion = new javax.swing.JTextField();
+        txtEditorial = new javax.swing.JTextField();
+        txtNumPag = new javax.swing.JTextField();
+        txtTema = new javax.swing.JTextField();
+        txtEstadoF = new javax.swing.JTextField();
+        txtCodigoAsig = new javax.swing.JTextField();
+        txtLetraUb = new javax.swing.JTextField();
+        txtEjemplar = new javax.swing.JTextField();
         jTextField15 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        txtDisponible = new javax.swing.JComboBox();
         jLabel16 = new javax.swing.JLabel();
 
         setClosable(true);
@@ -147,38 +153,41 @@ public class GUI_Crear_Material_Bibliografico extends javax.swing.JInternalFrame
         jLabel15.setText("jLabel15");
         getContentPane().add(jLabel15);
         jLabel15.setBounds(510, 280, 80, 19);
-        getContentPane().add(jTextField1);
-        jTextField1.setBounds(210, 50, 167, 20);
-        getContentPane().add(jTextField2);
-        jTextField2.setBounds(210, 90, 167, 20);
-        getContentPane().add(jTextField3);
-        jTextField3.setBounds(210, 130, 167, 20);
-        getContentPane().add(jTextField4);
-        jTextField4.setBounds(210, 160, 167, 20);
-        getContentPane().add(jTextField5);
-        jTextField5.setBounds(210, 200, 167, 20);
-        getContentPane().add(jTextField6);
-        jTextField6.setBounds(210, 240, 167, 20);
-        getContentPane().add(jTextField7);
-        jTextField7.setBounds(210, 280, 167, 20);
-        getContentPane().add(jTextField8);
-        jTextField8.setBounds(210, 320, 167, 20);
-        getContentPane().add(jTextField9);
-        jTextField9.setBounds(660, 50, 165, 20);
-        getContentPane().add(jTextField10);
-        jTextField10.setBounds(660, 90, 165, 20);
-        getContentPane().add(jTextField11);
-        jTextField11.setBounds(660, 120, 165, 20);
-        getContentPane().add(jTextField12);
-        jTextField12.setBounds(660, 160, 165, 20);
-        getContentPane().add(jTextField13);
-        jTextField13.setBounds(660, 200, 165, 20);
-        getContentPane().add(jTextField14);
-        jTextField14.setBounds(660, 240, 165, 20);
+        getContentPane().add(txtCodigo);
+        txtCodigo.setBounds(210, 50, 167, 20);
+        getContentPane().add(txtTipo);
+        txtTipo.setBounds(210, 90, 167, 20);
+        getContentPane().add(txtAutor);
+        txtAutor.setBounds(210, 130, 167, 20);
+        getContentPane().add(txtTitulo);
+        txtTitulo.setBounds(210, 160, 167, 20);
+        getContentPane().add(txtDescripcion);
+        txtDescripcion.setBounds(210, 200, 167, 20);
+        getContentPane().add(txtEdicion);
+        txtEdicion.setBounds(210, 240, 167, 20);
+        getContentPane().add(txtEditorial);
+        txtEditorial.setBounds(210, 280, 167, 20);
+        getContentPane().add(txtNumPag);
+        txtNumPag.setBounds(210, 320, 167, 20);
+        getContentPane().add(txtTema);
+        txtTema.setBounds(660, 40, 165, 20);
+        getContentPane().add(txtEstadoF);
+        txtEstadoF.setBounds(660, 120, 165, 20);
+        getContentPane().add(txtCodigoAsig);
+        txtCodigoAsig.setBounds(660, 160, 165, 20);
+        getContentPane().add(txtLetraUb);
+        txtLetraUb.setBounds(660, 200, 165, 20);
+        getContentPane().add(txtEjemplar);
+        txtEjemplar.setBounds(660, 240, 165, 20);
         getContentPane().add(jTextField15);
         jTextField15.setBounds(660, 280, 165, 20);
 
         jButton1.setText("Registrar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1);
         jButton1.setBounds(290, 370, 77, 23);
 
@@ -190,15 +199,47 @@ public class GUI_Crear_Material_Bibliografico extends javax.swing.JInternalFrame
         getContentPane().add(jButton3);
         jButton3.setBounds(530, 370, 53, 23);
 
+        txtDisponible.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Disponible", "Ocupado", " " }));
+        getContentPane().add(txtDisponible);
+        txtDisponible.setBounds(660, 80, 170, 20);
+
         jLabel16.setBackground(new java.awt.Color(255, 255, 255));
         jLabel16.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Material Bibliografico.jpeg"))); // NOI18N
         jLabel16.setText("jLabel16");
         getContentPane().add(jLabel16);
-        jLabel16.setBounds(40, 0, 1120, 581);
+        jLabel16.setBounds(0, 0, 1120, 581);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            // TODO add your handling code here:
+            MaterialBibliografico m1 = new MaterialBibliografico();
+            m1.setAutor(txtAutor.getText().trim());
+            m1.setCodigoAsignatura(txtCodigoAsig.getText().trim());
+            m1.setCodigoMaterial(txtCodigo.getText().trim());
+            m1.setDescripcion(txtDescripcion.getText().trim());
+            //m1.setDisponible(txtDisponible.getToolTipText());
+            m1.setEdicion(txtEdicion.getText().trim());
+            m1.setEditorial(txtEditorial.getText().trim());
+            //m1.setEjemplar(txtEjemplar.getText().trim());
+            m1.setEstadoFisico(txtEstadoF.getText().trim());
+            m1.setLetraUbicacion(txtLetraUb.getText().trim());
+            m1.setNumPaginas(txtNumPag.getText().trim());
+            m1.setTema(txtTema.getText().trim());
+            m1.setTipoMaterial(txtTipo.getText().trim());
+            m1.setTitulo(txtTitulo.getText().trim());
+            
+            MaterialJdbc db = new MaterialJdbc();
+            db.saveMaterial(m1);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -221,20 +262,20 @@ public class GUI_Crear_Material_Bibliografico extends javax.swing.JInternalFrame
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField14;
     private javax.swing.JTextField jTextField15;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField txtAutor;
+    private javax.swing.JTextField txtCodigo;
+    private javax.swing.JTextField txtCodigoAsig;
+    private javax.swing.JTextField txtDescripcion;
+    private javax.swing.JComboBox txtDisponible;
+    private javax.swing.JTextField txtEdicion;
+    private javax.swing.JTextField txtEditorial;
+    private javax.swing.JTextField txtEjemplar;
+    private javax.swing.JTextField txtEstadoF;
+    private javax.swing.JTextField txtLetraUb;
+    private javax.swing.JTextField txtNumPag;
+    private javax.swing.JTextField txtTema;
+    private javax.swing.JTextField txtTipo;
+    private javax.swing.JTextField txtTitulo;
     // End of variables declaration//GEN-END:variables
 }
