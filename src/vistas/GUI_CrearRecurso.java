@@ -5,6 +5,7 @@
  */
 package vistas;
 
+import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -120,28 +121,28 @@ public class GUI_CrearRecurso extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtEstadoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
         // TODO add your handling code here:
         Recurso r = new Recurso();
         r.setEstado(txtEstado.getText());
         r.setNombre(txtNombre.getText());
         r.setSerial(txtSerial.getText());
         r.setTipo(txttipo.getText());
-        
+
         Jdbc cx = new Jdbc();
-        cx.setDriver("com.mysql.jdbc.Driver");
-        cx.setUrl("jdbc:mysql://localhost:3306/sistema_bibliotecario?useTimezone=true&serverTimezone=UTC");
+        //cx.setDriver("com.mysql.jdbc.Driver");
+        //cx.setUrl("jdbc:mysql://localhost:3306/sistema_bibliotecario?useTimezone=true&serverTimezone=UTC");
         RecursoJdbc rjdbc = new RecursoJdbc();
         try {
-            System.out.println(cx.getCon());
             cx.conectarme();
-            
+
             rjdbc.setCon(cx.getCon());
             rjdbc.saveRecurso(r);
         } catch (SQLException ex) {
             Logger.getLogger(GUI_CrearRecurso.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

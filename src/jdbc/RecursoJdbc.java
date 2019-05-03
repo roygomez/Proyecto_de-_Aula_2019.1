@@ -5,7 +5,6 @@
  */
 package jdbc;
 
-import java.awt.List;
 import java.sql.*;
 import java.util.LinkedList;
 import javax.swing.JOptionPane;
