@@ -20,7 +20,7 @@ public class UsuarioJdbc extends Jdbc {
             pstt.setString(4, f1.getNombre2());
             pstt.setString(5, f1.getApellido1());
             pstt.setString(6, f1.getApellido2());
-            pstt.setDate(7, f1.getFechaNacimiento());
+            pstt.setDate(7, new Date(f1.getFechaNacimiento().getTime()));
             pstt.setString(8, f1.getSexo());
             pstt.setString(9, f1.getCorreo());
             pstt.setString(10, f1.getTelefono());
@@ -58,7 +58,7 @@ public class UsuarioJdbc extends Jdbc {
             pstt.setString(4, f1.getNombre2());
             pstt.setString(5, f1.getApellido1());
             pstt.setString(6, f1.getApellido2());
-            pstt.setDate(7, f1.getFechaNacimiento());
+            pstt.setDate(7, new Date(f1.getFechaNacimiento().getTime()));
             pstt.setString(8, f1.getSexo());
             pstt.setString(9, f1.getCorreo());
             pstt.setString(10, f1.getTelefono());

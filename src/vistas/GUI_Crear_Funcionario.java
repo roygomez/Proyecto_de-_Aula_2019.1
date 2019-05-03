@@ -6,6 +6,9 @@
 package vistas;
 
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import jdbc.Jdbc;
 import jdbc.FuncionarioJdbc;
 import modelo.Funcionario;
 
@@ -182,8 +185,8 @@ public class GUI_Crear_Funcionario extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-
         String sexo = "";
+        
         if (rBtn1.isSelected()) {
             sexo = "Masculino";
         } else if (rBtn2.isSelected()) {
@@ -197,14 +200,25 @@ public class GUI_Crear_Funcionario extends javax.swing.JInternalFrame {
         f1.setApellido1(txtApellido1.getText().trim());
         f1.setApellido2(txtApellido2.getText().trim());
         f1.setCorreo(txtCorreo.getText().trim());
-        //f1.setFechaNacimiento(txtFechaNacimiento.getDate());
+        f1.setFechaNacimiento(txtFechaNacimiento.getDate());
         f1.setIdentificacion(txtIdentificacion.getText().trim());
         f1.setNombre1(txtNombre1.getText().trim());
         f1.setNombre2(txtNombre2.getText().trim());
         f1.setPassword(pass);
         f1.setSexo(sexo);
         f1.setTelefono(txtTelefono.getText().trim());
-        f1.setRol(txtRol.getToolTipText());
+        f1.setRol(txtRol.getSelectedItem().toString());
+
+        Jdbc cx = new Jdbc();
+        FuncionarioJdbc fjdbc = new FuncionarioJdbc();
+        try {
+            cx.conectarme();
+            fjdbc.setCon(cx.getCon());
+            fjdbc.saveFuncionario(f1);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(GUI_Crear_Funcionario.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
