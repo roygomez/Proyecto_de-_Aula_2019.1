@@ -3,11 +3,12 @@ package jdbc;
 import modelo.*;
 import java.sql.*;
 import java.util.LinkedList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 public class FuncionarioJdbc extends Jdbc {
 
-    private LinkedList listaFuncionario;
+    private List listaFuncionario;
     Jdbc cone = new Jdbc();
 
     public void saveFuncionario(Funcionario f1) throws SQLException {
@@ -96,13 +97,13 @@ public class FuncionarioJdbc extends Jdbc {
         return f1;
     }
 
-    public LinkedList getFuncionario() throws SQLException {
+    public List getFuncionario() throws SQLException {
 
-        listaFuncionario = new LinkedList();
+        LinkedList listaFuncionario = new LinkedList();
         PreparedStatement pstt = null;
         ResultSet rs = null;
         try {
-            pstt = getCon().prepareStatement("select * from funcionario where idPersona = ?");
+            pstt = getCon().prepareStatement("select * from funcionario");
             rs = pstt.executeQuery();
             while (rs.next()) {
                 listaFuncionario.add(load(rs));

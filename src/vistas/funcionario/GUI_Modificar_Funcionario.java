@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package vistas;
+package vistas.funcionario;
 
 /**
  *
@@ -40,7 +40,7 @@ public class GUI_Modificar_Funcionario extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<String>();
         jLabel5 = new javax.swing.JLabel();
         jTextField9 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -83,7 +83,7 @@ public class GUI_Modificar_Funcionario extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Primer Nombre: ");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administardor", "Auxiliar", "Coordinador" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Administardor", "Auxiliar", "Coordinador" }));
 
         jLabel5.setText("Segundo Nombre: ");
 

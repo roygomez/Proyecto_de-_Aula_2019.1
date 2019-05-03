@@ -5,7 +5,11 @@
  */
 package vistas;
 
+import vistas.usuario.GUI_Crear_Usuario;
+import vistas.funcionario.GUI_Modificar_Funcionario;
+import vistas.funcionario.GUI_Crear_Funcionario;
 import java.awt.Dimension;
+import vistas.funcionario.GUI_ListarFuncionarios;
 
 /**
  *
@@ -89,6 +93,11 @@ public class GUI_Principal extends javax.swing.JFrame {
         jMenu1.add(jMenuItem2);
 
         jMenuItem3.setText("Consultar funcionario");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem3);
 
         jMenuItem4.setText("Eliminar Funcionario");
@@ -254,6 +263,18 @@ public class GUI_Principal extends javax.swing.JFrame {
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
             
     }//GEN-LAST:event_jMenuItem17ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+        GUI_ListarFuncionarios lf = new GUI_ListarFuncionarios();
+        jdp.add(lf);
+        //Centra en JInternalFrame
+        Dimension desktopSize = jdp.getSize();
+        Dimension FrameSize = lf.getSize();
+        lf.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        //
+        lf.setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments

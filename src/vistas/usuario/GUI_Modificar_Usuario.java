@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package vistas;
+package vistas.usuario;
 
 /**
  *
@@ -35,12 +35,12 @@ public class GUI_Modificar_Usuario extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<String>();
         jLabel5 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        jComboBox2 = new javax.swing.JComboBox<String>();
         jLabel14 = new javax.swing.JLabel();
         jRadioButton3 = new javax.swing.JRadioButton();
         jRadioButton4 = new javax.swing.JRadioButton();
@@ -91,7 +91,7 @@ public class GUI_Modificar_Usuario extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Primer Nombre: ");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administardor", "Auxiliar", "Coordinador" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Administardor", "Auxiliar", "Coordinador" }));
 
         jLabel5.setText("Segundo Nombre: ");
 
@@ -101,7 +101,7 @@ public class GUI_Modificar_Usuario extends javax.swing.JInternalFrame {
 
         jLabel13.setText("Tipo De Usuario: ");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estudiante Colombo", "Estudiante Exterior", "Estudiante Unicolombo", "Profesor", " " }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Estudiante Colombo", "Estudiante Exterior", "Estudiante Unicolombo", "Profesor", " " }));
 
         jLabel14.setText("Inscrito: ");
 

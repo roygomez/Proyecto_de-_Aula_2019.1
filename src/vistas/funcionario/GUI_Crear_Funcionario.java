@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package vistas;
+package vistas.funcionario;
 
 import java.sql.SQLException;
 import java.util.logging.Level;
