@@ -1,15 +1,12 @@
 package jdbc;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.LinkedList;
 import javax.swing.JOptionPane;
 import modelo.Usuario;
 
 public class UsuarioJdbc extends Jdbc {
-
-    private LinkedList listaFuncionario;
+    private LinkedList listaUsuario;
     Jdbc cone = new Jdbc();
 
     public void saveUsuario(Usuario f1) throws SQLException {
@@ -107,14 +104,14 @@ public class UsuarioJdbc extends Jdbc {
 
     public LinkedList getUsuario() throws SQLException {
 
-        listaFuncionario = new LinkedList();
+        listaUsuario = new LinkedList();
         PreparedStatement pstt = null;
         ResultSet rs = null;
         try {
             pstt = this.getCon().prepareStatement("select * from usuario where idPersona = ?");
             rs = pstt.executeQuery();
             while (rs.next()) {
-                listaFuncionario.add(load(rs));
+                listaUsuario.add(load(rs));
             }
         } finally {
             if (pstt != null) {
@@ -124,7 +121,7 @@ public class UsuarioJdbc extends Jdbc {
                 rs.close();
             }
         }
-        return listaFuncionario;
+        return listaUsuario;
     }
 
     private Usuario load(ResultSet rs) throws SQLException {
