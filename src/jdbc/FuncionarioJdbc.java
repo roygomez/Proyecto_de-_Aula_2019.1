@@ -49,20 +49,22 @@ public class FuncionarioJdbc extends Jdbc {
     public void updateFuncionario(Funcionario f1) throws SQLException {
         PreparedStatement pstn = null;
         try {
-            pstn = getCon().prepareStatement("UPDATE funcionario SET ,identificacion = ?,nombre1 = ?,nombre2 = ?,apellido1 = ?,apellido2 = ?,fechaNacimiento = ?,sexo = ?,correo = ?,telefono = ?,password = ?,rol = ? where idPersona = ?");
+            pstn = getCon().prepareStatement("UPDATE funcionario SET identificacion = ?,nombre1 = ?,nombre2 = ?,apellido1 = ?,apellido2 = ?,fechaNacimiento = ?,sexo = ?,correo = ?,telefono = ?,password = ?,rol = ? where idPersona = ?");
             
             
-            pstn.setString(2, f1.getIdentificacion());
-            pstn.setString(3, f1.getNombre1());
-            pstn.setString(4, f1.getNombre2());
-            pstn.setString(5, f1.getApellido1());
-            pstn.setString(6, f1.getApellido2());
-            pstn.setDate(7, new Date(f1.getFechaNacimiento().getTime()));
-            pstn.setString(8, f1.getSexo());
-            pstn.setString(9, f1.getCorreo());
-            pstn.setString(10, f1.getTelefono());
-            pstn.setString(11, f1.getPassword());
-            pstn.setString(12, f1.getRol());
+            pstn.setString(1, f1.getIdentificacion());
+            pstn.setString(2, f1.getNombre1());
+            pstn.setString(3, f1.getNombre2());
+            pstn.setString(4, f1.getApellido1());
+            pstn.setString(5, f1.getApellido2());
+            pstn.setDate(6, new Date(f1.getFechaNacimiento().getTime()));
+            pstn.setString(7, f1.getSexo());
+            pstn.setString(8, f1.getCorreo());
+            pstn.setString(9, f1.getTelefono());
+            pstn.setString(10, f1.getPassword());
+            pstn.setString(11, f1.getRol());
+            pstn.setInt(12, f1.getIdPersona());
+            System.out.println(f1.getIdPersona());
 
             pstn.executeUpdate();
         } finally {
@@ -79,7 +81,7 @@ public class FuncionarioJdbc extends Jdbc {
         ResultSet rs = null;
         try {
 
-            pstt = getCon().prepareStatement("select * from funcionario where idPersona = ?");
+            pstt = getCon().prepareStatement("select * from funcionario where identificacion = ?");
             pstt.setString(1, identificacion);
             rs = pstt.executeQuery();
             while (rs.next()) {

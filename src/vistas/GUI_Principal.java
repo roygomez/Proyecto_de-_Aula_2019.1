@@ -6,9 +6,9 @@
 package vistas;
 
 import vistas.usuario.GUI_Crear_Usuario;
-import vistas.funcionario.GUI_Modificar_Funcionario;
 import vistas.funcionario.GUI_Crear_Funcionario;
 import java.awt.Dimension;
+import vistas.funcionario.GUI_ModificarFuncionario;
 import vistas.funcionario.GUI_ListarFuncionarios;
 
 /**
@@ -250,7 +250,7 @@ public class GUI_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        GUI_Modificar_Funcionario mf = new GUI_Modificar_Funcionario();
+        GUI_ModificarFuncionario mf = new GUI_ModificarFuncionario();
         jdp.add(mf);
         //Centra en JInternalFrame
         Dimension desktopSize = jdp.getSize();
