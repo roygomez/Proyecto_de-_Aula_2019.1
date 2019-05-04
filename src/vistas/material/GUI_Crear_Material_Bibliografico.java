@@ -5,11 +5,14 @@
  */
 package vistas.material;
 
+import com.panamahitek.ArduinoException;
+import com.panamahitek.PanamaHitek_Arduino;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import jdbc.Jdbc;
 import jdbc.MaterialJdbc;
+import jssc.SerialPortException;
 import modelo.MaterialBibliografico;
 
 /**
@@ -17,12 +20,19 @@ import modelo.MaterialBibliografico;
  * @author Usuario
  */
 public class GUI_Crear_Material_Bibliografico extends javax.swing.JInternalFrame {
-
+    PanamaHitek_Arduino Arduino = new PanamaHitek_Arduino();
     /**
      * Creates new form GUI_Crear_Material_Bibliografico
      */
     public GUI_Crear_Material_Bibliografico() {
         initComponents();
+        
+        try {
+            Arduino.arduinoTX("COM5", 9600);
+        } catch (ArduinoException ex) {
+            Logger.getLogger(GUI_Crear_Material_Bibliografico.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
     /**
@@ -65,6 +75,7 @@ public class GUI_Crear_Material_Bibliografico extends javax.swing.JInternalFrame
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         txtDisponible = new javax.swing.JComboBox();
+        jButton4 = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
 
         setClosable(true);
@@ -203,6 +214,15 @@ public class GUI_Crear_Material_Bibliografico extends javax.swing.JInternalFrame
         getContentPane().add(txtDisponible);
         txtDisponible.setBounds(660, 100, 170, 20);
 
+        jButton4.setText("jButton4");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton4);
+        jButton4.setBounds(390, 50, 73, 23);
+
         jLabel16.setBackground(new java.awt.Color(255, 255, 255));
         jLabel16.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Material Bibliografico.jpeg"))); // NOI18N
@@ -252,11 +272,23 @@ public class GUI_Crear_Material_Bibliografico extends javax.swing.JInternalFrame
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        try {
+            Arduino.printMessage();
+            Arduino.killArduinoConnection();
+        } catch (SerialPortException ex) {
+            Logger.getLogger(GUI_Crear_Material_Bibliografico.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ArduinoException ex) {
+            Logger.getLogger(GUI_Crear_Material_Bibliografico.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
