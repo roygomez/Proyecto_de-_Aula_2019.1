@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
+import javax.swing.JOptionPane;
 import modelo.MaterialBibliografico;
 
 public class MaterialJdbc extends Jdbc{
@@ -14,7 +15,7 @@ public class MaterialJdbc extends Jdbc{
     public void saveMaterial(MaterialBibliografico f1) throws SQLException {
         PreparedStatement pstt = null;
         try {
-            pstt = this.getCon().prepareStatement("insert into Material values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            pstt = getCon().prepareStatement("insert into material values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
             pstt.setString(1, null);
             pstt.setString(2, f1.getCodigoMaterial());
@@ -33,6 +34,7 @@ public class MaterialJdbc extends Jdbc{
             pstt.setInt(15, f1.getEjemplar());
 
             pstt.executeUpdate();
+            JOptionPane.showMessageDialog(null, "El Material fue registrado exitosamente!");
             
         } finally {
             if (pstt != null) {

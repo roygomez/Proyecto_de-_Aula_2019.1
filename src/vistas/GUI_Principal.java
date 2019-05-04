@@ -5,6 +5,8 @@
  */
 package vistas;
 
+import vistas.prestamo.GUI_Crear_Prestamo;
+import vistas.material.GUI_Crear_Material_Bibliografico;
 import vistas.usuario.GUI_Crear_Usuario;
 import vistas.funcionario.GUI_Crear_Funcionario;
 import java.awt.Dimension;

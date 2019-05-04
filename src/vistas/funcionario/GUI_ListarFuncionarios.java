@@ -35,7 +35,6 @@ public class GUI_ListarFuncionarios extends javax.swing.JInternalFrame {
             fjdbc.setCon(cx.getCon());
             s.add(fjdbc.getFuncionario());
             
-            
         } catch (SQLException ex) {
             Logger.getLogger(GUI_Crear_Funcionario.class.getName()).log(Level.SEVERE, null, ex);
         }
