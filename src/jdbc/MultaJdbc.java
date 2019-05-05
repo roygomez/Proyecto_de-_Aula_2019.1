@@ -3,9 +3,10 @@ package jdbc;
 import modelo.*;
 import java.sql.*;
 import java.util.LinkedList;
+import java.util.List;
 
 public class MultaJdbc extends Jdbc {
-    private LinkedList listaMulta;
+    private List listaMulta;
     Jdbc cone = new Jdbc();
 
     public void saveMulta(Multa f1) throws SQLException {
@@ -74,7 +75,7 @@ public class MultaJdbc extends Jdbc {
         return f1;
     }
 
-    public LinkedList getMulta() throws SQLException {
+    public List getMulta() throws SQLException {
 
         listaMulta = new LinkedList();
         PreparedStatement pstt = null;

@@ -4,11 +4,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
+import java.util.List;
 import modelo.PrestamoBibliografico;
 
 public class PrestamoJdbc extends Jdbc {
 
-    private LinkedList listaPrestamo;
+    private List listaPrestamo;
     Jdbc cone = new Jdbc();
 
     public void savePrestamo(PrestamoBibliografico f1) throws SQLException {
@@ -74,7 +75,7 @@ public class PrestamoJdbc extends Jdbc {
         return f1;
     }
 
-    public LinkedList getPrestamo() throws SQLException {
+    public List getPrestamo() throws SQLException {
 
         listaPrestamo = new LinkedList();
         PreparedStatement pstt = null;

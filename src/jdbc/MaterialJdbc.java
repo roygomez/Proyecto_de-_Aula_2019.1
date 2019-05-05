@@ -5,11 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import modelo.MaterialBibliografico;
 
 public class MaterialJdbc extends Jdbc{
-    private LinkedList listaMaterial;
+    private List listaMaterial;
     Jdbc cone = new Jdbc();
 
     public void saveMaterial(MaterialBibliografico f1) throws SQLException {
@@ -95,7 +96,7 @@ public class MaterialJdbc extends Jdbc{
         return f1;
     }
 
-    public LinkedList getMaterial() throws SQLException {
+    public List getMaterial() throws SQLException {
 
         listaMaterial = new LinkedList();
         PreparedStatement pstt = null;

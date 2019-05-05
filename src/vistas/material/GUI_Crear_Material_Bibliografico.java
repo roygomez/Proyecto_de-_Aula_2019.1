@@ -12,6 +12,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import jdbc.Jdbc;
 import jdbc.MaterialJdbc;
+import jssc.SerialPortEvent;
+import jssc.SerialPortEventListener;
 import jssc.SerialPortException;
 import modelo.MaterialBibliografico;
 
@@ -20,19 +22,12 @@ import modelo.MaterialBibliografico;
  * @author Usuario
  */
 public class GUI_Crear_Material_Bibliografico extends javax.swing.JInternalFrame {
-    PanamaHitek_Arduino Arduino = new PanamaHitek_Arduino();
+
     /**
      * Creates new form GUI_Crear_Material_Bibliografico
      */
     public GUI_Crear_Material_Bibliografico() {
         initComponents();
-        
-        try {
-            Arduino.arduinoTX("COM5", 9600);
-        } catch (ArduinoException ex) {
-            Logger.getLogger(GUI_Crear_Material_Bibliografico.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
     }
 
     /**
@@ -273,14 +268,28 @@ public class GUI_Crear_Material_Bibliografico extends javax.swing.JInternalFrame
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+
+        PanamaHitek_Arduino ino = new PanamaHitek_Arduino();
+        SerialPortEventListener listener;
+        listener = (SerialPortEvent serialPortEvent) -> {
+            
+            try {
+                if (ino.isMessageAvailable()) {
+                    txtCodigo.setText(ino.printMessage());
+                    ino.sendData("v");
+                    ino.killArduinoConnection();
+                }
+            } catch (SerialPortException | ArduinoException ex) {
+                Logger.getLogger(GUI_Crear_Material_Bibliografico.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }; //Si se recibe algun dato en el puerto serie, se ejecuta el siguiente metodo
         try {
-            Arduino.printMessage();
-            Arduino.killArduinoConnection();
-        } catch (SerialPortException ex) {
-            Logger.getLogger(GUI_Crear_Material_Bibliografico.class.getName()).log(Level.SEVERE, null, ex);
+            ino.arduinoRXTX("COM5", 9600, listener);
         } catch (ArduinoException ex) {
             Logger.getLogger(GUI_Crear_Material_Bibliografico.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
 

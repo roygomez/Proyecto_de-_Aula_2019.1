@@ -2,11 +2,12 @@ package jdbc;
 
 import java.sql.*;
 import java.util.LinkedList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import modelo.Usuario;
 
 public class UsuarioJdbc extends Jdbc {
-    private LinkedList listaUsuario;
+    private List listaUsuario;
     Jdbc cone = new Jdbc();
 
     public void saveUsuario(Usuario f1) throws SQLException {
@@ -102,7 +103,7 @@ public class UsuarioJdbc extends Jdbc {
         return f1;
     }
 
-    public LinkedList getUsuario() throws SQLException {
+    public List getUsuario() throws SQLException {
 
         listaUsuario = new LinkedList();
         PreparedStatement pstt = null;
