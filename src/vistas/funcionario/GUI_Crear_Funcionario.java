@@ -170,6 +170,11 @@ public class GUI_Crear_Funcionario extends javax.swing.JInternalFrame {
         jButton2.setBounds(390, 320, 120, 40);
 
         jButton3.setText("Salir");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton3);
         jButton3.setBounds(596, 315, 110, 40);
         getContentPane().add(txtFechaNacimiento);
@@ -220,6 +225,11 @@ public class GUI_Crear_Funcionario extends javax.swing.JInternalFrame {
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

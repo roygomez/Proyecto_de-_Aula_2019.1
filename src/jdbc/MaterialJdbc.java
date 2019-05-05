@@ -13,26 +13,26 @@ public class MaterialJdbc extends Jdbc{
     private List listaMaterial;
     Jdbc cone = new Jdbc();
 
-    public void saveMaterial(MaterialBibliografico f1) throws SQLException {
+    public void saveMaterial(MaterialBibliografico m1) throws SQLException {
         PreparedStatement pstt = null;
         try {
             pstt = getCon().prepareStatement("insert into material values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
             pstt.setString(1, null);
-            pstt.setString(2, f1.getCodigoMaterial());
-            pstt.setString(3, f1.getTipoMaterial());
-            pstt.setString(4, f1.getAutor());
-            pstt.setString(5, f1.getTitulo());
-            pstt.setString(6, f1.getDescripcion());
-            pstt.setString(7, f1.getEditorial());
-            pstt.setString(8, f1.getEdicion());
-            pstt.setString(9, f1.getNumPaginas());
-            pstt.setString(10, f1.getTema());
-            pstt.setBoolean(11, f1.isDisponible());
-            pstt.setString(12, f1.getEstadoFisico());
-            pstt.setString(13, f1.getCodigoAsignatura());
-            pstt.setString(14, f1.getLetraUbicacion());
-            pstt.setInt(15, f1.getEjemplar());
+            pstt.setString(2, m1.getCodigoMaterial());
+            pstt.setString(3, m1.getTipoMaterial());
+            pstt.setString(4, m1.getAutor());
+            pstt.setString(5, m1.getTitulo());
+            pstt.setString(6, m1.getDescripcion());
+            pstt.setString(7, m1.getEditorial());
+            pstt.setString(8, m1.getEdicion());
+            pstt.setString(9, m1.getNumPaginas());
+            pstt.setString(10, m1.getTema());
+            pstt.setBoolean(11, m1.isDisponible());
+            pstt.setString(12, m1.getEstadoFisico());
+            pstt.setString(13, m1.getCodigoAsignatura());
+            pstt.setString(14, m1.getLetraUbicacion());
+            pstt.setInt(15, m1.getEjemplar());
 
             pstt.executeUpdate();
             JOptionPane.showMessageDialog(null, "El Material fue registrado exitosamente!");
@@ -44,26 +44,29 @@ public class MaterialJdbc extends Jdbc{
         }
     }
 
-    public void updateMaterial(MaterialBibliografico f1) throws SQLException {
+    public void updateMaterial(MaterialBibliografico m1) throws SQLException {
         PreparedStatement pstt = null;
         try {
-            pstt = this.getCon().prepareStatement("UPDATE Material SET ,identificacion = ?,nombre1 = ?,nombre2 = ?,apellido1 = ?,apellido2 = ?,fechaNacimiento = ?,sexo = ?,correo = ?,telefono = ?,password = ?,rol = ? where idPersona = ?");
-
-            pstt.setString(2, f1.getTipoMaterial());
-            pstt.setString(3, f1.getAutor());
-            pstt.setString(4, f1.getTitulo());
-            pstt.setString(5, f1.getDescripcion());
-            pstt.setString(6, f1.getEditorial());
-            pstt.setString(7, f1.getEdicion());
-            pstt.setString(8, f1.getNumPaginas());
-            pstt.setString(9, f1.getTema());
-            pstt.setBoolean(10, f1.isDisponible());
-            pstt.setString(11, f1.getEstadoFisico());
-            pstt.setString(12, f1.getCodigoAsignatura());
-            pstt.setString(13, f1.getLetraUbicacion());
-            pstt.setInt(14, f1.getEjemplar());
+            pstt = this.getCon().prepareStatement("UPDATE material SET codigoMaterial=?,tipoMaterial=?,autor=?,titulo=?,descripcion=?,editorial=?,edicion=?,numPaginas=?,tema=?,disponible=?,estadoFisico=?,codigoAsignatura=?,letraUbicacion=?,Ejemplar=? WHERE idMaterial=?");
+            
+            pstt.setString(1, m1.getCodigoMaterial());
+            pstt.setString(2, m1.getTipoMaterial());
+            pstt.setString(3, m1.getAutor());
+            pstt.setString(4, m1.getTitulo());
+            pstt.setString(5, m1.getDescripcion());
+            pstt.setString(6, m1.getEditorial());
+            pstt.setString(7, m1.getEdicion());
+            pstt.setString(8, m1.getNumPaginas());
+            pstt.setString(9, m1.getTema());
+            pstt.setBoolean(10, m1.isDisponible());
+            pstt.setString(11, m1.getEstadoFisico());
+            pstt.setString(12, m1.getCodigoAsignatura());
+            pstt.setString(13, m1.getLetraUbicacion());
+            pstt.setInt(14, m1.getEjemplar());
+            pstt.setInt(15, m1.getIdMaterial());
 
             pstt.executeUpdate();
+            JOptionPane.showMessageDialog(null, "El Material fue actualizado exitosamente!");
         } finally {
             if (pstt != null) {
                 pstt.close();
@@ -71,18 +74,18 @@ public class MaterialJdbc extends Jdbc{
         }
     }
 
-    public MaterialBibliografico getMaterial(String identificacion) throws SQLException {
+    public MaterialBibliografico getMaterial(String codigo) throws SQLException {
 
-        MaterialBibliografico f1 = new MaterialBibliografico();
+        MaterialBibliografico m1 = new MaterialBibliografico();
         PreparedStatement pstt = null;
         ResultSet rs = null;
         try {
 
-            pstt = this.getCon().prepareStatement("select * from Material where idPersona = ?");
-            pstt.setString(1, identificacion);
+            pstt = this.getCon().prepareStatement("select * from material where codigoMaterial = ?");
+            pstt.setString(1, codigo);
             rs = pstt.executeQuery();
             while (rs.next()) {
-                f1 = load(rs);
+                m1 = load(rs);
             }
         } finally {
             if (pstt != null) {
@@ -92,8 +95,9 @@ public class MaterialJdbc extends Jdbc{
                 rs.close();
             }
         }
+        System.out.println(m1.getIdMaterial() +""+ m1.getCodigoMaterial());
 
-        return f1;
+        return m1;
     }
 
     public List getMaterial() throws SQLException {
@@ -102,7 +106,7 @@ public class MaterialJdbc extends Jdbc{
         PreparedStatement pstt = null;
         ResultSet rs = null;
         try {
-            pstt = this.getCon().prepareStatement("select * from Material where idPersona = ?");
+            pstt = this.getCon().prepareStatement("select * from material");
             rs = pstt.executeQuery();
             while (rs.next()) {
                 listaMaterial.add(load(rs));
@@ -120,7 +124,8 @@ public class MaterialJdbc extends Jdbc{
 
     private MaterialBibliografico load(ResultSet rs) throws SQLException {
         MaterialBibliografico rcu = new MaterialBibliografico();
-
+        
+        rcu.setIdMaterial(rs.getInt(1));
         rcu.setCodigoMaterial(rs.getString(2));
 	rcu.setTipoMaterial(rs.getString(3));
 	rcu.setAutor(rs.getString(4));

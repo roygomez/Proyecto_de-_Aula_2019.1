@@ -161,6 +161,8 @@ public class GUI_Crear_Material_Bibliografico extends javax.swing.JInternalFrame
         jLabel14.setText("Ejemplar:");
         getContentPane().add(jLabel14);
         jLabel14.setBounds(470, 260, 180, 19);
+
+        txtCodigo.setEnabled(false);
         getContentPane().add(txtCodigo);
         txtCodigo.setBounds(210, 50, 167, 20);
         getContentPane().add(txtTipo);
@@ -202,6 +204,11 @@ public class GUI_Crear_Material_Bibliografico extends javax.swing.JInternalFrame
         jButton2.setBounds(380, 370, 150, 40);
 
         jButton3.setText("Salir");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton3);
         jButton3.setBounds(560, 370, 140, 40);
 
@@ -291,6 +298,11 @@ public class GUI_Crear_Material_Bibliografico extends javax.swing.JInternalFrame
         
 
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

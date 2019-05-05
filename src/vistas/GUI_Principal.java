@@ -12,6 +12,8 @@ import vistas.funcionario.GUI_Crear_Funcionario;
 import java.awt.Dimension;
 import vistas.funcionario.GUI_ModificarFuncionario;
 import vistas.funcionario.GUI_ListarFuncionarios;
+import vistas.material.GUI_Modificar_Material_Bibliografico;
+import vistas.usuario.GUI_ListarUsuarios;
 import vistas.usuario.GUI_Modificar_Usuario;
 
 /**
@@ -45,21 +47,21 @@ public class GUI_Principal extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem10 = new javax.swing.JMenuItem();
-        jMenuItem11 = new javax.swing.JMenuItem();
-        jMenuItem12 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
         jMenuItem15 = new javax.swing.JMenuItem();
         jMenuItem16 = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
+        jMenuItem11 = new javax.swing.JMenuItem();
+        jMenuItem12 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem17 = new javax.swing.JMenuItem();
 
@@ -73,7 +75,7 @@ public class GUI_Principal extends javax.swing.JFrame {
         );
         jdpLayout.setVerticalGroup(
             jdpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 501, Short.MAX_VALUE)
+            .addGap(0, 503, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Funcionario");
@@ -95,7 +97,7 @@ public class GUI_Principal extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem2);
 
-        jMenuItem3.setText("Consultar funcionario");
+        jMenuItem3.setText("Listar Funcionarios");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem3ActionPerformed(evt);
@@ -107,6 +109,53 @@ public class GUI_Principal extends javax.swing.JFrame {
         jMenu1.add(jMenuItem4);
 
         jMenuBar1.add(jMenu1);
+
+        jMenu4.setText("Prestamo");
+
+        jMenuItem13.setText("Crear Prestamo");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem13);
+
+        jMenuItem14.setText("Modificar Prestamo");
+        jMenu4.add(jMenuItem14);
+
+        jMenuItem15.setText("Listar Prestamo");
+        jMenu4.add(jMenuItem15);
+
+        jMenuItem16.setText("Eliminar Prestamo");
+        jMenu4.add(jMenuItem16);
+
+        jMenuBar1.add(jMenu4);
+
+        jMenu3.setText("Material Biliografico");
+
+        jMenuItem9.setText("Crear Material Biliografico");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem9);
+
+        jMenuItem10.setText("Modificar Material Biliografico");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem10);
+
+        jMenuItem11.setText("Listar Materiales Biliograficos");
+        jMenu3.add(jMenuItem11);
+
+        jMenuItem12.setText("Eliminar Material Biliografico");
+        jMenu3.add(jMenuItem12);
+
+        jMenuBar1.add(jMenu3);
 
         jMenu2.setText("Usuario");
 
@@ -126,55 +175,18 @@ public class GUI_Principal extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem5);
 
-        jMenuItem7.setText("Consultar Usuario");
+        jMenuItem7.setText("Listar Usuarios");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem7);
 
         jMenuItem8.setText("Eliminar Usuario");
         jMenu2.add(jMenuItem8);
 
         jMenuBar1.add(jMenu2);
-
-        jMenu3.setText("Material Biliografico");
-
-        jMenuItem9.setText("Crear Material Biliografico");
-        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem9ActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jMenuItem9);
-
-        jMenuItem10.setText("Modificar Material Biliografico");
-        jMenu3.add(jMenuItem10);
-
-        jMenuItem11.setText("Consultar Material Biliografico");
-        jMenu3.add(jMenuItem11);
-
-        jMenuItem12.setText("Eliminar Material Biliografico");
-        jMenu3.add(jMenuItem12);
-
-        jMenuBar1.add(jMenu3);
-
-        jMenu4.setText("Prestamo");
-
-        jMenuItem13.setText("Crear Prestamo");
-        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem13ActionPerformed(evt);
-            }
-        });
-        jMenu4.add(jMenuItem13);
-
-        jMenuItem14.setText("Modificar Prestamo");
-        jMenu4.add(jMenuItem14);
-
-        jMenuItem15.setText("Consultar Prestamo");
-        jMenu4.add(jMenuItem15);
-
-        jMenuItem16.setText("Eliminar Prestamo");
-        jMenu4.add(jMenuItem16);
-
-        jMenuBar1.add(jMenu4);
 
         jMenu5.setText("Salir");
 
@@ -286,6 +298,30 @@ public class GUI_Principal extends javax.swing.JFrame {
         //
         lf.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        // TODO add your handling code here:
+        GUI_ListarUsuarios lu = new GUI_ListarUsuarios();
+        jdp.add(lu);
+        //Centra en JInternalFrame
+        Dimension desktopSize = jdp.getSize();
+        Dimension FrameSize = lu.getSize();
+        lu.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        //
+        lu.setVisible(true);
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        // TODO add your handling code here:
+        GUI_Modificar_Material_Bibliografico mmb = new GUI_Modificar_Material_Bibliografico();
+        jdp.add(mmb);
+        //Centra en JInternalFrame
+        Dimension desktopSize = jdp.getSize();
+        Dimension FrameSize = mmb.getSize();
+        mmb.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        //
+        mmb.setVisible(true);
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     /**
      * @param args the command line arguments

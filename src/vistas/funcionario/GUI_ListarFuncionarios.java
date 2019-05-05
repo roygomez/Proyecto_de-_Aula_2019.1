@@ -6,9 +6,10 @@
 package vistas.funcionario;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 import jdbc.FuncionarioJdbc;
 import jdbc.Jdbc;
 import modelo.Funcionario;
@@ -25,17 +26,27 @@ public class GUI_ListarFuncionarios extends javax.swing.JInternalFrame {
     public GUI_ListarFuncionarios() {
         initComponents();
         
+        DefaultTableModel modelo = (DefaultTableModel) tblFuncionarios.getModel();
+
         Jdbc cx = new Jdbc();
         FuncionarioJdbc fjdbc = new FuncionarioJdbc();
-        
-        ArrayList s = new ArrayList();
+
         try {
             cx.conectarme();
             fjdbc.setCon(cx.getCon());
-            s.add(fjdbc.getFuncionario());
             
+            List<Funcionario> funcionarios = fjdbc.getFuncionario();
+
+            for (Funcionario f : funcionarios) {
+                modelo.addRow(new Object[] {
+                    f.getIdentificacion(), f.getNombre1(), f.getNombre2(), f.getApellido1(),
+                    f.getApellido2(), f.getFechaNacimiento(), f.getSexo(),
+                    f.getCorreo(), f.getTelefono(), f.getRol()
+                });
+            }
+
         } catch (SQLException ex) {
-            Logger.getLogger(GUI_Crear_Funcionario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GUI_ListarFuncionarios.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -52,6 +63,7 @@ public class GUI_ListarFuncionarios extends javax.swing.JInternalFrame {
         jTable1 = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblFuncionarios = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -67,43 +79,69 @@ public class GUI_ListarFuncionarios extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jTable1);
 
         setClosable(true);
-        setTitle("Funcionarios");
+        setTitle("Listar Funcionarios");
 
         tblFuncionarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "IDENTIFICACION", "NOMBRE 1", "NOMBRE 2", "APELLIDO 1", "APELLIDO2", "FECHA NACIMIENTO", "SEXO", "CORREO", "TELEFONO", "ROL"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        tblFuncionarios.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        tblFuncionarios.setEnabled(false);
         jScrollPane2.setViewportView(tblFuncionarios);
+
+        jButton1.setText("Salir");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 914, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(140, Short.MAX_VALUE))
+                .addGap(96, 96, 96)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                .addGap(7, 7, 7))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;

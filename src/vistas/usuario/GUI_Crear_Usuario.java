@@ -190,6 +190,11 @@ public class GUI_Crear_Usuario extends javax.swing.JInternalFrame {
         jLabel5.setBounds(40, 140, 150, 14);
 
         jButton3.setText("Salir");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton3);
         jButton3.setBounds(590, 440, 110, 40);
 
@@ -306,6 +311,11 @@ public class GUI_Crear_Usuario extends javax.swing.JInternalFrame {
             Logger.getLogger(GUI_Crear_Usuario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -112,7 +112,7 @@ public class UsuarioJdbc extends Jdbc {
         PreparedStatement pstt = null;
         ResultSet rs = null;
         try {
-            pstt = this.getCon().prepareStatement("select * from usuario where idPersona = ?");
+            pstt = this.getCon().prepareStatement("select * from usuario");
             rs = pstt.executeQuery();
             while (rs.next()) {
                 listaUsuario.add(load(rs));
