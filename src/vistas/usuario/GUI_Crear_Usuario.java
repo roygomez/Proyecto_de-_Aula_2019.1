@@ -27,8 +27,8 @@ public class GUI_Crear_Usuario extends javax.swing.JInternalFrame {
         groupSexoBtn.add(rBtn1);
         groupSexoBtn.add(rBtn2);
         
-        groupInscritoBtn.add(rBtnIsncrito1);
-        groupInscritoBtn.add(rBtnIsncrito2);
+        groupInscritoBtn.add(rBtnInscrito1);
+        groupInscritoBtn.add(rBtnInscrito2);
         
         groupControlPagoBtn.add(rBtncontrol1);
         groupControlPagoBtn.add(rBtncontrol2);
@@ -48,8 +48,8 @@ public class GUI_Crear_Usuario extends javax.swing.JInternalFrame {
         groupControlPagoBtn = new javax.swing.ButtonGroup();
         txtTipoUsu = new javax.swing.JComboBox<String>();
         jLabel14 = new javax.swing.JLabel();
-        rBtnIsncrito1 = new javax.swing.JRadioButton();
-        rBtnIsncrito2 = new javax.swing.JRadioButton();
+        rBtnInscrito1 = new javax.swing.JRadioButton();
+        rBtnInscrito2 = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
@@ -99,15 +99,15 @@ public class GUI_Crear_Usuario extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel14);
         jLabel14.setBounds(40, 370, 100, 14);
 
-        rBtnIsncrito1.setText("Si");
-        rBtnIsncrito1.setName("rbtnSi"); // NOI18N
-        getContentPane().add(rBtnIsncrito1);
-        rBtnIsncrito1.setBounds(190, 370, 80, 23);
+        rBtnInscrito1.setText("Si");
+        rBtnInscrito1.setName("rbtnSi"); // NOI18N
+        getContentPane().add(rBtnInscrito1);
+        rBtnInscrito1.setBounds(190, 370, 80, 23);
 
-        rBtnIsncrito2.setText("No");
-        rBtnIsncrito2.setName("rbtnNo"); // NOI18N
-        getContentPane().add(rBtnIsncrito2);
-        rBtnIsncrito2.setBounds(300, 370, 80, 23);
+        rBtnInscrito2.setText("No");
+        rBtnInscrito2.setName("rbtnNo"); // NOI18N
+        getContentPane().add(rBtnInscrito2);
+        rBtnInscrito2.setBounds(300, 370, 80, 23);
 
         jLabel1.setText("Identificacion: ");
         getContentPane().add(jLabel1);
@@ -263,9 +263,9 @@ public class GUI_Crear_Usuario extends javax.swing.JInternalFrame {
             sexo = "Femenido";
         }
         
-        if (rBtnIsncrito1.isSelected()) {
+        if (rBtnInscrito1.isSelected()) {
             inscrito = true;
-        } else if (rBtnIsncrito2.isSelected()) {
+        } else if (rBtnInscrito2.isSelected()) {
             inscrito = false;
         }
         
@@ -333,8 +333,8 @@ public class GUI_Crear_Usuario extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JRadioButton rBtn1;
     private javax.swing.JRadioButton rBtn2;
-    private javax.swing.JRadioButton rBtnIsncrito1;
-    private javax.swing.JRadioButton rBtnIsncrito2;
+    private javax.swing.JRadioButton rBtnInscrito1;
+    private javax.swing.JRadioButton rBtnInscrito2;
     private javax.swing.JRadioButton rBtncontrol1;
     private javax.swing.JRadioButton rBtncontrol2;
     private javax.swing.JTextField txtApellido1;

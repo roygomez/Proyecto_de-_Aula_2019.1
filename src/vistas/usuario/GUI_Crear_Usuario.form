@@ -70,7 +70,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="rBtnIsncrito1">
+    <Component class="javax.swing.JRadioButton" name="rBtnInscrito1">
       <Properties>
         <Property name="text" type="java.lang.String" value="Si"/>
         <Property name="name" type="java.lang.String" value="rbtnSi" noResource="true"/>
@@ -81,7 +81,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="rBtnIsncrito2">
+    <Component class="javax.swing.JRadioButton" name="rBtnInscrito2">
       <Properties>
         <Property name="text" type="java.lang.String" value="No"/>
         <Property name="name" type="java.lang.String" value="rbtnNo" noResource="true"/>

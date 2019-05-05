@@ -28,7 +28,7 @@ public class FuncionarioJdbc extends Jdbc {
             pstt.setString(10, f1.getTelefono());
             pstt.setString(11, f1.getPassword());
             pstt.setString(12, f1.getRol());
-            
+
             if ((getFuncionario(f1.getIdentificacion())).getIdentificacion() == null) {
                 if (f1.getIdentificacion() != null) {
                     pstt.executeUpdate();
@@ -50,8 +50,7 @@ public class FuncionarioJdbc extends Jdbc {
         PreparedStatement pstn = null;
         try {
             pstn = getCon().prepareStatement("UPDATE funcionario SET identificacion = ?,nombre1 = ?,nombre2 = ?,apellido1 = ?,apellido2 = ?,fechaNacimiento = ?,sexo = ?,correo = ?,telefono = ?,password = ?,rol = ? where idPersona = ?");
-            
-            
+
             pstn.setString(1, f1.getIdentificacion());
             pstn.setString(2, f1.getNombre1());
             pstn.setString(3, f1.getNombre2());
@@ -64,9 +63,10 @@ public class FuncionarioJdbc extends Jdbc {
             pstn.setString(10, f1.getPassword());
             pstn.setString(11, f1.getRol());
             pstn.setInt(12, f1.getIdPersona());
-            System.out.println(f1.getIdPersona());
 
             pstn.executeUpdate();
+            JOptionPane.showMessageDialog(null, "El Funcionario fue actualizado exitosamente!");
+
         } finally {
             if (pstn != null) {
                 pstn.close();

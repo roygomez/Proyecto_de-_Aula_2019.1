@@ -209,14 +209,14 @@ public class GUI_Crear_Material_Bibliografico extends javax.swing.JInternalFrame
         getContentPane().add(txtDisponible);
         txtDisponible.setBounds(660, 100, 170, 20);
 
-        jButton4.setText("jButton4");
+        jButton4.setText("Read");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
         getContentPane().add(jButton4);
-        jButton4.setBounds(390, 50, 73, 23);
+        jButton4.setBounds(390, 50, 57, 23);
 
         jLabel16.setBackground(new java.awt.Color(255, 255, 255));
         jLabel16.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N

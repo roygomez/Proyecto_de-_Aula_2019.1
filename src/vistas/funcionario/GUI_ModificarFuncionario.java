@@ -9,7 +9,6 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ButtonModel;
 import jdbc.FuncionarioJdbc;
 import jdbc.Jdbc;
 import modelo.Funcionario;
@@ -19,7 +18,7 @@ import modelo.Funcionario;
  * @author EstiRasta
  */
 public class GUI_ModificarFuncionario extends javax.swing.JInternalFrame {
-    
+    private Funcionario f1 = new Funcionario();
     /**
      * Creates new form GUI_EditarFuncionario
      */
@@ -28,7 +27,6 @@ public class GUI_ModificarFuncionario extends javax.swing.JInternalFrame {
         groupBtnSexo.add(rBtn1);
         groupBtnSexo.add(rBtn2);
     }
-    public int currentUserId = 0;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -67,9 +65,7 @@ public class GUI_ModificarFuncionario extends javax.swing.JInternalFrame {
         jButton3 = new javax.swing.JButton();
         txtFechaNacimiento = new com.toedter.calendar.JDateChooser();
         txtBuscarById = new javax.swing.JTextField();
-        label1 = new java.awt.Label();
         button1 = new java.awt.Button();
-        label2 = new java.awt.Label();
         label3 = new java.awt.Label();
         lblNumId = new java.awt.Label();
 
@@ -135,11 +131,11 @@ public class GUI_ModificarFuncionario extends javax.swing.JInternalFrame {
 
         rBtn1.setText("Hombre");
         getContentPane().add(rBtn1);
-        rBtn1.setBounds(620, 150, 63, 23);
+        rBtn1.setBounds(620, 150, 100, 23);
 
         rBtn2.setText("Mujer");
         getContentPane().add(rBtn2);
-        rBtn2.setBounds(700, 150, 53, 23);
+        rBtn2.setBounds(720, 150, 90, 23);
 
         jLabel10.setText("Telefono: ");
         getContentPane().add(jLabel10);
@@ -162,7 +158,7 @@ public class GUI_ModificarFuncionario extends javax.swing.JInternalFrame {
         txtPassword.setBounds(620, 310, 178, 20);
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Actualizar");
+        jButton1.setText("Guardar Cambios");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -189,11 +185,6 @@ public class GUI_ModificarFuncionario extends javax.swing.JInternalFrame {
         getContentPane().add(txtBuscarById);
         txtBuscarById.setBounds(570, 110, 180, 20);
 
-        label1.setFont(new java.awt.Font("Adobe Gothic Std B", 0, 14)); // NOI18N
-        label1.setText("ID:");
-        getContentPane().add(label1);
-        label1.setBounds(60, 90, 60, 20);
-
         button1.setLabel("Buscar");
         button1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -202,11 +193,6 @@ public class GUI_ModificarFuncionario extends javax.swing.JInternalFrame {
         });
         getContentPane().add(button1);
         button1.setBounds(760, 110, 70, 24);
-
-        label2.setFont(new java.awt.Font("Kozuka Gothic Pr6N M", 0, 48)); // NOI18N
-        label2.setText("MODIFICACION DE USUARIO");
-        getContentPane().add(label2);
-        label2.setBounds(100, 20, 628, 50);
 
         label3.setText("Busqueda por Identificacion:");
         getContentPane().add(label3);
@@ -231,7 +217,6 @@ public class GUI_ModificarFuncionario extends javax.swing.JInternalFrame {
         char[] arrayC = txtPassword.getPassword();
         String pass = new String(arrayC);
 
-        Funcionario f1 = new Funcionario();
         f1.setApellido1(txtApellido1.getText().trim());
         f1.setApellido2(txtApellido2.getText().trim());
         f1.setCorreo(txtCorreo.getText().trim());
@@ -243,7 +228,6 @@ public class GUI_ModificarFuncionario extends javax.swing.JInternalFrame {
         f1.setSexo(sexo);
         f1.setTelefono(txtTelefono.getText().trim());
         f1.setRol(txtRol.getSelectedItem().toString());
-        f1.setIdPersona(currentUserId);
 
         Jdbc cx = new Jdbc();
         FuncionarioJdbc fjdbc = new FuncionarioJdbc();
@@ -265,7 +249,7 @@ public class GUI_ModificarFuncionario extends javax.swing.JInternalFrame {
             cx.conectarme();
             fjdbc.setCon(cx.getCon());           
             
-            Funcionario f1 = fjdbc.getFuncionario(txtBuscarById.getText().trim());            
+            f1 = fjdbc.getFuncionario(txtBuscarById.getText().trim());            
             txtApellido1.setText(f1.getApellido1());
             txtApellido2.setText(f1.getApellido2());
             txtCorreo.setText(f1.getCorreo());
@@ -275,8 +259,8 @@ public class GUI_ModificarFuncionario extends javax.swing.JInternalFrame {
             txtNombre2.setText(f1.getNombre2());
             txtTelefono.setText(f1.getTelefono());
             txtRol.setSelectedItem(f1.getRol());
-            txtPassword.setText(f1.getPassword());            
-            currentUserId = f1.getIdPersona();
+            txtPassword.setText(f1.getPassword());
+            
             if ("Masculino".equals(f1.getSexo())) {
                 rBtn1.setSelected(true);
             }else {
@@ -311,8 +295,6 @@ public class GUI_ModificarFuncionario extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private java.awt.Label label1;
-    private java.awt.Label label2;
     private java.awt.Label label3;
     private java.awt.Label lblNumId;
     private javax.swing.JRadioButton rBtn1;

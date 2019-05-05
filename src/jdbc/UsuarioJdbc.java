@@ -52,25 +52,28 @@ public class UsuarioJdbc extends Jdbc {
     public void updateUsuario(Usuario f1) throws SQLException {
         PreparedStatement pstt = null;
         try {
-            pstt = this.getCon().prepareStatement("UPDATE usuario SET ,identificacion = ?,nombre1 = ?,nombre2 = ?,apellido1 = ?,apellido2 = ?,fechaNacimiento = ?,sexo = ?,correo = ?,telefono = ?,password = ?,rol = ? where idPersona = ?");
+            pstt = this.getCon().prepareStatement("UPDATE usuario SET identificacion = ?,nombre1 = ?,nombre2 = ?,apellido1 = ?,apellido2 = ?,fechaNacimiento = ?,sexo = ?,correo = ?,telefono = ?,password = ?,tipoUsuario = ?,inscrito = ?,codigoInstitucional = ?,pagoAnual = ?,controlPago = ? where idPersona = ?");
 
-            pstt.setString(2, f1.getIdentificacion());
-            pstt.setString(3, f1.getNombre1());
-            pstt.setString(4, f1.getNombre2());
-            pstt.setString(5, f1.getApellido1());
-            pstt.setString(6, f1.getApellido2());
-            pstt.setDate(7, new Date(f1.getFechaNacimiento().getTime()));
-            pstt.setString(8, f1.getSexo());
-            pstt.setString(9, f1.getCorreo());
-            pstt.setString(10, f1.getTelefono());
-            pstt.setString(11, f1.getPassword());
-            pstt.setString(12, f1.getTipoUsuario());
-            pstt.setBoolean(13, f1.isInscrito());
-            pstt.setString(14, f1.getCodigoInstitucional());
-            pstt.setDouble(15, f1.getPagoAnual());
-            pstt.setBoolean(16, f1.isControlPago());
+            pstt.setString(1, f1.getIdentificacion());
+            pstt.setString(2, f1.getNombre1());
+            pstt.setString(3, f1.getNombre2());
+            pstt.setString(4, f1.getApellido1());
+            pstt.setString(5, f1.getApellido2());
+            pstt.setDate(6, new Date(f1.getFechaNacimiento().getTime()));
+            pstt.setString(7, f1.getSexo());
+            pstt.setString(8, f1.getCorreo());
+            pstt.setString(9, f1.getTelefono());
+            pstt.setString(10, f1.getPassword());            
+            pstt.setString(11, f1.getTipoUsuario());
+            pstt.setBoolean(12, f1.isInscrito());
+            pstt.setString(13, f1.getCodigoInstitucional());
+            pstt.setDouble(14, f1.getPagoAnual());
+            pstt.setBoolean(15, f1.isControlPago());
+            pstt.setInt(16, f1.getIdPersona());
 
             pstt.executeUpdate();
+            JOptionPane.showMessageDialog(null, "El Funcionario fue actualizado exitosamente!");
+            
         } finally {
             if (pstt != null) {
                 pstt.close();
@@ -85,7 +88,7 @@ public class UsuarioJdbc extends Jdbc {
         ResultSet rs = null;
         try {
 
-            pstt = this.getCon().prepareStatement("select * from usuario where idPersona = ?");
+            pstt = this.getCon().prepareStatement("select * from usuario where identificacion = ?");
             pstt.setString(1, identificacion);
             rs = pstt.executeQuery();
             while (rs.next()) {

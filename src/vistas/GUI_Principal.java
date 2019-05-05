@@ -12,6 +12,7 @@ import vistas.funcionario.GUI_Crear_Funcionario;
 import java.awt.Dimension;
 import vistas.funcionario.GUI_ModificarFuncionario;
 import vistas.funcionario.GUI_ListarFuncionarios;
+import vistas.usuario.GUI_Modificar_Usuario;
 
 /**
  *
@@ -205,6 +206,14 @@ public class GUI_Principal extends javax.swing.JFrame {
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
+        GUI_Modificar_Usuario mu = new GUI_Modificar_Usuario();
+        jdp.add(mu);
+        //Centra en JInternalFrame
+        Dimension desktopSize = jdp.getSize();
+        Dimension FrameSize = mu.getSize();
+        mu.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        //
+        mu.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
