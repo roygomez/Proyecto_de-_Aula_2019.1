@@ -10,11 +10,17 @@ import vistas.material.GUI_Crear_Material_Bibliografico;
 import vistas.usuario.GUI_Crear_Usuario;
 import vistas.funcionario.GUI_Crear_Funcionario;
 import java.awt.Dimension;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import jdbc.FuncionarioJdbc;
 import vistas.funcionario.GUI_ModificarFuncionario;
 import vistas.funcionario.GUI_ListarFuncionarios;
 import vistas.material.GUI_Modificar_Material_Bibliografico;
 import vistas.usuario.GUI_ListarUsuarios;
 import vistas.usuario.GUI_Modificar_Usuario;
+import jdbc.Jdbc;
+import modelo.Funcionario;
 
 /**
  *
@@ -22,13 +28,16 @@ import vistas.usuario.GUI_Modificar_Usuario;
  */
 public class GUI_Principal extends javax.swing.JFrame {
 
+    private Funcionario dataF1 = new Funcionario();
+
     /**
      * Creates new form Menu
      */
     public GUI_Principal() {
         initComponents();
-        
+
         this.setExtendedState(MAXIMIZED_BOTH);
+        jMenu1.setVisible(false);
     }
 
     /**
@@ -40,7 +49,15 @@ public class GUI_Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jdp = new javax.swing.JDesktopPane();
+        jLabel1 = new javax.swing.JLabel();
+        txtUsuario = new javax.swing.JTextField();
+        txtPassword = new javax.swing.JPasswordField();
+        jLabel2 = new javax.swing.JLabel();
+        txtTipo = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
+        btnIniciar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -67,18 +84,80 @@ public class GUI_Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Usuario:");
+
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Contraseña:");
+
+        txtTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Funcionario", "Usuario" }));
+
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Tipo:");
+
+        btnIniciar.setText("Login");
+        btnIniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIniciarActionPerformed(evt);
+            }
+        });
+
+        jdp.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdp.setLayer(txtUsuario, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdp.setLayer(txtPassword, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdp.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdp.setLayer(txtTipo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdp.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdp.setLayer(btnIniciar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout jdpLayout = new javax.swing.GroupLayout(jdp);
         jdp.setLayout(jdpLayout);
         jdpLayout.setHorizontalGroup(
             jdpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 777, Short.MAX_VALUE)
+            .addGroup(jdpLayout.createSequentialGroup()
+                .addGroup(jdpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jdpLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jdpLayout.createSequentialGroup()
+                        .addGap(209, 209, 209)
+                        .addGroup(jdpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addGroup(jdpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jdpLayout.createSequentialGroup()
+                                .addGap(43, 43, 43)
+                                .addGroup(jdpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+                                    .addComponent(txtPassword)))
+                            .addGroup(jdpLayout.createSequentialGroup()
+                                .addGap(33, 33, 33)
+                                .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(314, Short.MAX_VALUE))
         );
         jdpLayout.setVerticalGroup(
             jdpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 503, Short.MAX_VALUE)
+            .addGroup(jdpLayout.createSequentialGroup()
+                .addGap(123, 123, 123)
+                .addGroup(jdpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(46, 46, 46)
+                .addGroup(jdpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(41, 41, 41)
+                .addGroup(jdpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(46, 46, 46)
+                .addComponent(btnIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(155, Short.MAX_VALUE))
         );
 
         jMenu1.setText("Funcionario");
+        jMenu1.setEnabled(false);
         jMenu1.setName(""); // NOI18N
 
         jMenuItem1.setText("Crear Funcionario");
@@ -223,7 +302,7 @@ public class GUI_Principal extends javax.swing.JFrame {
         //Centra en JInternalFrame
         Dimension desktopSize = jdp.getSize();
         Dimension FrameSize = mu.getSize();
-        mu.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        mu.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
         //
         mu.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
@@ -234,7 +313,7 @@ public class GUI_Principal extends javax.swing.JFrame {
         //Centra en JInternalFrame
         Dimension desktopSize = jdp.getSize();
         Dimension FrameSize = cf.getSize();
-        cf.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        cf.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
         //
         cf.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
@@ -245,7 +324,7 @@ public class GUI_Principal extends javax.swing.JFrame {
         //Centra en JInternalFrame
         Dimension desktopSize = jdp.getSize();
         Dimension FrameSize = cu.getSize();
-        cu.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        cu.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
         //
         cu.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
@@ -256,7 +335,7 @@ public class GUI_Principal extends javax.swing.JFrame {
         //Centra en JInternalFrame
         Dimension desktopSize = jdp.getSize();
         Dimension FrameSize = cmb.getSize();
-        cmb.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        cmb.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
         //
         cmb.setVisible(true);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
@@ -267,7 +346,7 @@ public class GUI_Principal extends javax.swing.JFrame {
         //Centra en JInternalFrame
         Dimension desktopSize = jdp.getSize();
         Dimension FrameSize = cp.getSize();
-        cp.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        cp.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
         //
         cp.setVisible(true);
     }//GEN-LAST:event_jMenuItem13ActionPerformed
@@ -278,13 +357,13 @@ public class GUI_Principal extends javax.swing.JFrame {
         //Centra en JInternalFrame
         Dimension desktopSize = jdp.getSize();
         Dimension FrameSize = mf.getSize();
-        mf.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        mf.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
         //
         mf.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
-            
+
     }//GEN-LAST:event_jMenuItem17ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
@@ -294,7 +373,7 @@ public class GUI_Principal extends javax.swing.JFrame {
         //Centra en JInternalFrame
         Dimension desktopSize = jdp.getSize();
         Dimension FrameSize = lf.getSize();
-        lf.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        lf.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
         //
         lf.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
@@ -306,7 +385,7 @@ public class GUI_Principal extends javax.swing.JFrame {
         //Centra en JInternalFrame
         Dimension desktopSize = jdp.getSize();
         Dimension FrameSize = lu.getSize();
-        lu.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        lu.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
         //
         lu.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
@@ -318,10 +397,37 @@ public class GUI_Principal extends javax.swing.JFrame {
         //Centra en JInternalFrame
         Dimension desktopSize = jdp.getSize();
         Dimension FrameSize = mmb.getSize();
-        mmb.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        mmb.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
         //
         mmb.setVisible(true);
     }//GEN-LAST:event_jMenuItem10ActionPerformed
+
+    private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
+
+        if (txtTipo.getSelectedItem().equals("Funcionario")) {
+
+            Jdbc cx = new Jdbc();
+            FuncionarioJdbc fjdbc = new FuncionarioJdbc();
+            try {
+                cx.conectarme();
+                fjdbc.setCon(cx.getCon());
+
+                char[] arrayC = txtPassword.getPassword();
+                String pass = new String(arrayC);
+                dataF1 = fjdbc.Login(txtUsuario.getText().trim(), pass);
+                if (dataF1 != null) {
+                    System.out.println(dataF1.getApellido1());
+                    jMenu1.setEnabled(true);
+                    jMenu1.setVisible(true);
+                }else {
+                    System.out.println(dataF1.getApellido1());
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(GUI_Crear_Funcionario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+    }//GEN-LAST:event_btnIniciarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -360,6 +466,11 @@ public class GUI_Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnIniciar;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -384,5 +495,8 @@ public class GUI_Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JDesktopPane jdp;
+    private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JComboBox<String> txtTipo;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

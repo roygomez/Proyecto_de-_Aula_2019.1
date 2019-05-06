@@ -57,7 +57,7 @@ public class GUI_Crear_Funcionario extends javax.swing.JInternalFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        txtRol = new javax.swing.JComboBox<String>();
+        txtRol = new javax.swing.JComboBox<>();
         txtTelefono = new javax.swing.JTextField();
         txtPassword = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
@@ -129,11 +129,11 @@ public class GUI_Crear_Funcionario extends javax.swing.JInternalFrame {
 
         rBtn1.setText("Hombre");
         getContentPane().add(rBtn1);
-        rBtn1.setBounds(567, 30, 63, 23);
+        rBtn1.setBounds(567, 30, 110, 23);
 
         rBtn2.setText("Mujer");
         getContentPane().add(rBtn2);
-        rBtn2.setBounds(648, 30, 53, 23);
+        rBtn2.setBounds(680, 30, 110, 23);
 
         jLabel10.setText("Telefono: ");
         getContentPane().add(jLabel10);
@@ -147,7 +147,7 @@ public class GUI_Crear_Funcionario extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel12);
         jLabel12.setBounds(400, 170, 100, 14);
 
-        txtRol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Administardor", "Auxiliar", "Coordinador" }));
+        txtRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administardor", "Auxiliar", "Coordinador" }));
         getContentPane().add(txtRol);
         txtRol.setBounds(570, 170, 178, 20);
         getContentPane().add(txtTelefono);
@@ -221,7 +221,7 @@ public class GUI_Crear_Funcionario extends javax.swing.JInternalFrame {
             fjdbc.saveFuncionario(f1);
 
         } catch (SQLException ex) {
-            Logger.getLogger(GUI_Crear_Funcionario.class.getName()).log(Level.SEVERE, null, ex);
+           Logger.getLogger(GUI_Crear_Funcionario.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed

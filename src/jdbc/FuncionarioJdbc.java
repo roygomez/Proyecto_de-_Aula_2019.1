@@ -122,22 +122,22 @@ public class FuncionarioJdbc extends Jdbc {
     }
 
     private Funcionario load(ResultSet rs) throws SQLException {
-        Funcionario rcu = new Funcionario();
+        Funcionario f1 = new Funcionario();
 
-        rcu.setIdPersona(rs.getInt(1));
-        rcu.setIdentificacion(rs.getString(2));
-        rcu.setNombre1(rs.getString(3));
-        rcu.setNombre2(rs.getString(4));
-        rcu.setApellido1(rs.getString(5));
-        rcu.setApellido2(rs.getString(6));
-        rcu.setFechaNacimiento(rs.getDate(7));
-        rcu.setSexo(rs.getString(8));
-        rcu.setCorreo(rs.getString(9));
-        rcu.setTelefono(rs.getString(10));
-        rcu.setPassword(rs.getString(11));
-        rcu.setRol(rs.getString(12));
+        f1.setIdPersona(rs.getInt(1));
+        f1.setIdentificacion(rs.getString(2));
+        f1.setNombre1(rs.getString(3));
+        f1.setNombre2(rs.getString(4));
+        f1.setApellido1(rs.getString(5));
+        f1.setApellido2(rs.getString(6));
+        f1.setFechaNacimiento(rs.getDate(7));
+        f1.setSexo(rs.getString(8));
+        f1.setCorreo(rs.getString(9));
+        f1.setTelefono(rs.getString(10));
+        f1.setPassword(rs.getString(11));
+        f1.setRol(rs.getString(12));
 
-        return rcu;
+        return f1;
     }
 
     public void DeleteFuncionario(String identificacion) throws SQLException {
@@ -151,5 +151,31 @@ public class FuncionarioJdbc extends Jdbc {
                 pstn.close();
             }
         }
+    }
+    
+    public Funcionario Login(String user, String pass) throws SQLException {
+
+        Funcionario f1 = new Funcionario();
+        PreparedStatement pstt = null;
+        ResultSet rs = null;
+        try {
+            
+            pstt = getCon().prepareStatement("select * from funcionario where identificacion = ? AND password = ?");
+            pstt.setString(1, user);
+            pstt.setString(2, pass);
+            rs = pstt.executeQuery();
+            while (rs.next()) {
+                f1 = load(rs);
+            }
+        } finally {
+            if (pstt != null) {
+                pstt.close();
+            }
+            if (rs != null) {
+                rs.close();
+            }
+        }
+
+        return f1;
     }
 }

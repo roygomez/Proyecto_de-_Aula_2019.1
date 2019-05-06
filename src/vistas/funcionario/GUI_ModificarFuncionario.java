@@ -57,7 +57,7 @@ public class GUI_ModificarFuncionario extends javax.swing.JInternalFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        txtRol = new javax.swing.JComboBox<String>();
+        txtRol = new javax.swing.JComboBox<>();
         txtTelefono = new javax.swing.JTextField();
         txtPassword = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
@@ -149,7 +149,7 @@ public class GUI_ModificarFuncionario extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel12);
         jLabel12.setBounds(450, 270, 100, 14);
 
-        txtRol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Administardor", "Auxiliar", "Coordinador" }));
+        txtRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administardor", "Auxiliar", "Coordinador" }));
         getContentPane().add(txtRol);
         txtRol.setBounds(620, 270, 178, 20);
         getContentPane().add(txtTelefono);
@@ -188,7 +188,7 @@ public class GUI_ModificarFuncionario extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(txtBuscarById);
-        txtBuscarById.setBounds(570, 110, 180, 20);
+        txtBuscarById.setBounds(560, 110, 180, 20);
 
         button1.setLabel("Buscar");
         button1.addActionListener(new java.awt.event.ActionListener() {
@@ -197,11 +197,11 @@ public class GUI_ModificarFuncionario extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(button1);
-        button1.setBounds(760, 110, 70, 24);
+        button1.setBounds(750, 110, 70, 24);
 
         label3.setText("Busqueda por Identificacion:");
         getContentPane().add(label3);
-        label3.setBounds(570, 80, 190, 20);
+        label3.setBounds(560, 80, 190, 20);
         getContentPane().add(lblNumId);
         lblNumId.setBounds(90, 90, 4, 20);
         lblNumId.getAccessibleContext().setAccessibleName("lblNumid");
@@ -216,7 +216,7 @@ public class GUI_ModificarFuncionario extends javax.swing.JInternalFrame {
         if (rBtn1.isSelected()) {
             sexo = "Masculino";
         } else if (rBtn2.isSelected()) {
-            sexo = "Femenido";
+            sexo = "Femenino";
         }
 
         char[] arrayC = txtPassword.getPassword();
