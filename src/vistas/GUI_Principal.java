@@ -38,6 +38,10 @@ public class GUI_Principal extends javax.swing.JFrame {
 
         this.setExtendedState(MAXIMIZED_BOTH);
         jMenu1.setVisible(false);
+        jMenu2.setVisible(false);
+        jMenu3.setVisible(false);
+        jMenu4.setVisible(false);
+        jMenu5.setVisible(false);
     }
 
     /**
@@ -58,6 +62,7 @@ public class GUI_Principal extends javax.swing.JFrame {
         txtTipo = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         btnIniciar = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -86,14 +91,26 @@ public class GUI_Principal extends javax.swing.JFrame {
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Usuario:");
+        jdp.add(jLabel1);
+        jLabel1.setBounds(229, 126, 40, 14);
+        jdp.add(txtUsuario);
+        txtUsuario.setBounds(312, 123, 151, 20);
+        jdp.add(txtPassword);
+        txtPassword.setBounds(312, 189, 151, 20);
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Contraseña:");
+        jdp.add(jLabel2);
+        jLabel2.setBounds(209, 195, 60, 14);
 
         txtTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Funcionario", "Usuario" }));
+        jdp.add(txtTipo);
+        txtTipo.setBounds(302, 250, 151, 20);
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Tipo:");
+        jdp.add(jLabel3);
+        jLabel3.setBounds(245, 253, 24, 14);
 
         btnIniciar.setText("Login");
         btnIniciar.addActionListener(new java.awt.event.ActionListener() {
@@ -101,60 +118,14 @@ public class GUI_Principal extends javax.swing.JFrame {
                 btnIniciarActionPerformed(evt);
             }
         });
+        jdp.add(btnIniciar);
+        btnIniciar.setBounds(361, 316, 102, 32);
 
-        jdp.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jdp.setLayer(txtUsuario, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jdp.setLayer(txtPassword, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jdp.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jdp.setLayer(txtTipo, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jdp.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jdp.setLayer(btnIniciar, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout jdpLayout = new javax.swing.GroupLayout(jdp);
-        jdp.setLayout(jdpLayout);
-        jdpLayout.setHorizontalGroup(
-            jdpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jdpLayout.createSequentialGroup()
-                .addGroup(jdpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jdpLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jdpLayout.createSequentialGroup()
-                        .addGap(209, 209, 209)
-                        .addGroup(jdpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGroup(jdpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jdpLayout.createSequentialGroup()
-                                .addGap(43, 43, 43)
-                                .addGroup(jdpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
-                                    .addComponent(txtPassword)))
-                            .addGroup(jdpLayout.createSequentialGroup()
-                                .addGap(33, 33, 33)
-                                .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(314, Short.MAX_VALUE))
-        );
-        jdpLayout.setVerticalGroup(
-            jdpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jdpLayout.createSequentialGroup()
-                .addGap(123, 123, 123)
-                .addGroup(jdpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(46, 46, 46)
-                .addGroup(jdpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(41, 41, 41)
-                .addGroup(jdpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(46, 46, 46)
-                .addComponent(btnIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(155, Short.MAX_VALUE))
-        );
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Material Bibliografico.jpeg"))); // NOI18N
+        jLabel4.setText("jLabel4");
+        jLabel4.setPreferredSize(new java.awt.Dimension(777, 503));
+        jdp.add(jLabel4);
+        jLabel4.setBounds(10, 10, 750, 480);
 
         jMenu1.setText("Funcionario");
         jMenu1.setEnabled(false);
@@ -190,6 +161,7 @@ public class GUI_Principal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenu4.setText("Prestamo");
+        jMenu4.setEnabled(false);
 
         jMenuItem13.setText("Crear Prestamo");
         jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
@@ -211,6 +183,7 @@ public class GUI_Principal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu4);
 
         jMenu3.setText("Material Biliografico");
+        jMenu3.setEnabled(false);
 
         jMenuItem9.setText("Crear Material Biliografico");
         jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
@@ -237,6 +210,7 @@ public class GUI_Principal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu3);
 
         jMenu2.setText("Usuario");
+        jMenu2.setEnabled(false);
 
         jMenuItem6.setText("Crear Usuario");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
@@ -268,6 +242,7 @@ public class GUI_Principal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         jMenu5.setText("Salir");
+        jMenu5.setEnabled(false);
 
         jMenuItem17.setText("Salir");
         jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
@@ -418,7 +393,15 @@ public class GUI_Principal extends javax.swing.JFrame {
                 if (dataF1 != null) {
                     System.out.println(dataF1.getApellido1());
                     jMenu1.setEnabled(true);
+                    jMenu2.setEnabled(true);
+                    jMenu3.setEnabled(true);
+                    jMenu4.setEnabled(true);
+                    jMenu5.setEnabled(true);
                     jMenu1.setVisible(true);
+                    jMenu2.setVisible(true);
+                    jMenu3.setVisible(true);
+                    jMenu4.setVisible(true);
+                    jMenu5.setVisible(true);
                 }else {
                     System.out.println(dataF1.getApellido1());
                 }
@@ -471,6 +454,7 @@ public class GUI_Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
