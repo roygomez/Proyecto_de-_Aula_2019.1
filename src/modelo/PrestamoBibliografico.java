@@ -7,6 +7,7 @@ import java.sql.Date;
 public class PrestamoBibliografico {
     
     private int idPrestamo;
+    private int arraydelibros;
     private Date fechaPrestamo;
     private Date fechaLimite;
     private Date fechaDevolucion;

@@ -5,13 +5,19 @@
  */
 package vistas.usuario;
 
+import java.awt.Dimension;
+import java.awt.image.BufferedImage;
+import java.io.InputStream;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.JComponent;
 import jdbc.Jdbc;
 import jdbc.UsuarioJdbc;
 import modelo.Usuario;
+import vistas.Fondo;
 
 /**
  *
@@ -33,7 +39,31 @@ public class GUI_Modificar_Usuario extends javax.swing.JInternalFrame {
         
         groupControl.add(rBtncontrol1);
         groupControl.add(rBtncontrol2);
+                                    cargarImagen(jdp4,foto1);
+        ocultarBarraTitulo();
+        
     }
+    
+    private JComponent Barra = ((javax.swing.plaf.basic.BasicInternalFrameUI) getUI()).getNorthPane();
+private Dimension dimBarra = null; 
+public void ocultarBarraTitulo()
+{ 
+Barra = ((javax.swing.plaf.basic.BasicInternalFrameUI) getUI()).getNorthPane(); 
+dimBarra = Barra.getPreferredSize(); 
+Barra.setSize(0,0); 
+Barra.setPreferredSize(new Dimension(0,0)); 
+repaint(); 
+}
+  public InputStream foto1=this.getClass().getResourceAsStream("/imagenes/bl.jpg");
+            public  void cargarImagen(javax.swing.JDesktopPane jDeskp,InputStream fileImagen)
+    {   
+        try{   
+            BufferedImage image = ImageIO.read(fileImagen);        
+              jDeskp.setBorder(new Fondo(image)); }
+        catch (Exception e){   System.out.println("Imagen no disponible");   }        
+    }
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -48,12 +78,11 @@ public class GUI_Modificar_Usuario extends javax.swing.JInternalFrame {
         groupBtnInscrito = new javax.swing.ButtonGroup();
         groupControl = new javax.swing.ButtonGroup();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         txtBuscarById = new javax.swing.JTextField();
         button1 = new java.awt.Button();
         label3 = new java.awt.Label();
-        txtTipoUsu = new javax.swing.JComboBox<String>();
+        txtTipoUsu = new javax.swing.JComboBox<>();
         jLabel14 = new javax.swing.JLabel();
         rBtnInscrito1 = new javax.swing.JRadioButton();
         rBtnInscrito2 = new javax.swing.JRadioButton();
@@ -86,6 +115,8 @@ public class GUI_Modificar_Usuario extends javax.swing.JInternalFrame {
         txtPassword = new javax.swing.JPasswordField();
         rBtncontrol1 = new javax.swing.JRadioButton();
         rBtncontrol2 = new javax.swing.JRadioButton();
+        jLabel9 = new javax.swing.JLabel();
+        jdp4 = new javax.swing.JDesktopPane();
 
         setClosable(true);
         setTitle("Modificar Usuario");
@@ -93,36 +124,42 @@ public class GUI_Modificar_Usuario extends javax.swing.JInternalFrame {
         setPreferredSize(new java.awt.Dimension(918, 669));
         getContentPane().setLayout(null);
 
-        jButton1.setText("Guardar Cambios");
+        jButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jButton1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("GUARDAR");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(150, 570, 170, 40);
+        jButton1.setBounds(270, 570, 170, 30);
 
-        jButton2.setText("Volver");
-        getContentPane().add(jButton2);
-        jButton2.setBounds(400, 570, 140, 40);
-
-        jButton3.setText("Salir");
+        jButton3.setBackground(new java.awt.Color(0, 0, 0));
+        jButton3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("VOLVER");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
         getContentPane().add(jButton3);
-        jButton3.setBounds(630, 570, 140, 40);
+        jButton3.setBounds(490, 570, 140, 30);
 
+        txtBuscarById.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         txtBuscarById.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtBuscarByIdActionPerformed(evt);
             }
         });
         getContentPane().add(txtBuscarById);
-        txtBuscarById.setBounds(590, 130, 180, 20);
+        txtBuscarById.setBounds(590, 130, 180, 23);
 
+        button1.setBackground(new java.awt.Color(0, 0, 0));
+        button1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        button1.setForeground(new java.awt.Color(255, 255, 255));
         button1.setLabel("Buscar");
         button1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,19 +167,22 @@ public class GUI_Modificar_Usuario extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(button1);
-        button1.setBounds(780, 130, 70, 24);
+        button1.setBounds(780, 130, 70, 25);
 
+        label3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         label3.setText("Busqueda por Identificacion:");
         getContentPane().add(label3);
-        label3.setBounds(590, 100, 190, 20);
+        label3.setBounds(590, 100, 190, 21);
 
-        txtTipoUsu.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Estudiante Colombo", "Estudiante Exterior", "Estudiante Unicolombo", "Profesor", " " }));
+        txtTipoUsu.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        txtTipoUsu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estudiante Colombo", "Estudiante Exterior", "Estudiante Unicolombo", "Profesor", " " }));
         getContentPane().add(txtTipoUsu);
-        txtTipoUsu.setBounds(220, 440, 178, 20);
+        txtTipoUsu.setBounds(220, 440, 178, 23);
 
+        jLabel14.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel14.setText("Inscrito: ");
         getContentPane().add(jLabel14);
-        jLabel14.setBounds(70, 480, 100, 14);
+        jLabel14.setBounds(70, 480, 100, 17);
 
         rBtnInscrito1.setText("Si");
         rBtnInscrito1.setName("rbtnSi"); // NOI18N
@@ -154,91 +194,114 @@ public class GUI_Modificar_Usuario extends javax.swing.JInternalFrame {
         getContentPane().add(rBtnInscrito2);
         rBtnInscrito2.setBounds(330, 480, 80, 23);
 
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel1.setText("Identificacion: ");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(70, 170, 130, 14);
+        jLabel1.setBounds(70, 170, 130, 17);
 
         jLabel10.setBackground(new java.awt.Color(0, 204, 204));
+        jLabel10.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel10.setText("Telefono: ");
         getContentPane().add(jLabel10);
-        jLabel10.setBounds(510, 360, 80, 14);
+        jLabel10.setBounds(510, 360, 80, 17);
 
         jLabel16.setBackground(new java.awt.Color(0, 204, 204));
+        jLabel16.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel16.setText("Codigo Institucional: ");
         getContentPane().add(jLabel16);
-        jLabel16.setBounds(510, 200, 140, 14);
+        jLabel16.setBounds(510, 200, 140, 17);
 
         jLabel17.setBackground(new java.awt.Color(0, 204, 204));
+        jLabel17.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel17.setText("Pagó:");
         getContentPane().add(jLabel17);
         jLabel17.setBounds(510, 250, 140, 20);
 
         jLabel18.setBackground(new java.awt.Color(0, 204, 204));
+        jLabel18.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel18.setText("Pago Anual:");
         getContentPane().add(jLabel18);
-        jLabel18.setBounds(510, 280, 130, 14);
-        getContentPane().add(txtCodigoInst);
-        txtCodigoInst.setBounds(660, 200, 178, 20);
+        jLabel18.setBounds(510, 280, 130, 17);
 
+        txtCodigoInst.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        getContentPane().add(txtCodigoInst);
+        txtCodigoInst.setBounds(660, 200, 178, 23);
+
+        jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel6.setText("Fecha De Nacimiento: ");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(70, 360, 170, 14);
+        jLabel6.setBounds(70, 360, 170, 17);
 
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel2.setText("Segundo Apellido: ");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(70, 320, 150, 14);
+        jLabel2.setBounds(70, 320, 150, 17);
 
         jLabel7.setBackground(new java.awt.Color(0, 204, 204));
+        jLabel7.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel7.setText("Correo Electronico: ");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(510, 320, 130, 14);
+        jLabel7.setBounds(510, 320, 130, 17);
 
         jLabel11.setBackground(new java.awt.Color(0, 204, 204));
+        jLabel11.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel11.setText("Contraseña:");
         getContentPane().add(jLabel11);
-        jLabel11.setBounds(510, 410, 130, 14);
+        jLabel11.setBounds(510, 410, 130, 17);
 
+        jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel8.setText("Sexo: ");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(70, 400, 90, 14);
-        getContentPane().add(txtPagoAnual);
-        txtPagoAnual.setBounds(660, 280, 178, 20);
+        jLabel8.setBounds(70, 400, 90, 17);
 
+        txtPagoAnual.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        getContentPane().add(txtPagoAnual);
+        txtPagoAnual.setBounds(660, 280, 178, 23);
+
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel3.setText("Primier Apellido: ");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(70, 290, 140, 14);
+        jLabel3.setBounds(70, 290, 140, 17);
 
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel4.setText("Primer Nombre: ");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(70, 210, 140, 14);
+        jLabel4.setBounds(70, 210, 140, 17);
 
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel5.setText("Segundo Nombre: ");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(70, 250, 150, 14);
+        jLabel5.setBounds(70, 250, 150, 17);
 
+        jLabel13.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel13.setText("Tipo De Usuario: ");
         getContentPane().add(jLabel13);
-        jLabel13.setBounds(70, 440, 140, 14);
+        jLabel13.setBounds(70, 440, 140, 17);
 
+        txtIdentificacion.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         txtIdentificacion.setName("txtIdentificacionF"); // NOI18N
         getContentPane().add(txtIdentificacion);
-        txtIdentificacion.setBounds(220, 170, 178, 20);
+        txtIdentificacion.setBounds(220, 170, 178, 23);
 
+        txtNombre1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         txtNombre1.setName("txtPrimerNombreF"); // NOI18N
         getContentPane().add(txtNombre1);
-        txtNombre1.setBounds(220, 210, 178, 20);
+        txtNombre1.setBounds(220, 210, 178, 23);
 
+        txtNombre2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         txtNombre2.setName("txtSegundoNombreF"); // NOI18N
         getContentPane().add(txtNombre2);
-        txtNombre2.setBounds(220, 250, 178, 20);
+        txtNombre2.setBounds(220, 250, 178, 23);
 
+        txtApellido1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         txtApellido1.setName("txtPrimerApellidoF"); // NOI18N
         getContentPane().add(txtApellido1);
-        txtApellido1.setBounds(220, 280, 178, 20);
+        txtApellido1.setBounds(220, 280, 178, 23);
 
+        txtApellido2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         txtApellido2.setName("txtSegundoApellidoF"); // NOI18N
         getContentPane().add(txtApellido2);
-        txtApellido2.setBounds(220, 320, 178, 20);
+        txtApellido2.setBounds(220, 320, 178, 23);
         getContentPane().add(txtFechaNacimiento);
         txtFechaNacimiento.setBounds(220, 360, 180, 20);
 
@@ -249,12 +312,18 @@ public class GUI_Modificar_Usuario extends javax.swing.JInternalFrame {
         rBtn2.setText("Mujer");
         getContentPane().add(rBtn2);
         rBtn2.setBounds(300, 400, 53, 23);
+
+        txtCorreo.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         getContentPane().add(txtCorreo);
-        txtCorreo.setBounds(660, 320, 178, 20);
+        txtCorreo.setBounds(660, 320, 178, 23);
+
+        txtTelefono.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         getContentPane().add(txtTelefono);
-        txtTelefono.setBounds(660, 360, 178, 20);
+        txtTelefono.setBounds(660, 360, 178, 23);
+
+        txtPassword.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         getContentPane().add(txtPassword);
-        txtPassword.setBounds(660, 410, 178, 20);
+        txtPassword.setBounds(660, 410, 178, 23);
 
         rBtncontrol1.setText("Si");
         rBtncontrol1.setName("rbtnSi"); // NOI18N
@@ -265,6 +334,15 @@ public class GUI_Modificar_Usuario extends javax.swing.JInternalFrame {
         rBtncontrol2.setName("rbtnNo"); // NOI18N
         getContentPane().add(rBtncontrol2);
         rBtncontrol2.setBounds(770, 240, 80, 23);
+
+        jLabel9.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jLabel9.setText("ACTUALIZAR DATOS DE USUARIO");
+        getContentPane().add(jLabel9);
+        jLabel9.setBounds(330, 30, 310, 30);
+
+        jdp4.setBackground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(jdp4);
+        jdp4.setBounds(-30, -50, 950, 710);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -384,7 +462,6 @@ public class GUI_Modificar_Usuario extends javax.swing.JInternalFrame {
     private javax.swing.ButtonGroup groupBtnSexo;
     private javax.swing.ButtonGroup groupControl;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -401,6 +478,8 @@ public class GUI_Modificar_Usuario extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JDesktopPane jdp4;
     private java.awt.Label label3;
     private javax.swing.JRadioButton rBtn1;
     private javax.swing.JRadioButton rBtn2;

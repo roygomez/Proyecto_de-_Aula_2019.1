@@ -7,15 +7,21 @@ package vistas.material;
 
 import com.panamahitek.ArduinoException;
 import com.panamahitek.PanamaHitek_Arduino;
+import java.awt.Dimension;
+import java.awt.image.BufferedImage;
+import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.JComponent;
 import jdbc.Jdbc;
 import jdbc.MaterialJdbc;
 import jssc.SerialPortEvent;
 import jssc.SerialPortEventListener;
 import jssc.SerialPortException;
 import modelo.MaterialBibliografico;
+import vistas.Fondo;
 
 /**
  *
@@ -30,7 +36,30 @@ public class GUI_Modificar_Material_Bibliografico extends javax.swing.JInternalF
      */
     public GUI_Modificar_Material_Bibliografico() {
         initComponents();
+                                 cargarImagen(jdp4,foto1);
+        ocultarBarraTitulo();
+        
     }
+      public InputStream foto1=this.getClass().getResourceAsStream("/imagenes/bl.jpg");
+            public  void cargarImagen(javax.swing.JDesktopPane jDeskp,InputStream fileImagen)
+    {   
+        try{   
+            BufferedImage image = ImageIO.read(fileImagen);        
+              jDeskp.setBorder(new Fondo(image)); }
+        catch (Exception e){   System.out.println("Imagen no disponible");   }        
+    }
+    
+    private JComponent Barra = ((javax.swing.plaf.basic.BasicInternalFrameUI) getUI()).getNorthPane();
+private Dimension dimBarra = null; 
+public void ocultarBarraTitulo()
+{ 
+Barra = ((javax.swing.plaf.basic.BasicInternalFrameUI) getUI()).getNorthPane(); 
+dimBarra = Barra.getPreferredSize(); 
+Barra.setSize(0,0); 
+Barra.setPreferredSize(new Dimension(0,0)); 
+repaint(); 
+}
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -68,16 +97,20 @@ public class GUI_Modificar_Material_Bibliografico extends javax.swing.JInternalF
         txtCodigoAsig = new javax.swing.JTextField();
         txtLetraUb = new javax.swing.JTextField();
         txtEjemplar = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         txtDisponible = new javax.swing.JComboBox();
         jButton4 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         txtBuscarByCode = new javax.swing.JTextField();
         button1 = new java.awt.Button();
         label3 = new java.awt.Label();
+        jdp4 = new javax.swing.JDesktopPane();
+        jButton1 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jLabel15 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+        setBorder(null);
         setClosable(true);
+        setForeground(new java.awt.Color(0, 0, 0));
         setIconifiable(true);
         setMaximizable(true);
         setTitle("Modificar Material Bibliografico");
@@ -85,80 +118,80 @@ public class GUI_Modificar_Material_Bibliografico extends javax.swing.JInternalF
         setPreferredSize(new java.awt.Dimension(933, 560));
         getContentPane().setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel1.setText("Codigo: ");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(70, 140, 120, 19);
+        jLabel1.setBounds(70, 140, 120, 17);
 
-        jLabel2.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel2.setText("Tipo: ");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(70, 180, 110, 19);
+        jLabel2.setBounds(70, 180, 110, 17);
 
-        jLabel3.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel3.setText("Autor:");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(70, 220, 110, 19);
+        jLabel3.setBounds(70, 220, 110, 17);
 
-        jLabel4.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel4.setText("Titulo: ");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(70, 260, 120, 19);
+        jLabel4.setBounds(70, 260, 120, 17);
 
-        jLabel5.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel5.setText("Descripcion:");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(70, 300, 150, 19);
+        jLabel5.setBounds(70, 300, 150, 17);
 
-        jLabel6.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel6.setText("Edicion: ");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(70, 330, 130, 19);
+        jLabel6.setBounds(70, 330, 130, 17);
 
-        jLabel7.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel7.setText("Editorial:");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(70, 370, 130, 19);
+        jLabel7.setBounds(70, 370, 130, 17);
 
-        jLabel8.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel8.setText("Numero De Paginas:");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(70, 410, 210, 19);
+        jLabel8.setBounds(70, 410, 210, 17);
 
         jLabel9.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel9.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel9.setText("Tema:");
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(500, 170, 160, 19);
+        jLabel9.setBounds(500, 170, 160, 17);
 
         jLabel10.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel10.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel10.setText("Disponible: ");
         getContentPane().add(jLabel10);
-        jLabel10.setBounds(500, 210, 190, 19);
+        jLabel10.setBounds(500, 210, 190, 17);
 
         jLabel11.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel11.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel11.setText("Estado Fisico: ");
         getContentPane().add(jLabel11);
-        jLabel11.setBounds(500, 250, 200, 19);
+        jLabel11.setBounds(500, 250, 200, 17);
 
         jLabel12.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel12.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel12.setText("Codigo De Asignatura:");
         getContentPane().add(jLabel12);
-        jLabel12.setBounds(500, 290, 240, 19);
+        jLabel12.setBounds(500, 290, 240, 17);
 
         jLabel13.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel13.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel13.setText("Letra De Ubicacion:");
         getContentPane().add(jLabel13);
-        jLabel13.setBounds(500, 330, 230, 19);
+        jLabel13.setBounds(500, 330, 230, 17);
 
-        jLabel14.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel14.setText("Ejemplar:");
         getContentPane().add(jLabel14);
-        jLabel14.setBounds(500, 370, 180, 19);
+        jLabel14.setBounds(500, 370, 180, 17);
 
         txtCodigo.setEnabled(false);
         getContentPane().add(txtCodigo);
@@ -188,23 +221,14 @@ public class GUI_Modificar_Material_Bibliografico extends javax.swing.JInternalF
         getContentPane().add(txtEjemplar);
         txtEjemplar.setBounds(690, 370, 165, 20);
 
-        jButton2.setText("Volver");
-        getContentPane().add(jButton2);
-        jButton2.setBounds(400, 460, 150, 40);
-
-        jButton3.setText("Salir");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton3);
-        jButton3.setBounds(580, 460, 140, 40);
-
+        txtDisponible.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         txtDisponible.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Disponible", "Ocupado", " " }));
         getContentPane().add(txtDisponible);
         txtDisponible.setBounds(690, 210, 170, 20);
 
+        jButton4.setBackground(new java.awt.Color(0, 0, 0));
+        jButton4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Read");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -212,16 +236,7 @@ public class GUI_Modificar_Material_Bibliografico extends javax.swing.JInternalF
             }
         });
         getContentPane().add(jButton4);
-        jButton4.setBounds(410, 140, 90, 23);
-
-        jButton1.setText("Guardar Cambios");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(200, 460, 160, 40);
+        jButton4.setBounds(400, 140, 100, 20);
 
         txtBuscarByCode.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -231,6 +246,9 @@ public class GUI_Modificar_Material_Bibliografico extends javax.swing.JInternalF
         getContentPane().add(txtBuscarByCode);
         txtBuscarByCode.setBounds(590, 120, 180, 20);
 
+        button1.setBackground(new java.awt.Color(0, 0, 0));
+        button1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        button1.setForeground(new java.awt.Color(255, 255, 255));
         button1.setLabel("Buscar");
         button1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -240,9 +258,44 @@ public class GUI_Modificar_Material_Bibliografico extends javax.swing.JInternalF
         getContentPane().add(button1);
         button1.setBounds(780, 114, 70, 30);
 
+        label3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         label3.setText("Busqueda por Codigo:");
         getContentPane().add(label3);
-        label3.setBounds(590, 90, 190, 20);
+        label3.setBounds(590, 90, 190, 21);
+
+        jdp4.setBackground(new java.awt.Color(255, 255, 255));
+
+        jButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jButton1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("GUARDAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jdp4.add(jButton1);
+        jButton1.setBounds(370, 490, 160, 30);
+
+        jButton3.setBackground(new java.awt.Color(0, 0, 0));
+        jButton3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("VOLVER");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jdp4.add(jButton3);
+        jButton3.setBounds(580, 490, 140, 30);
+
+        jLabel15.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jLabel15.setText("ACTUALIZAR DATOS DEL MATERIAL");
+        jdp4.add(jLabel15);
+        jLabel15.setBounds(350, 70, 350, 22);
+
+        getContentPane().add(jdp4);
+        jdp4.setBounds(-21, -30, 970, 610);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -359,7 +412,6 @@ public class GUI_Modificar_Material_Bibliografico extends javax.swing.JInternalF
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button button1;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
@@ -368,6 +420,7 @@ public class GUI_Modificar_Material_Bibliografico extends javax.swing.JInternalF
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -376,6 +429,7 @@ public class GUI_Modificar_Material_Bibliografico extends javax.swing.JInternalF
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JDesktopPane jdp4;
     private java.awt.Label label3;
     private javax.swing.JTextField txtAutor;
     private javax.swing.JTextField txtBuscarByCode;

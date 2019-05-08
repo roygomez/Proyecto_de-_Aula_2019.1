@@ -5,14 +5,20 @@
  */
 package vistas.usuario;
 
+import java.awt.Dimension;
+import java.awt.image.BufferedImage;
+import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.JComponent;
 import javax.swing.table.DefaultTableModel;
 import jdbc.Jdbc;
 import jdbc.UsuarioJdbc;
 import modelo.Usuario;
+import vistas.Fondo;
 
 /**
  *
@@ -48,7 +54,30 @@ public class GUI_ListarUsuarios extends javax.swing.JInternalFrame {
         } catch (SQLException ex) {
             Logger.getLogger(GUI_ListarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
         }
+                            cargarImagen(jdp4,foto1);
+        ocultarBarraTitulo();
+        
     }
+    
+    private JComponent Barra = ((javax.swing.plaf.basic.BasicInternalFrameUI) getUI()).getNorthPane();
+private Dimension dimBarra = null; 
+public void ocultarBarraTitulo()
+{ 
+Barra = ((javax.swing.plaf.basic.BasicInternalFrameUI) getUI()).getNorthPane(); 
+dimBarra = Barra.getPreferredSize(); 
+Barra.setSize(0,0); 
+Barra.setPreferredSize(new Dimension(0,0)); 
+repaint(); 
+}
+  public InputStream foto1=this.getClass().getResourceAsStream("/imagenes/bl.jpg");
+            public  void cargarImagen(javax.swing.JDesktopPane jDeskp,InputStream fileImagen)
+    {   
+        try{   
+            BufferedImage image = ImageIO.read(fileImagen);        
+              jDeskp.setBorder(new Fondo(image)); }
+        catch (Exception e){   System.out.println("Imagen no disponible");   }        
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -62,8 +91,11 @@ public class GUI_ListarUsuarios extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tblUsuarios = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        txtId = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jdp4 = new javax.swing.JDesktopPane();
         jButton2 = new javax.swing.JButton();
+        txtId = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("Listar Usuarios");
@@ -100,26 +132,53 @@ public class GUI_ListarUsuarios extends javax.swing.JInternalFrame {
         getContentPane().add(jScrollPane2);
         jScrollPane2.setBounds(10, 96, 1080, 397);
 
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel1.setText("Eliminar por Identificacion:");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(10, 510, 126, 14);
+        jLabel1.setBounds(260, 500, 170, 17);
 
-        txtId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIdActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txtId);
-        txtId.setBounds(10, 530, 140, 20);
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jLabel2.setText("USUARIOS REGISTRADOS");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(450, 40, 230, 40);
 
-        jButton2.setText("Eliminar Usuario");
+        jButton2.setBackground(new java.awt.Color(0, 0, 0));
+        jButton2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("ELIMINAR");
+        jButton2.setBorder(null);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2);
-        jButton2.setBounds(160, 530, 107, 23);
+        jdp4.add(jButton2);
+        jButton2.setBounds(530, 540, 150, 30);
+
+        txtId.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        txtId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIdActionPerformed(evt);
+            }
+        });
+        jdp4.add(txtId);
+        txtId.setBounds(340, 540, 180, 23);
+
+        jButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jButton1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("VOLVER");
+        jButton1.setBorder(null);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jdp4.add(jButton1);
+        jButton1.setBounds(730, 540, 110, 30);
+
+        getContentPane().add(jdp4);
+        jdp4.setBounds(-40, -20, 1200, 650);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -144,11 +203,19 @@ public class GUI_ListarUsuarios extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+this.setVisible(false);
+;        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JDesktopPane jdp4;
     private javax.swing.JTable tblUsuarios;
     private javax.swing.JTextField txtId;
     // End of variables declaration//GEN-END:variables

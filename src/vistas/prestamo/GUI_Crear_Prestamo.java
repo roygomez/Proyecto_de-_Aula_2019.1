@@ -7,13 +7,18 @@ package vistas.prestamo;
 
 import com.panamahitek.ArduinoException;
 import com.panamahitek.PanamaHitek_Arduino;
+import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.InputStream;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 import jdbc.Jdbc;
 import jdbc.MaterialJdbc;
 import jdbc.PrestamoJdbc;
@@ -23,6 +28,7 @@ import jssc.SerialPortException;
 import modelo.MaterialBibliografico;
 import modelo.PrestamoBibliografico;
 import modelo.Usuario;
+import vistas.Fondo;
 
 /**
  *
@@ -38,11 +44,30 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
      */
     public GUI_Crear_Prestamo() {
         initComponents();
-        ImageIcon imagen = new ImageIcon("src/imagenes/Prestamo.jpg");
-        Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(lblFondo.getWidth(), lblFondo.getHeight(), Image.SCALE_DEFAULT));
-        lblFondo.setIcon(icono);
-        this.repaint();
+                                 cargarImagen(jdp4,foto1);
+        ocultarBarraTitulo();
+        
     }
+      public InputStream foto1=this.getClass().getResourceAsStream("/imagenes/bl.jpg");
+            public  void cargarImagen(javax.swing.JDesktopPane jDeskp,InputStream fileImagen)
+    {   
+        try{   
+            BufferedImage image = ImageIO.read(fileImagen);        
+              jDeskp.setBorder(new Fondo(image)); }
+        catch (Exception e){   System.out.println("Imagen no disponible");   }        
+    }
+    
+    private JComponent Barra = ((javax.swing.plaf.basic.BasicInternalFrameUI) getUI()).getNorthPane();
+private Dimension dimBarra = null; 
+public void ocultarBarraTitulo()
+{ 
+Barra = ((javax.swing.plaf.basic.BasicInternalFrameUI) getUI()).getNorthPane(); 
+dimBarra = Barra.getPreferredSize(); 
+Barra.setSize(0,0); 
+Barra.setPreferredSize(new Dimension(0,0)); 
+repaint(); 
+}
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -88,8 +113,10 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
         txtDisponible = new javax.swing.JComboBox();
         txtCodigo = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
-        lblFondo = new javax.swing.JLabel();
+        jdp4 = new javax.swing.JDesktopPane();
+        jLabel18 = new javax.swing.JLabel();
 
+        setBorder(null);
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
@@ -98,163 +125,207 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
         setPreferredSize(new java.awt.Dimension(906, 543));
         getContentPane().setLayout(null);
 
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel3.setText("Fecha del prestamo:");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(120, 480, 160, 14);
+        jLabel3.setBounds(110, 70, 160, 14);
 
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel4.setText("Fecha Limite De Devolucion:");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(380, 50, 200, 14);
+        jLabel4.setBounds(460, 70, 200, 14);
 
+        jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel6.setText("Tipo De Prestamo:");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(570, 50, 150, 14);
+        jLabel6.setBounds(70, 500, 150, 14);
 
-        jButton1.setText("Ejecutar Prestamo");
+        jButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jButton1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("INICIAR PRESTAMO");
+        jButton1.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(440, 470, 170, 40);
+        jButton1.setBounds(440, 490, 170, 30);
 
-        jButton3.setText("Salir");
+        jButton3.setBackground(new java.awt.Color(0, 0, 0));
+        jButton3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("VOLVER");
+        jButton3.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
         getContentPane().add(jButton3);
-        jButton3.setBounds(670, 470, 120, 40);
+        jButton3.setBounds(670, 490, 120, 30);
 
+        txtTipoPrestamo.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         txtTipoPrestamo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Interno", "Externo" }));
         getContentPane().add(txtTipoPrestamo);
-        txtTipoPrestamo.setBounds(230, 480, 170, 20);
+        txtTipoPrestamo.setBounds(230, 500, 170, 20);
 
-        jLabel1.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel1.setText("Codigo: ");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(60, 130, 120, 19);
+        jLabel1.setBounds(60, 150, 120, 19);
 
-        jLabel2.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel2.setText("Tipo: ");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(60, 170, 110, 19);
+        jLabel2.setBounds(60, 190, 110, 19);
 
-        jLabel7.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel7.setText("Autor:");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(60, 200, 110, 19);
+        jLabel7.setBounds(60, 220, 110, 19);
 
-        jLabel8.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel8.setText("Titulo: ");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(60, 240, 120, 19);
+        jLabel8.setBounds(60, 260, 120, 19);
 
-        jLabel5.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel5.setText("Descripcion:");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(60, 280, 150, 19);
+        jLabel5.setBounds(60, 300, 150, 19);
 
-        jLabel9.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel9.setText("Edicion: ");
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(60, 320, 130, 19);
+        jLabel9.setBounds(60, 340, 130, 19);
 
-        jLabel10.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel10.setText("Editorial:");
         getContentPane().add(jLabel10);
-        jLabel10.setBounds(60, 360, 130, 19);
+        jLabel10.setBounds(60, 380, 130, 19);
 
-        jLabel11.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel11.setText("Numero De Paginas:");
         getContentPane().add(jLabel11);
-        jLabel11.setBounds(60, 390, 210, 19);
+        jLabel11.setBounds(60, 410, 210, 19);
 
         jLabel12.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel12.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel12.setText("Tema:");
         getContentPane().add(jLabel12);
-        jLabel12.setBounds(490, 150, 160, 19);
+        jLabel12.setBounds(490, 170, 160, 19);
 
         jLabel13.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel13.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel13.setText("Disponible: ");
         getContentPane().add(jLabel13);
-        jLabel13.setBounds(490, 190, 190, 19);
+        jLabel13.setBounds(490, 210, 190, 19);
 
         jLabel14.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel14.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel14.setText("Estado Fisico: ");
         getContentPane().add(jLabel14);
-        jLabel14.setBounds(490, 230, 200, 19);
+        jLabel14.setBounds(480, 250, 200, 19);
 
         jLabel15.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel15.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel15.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel15.setText("Codigo De Asignatura:");
         getContentPane().add(jLabel15);
-        jLabel15.setBounds(490, 260, 240, 19);
+        jLabel15.setBounds(490, 280, 240, 19);
 
         jLabel16.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel16.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel16.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel16.setText("Letra De Ubicacion:");
         getContentPane().add(jLabel16);
-        jLabel16.setBounds(490, 300, 230, 19);
+        jLabel16.setBounds(490, 320, 230, 19);
 
-        jLabel17.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel17.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel17.setText("Ejemplar:");
         getContentPane().add(jLabel17);
-        jLabel17.setBounds(490, 340, 180, 19);
-        getContentPane().add(txtTipo);
-        txtTipo.setBounds(230, 170, 167, 20);
-        getContentPane().add(txtAutor);
-        txtAutor.setBounds(230, 210, 167, 20);
-        getContentPane().add(txtTitulo);
-        txtTitulo.setBounds(230, 240, 167, 20);
-        getContentPane().add(txtDescripcion);
-        txtDescripcion.setBounds(230, 280, 167, 20);
-        getContentPane().add(txtEdicion);
-        txtEdicion.setBounds(230, 320, 167, 20);
-        getContentPane().add(txtEditorial);
-        txtEditorial.setBounds(230, 360, 167, 20);
-        getContentPane().add(txtNumPag);
-        txtNumPag.setBounds(230, 400, 167, 20);
-        getContentPane().add(txtTema);
-        txtTema.setBounds(680, 140, 165, 20);
-        getContentPane().add(txtEstadoF);
-        txtEstadoF.setBounds(680, 220, 165, 20);
-        getContentPane().add(txtCodigoAsig);
-        txtCodigoAsig.setBounds(680, 260, 165, 20);
-        getContentPane().add(txtLetraUb);
-        txtLetraUb.setBounds(680, 300, 165, 20);
-        getContentPane().add(txtEjemplar);
-        txtEjemplar.setBounds(680, 340, 165, 20);
+        jLabel17.setBounds(490, 360, 180, 19);
 
+        txtTipo.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        getContentPane().add(txtTipo);
+        txtTipo.setBounds(230, 190, 167, 20);
+
+        txtAutor.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        getContentPane().add(txtAutor);
+        txtAutor.setBounds(230, 230, 167, 20);
+
+        txtTitulo.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        getContentPane().add(txtTitulo);
+        txtTitulo.setBounds(230, 260, 167, 20);
+
+        txtDescripcion.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        getContentPane().add(txtDescripcion);
+        txtDescripcion.setBounds(230, 300, 167, 20);
+
+        txtEdicion.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        getContentPane().add(txtEdicion);
+        txtEdicion.setBounds(230, 340, 167, 20);
+
+        txtEditorial.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        getContentPane().add(txtEditorial);
+        txtEditorial.setBounds(230, 380, 167, 20);
+
+        txtNumPag.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        getContentPane().add(txtNumPag);
+        txtNumPag.setBounds(230, 420, 167, 20);
+
+        txtTema.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        getContentPane().add(txtTema);
+        txtTema.setBounds(680, 160, 165, 20);
+
+        txtEstadoF.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        getContentPane().add(txtEstadoF);
+        txtEstadoF.setBounds(680, 240, 165, 20);
+
+        txtCodigoAsig.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        getContentPane().add(txtCodigoAsig);
+        txtCodigoAsig.setBounds(680, 280, 165, 20);
+
+        txtLetraUb.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        getContentPane().add(txtLetraUb);
+        txtLetraUb.setBounds(680, 320, 165, 20);
+
+        txtEjemplar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        getContentPane().add(txtEjemplar);
+        txtEjemplar.setBounds(680, 360, 165, 20);
+
+        txtDisponible.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         txtDisponible.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Disponible", "Ocupado", " " }));
         getContentPane().add(txtDisponible);
-        txtDisponible.setBounds(680, 180, 170, 20);
+        txtDisponible.setBounds(680, 200, 170, 20);
 
+        txtCodigo.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         txtCodigo.setEnabled(false);
         getContentPane().add(txtCodigo);
-        txtCodigo.setBounds(230, 130, 167, 20);
+        txtCodigo.setBounds(230, 150, 167, 20);
 
+        jButton2.setBackground(new java.awt.Color(0, 0, 0));
+        jButton2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Escanear Libro");
+        jButton2.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(690, 70, 170, 40);
-        getContentPane().add(lblFondo);
-        lblFondo.setBounds(0, 0, 890, 510);
+        jButton2.setBounds(690, 90, 170, 40);
+
+        jdp4.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel18.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jLabel18.setText("CREAR PRESTAMO");
+        jdp4.add(jLabel18);
+        jLabel18.setBounds(400, 50, 200, 40);
+
+        getContentPane().add(jdp4);
+        jdp4.setBounds(-30, -40, 950, 600);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -285,7 +356,7 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -360,6 +431,7 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -368,7 +440,7 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JLabel lblFondo;
+    private javax.swing.JDesktopPane jdp4;
     private javax.swing.JTextField txtAutor;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtCodigoAsig;

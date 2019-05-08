@@ -5,18 +5,26 @@
  */
 package vistas.funcionario;
 
+import java.awt.Dimension;
+import java.awt.image.BufferedImage;
+import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.JComponent;
 import jdbc.Jdbc;
 import jdbc.FuncionarioJdbc;
 import modelo.Funcionario;
+import vistas.Fondo;
+import vistas.GUI_Principal;
 
 /**
  *
  * @author Usuario
  */
 public class GUI_Crear_Funcionario extends javax.swing.JInternalFrame {
+  
 
     /**
      * Creates new form GUI_Crear_Funcionario
@@ -26,6 +34,28 @@ public class GUI_Crear_Funcionario extends javax.swing.JInternalFrame {
 
         groupSexoBtn.add(rBtn1);
         groupSexoBtn.add(rBtn2);
+        cargarImagen(jdp4,foto1);
+        ocultarBarraTitulo();
+        
+    }
+    
+    private JComponent Barra = ((javax.swing.plaf.basic.BasicInternalFrameUI) getUI()).getNorthPane();
+private Dimension dimBarra = null; 
+public void ocultarBarraTitulo()
+{ 
+Barra = ((javax.swing.plaf.basic.BasicInternalFrameUI) getUI()).getNorthPane(); 
+dimBarra = Barra.getPreferredSize(); 
+Barra.setSize(0,0); 
+Barra.setPreferredSize(new Dimension(0,0)); 
+repaint(); 
+}
+  public InputStream foto1=this.getClass().getResourceAsStream("/imagenes/bl.jpg");
+            public  void cargarImagen(javax.swing.JDesktopPane jDeskp,InputStream fileImagen)
+    {   
+        try{   
+            BufferedImage image = ImageIO.read(fileImagen);        
+              jDeskp.setBorder(new Fondo(image)); }
+        catch (Exception e){   System.out.println("Imagen no disponible");   }        
     }
 
     /**
@@ -38,151 +68,177 @@ public class GUI_Crear_Funcionario extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         groupSexoBtn = new javax.swing.ButtonGroup();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        jdp4 = new javax.swing.JDesktopPane();
         txtIdentificacion = new javax.swing.JTextField();
-        txtNombre2 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         txtNombre1 = new javax.swing.JTextField();
+        txtNombre2 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         txtApellido1 = new javax.swing.JTextField();
         txtApellido2 = new javax.swing.JTextField();
-        txtCorreo = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        txtFechaNacimiento = new com.toedter.calendar.JDateChooser();
         rBtn1 = new javax.swing.JRadioButton();
-        rBtn2 = new javax.swing.JRadioButton();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        txtPassword = new javax.swing.JPasswordField();
         txtRol = new javax.swing.JComboBox<>();
         txtTelefono = new javax.swing.JTextField();
-        txtPassword = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        txtCorreo = new javax.swing.JTextField();
+        rBtn2 = new javax.swing.JRadioButton();
         jButton3 = new javax.swing.JButton();
-        txtFechaNacimiento = new com.toedter.calendar.JDateChooser();
-        jLabel13 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
 
         setBackground(java.awt.Color.white);
+        setBorder(null);
         setClosable(true);
         setTitle("Crear Funcionario");
         setPreferredSize(new java.awt.Dimension(792, 437));
         setVisible(true);
         getContentPane().setLayout(null);
 
-        jLabel1.setText("Identificacion: ");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(19, 34, 120, 14);
-
-        jLabel2.setText("Segundo Apellido: ");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(19, 191, 140, 14);
-
-        jLabel3.setText("Primier Apellido: ");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(19, 153, 130, 14);
-
-        jLabel4.setText("Primer Nombre: ");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(19, 74, 130, 14);
-
-        jLabel5.setText("Segundo Nombre: ");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(19, 112, 140, 14);
-
-        jLabel6.setText("Fecha De Nacimiento: ");
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(19, 229, 160, 14);
-
-        jLabel7.setText("Correo Electronico: ");
-        getContentPane().add(jLabel7);
-        jLabel7.setBounds(396, 77, 160, 14);
-
-        jLabel8.setText("Sexo: ");
-        getContentPane().add(jLabel8);
-        jLabel8.setBounds(396, 34, 90, 14);
+        jdp4.setBackground(new java.awt.Color(255, 255, 255));
 
         txtIdentificacion.setName("txtIdentificacionF"); // NOI18N
-        getContentPane().add(txtIdentificacion);
-        txtIdentificacion.setBounds(164, 31, 178, 20);
+        jdp4.add(txtIdentificacion);
+        txtIdentificacion.setBounds(160, 120, 178, 20);
 
-        txtNombre2.setName("txtSegundoNombreF"); // NOI18N
-        getContentPane().add(txtNombre2);
-        txtNombre2.setBounds(164, 112, 178, 20);
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        jLabel1.setText("Identificacion: ");
+        jdp4.add(jLabel1);
+        jLabel1.setBounds(30, 120, 120, 14);
+
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        jLabel4.setText("Primer Nombre: ");
+        jdp4.add(jLabel4);
+        jLabel4.setBounds(30, 160, 130, 14);
 
         txtNombre1.setName("txtPrimerNombreF"); // NOI18N
-        getContentPane().add(txtNombre1);
-        txtNombre1.setBounds(164, 71, 178, 20);
+        jdp4.add(txtNombre1);
+        txtNombre1.setBounds(160, 160, 178, 20);
 
-        txtApellido1.setName("txtPrimerApellidoF"); // NOI18N
-        getContentPane().add(txtApellido1);
-        txtApellido1.setBounds(164, 150, 178, 20);
-
-        txtApellido2.setName("txtSegundoApellidoF"); // NOI18N
-        getContentPane().add(txtApellido2);
-        txtApellido2.setBounds(164, 188, 178, 20);
-        getContentPane().add(txtCorreo);
-        txtCorreo.setBounds(567, 74, 178, 20);
-
-        rBtn1.setText("Hombre");
-        getContentPane().add(rBtn1);
-        rBtn1.setBounds(567, 30, 110, 23);
-
-        rBtn2.setText("Mujer");
-        getContentPane().add(rBtn2);
-        rBtn2.setBounds(680, 30, 110, 23);
-
-        jLabel10.setText("Telefono: ");
-        getContentPane().add(jLabel10);
-        jLabel10.setBounds(400, 120, 110, 14);
-
-        jLabel11.setText("Contraseña");
-        getContentPane().add(jLabel11);
-        jLabel11.setBounds(400, 210, 120, 14);
-
-        jLabel12.setText("Cargo: ");
-        getContentPane().add(jLabel12);
-        jLabel12.setBounds(400, 170, 100, 14);
-
-        txtRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administardor", "Auxiliar", "Coordinador" }));
-        getContentPane().add(txtRol);
-        txtRol.setBounds(570, 170, 178, 20);
-        getContentPane().add(txtTelefono);
-        txtTelefono.setBounds(570, 120, 178, 20);
-        getContentPane().add(txtPassword);
-        txtPassword.setBounds(570, 210, 178, 20);
-
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Registrar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        txtNombre2.setName("txtSegundoNombreF"); // NOI18N
+        txtNombre2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                txtNombre2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(187, 315, 120, 40);
+        jdp4.add(txtNombre2);
+        txtNombre2.setBounds(160, 200, 178, 20);
 
-        jButton2.setText("Volver");
-        getContentPane().add(jButton2);
-        jButton2.setBounds(390, 320, 120, 40);
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        jLabel5.setText("Segundo Nombre: ");
+        jdp4.add(jLabel5);
+        jLabel5.setBounds(30, 200, 140, 14);
 
-        jButton3.setText("Salir");
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        jLabel3.setText("Primier Apellido: ");
+        jdp4.add(jLabel3);
+        jLabel3.setBounds(30, 240, 130, 14);
+
+        txtApellido1.setName("txtPrimerApellidoF"); // NOI18N
+        jdp4.add(txtApellido1);
+        txtApellido1.setBounds(160, 240, 178, 20);
+
+        txtApellido2.setName("txtSegundoApellidoF"); // NOI18N
+        jdp4.add(txtApellido2);
+        txtApellido2.setBounds(160, 270, 178, 20);
+
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        jLabel2.setText("Segundo Apellido: ");
+        jdp4.add(jLabel2);
+        jLabel2.setBounds(30, 270, 140, 14);
+
+        jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        jLabel6.setText("Fecha De Nacimiento: ");
+        jdp4.add(jLabel6);
+        jLabel6.setBounds(30, 310, 160, 14);
+        jdp4.add(txtFechaNacimiento);
+        txtFechaNacimiento.setBounds(160, 310, 180, 20);
+
+        rBtn1.setText("Hombre");
+        jdp4.add(rBtn1);
+        rBtn1.setBounds(580, 110, 90, 23);
+
+        jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        jLabel8.setText("Sexo: ");
+        jdp4.add(jLabel8);
+        jLabel8.setBounds(410, 120, 90, 14);
+
+        jLabel7.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        jLabel7.setText("Correo Electronico: ");
+        jdp4.add(jLabel7);
+        jLabel7.setBounds(410, 160, 160, 14);
+
+        jLabel10.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        jLabel10.setText("Telefono: ");
+        jdp4.add(jLabel10);
+        jLabel10.setBounds(410, 200, 110, 14);
+
+        jLabel12.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        jLabel12.setText("Cargo: ");
+        jdp4.add(jLabel12);
+        jLabel12.setBounds(410, 250, 100, 14);
+
+        jLabel11.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        jLabel11.setText("Contraseña");
+        jdp4.add(jLabel11);
+        jLabel11.setBounds(410, 290, 120, 14);
+        jdp4.add(txtPassword);
+        txtPassword.setBounds(580, 290, 178, 20);
+
+        txtRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administardor", "Auxiliar", "Coordinador" }));
+        jdp4.add(txtRol);
+        txtRol.setBounds(580, 250, 178, 20);
+        jdp4.add(txtTelefono);
+        txtTelefono.setBounds(580, 200, 178, 20);
+        jdp4.add(txtCorreo);
+        txtCorreo.setBounds(580, 160, 178, 20);
+
+        rBtn2.setText("Mujer");
+        jdp4.add(rBtn2);
+        rBtn2.setBounds(670, 110, 90, 23);
+
+        jButton3.setBackground(new java.awt.Color(0, 0, 0));
+        jButton3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("VOLVER");
+        jButton3.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3);
-        jButton3.setBounds(596, 315, 110, 40);
-        getContentPane().add(txtFechaNacimiento);
-        txtFechaNacimiento.setBounds(170, 230, 170, 20);
+        jdp4.add(jButton3);
+        jButton3.setBounds(500, 370, 110, 30);
 
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/administrativo.jpg"))); // NOI18N
-        getContentPane().add(jLabel13);
-        jLabel13.setBounds(0, 0, 790, 410);
+        jButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jButton1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("REGISTRAR");
+        jButton1.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jdp4.add(jButton1);
+        jButton1.setBounds(310, 370, 120, 30);
+
+        jLabel9.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jLabel9.setText("CREAR FUNCIONARIO");
+        jdp4.add(jLabel9);
+        jLabel9.setBounds(330, 60, 220, 14);
+
+        getContentPane().add(jdp4);
+        jdp4.setBounds(-10, -30, 850, 520);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -190,7 +246,7 @@ public class GUI_Crear_Funcionario extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String sexo = "";
-        
+
         if (rBtn1.isSelected()) {
             sexo = "Masculino";
         } else if (rBtn2.isSelected()) {
@@ -221,27 +277,29 @@ public class GUI_Crear_Funcionario extends javax.swing.JInternalFrame {
             fjdbc.saveFuncionario(f1);
 
         } catch (SQLException ex) {
-           Logger.getLogger(GUI_Crear_Funcionario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GUI_Crear_Funcionario.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+                   GUI_Principal.labeltitulo.setVisible(true);
+                    GUI_Principal.labelsubt.setVisible(true);        // TODO add your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void txtNombre2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombre2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombre2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup groupSexoBtn;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -249,6 +307,8 @@ public class GUI_Crear_Funcionario extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JDesktopPane jdp4;
     private javax.swing.JRadioButton rBtn1;
     private javax.swing.JRadioButton rBtn2;
     private javax.swing.JTextField txtApellido1;
