@@ -61,6 +61,9 @@ public class GUI_ListarUsuarios extends javax.swing.JInternalFrame {
 
         jScrollPane2 = new javax.swing.JScrollPane();
         tblUsuarios = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        txtId = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("Listar Usuarios");
@@ -97,12 +100,56 @@ public class GUI_ListarUsuarios extends javax.swing.JInternalFrame {
         getContentPane().add(jScrollPane2);
         jScrollPane2.setBounds(10, 96, 1080, 397);
 
+        jLabel1.setText("Eliminar por Identificacion:");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(10, 510, 126, 14);
+
+        txtId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIdActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtId);
+        txtId.setBounds(10, 530, 140, 20);
+
+        jButton2.setText("Eliminar Usuario");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2);
+        jButton2.setBounds(160, 530, 107, 23);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        Jdbc cx = new Jdbc();
+        UsuarioJdbc mjdbc = new UsuarioJdbc();
+
+        try {
+            cx.conectarme();
+            mjdbc.setCon(cx.getCon());
+
+            mjdbc.DeleteUsuario(txtId.getText().trim());
+
+        } catch (SQLException ex) {
+            Logger.getLogger(GUI_ListarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tblUsuarios;
+    private javax.swing.JTextField txtId;
     // End of variables declaration//GEN-END:variables
 }

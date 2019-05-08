@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import modelo.Usuario;
 
 public class UsuarioJdbc extends Jdbc {
+
     private List listaUsuario;
     Jdbc cone = new Jdbc();
 
@@ -63,7 +64,7 @@ public class UsuarioJdbc extends Jdbc {
             pstt.setString(7, f1.getSexo());
             pstt.setString(8, f1.getCorreo());
             pstt.setString(9, f1.getTelefono());
-            pstt.setString(10, f1.getPassword());            
+            pstt.setString(10, f1.getPassword());
             pstt.setString(11, f1.getTipoUsuario());
             pstt.setBoolean(12, f1.isInscrito());
             pstt.setString(13, f1.getCodigoInstitucional());
@@ -73,7 +74,7 @@ public class UsuarioJdbc extends Jdbc {
 
             pstt.executeUpdate();
             JOptionPane.showMessageDialog(null, "El Funcionario fue actualizado exitosamente!");
-            
+
         } finally {
             if (pstt != null) {
                 pstt.close();
@@ -154,23 +155,28 @@ public class UsuarioJdbc extends Jdbc {
     public void DeleteUsuario(String identificacion) throws SQLException {
         PreparedStatement pstn = null;
         try {
-            pstn = this.getCon().prepareStatement("delete from usuario where idPersona = ?");
+            pstn = this.getCon().prepareStatement("delete from usuario where identificacion = ?");
             pstn.setString(1, identificacion);
-            pstn.executeUpdate();
+
+            if (pstn.executeUpdate() > 0) {
+                JOptionPane.showMessageDialog(null, "El Usuario fue eliminado exitosamente!");
+            } else {
+                JOptionPane.showMessageDialog(null, "El Usuario que desea registar no extiste!");
+            }
         } finally {
             if (pstn != null) {
                 pstn.close();
             }
         }
     }
-    
+
     public Usuario Login(String user, String pass) throws SQLException {
 
         Usuario u1 = new Usuario();
         PreparedStatement pstt = null;
         ResultSet rs = null;
         try {
-            
+
             pstt = getCon().prepareStatement("select * from usuario where identificacion = ? AND password = ?");
             pstt.setString(1, user);
             pstt.setString(2, pass);

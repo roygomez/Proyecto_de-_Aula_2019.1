@@ -145,16 +145,14 @@ public class MaterialJdbc extends Jdbc{
     }
 
     public void DeleteMaterial(String codigoMaterial) throws SQLException {
-        int rta;
         PreparedStatement pstn = null;
         try {
             pstn = this.getCon().prepareStatement("DELETE FROM material WHERE codigoMaterial = '"+ codigoMaterial +"'");
-            rta = pstn.executeUpdate();
             
-            if(rta > 0) {
-                JOptionPane.showMessageDialog(null, "El Material fue eliminado exitosamente!");
+            if (pstn.executeUpdate() > 0) {
+                JOptionPane.showMessageDialog(null, "El Usuario fue eliminado exitosamente!");
             } else {
-                JOptionPane.showMessageDialog(null, "Oops! parece q no hay registros con ese codigo.");
+                JOptionPane.showMessageDialog(null, "El Usuario que desea registar no extiste!");
             }
         } finally {
             if (pstn != null) {

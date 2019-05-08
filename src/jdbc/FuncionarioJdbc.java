@@ -143,9 +143,14 @@ public class FuncionarioJdbc extends Jdbc {
     public void DeleteFuncionario(String identificacion) throws SQLException {
         PreparedStatement pstn = null;
         try {
-            pstn = getCon().prepareStatement("delete from funcionario where idPersona = ?");
+            pstn = getCon().prepareStatement("DELETE FROM funcionario WHERE identificacion = ?");
             pstn.setString(1, identificacion);
-            pstn.executeUpdate();
+            
+            if(pstn.executeUpdate() > 0) {
+                JOptionPane.showMessageDialog(null, "El Funcionario fue eliminado exitosamente!");
+            }else{
+                JOptionPane.showMessageDialog(null, "El Funcionario que desea registar no extiste!");
+            }
         } finally {
             if (pstn != null) {
                 pstn.close();
