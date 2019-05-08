@@ -163,5 +163,31 @@ public class UsuarioJdbc extends Jdbc {
             }
         }
     }
+    
+    public Usuario Login(String user, String pass) throws SQLException {
+
+        Usuario u1 = new Usuario();
+        PreparedStatement pstt = null;
+        ResultSet rs = null;
+        try {
+            
+            pstt = getCon().prepareStatement("select * from usuario where identificacion = ? AND password = ?");
+            pstt.setString(1, user);
+            pstt.setString(2, pass);
+            rs = pstt.executeQuery();
+            while (rs.next()) {
+                u1 = load(rs);
+            }
+        } finally {
+            if (pstt != null) {
+                pstt.close();
+            }
+            if (rs != null) {
+                rs.close();
+            }
+        }
+
+        return u1;
+    }
 
 }

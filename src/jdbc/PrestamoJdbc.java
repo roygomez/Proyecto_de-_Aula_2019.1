@@ -12,16 +12,17 @@ public class PrestamoJdbc extends Jdbc {
     private List listaPrestamo;
     Jdbc cone = new Jdbc();
 
-    public void savePrestamo(PrestamoBibliografico f1) throws SQLException {
+    public void savePrestamo(PrestamoBibliografico p1) throws SQLException {
         PreparedStatement pstt = null;
         try {
-            pstt = getCon().prepareStatement("insert into Prestamo values(?,?,?,?,?,?)");
+            pstt = getCon().prepareStatement("insert into prestamo values(?,?,?,?,?,?)");
 
             pstt.setString(1, null);
-            pstt.setDate(2, f1.getFechaPrestamo());
-            pstt.setDate(3, f1.getFechaLimite());
-            pstt.setDate(4, f1.getFechaDevolucion());
-            pstt.setString(5, f1.getTipoPrestamo());
+            pstt.setDate(2, p1.getFechaPrestamo());
+            pstt.setDate(3, p1.getFechaLimite());
+            pstt.setString(5, p1.getTipoPrestamo());
+            pstt.setInt(5, p1.getIdPersona());
+            pstt.setInt(5, p1.getIdMaterial());
 
             pstt.executeUpdate();
 
@@ -32,15 +33,15 @@ public class PrestamoJdbc extends Jdbc {
         }
     }
 
-    public void updatePrestamo(PrestamoBibliografico f1) throws SQLException {
+    public void updatePrestamo(PrestamoBibliografico p1) throws SQLException {
         PreparedStatement pstt = null;
         try {
             pstt = this.getCon().prepareStatement("UPDATE Prestamo SET ,identificacion = ?,nombre1 = ?,nombre2 = ?,apellido1 = ?,apellido2 = ?,fechaNacimiento = ?,sexo = ?,correo = ?,telefono = ?,password = ?,rol = ? where idPersona = ?");
 
-            pstt.setDate(2, f1.getFechaPrestamo());
-            pstt.setDate(3, f1.getFechaLimite());
-            pstt.setDate(4, f1.getFechaDevolucion());
-            pstt.setString(5, f1.getTipoPrestamo());
+            pstt.setDate(2, p1.getFechaPrestamo());
+            pstt.setDate(3, p1.getFechaLimite());
+            pstt.setDate(4, p1.getFechaDevolucion());
+            pstt.setString(5, p1.getTipoPrestamo());
 
             pstt.executeUpdate();
         } finally {
@@ -52,7 +53,7 @@ public class PrestamoJdbc extends Jdbc {
 
     public PrestamoBibliografico getPrestamo(String idPrestamo) throws SQLException {
 
-        PrestamoBibliografico f1 = new PrestamoBibliografico();
+        PrestamoBibliografico p1 = new PrestamoBibliografico();
         PreparedStatement pstt = null;
         ResultSet rs = null;
         try {
@@ -61,7 +62,7 @@ public class PrestamoJdbc extends Jdbc {
             pstt.setString(1, idPrestamo);
             rs = pstt.executeQuery();
             while (rs.next()) {
-                f1 = load(rs);
+                p1 = load(rs);
             }
         } finally {
             if (pstt != null) {
@@ -72,7 +73,7 @@ public class PrestamoJdbc extends Jdbc {
             }
         }
 
-        return f1;
+        return p1;
     }
 
     public List getPrestamo() throws SQLException {
@@ -98,14 +99,14 @@ public class PrestamoJdbc extends Jdbc {
     }
 
     private PrestamoBibliografico load(ResultSet rs) throws SQLException {
-        PrestamoBibliografico rcu = new PrestamoBibliografico();
+        PrestamoBibliografico pb = new PrestamoBibliografico();
 
-        rcu.setFechaPrestamo(rs.getDate(2));
-	rcu.setFechaLimite(rs.getDate(3));
-	rcu.setFechaDevolucion(rs.getDate(4));
-	rcu.setTipoPrestamo(rs.getString(5));
+        pb.setFechaPrestamo(rs.getDate(2));
+        pb.setFechaLimite(rs.getDate(3));
+        pb.setFechaDevolucion(rs.getDate(4));
+        pb.setTipoPrestamo(rs.getString(5));
 
-        return rcu;
+        return pb;
     }
 
     public void DeletePrestamo(String identificacion) throws SQLException {

@@ -95,7 +95,7 @@ public class MaterialJdbc extends Jdbc{
                 rs.close();
             }
         }
-        System.out.println(m1.getIdMaterial() +""+ m1.getCodigoMaterial());
+        System.out.println(m1.getIdMaterial() +" hola "+ m1.getCodigoMaterial());
 
         return m1;
     }

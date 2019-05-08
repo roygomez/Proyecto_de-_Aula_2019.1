@@ -1,19 +1,20 @@
 
 package modelo;
 
-import java.util.ArrayList;
 import java.sql.Date;
 
 
 public class PrestamoBibliografico {
     
     private int idPrestamo;
-    private ArrayList<MaterialBibliografico> material;
-    private Persona persona;
     private Date fechaPrestamo;
     private Date fechaLimite;
     private Date fechaDevolucion;
     private String tipoPrestamo;
+    private int idMaterial;
+    private int idPersona;    
+    private MaterialBibliografico material;
+    private Persona persona;
 
     public int getIdPrestamo() {
         return idPrestamo;
@@ -21,22 +22,6 @@ public class PrestamoBibliografico {
 
     public void setIdPrestamo(int idPrestamo) {
         this.idPrestamo = idPrestamo;
-    }
-
-    public ArrayList<MaterialBibliografico> getMaterial() {
-        return material;
-    }
-
-    public void setMaterial(ArrayList<MaterialBibliografico> material) {
-        this.material = material;
-    }
-
-    public Persona getPersona() {
-        return persona;
-    }
-
-    public void setPersona(Persona persona) {
-        this.persona = persona;
     }
 
     public Date getFechaPrestamo() {
@@ -69,5 +54,37 @@ public class PrestamoBibliografico {
 
     public void setTipoPrestamo(String tipoPrestamo) {
         this.tipoPrestamo = tipoPrestamo;
+    }
+
+    public int getIdMaterial() {
+        return idMaterial;
+    }
+
+    public void setIdMaterial(int idMaterial) {
+        this.idMaterial = idMaterial;
+    }
+
+    public int getIdPersona() {
+        return idPersona;
+    }
+
+    public void setIdPersona(int idPersona) {
+        this.idPersona = idPersona;
+    }
+
+    public MaterialBibliografico getMaterial() {
+        return material;
+    }
+
+    public void setMaterial(MaterialBibliografico material) {
+        this.material = material;
+    }
+
+    public Persona getPersona() {
+        return persona;
+    }
+
+    public void setPersona(Persona persona) {
+        this.persona = persona;
     }
 }

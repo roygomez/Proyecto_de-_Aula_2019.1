@@ -64,6 +64,9 @@ public class GUI_ListarUsuarios extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setTitle("Listar Usuarios");
+        setMinimumSize(new java.awt.Dimension(1116, 572));
+        setPreferredSize(new java.awt.Dimension(1116, 572));
+        getContentPane().setLayout(null);
 
         tblUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -85,22 +88,8 @@ public class GUI_ListarUsuarios extends javax.swing.JInternalFrame {
         tblUsuarios.setEnabled(false);
         jScrollPane2.setViewportView(tblUsuarios);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1080, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(96, 96, 96)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(45, Short.MAX_VALUE))
-        );
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(10, 96, 1080, 397);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

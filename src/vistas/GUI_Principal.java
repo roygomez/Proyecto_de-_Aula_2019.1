@@ -6,7 +6,6 @@
 package vistas;
 
 import vistas.prestamo.GUI_Crear_Prestamo;
-import vistas.material.GUI_Crear_Material_Bibliografico;
 import vistas.usuario.GUI_Crear_Usuario;
 import vistas.funcionario.GUI_Crear_Funcionario;
 import java.awt.Dimension;
@@ -20,7 +19,10 @@ import vistas.material.GUI_Modificar_Material_Bibliografico;
 import vistas.usuario.GUI_ListarUsuarios;
 import vistas.usuario.GUI_Modificar_Usuario;
 import jdbc.Jdbc;
+import jdbc.UsuarioJdbc;
 import modelo.Funcionario;
+import modelo.Usuario;
+import vistas.material.GUI_Crear_Material_Bibliografico;
 
 /**
  *
@@ -29,6 +31,7 @@ import modelo.Funcionario;
 public class GUI_Principal extends javax.swing.JFrame {
 
     private Funcionario dataF1 = new Funcionario();
+    private Usuario dataU1 = new Usuario();
 
     /**
      * Creates new form Menu
@@ -59,7 +62,7 @@ public class GUI_Principal extends javax.swing.JFrame {
         txtUsuario = new javax.swing.JTextField();
         txtPassword = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
-        txtTipo = new javax.swing.JComboBox<>();
+        txtTipo = new javax.swing.JComboBox<String>();
         jLabel3 = new javax.swing.JLabel();
         btnIniciar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
@@ -88,29 +91,30 @@ public class GUI_Principal extends javax.swing.JFrame {
         jMenuItem17 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(750, 494));
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Usuario:");
         jdp.add(jLabel1);
-        jLabel1.setBounds(229, 126, 40, 14);
+        jLabel1.setBounds(270, 90, 40, 14);
         jdp.add(txtUsuario);
-        txtUsuario.setBounds(312, 123, 151, 20);
+        txtUsuario.setBounds(270, 110, 220, 20);
         jdp.add(txtPassword);
-        txtPassword.setBounds(312, 189, 151, 20);
+        txtPassword.setBounds(270, 180, 220, 20);
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Contraseña:");
         jdp.add(jLabel2);
-        jLabel2.setBounds(209, 195, 60, 14);
+        jLabel2.setBounds(270, 150, 60, 14);
 
-        txtTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Funcionario", "Usuario" }));
+        txtTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Funcionario", "Usuario" }));
         jdp.add(txtTipo);
-        txtTipo.setBounds(302, 250, 151, 20);
+        txtTipo.setBounds(270, 240, 220, 20);
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Tipo:");
         jdp.add(jLabel3);
-        jLabel3.setBounds(245, 253, 24, 14);
+        jLabel3.setBounds(270, 220, 24, 14);
 
         btnIniciar.setText("Login");
         btnIniciar.addActionListener(new java.awt.event.ActionListener() {
@@ -119,16 +123,15 @@ public class GUI_Principal extends javax.swing.JFrame {
             }
         });
         jdp.add(btnIniciar);
-        btnIniciar.setBounds(361, 316, 102, 32);
+        btnIniciar.setBounds(280, 310, 190, 40);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Material Bibliografico.jpeg"))); // NOI18N
         jLabel4.setText("jLabel4");
         jLabel4.setPreferredSize(new java.awt.Dimension(777, 503));
         jdp.add(jLabel4);
-        jLabel4.setBounds(10, 10, 750, 480);
+        jLabel4.setBounds(0, 0, 780, 530);
 
         jMenu1.setText("Funcionario");
-        jMenu1.setEnabled(false);
         jMenu1.setName(""); // NOI18N
 
         jMenuItem1.setText("Crear Funcionario");
@@ -161,7 +164,6 @@ public class GUI_Principal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenu4.setText("Prestamo");
-        jMenu4.setEnabled(false);
 
         jMenuItem13.setText("Crear Prestamo");
         jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
@@ -183,7 +185,6 @@ public class GUI_Principal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu4);
 
         jMenu3.setText("Material Biliografico");
-        jMenu3.setEnabled(false);
 
         jMenuItem9.setText("Crear Material Biliografico");
         jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
@@ -210,7 +211,6 @@ public class GUI_Principal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu3);
 
         jMenu2.setText("Usuario");
-        jMenu2.setEnabled(false);
 
         jMenuItem6.setText("Crear Usuario");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
@@ -242,7 +242,6 @@ public class GUI_Principal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         jMenu5.setText("Salir");
-        jMenu5.setEnabled(false);
 
         jMenuItem17.setText("Salir");
         jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
@@ -260,11 +259,11 @@ public class GUI_Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jdp)
+            .addComponent(jdp, javax.swing.GroupLayout.DEFAULT_SIZE, 770, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jdp)
+            .addComponent(jdp, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE)
         );
 
         pack();
@@ -317,6 +316,7 @@ public class GUI_Principal extends javax.swing.JFrame {
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
         GUI_Crear_Prestamo cp = new GUI_Crear_Prestamo();
+        cp.u1 = dataU1;
         jdp.add(cp);
         //Centra en JInternalFrame
         Dimension desktopSize = jdp.getSize();
@@ -379,8 +379,7 @@ public class GUI_Principal extends javax.swing.JFrame {
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
 
-        if (txtTipo.getSelectedItem().equals("Funcionario")) {
-
+        if (txtTipo.getSelectedItem() == "Funcionario") {
             Jdbc cx = new Jdbc();
             FuncionarioJdbc fjdbc = new FuncionarioJdbc();
             try {
@@ -390,18 +389,14 @@ public class GUI_Principal extends javax.swing.JFrame {
                 char[] arrayC = txtPassword.getPassword();
                 String pass = new String(arrayC);
                 dataF1 = fjdbc.Login(txtUsuario.getText().trim(), pass);
-                if (dataF1 != null) {
-                    System.out.println(dataF1.getApellido1());
-                    jMenu1.setEnabled(true);
-                    jMenu2.setEnabled(true);
-                    jMenu3.setEnabled(true);
-                    jMenu4.setEnabled(true);
-                    jMenu5.setEnabled(true);
+                if (dataF1.getIdentificacion() != null) {
                     jMenu1.setVisible(true);
                     jMenu2.setVisible(true);
                     jMenu3.setVisible(true);
                     jMenu4.setVisible(true);
                     jMenu5.setVisible(true);
+                    
+                    System.out.println(dataF1.getApellido1());
                 }else {
                     System.out.println(dataF1.getApellido1());
                 }
@@ -409,6 +404,26 @@ public class GUI_Principal extends javax.swing.JFrame {
                 Logger.getLogger(GUI_Crear_Funcionario.class.getName()).log(Level.SEVERE, null, ex);
             }
 
+        } else if (txtTipo.getSelectedItem() == "Usuario") {
+            Jdbc cx = new Jdbc();
+            UsuarioJdbc ujdbc = new UsuarioJdbc();
+            try {
+                cx.conectarme();
+                ujdbc.setCon(cx.getCon());
+
+                char[] arrayC = txtPassword.getPassword();
+                String pass = new String(arrayC);
+                dataU1 = ujdbc.Login(txtUsuario.getText().trim(), pass);
+                
+                if (dataU1.getIdentificacion() != null) {
+                    jMenu4.setVisible(true);
+                    System.out.println(dataU1.getApellido1());
+                }else {
+                    System.out.println(dataU1.getApellido1());
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(GUI_Crear_Funcionario.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_btnIniciarActionPerformed
 

@@ -4,9 +4,25 @@
  * and open the template in the editor.
  */
 package vistas.prestamo;
+
+import com.panamahitek.ArduinoException;
+import com.panamahitek.PanamaHitek_Arduino;
 import java.awt.Image;
+import java.sql.Date;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import jdbc.Jdbc;
+import jdbc.MaterialJdbc;
+import jdbc.PrestamoJdbc;
+import jssc.SerialPortEvent;
+import jssc.SerialPortEventListener;
+import jssc.SerialPortException;
+import modelo.MaterialBibliografico;
+import modelo.PrestamoBibliografico;
+import modelo.Usuario;
 
 /**
  *
@@ -14,13 +30,16 @@ import javax.swing.ImageIcon;
  */
 public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
 
+    private MaterialBibliografico m1 = new MaterialBibliografico();
+    public Usuario u1 = new Usuario();
+
     /**
      * Creates new form GUI_Crear_Prestamo
      */
     public GUI_Crear_Prestamo() {
         initComponents();
-        ImageIcon imagen = new ImageIcon ("src/imagenes/Prestamo.jpg");
-        Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(lblFondo.getWidth(),lblFondo.getHeight(),Image.SCALE_DEFAULT));
+        ImageIcon imagen = new ImageIcon("src/imagenes/Prestamo.jpg");
+        Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(lblFondo.getWidth(), lblFondo.getHeight(), Image.SCALE_DEFAULT));
         lblFondo.setIcon(icono);
         this.repaint();
     }
@@ -34,81 +53,298 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        txtTipoPrestamo = new javax.swing.JComboBox();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        txtTipo = new javax.swing.JTextField();
+        txtAutor = new javax.swing.JTextField();
+        txtTitulo = new javax.swing.JTextField();
+        txtDescripcion = new javax.swing.JTextField();
+        txtEdicion = new javax.swing.JTextField();
+        txtEditorial = new javax.swing.JTextField();
+        txtNumPag = new javax.swing.JTextField();
+        txtTema = new javax.swing.JTextField();
+        txtEstadoF = new javax.swing.JTextField();
+        txtCodigoAsig = new javax.swing.JTextField();
+        txtLetraUb = new javax.swing.JTextField();
+        txtEjemplar = new javax.swing.JTextField();
+        txtDisponible = new javax.swing.JComboBox();
+        txtCodigo = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
         lblFondo = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setTitle("Crear Prestamo");
+        setMinimumSize(new java.awt.Dimension(906, 543));
+        setPreferredSize(new java.awt.Dimension(906, 543));
         getContentPane().setLayout(null);
-
-        jLabel1.setText("Material Bibliografico a Prestar: ");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(43, 55, 152, 14);
-        getContentPane().add(jTextField1);
-        jTextField1.setBounds(283, 52, 216, 20);
-
-        jLabel2.setText("Persona Quin Realiza el Prestamo:");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(43, 93, 164, 14);
 
         jLabel3.setText("Fecha del prestamo:");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(43, 131, 98, 14);
+        jLabel3.setBounds(120, 480, 160, 14);
 
         jLabel4.setText("Fecha Limite De Devolucion:");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(43, 160, 134, 14);
-
-        jLabel5.setText("Fecha De Devolucion Real:");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(43, 198, 128, 14);
+        jLabel4.setBounds(380, 50, 200, 14);
 
         jLabel6.setText("Tipo De Prestamo:");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(43, 236, 88, 14);
-        getContentPane().add(jTextField2);
-        jTextField2.setBounds(283, 90, 216, 20);
-        getContentPane().add(jTextField3);
-        jTextField3.setBounds(283, 157, 216, 20);
-        getContentPane().add(jTextField4);
-        jTextField4.setBounds(283, 195, 216, 20);
-        getContentPane().add(jTextField5);
-        jTextField5.setBounds(283, 128, 216, 20);
-        getContentPane().add(jTextField6);
-        jTextField6.setBounds(283, 233, 216, 20);
+        jLabel6.setBounds(570, 50, 150, 14);
 
         jButton1.setText("Ejecutar Prestamo");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1);
-        jButton1.setBounds(71, 290, 140, 23);
-
-        jButton2.setText("Volver");
-        getContentPane().add(jButton2);
-        jButton2.setBounds(253, 288, 80, 23);
+        jButton1.setBounds(440, 470, 170, 40);
 
         jButton3.setText("Salir");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton3);
-        jButton3.setBounds(382, 288, 90, 23);
+        jButton3.setBounds(670, 470, 120, 40);
+
+        txtTipoPrestamo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Interno", "Externo" }));
+        getContentPane().add(txtTipoPrestamo);
+        txtTipoPrestamo.setBounds(230, 480, 170, 20);
+
+        jLabel1.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
+        jLabel1.setText("Codigo: ");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(60, 130, 120, 19);
+
+        jLabel2.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
+        jLabel2.setText("Tipo: ");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(60, 170, 110, 19);
+
+        jLabel7.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
+        jLabel7.setText("Autor:");
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(60, 200, 110, 19);
+
+        jLabel8.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
+        jLabel8.setText("Titulo: ");
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(60, 240, 120, 19);
+
+        jLabel5.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
+        jLabel5.setText("Descripcion:");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(60, 280, 150, 19);
+
+        jLabel9.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
+        jLabel9.setText("Edicion: ");
+        getContentPane().add(jLabel9);
+        jLabel9.setBounds(60, 320, 130, 19);
+
+        jLabel10.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
+        jLabel10.setText("Editorial:");
+        getContentPane().add(jLabel10);
+        jLabel10.setBounds(60, 360, 130, 19);
+
+        jLabel11.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
+        jLabel11.setText("Numero De Paginas:");
+        getContentPane().add(jLabel11);
+        jLabel11.setBounds(60, 390, 210, 19);
+
+        jLabel12.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel12.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("Tema:");
+        getContentPane().add(jLabel12);
+        jLabel12.setBounds(490, 150, 160, 19);
+
+        jLabel13.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel13.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("Disponible: ");
+        getContentPane().add(jLabel13);
+        jLabel13.setBounds(490, 190, 190, 19);
+
+        jLabel14.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel14.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setText("Estado Fisico: ");
+        getContentPane().add(jLabel14);
+        jLabel14.setBounds(490, 230, 200, 19);
+
+        jLabel15.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel15.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel15.setText("Codigo De Asignatura:");
+        getContentPane().add(jLabel15);
+        jLabel15.setBounds(490, 260, 240, 19);
+
+        jLabel16.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel16.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel16.setText("Letra De Ubicacion:");
+        getContentPane().add(jLabel16);
+        jLabel16.setBounds(490, 300, 230, 19);
+
+        jLabel17.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel17.setText("Ejemplar:");
+        getContentPane().add(jLabel17);
+        jLabel17.setBounds(490, 340, 180, 19);
+        getContentPane().add(txtTipo);
+        txtTipo.setBounds(230, 170, 167, 20);
+        getContentPane().add(txtAutor);
+        txtAutor.setBounds(230, 210, 167, 20);
+        getContentPane().add(txtTitulo);
+        txtTitulo.setBounds(230, 240, 167, 20);
+        getContentPane().add(txtDescripcion);
+        txtDescripcion.setBounds(230, 280, 167, 20);
+        getContentPane().add(txtEdicion);
+        txtEdicion.setBounds(230, 320, 167, 20);
+        getContentPane().add(txtEditorial);
+        txtEditorial.setBounds(230, 360, 167, 20);
+        getContentPane().add(txtNumPag);
+        txtNumPag.setBounds(230, 400, 167, 20);
+        getContentPane().add(txtTema);
+        txtTema.setBounds(680, 140, 165, 20);
+        getContentPane().add(txtEstadoF);
+        txtEstadoF.setBounds(680, 220, 165, 20);
+        getContentPane().add(txtCodigoAsig);
+        txtCodigoAsig.setBounds(680, 260, 165, 20);
+        getContentPane().add(txtLetraUb);
+        txtLetraUb.setBounds(680, 300, 165, 20);
+        getContentPane().add(txtEjemplar);
+        txtEjemplar.setBounds(680, 340, 165, 20);
+
+        txtDisponible.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Disponible", "Ocupado", " " }));
+        getContentPane().add(txtDisponible);
+        txtDisponible.setBounds(680, 180, 170, 20);
+
+        txtCodigo.setEnabled(false);
+        getContentPane().add(txtCodigo);
+        txtCodigo.setBounds(230, 130, 167, 20);
+
+        jButton2.setText("Escanear Libro");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2);
+        jButton2.setBounds(690, 70, 170, 40);
         getContentPane().add(lblFondo);
-        lblFondo.setBounds(0, 0, 540, 330);
+        lblFondo.setBounds(0, 0, 890, 510);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    public String codigo = null;
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Jdbc cx = new Jdbc();
+        PrestamoJdbc fjdbc = new PrestamoJdbc();
+        try {
+            cx.conectarme();
+            fjdbc.setCon(cx.getCon());
+
+            java.util.Date now = new java.util.Date();
+            PrestamoBibliografico p1 = new PrestamoBibliografico();
+            //p1.setFechaDevolucion(null);
+            p1.setFechaLimite(new Date(now.getTime()+9000));
+            p1.setFechaPrestamo(new Date(now.getTime()));
+            p1.setIdMaterial(m1.getIdMaterial());
+            p1.setIdPersona(u1.getIdPersona());
+            p1.setTipoPrestamo(txtTipoPrestamo.getSelectedItem().toString());
+
+            fjdbc.savePrestamo(p1);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(GUI_Modificar_Prestamo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        PanamaHitek_Arduino ino = new PanamaHitek_Arduino();
+        SerialPortEventListener listener;
+        listener = (SerialPortEvent serialPortEvent) -> {
+
+            try {
+                if (ino.isMessageAvailable()) {
+                    codigo = ino.printMessage();
+                    ino.sendData("v");
+                    ino.killArduinoConnection();
+                }
+            } catch (SerialPortException | ArduinoException ex) {
+                Logger.getLogger(GUI_Crear_Prestamo.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }; //Si se recibe algun dato en el puerto serie, se ejecuta el siguiente metodo
+        try {
+            ino.arduinoRXTX("COM5", 9600, listener);
+        } catch (ArduinoException ex) {
+            Logger.getLogger(GUI_Crear_Prestamo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (codigo != null) {
+            Jdbc cx = new Jdbc();
+            MaterialJdbc fjdbc = new MaterialJdbc();
+            try {
+                cx.conectarme();
+                fjdbc.setCon(cx.getCon());
+
+                m1 = fjdbc.getMaterial(codigo);
+                
+                String dispo = "";
+                if (m1.isDisponible()) {
+                    dispo = "Disponible";
+                } else {
+                    dispo = "Ocupado";
+                }
+
+                txtAutor.setText(m1.getAutor());
+                txtCodigoAsig.setText(m1.getCodigoAsignatura());
+                txtCodigo.setText(m1.getCodigoMaterial());
+                txtDescripcion.setText(m1.getDescripcion());
+                txtEdicion.setText(m1.getEdicion());
+                txtEditorial.setText(m1.getEditorial());
+                txtEjemplar.setText(Integer.toString(m1.getEjemplar()));
+                txtEstadoF.setText(m1.getEstadoFisico());
+                txtLetraUb.setText(m1.getLetraUbicacion());
+                txtNumPag.setText(m1.getNumPaginas());
+                txtTema.setText(m1.getTema());
+                txtTipo.setText(m1.getTipoMaterial());
+                txtTitulo.setText(m1.getTitulo());
+                txtDisponible.setSelectedItem(dispo);
+
+            } catch (SQLException ex) {
+                Logger.getLogger(GUI_Modificar_Prestamo.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -116,17 +352,37 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel lblFondo;
+    private javax.swing.JTextField txtAutor;
+    private javax.swing.JTextField txtCodigo;
+    private javax.swing.JTextField txtCodigoAsig;
+    private javax.swing.JTextField txtDescripcion;
+    private javax.swing.JComboBox txtDisponible;
+    private javax.swing.JTextField txtEdicion;
+    private javax.swing.JTextField txtEditorial;
+    private javax.swing.JTextField txtEjemplar;
+    private javax.swing.JTextField txtEstadoF;
+    private javax.swing.JTextField txtLetraUb;
+    private javax.swing.JTextField txtNumPag;
+    private javax.swing.JTextField txtTema;
+    private javax.swing.JTextField txtTipo;
+    private javax.swing.JComboBox txtTipoPrestamo;
+    private javax.swing.JTextField txtTitulo;
     // End of variables declaration//GEN-END:variables
 }
