@@ -144,12 +144,18 @@ public class MaterialJdbc extends Jdbc{
         return rcu;
     }
 
-    public void DeleteMaterial(String idMaterial) throws SQLException {
+    public void DeleteMaterial(String codigoMaterial) throws SQLException {
+        int rta;
         PreparedStatement pstn = null;
         try {
-            pstn = this.getCon().prepareStatement("delete from Material where idPersona = ?");
-            pstn.setString(1, idMaterial);
-            pstn.executeUpdate();
+            pstn = this.getCon().prepareStatement("DELETE FROM material WHERE codigoMaterial = '"+ codigoMaterial +"'");
+            rta = pstn.executeUpdate();
+            
+            if(rta > 0) {
+                JOptionPane.showMessageDialog(null, "El Material fue eliminado exitosamente!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Oops! parece q no hay registros con ese codigo.");
+            }
         } finally {
             if (pstn != null) {
                 pstn.close();
