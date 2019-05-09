@@ -70,7 +70,7 @@ public class GUI_Principal extends javax.swing.JFrame {
             BufferedImage image = ImageIO.read(fileImagen);
             jDeskp.setBorder(new Fondo(image));
         } catch (Exception e) {
-            System.out.println("Imagen no disponible");
+            System.out.println("Imagen  no  disponible");
         }
     }
 
