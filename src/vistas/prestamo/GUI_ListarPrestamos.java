@@ -5,14 +5,21 @@
  */
 package vistas.prestamo;
 
+import java.awt.Dimension;
+import java.awt.image.BufferedImage;
+import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.JComponent;
 import javax.swing.table.DefaultTableModel;
 import jdbc.Jdbc;
 import jdbc.PrestamoJdbc;
+import modelo.MaterialBibliografico;
 import modelo.PrestamoBibliografico;
+import vistas.Fondo;
 
 /**
  *
@@ -35,18 +42,44 @@ public int usuarioActual;
             cx.conectarme();
             fjdbc.setCon(cx.getCon());
 
-            List prestamos = fjdbc.getPrestamo(usuarioActual);
+            List<PrestamoBibliografico> prestamos = fjdbc.getPrestamo();
 
-            for (int i = 0; i < prestamos.size(); i++) {
-                System.out.println(prestamos.get(i));
+           for (PrestamoBibliografico p : prestamos) {
                 modelo.addRow(new Object[]{
-                    
+                    p.getCodigoPrestamo(),p.getFechaPrestamo(), p.getFechaLimite(),p.getFechaDevolucion(), p.getTipoPrestamo(),
+                    p.getUsuario().getIdentificacion(), p.getUsuario().getNombre1(), p.getUsuario().getApellido1(), p.getUsuario().getTelefono(),
+                    p.getMaterial().getTitulo(), p.getMaterial().isDisponible(), p.getMaterial().getTipoMaterial()
+
                 });
             }
 
         } catch (SQLException ex) {
             Logger.getLogger(GUI_ListarPrestamos.class.getName()).log(Level.SEVERE, null, ex);
         }
+          cargarImagen(jdp4, foto1);
+        ocultarBarraTitulo();
+
+    }
+    public InputStream foto1 = this.getClass().getResourceAsStream("/imagenes/bl.jpg");
+
+    public void cargarImagen(javax.swing.JDesktopPane jDeskp, InputStream fileImagen) {
+        try {
+            BufferedImage image = ImageIO.read(fileImagen);
+            jDeskp.setBorder(new Fondo(image));
+        } catch (Exception e) {
+            System.out.println("Imagen no disponible");
+        }
+    }
+
+    private JComponent Barra = ((javax.swing.plaf.basic.BasicInternalFrameUI) getUI()).getNorthPane();
+    private Dimension dimBarra = null;
+
+    public void ocultarBarraTitulo() {
+        Barra = ((javax.swing.plaf.basic.BasicInternalFrameUI) getUI()).getNorthPane();
+        dimBarra = Barra.getPreferredSize();
+        Barra.setSize(0, 0);
+        Barra.setPreferredSize(new Dimension(0, 0));
+        repaint();
     }
 
     /**
@@ -60,20 +93,26 @@ public int usuarioActual;
 
         jScrollPane2 = new javax.swing.JScrollPane();
         tblUsuarios = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jdp4 = new javax.swing.JDesktopPane();
+
+        setBorder(null);
+        setOpaque(true);
 
         tblUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "IDENTIFICACION", "NOMBRE 1", "NOMBRE 2", "APELLIDO 1", "APELLIDO2", "FECHA NACIMIENTO", "SEXO", "CORREO", "TELEFONO", "TIPO USUARIO", "INSCRITO", "CODIGO INST", "PAGO ANUAL", "PAGÓ"
+                "CODIGO PRESTAMO", "FECHA PRESTAMO", "FECHA LIMITE", "FECHA DEVOLUCION", "TIPO PRESTAMO", "IDENTIFICION", "NOMBRE", "APELLIDO", "TELEFON", "TITULO", "DISPONIBLE", "TIPO MATERIAL"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Object.class, java.lang.Double.class, java.lang.Boolean.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -87,29 +126,80 @@ public int usuarioActual;
         tblUsuarios.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         jScrollPane2.setViewportView(tblUsuarios);
 
+        jButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jButton1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("VOLVER");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jLabel1.setText("PRESTAMO REGISTRADO");
+
+        jdp4.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jdp4Layout = new javax.swing.GroupLayout(jdp4);
+        jdp4.setLayout(jdp4Layout);
+        jdp4Layout.setHorizontalGroup(
+            jdp4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1178, Short.MAX_VALUE)
+        );
+        jdp4Layout.setVerticalGroup(
+            jdp4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 673, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 906, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jScrollPane2)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(421, 421, 421)
+                .addComponent(jLabel1)
+                .addContainerGap(541, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(523, 523, 523))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jdp4))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(67, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44))
+                .addContainerGap(90, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addGap(41, 41, 41))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGap(0, 11, Short.MAX_VALUE)
+                    .addComponent(jdp4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JDesktopPane jdp4;
     private javax.swing.JTable tblUsuarios;
     // End of variables declaration//GEN-END:variables
 }

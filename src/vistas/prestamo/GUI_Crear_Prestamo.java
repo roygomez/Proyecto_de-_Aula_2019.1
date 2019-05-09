@@ -102,7 +102,6 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
         txtCodigoAsig = new javax.swing.JTextField();
         txtLetraUb = new javax.swing.JTextField();
         txtEjemplar = new javax.swing.JTextField();
-        txtDisponible = new javax.swing.JComboBox();
         jButton2 = new javax.swing.JButton();
         jdp4 = new javax.swing.JDesktopPane();
         jLabel18 = new javax.swing.JLabel();
@@ -117,6 +116,7 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
+        txtDisponible = new javax.swing.JTextField();
 
         setBorder(null);
         setClosable(true);
@@ -243,11 +243,6 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
         getContentPane().add(txtEjemplar);
         txtEjemplar.setBounds(620, 360, 120, 20);
 
-        txtDisponible.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        txtDisponible.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Disponible", "Ocupado" }));
-        getContentPane().add(txtDisponible);
-        txtDisponible.setBounds(620, 200, 170, 20);
-
         jButton2.setBackground(new java.awt.Color(0, 0, 0));
         jButton2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
@@ -318,13 +313,17 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
         jLabel13.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel13.setText("Disponible: ");
         jdp4.add(jLabel13);
-        jLabel13.setBounds(520, 240, 190, 19);
+        jLabel13.setBounds(520, 240, 120, 19);
 
         jLabel12.setBackground(new java.awt.Color(255, 255, 255));
         jLabel12.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel12.setText("Tema:");
         jdp4.add(jLabel12);
         jLabel12.setBounds(520, 200, 160, 19);
+
+        txtDisponible.setEditable(false);
+        jdp4.add(txtDisponible);
+        txtDisponible.setBounds(650, 240, 170, 20);
 
         getContentPane().add(jdp4);
         jdp4.setBounds(-30, -40, 950, 600);
@@ -336,7 +335,7 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Jdbc cx = new Jdbc();
         PrestamoJdbc fjdbc = new PrestamoJdbc();
-        if (txtDisponible.getSelectedItem() == "Ocupado") {
+        if (txtDisponible.getText() == "Ocupado") {
             JOptionPane.showMessageDialog(null, "El material que desea prestar se encuentra ocupado!");
         } else {
             try {
@@ -440,7 +439,7 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
                 txtTema.setText(m1.getTema());
                 txtTipo.setText(m1.getTipoMaterial());
                 txtTitulo.setText(m1.getTitulo());
-                txtDisponible.setSelectedItem(dispo);
+                txtDisponible.setText(dispo);
 
             } catch (SQLException ex) {
                 Logger.getLogger(GUI_Modificar_Prestamo.class.getName()).log(Level.SEVERE, null, ex);
@@ -474,7 +473,7 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtCodigoAsig;
     private javax.swing.JTextField txtDescripcion;
-    private javax.swing.JComboBox txtDisponible;
+    private javax.swing.JTextField txtDisponible;
     private javax.swing.JTextField txtEdicion;
     private javax.swing.JTextField txtEditorial;
     private javax.swing.JTextField txtEjemplar;

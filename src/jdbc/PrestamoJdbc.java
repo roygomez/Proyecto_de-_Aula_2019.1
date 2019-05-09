@@ -6,7 +6,9 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import modelo.MaterialBibliografico;
 import modelo.PrestamoBibliografico;
+import modelo.Usuario;
 
 public class PrestamoJdbc extends Jdbc {
 
@@ -83,13 +85,13 @@ public class PrestamoJdbc extends Jdbc {
         return p1;
     }
 
-    public List getPrestamo(int idUsuario) throws SQLException {
+    public List getPrestamo() throws SQLException {
 
         listaPrestamo = new LinkedList();
         PreparedStatement pstt = null;
         ResultSet rs = null;
         try {
-            pstt = this.getCon().prepareStatement("SELECT prestamo.tipoPrestamo, material.titulo, material.disponible, usuario.nombre1, usuario.apellido1 FROM prestamo INNER JOIN usuario, material WHERE usuario."+idUsuario+" = prestamo."+idUsuario);
+            pstt = this.getCon().prepareStatement("SELECT prestamo.codigoPrestamo,prestamo.fechaPrestamo,prestamo.fechaLimite,prestamo.fechaDevolucion,prestamo.tipoPrestamo, usuario.identificacion , usuario.nombre1,usuario.apellido1, usuario.telefono,material.tipoMaterial, material.titulo, material.disponible FROM prestamo, usuario, material WHERE prestamo.idMaterial = material.idMaterial");
             rs = pstt.executeQuery();
             while (rs.next()) {
                 listaPrestamo.add(load(rs));
@@ -108,14 +110,26 @@ public class PrestamoJdbc extends Jdbc {
     private PrestamoBibliografico load(ResultSet rs) throws SQLException {
         PrestamoBibliografico pb = new PrestamoBibliografico();
         
-        pb.setIdPrestamo(rs.getInt(1));
+        pb.setCodigoPrestamo(rs.getString(1));
         pb.setFechaPrestamo(rs.getTimestamp(2));
         pb.setFechaLimite(rs.getTimestamp(3));
         pb.setFechaDevolucion(rs.getTimestamp(4));
         pb.setTipoPrestamo(rs.getString(5));
-        pb.setIdMaterial(rs.getInt(6));
-        pb.setIdUsuario(rs.getInt(7));
-        pb.setCodigoPrestamo(rs.getString(8));
+        
+        Usuario u = new Usuario();
+        u.setIdentificacion(rs.getString(6));
+        u.setNombre1(rs.getString(7));
+        u.setApellido1(rs.getString(8));
+        u.setTelefono(rs.getString(9));
+        
+        MaterialBibliografico m = new MaterialBibliografico();
+        m.setTipoMaterial(rs.getString(10));
+        m.setTitulo(rs.getString(11));
+        m.setDisponible(rs.getBoolean(12));
+        
+        pb.setUsuario(u);
+        pb.setMaterial(m);
+        
 
         return pb;
     }
