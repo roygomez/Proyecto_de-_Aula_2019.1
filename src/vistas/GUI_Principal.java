@@ -91,7 +91,7 @@ public class GUI_Principal extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
-        txtTipo = new javax.swing.JComboBox<String>();
+        txtTipo = new javax.swing.JComboBox<>();
         btnIniciar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jdp3 = new javax.swing.JDesktopPane();
@@ -125,7 +125,11 @@ public class GUI_Principal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(750, 494));
         setUndecorated(true);
+        getContentPane().setLayout(null);
 
+        jdp.setBackground(new java.awt.Color(255, 255, 255));
+
+        jdp2.setBackground(new java.awt.Color(204, 204, 204));
         jdp2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         txtUsuario.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -144,7 +148,7 @@ public class GUI_Principal extends javax.swing.JFrame {
         jLabel3.setText("TIPO");
 
         txtTipo.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        txtTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Funcionario", "Usuario" }));
+        txtTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Funcionario", "Usuario" }));
         txtTipo.setBorder(javax.swing.BorderFactory.createCompoundBorder());
 
         btnIniciar.setBackground(new java.awt.Color(0, 0, 0));
@@ -160,6 +164,15 @@ public class GUI_Principal extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
         jLabel4.setText("Login");
+
+        jdp2.setLayer(txtUsuario, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdp2.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdp2.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdp2.setLayer(txtPassword, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdp2.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdp2.setLayer(txtTipo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdp2.setLayer(btnIniciar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdp2.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jdp2Layout = new javax.swing.GroupLayout(jdp2);
         jdp2.setLayout(jdp2Layout);
@@ -200,18 +213,10 @@ public class GUI_Principal extends javax.swing.JFrame {
                 .addComponent(btnIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44))
         );
-        jdp2.setLayer(txtUsuario, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jdp2.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jdp2.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jdp2.setLayer(txtPassword, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jdp2.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jdp2.setLayer(txtTipo, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jdp2.setLayer(btnIniciar, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jdp2.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        jdp.setLayer(jdp2, javax.swing.JLayeredPane.DRAG_LAYER);
         jdp.add(jdp2);
         jdp2.setBounds(570, 160, 650, 440);
-        jdp.setLayer(jdp2, javax.swing.JLayeredPane.DRAG_LAYER);
 
         jdp3.setBackground(new java.awt.Color(153, 153, 153));
         jdp3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -230,9 +235,9 @@ public class GUI_Principal extends javax.swing.JFrame {
         jdp3.add(jLabel6);
         jLabel6.setBounds(23, 231, 363, 30);
 
+        jdp.setLayer(jdp3, javax.swing.JLayeredPane.DRAG_LAYER);
         jdp.add(jdp3);
         jdp3.setBounds(160, 160, 410, 440);
-        jdp.setLayer(jdp3, javax.swing.JLayeredPane.DRAG_LAYER);
 
         btnCerrar.setBackground(new java.awt.Color(0, 0, 0));
         btnCerrar.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
@@ -258,6 +263,9 @@ public class GUI_Principal extends javax.swing.JFrame {
         labeltitulo.setText("Library System");
         jdp.add(labeltitulo);
         labeltitulo.setBounds(400, 0, 650, 100);
+
+        getContentPane().add(jdp);
+        jdp.setBounds(0, 0, 1580, 910);
 
         jMenu6.setText("jMenu6");
 
@@ -403,17 +411,6 @@ public class GUI_Principal extends javax.swing.JFrame {
 
         setJMenuBar(jMenuBar1);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jdp, javax.swing.GroupLayout.PREFERRED_SIZE, 1348, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jdp, javax.swing.GroupLayout.PREFERRED_SIZE, 711, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -471,8 +468,8 @@ public class GUI_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
-        labeltitulo.setVisible(false);
-        labelsubt.setVisible(false);
+        
+        
         GUI_Crear_Prestamo cp = new GUI_Crear_Prestamo();
         cp.u1 = dataU1;
         jdp.add(cp);
@@ -573,7 +570,7 @@ public class GUI_Principal extends javax.swing.JFrame {
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
 
-        if ("Funcionario" == txtTipo.getSelectedItem()) {
+        if (txtTipo.getSelectedItem() == "Funcionario") {
 
             Jdbc cx = new Jdbc();
             FuncionarioJdbc fjdbc = new FuncionarioJdbc();
@@ -583,10 +580,11 @@ public class GUI_Principal extends javax.swing.JFrame {
 
                 char[] arrayC = txtPassword.getPassword();
                 String pass = new String(arrayC);
+                
                 dataF1 = fjdbc.Login(txtUsuario.getText().trim(), pass);
 
                 if (dataF1.getIdentificacion() != null) {
-                    JOptionPane.showMessageDialog(null, "Bienvenido/a " + dataF1.getNombre1() + " " + dataF1.getApellido1());
+                    JOptionPane.showMessageDialog(null, "Welcome " + dataF1.getNombre1() + " " + dataF1.getApellido1());
                     jMenu6.setText(dataF1.getNombre1() + " " + dataF1.getApellido1());
                     jMenu1.setVisible(true);
                     jMenu2.setVisible(true);
@@ -626,9 +624,11 @@ public class GUI_Principal extends javax.swing.JFrame {
                     jMenu1.setVisible(false);
                     jMenu4.setVisible(true);
                     jMenu6.setVisible(true);
+                    jMenuItem9.setVisible(false);
+                    jMenuItem10.setVisible(false);
 
                     jMenu2.setVisible(false);
-                    jMenu3.setVisible(false);
+                    jMenu3.setVisible(true);
                     jMenu5.setVisible(false);
 
                     jdp2.setVisible(false);

@@ -13,12 +13,14 @@ import java.awt.image.BufferedImage;
 import java.io.InputStream;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 import jdbc.Jdbc;
 import jdbc.MaterialJdbc;
 import jdbc.PrestamoJdbc;
@@ -80,8 +82,6 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -94,12 +94,19 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
+        txtTema = new javax.swing.JTextField();
+        txtEstadoF = new javax.swing.JTextField();
+        txtCodigoAsig = new javax.swing.JTextField();
+        txtLetraUb = new javax.swing.JTextField();
+        txtEjemplar = new javax.swing.JTextField();
+        txtDisponible = new javax.swing.JComboBox();
+        jButton2 = new javax.swing.JButton();
+        jdp4 = new javax.swing.JDesktopPane();
+        jLabel18 = new javax.swing.JLabel();
+        txtCodigo = new javax.swing.JTextField();
         txtTipo = new javax.swing.JTextField();
         txtAutor = new javax.swing.JTextField();
         txtTitulo = new javax.swing.JTextField();
@@ -107,16 +114,9 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
         txtEdicion = new javax.swing.JTextField();
         txtEditorial = new javax.swing.JTextField();
         txtNumPag = new javax.swing.JTextField();
-        txtTema = new javax.swing.JTextField();
-        txtEstadoF = new javax.swing.JTextField();
-        txtCodigoAsig = new javax.swing.JTextField();
-        txtLetraUb = new javax.swing.JTextField();
-        txtEjemplar = new javax.swing.JTextField();
-        txtDisponible = new javax.swing.JComboBox();
-        txtCodigo = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
-        jdp4 = new javax.swing.JDesktopPane();
-        jLabel18 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
 
         setBorder(null);
         setClosable(true);
@@ -124,16 +124,6 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
         setMinimumSize(new java.awt.Dimension(906, 543));
         setPreferredSize(new java.awt.Dimension(906, 543));
         getContentPane().setLayout(null);
-
-        jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel3.setText("Fecha del prestamo:");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(110, 70, 160, 14);
-
-        jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel4.setText("Fecha Limite De Devolucion:");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(460, 70, 200, 14);
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel6.setText("Tipo De Prestamo:");
@@ -211,24 +201,6 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel11);
         jLabel11.setBounds(60, 410, 210, 19);
 
-        jLabel12.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel12.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel12.setText("Tema:");
-        getContentPane().add(jLabel12);
-        jLabel12.setBounds(490, 170, 160, 19);
-
-        jLabel13.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel13.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel13.setText("Disponible: ");
-        getContentPane().add(jLabel13);
-        jLabel13.setBounds(490, 210, 190, 19);
-
-        jLabel14.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel14.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel14.setText("Estado Fisico: ");
-        getContentPane().add(jLabel14);
-        jLabel14.setBounds(480, 250, 200, 19);
-
         jLabel15.setBackground(new java.awt.Color(255, 255, 255));
         jLabel15.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel15.setText("Codigo De Asignatura:");
@@ -246,63 +218,35 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel17);
         jLabel17.setBounds(490, 360, 180, 19);
 
-        txtTipo.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        getContentPane().add(txtTipo);
-        txtTipo.setBounds(230, 190, 167, 20);
-
-        txtAutor.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        getContentPane().add(txtAutor);
-        txtAutor.setBounds(230, 230, 167, 20);
-
-        txtTitulo.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        getContentPane().add(txtTitulo);
-        txtTitulo.setBounds(230, 260, 167, 20);
-
-        txtDescripcion.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        getContentPane().add(txtDescripcion);
-        txtDescripcion.setBounds(230, 300, 167, 20);
-
-        txtEdicion.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        getContentPane().add(txtEdicion);
-        txtEdicion.setBounds(230, 340, 167, 20);
-
-        txtEditorial.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        getContentPane().add(txtEditorial);
-        txtEditorial.setBounds(230, 380, 167, 20);
-
-        txtNumPag.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        getContentPane().add(txtNumPag);
-        txtNumPag.setBounds(230, 420, 167, 20);
-
+        txtTema.setEditable(false);
         txtTema.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         getContentPane().add(txtTema);
-        txtTema.setBounds(680, 160, 165, 20);
+        txtTema.setBounds(620, 160, 250, 20);
 
+        txtEstadoF.setEditable(false);
         txtEstadoF.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         getContentPane().add(txtEstadoF);
-        txtEstadoF.setBounds(680, 240, 165, 20);
+        txtEstadoF.setBounds(620, 240, 280, 20);
 
+        txtCodigoAsig.setEditable(false);
         txtCodigoAsig.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         getContentPane().add(txtCodigoAsig);
-        txtCodigoAsig.setBounds(680, 280, 165, 20);
+        txtCodigoAsig.setBounds(620, 280, 130, 20);
 
+        txtLetraUb.setEditable(false);
         txtLetraUb.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         getContentPane().add(txtLetraUb);
-        txtLetraUb.setBounds(680, 320, 165, 20);
+        txtLetraUb.setBounds(620, 320, 120, 20);
 
+        txtEjemplar.setEditable(false);
         txtEjemplar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         getContentPane().add(txtEjemplar);
-        txtEjemplar.setBounds(680, 360, 165, 20);
+        txtEjemplar.setBounds(620, 360, 120, 20);
 
         txtDisponible.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        txtDisponible.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Disponible", "Ocupado", " " }));
+        txtDisponible.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Disponible", "Ocupado" }));
         getContentPane().add(txtDisponible);
-        txtDisponible.setBounds(680, 200, 170, 20);
-
-        txtCodigo.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        txtCodigo.setEnabled(false);
-        getContentPane().add(txtCodigo);
-        txtCodigo.setBounds(230, 150, 167, 20);
+        txtDisponible.setBounds(620, 200, 170, 20);
 
         jButton2.setBackground(new java.awt.Color(0, 0, 0));
         jButton2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -324,33 +268,117 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
         jdp4.add(jLabel18);
         jLabel18.setBounds(400, 50, 200, 40);
 
+        txtCodigo.setEditable(false);
+        txtCodigo.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jdp4.add(txtCodigo);
+        txtCodigo.setBounds(210, 180, 167, 20);
+
+        txtTipo.setEditable(false);
+        txtTipo.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jdp4.add(txtTipo);
+        txtTipo.setBounds(210, 220, 167, 20);
+
+        txtAutor.setEditable(false);
+        txtAutor.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jdp4.add(txtAutor);
+        txtAutor.setBounds(210, 260, 230, 20);
+
+        txtTitulo.setEditable(false);
+        txtTitulo.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jdp4.add(txtTitulo);
+        txtTitulo.setBounds(210, 290, 290, 20);
+
+        txtDescripcion.setEditable(false);
+        txtDescripcion.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jdp4.add(txtDescripcion);
+        txtDescripcion.setBounds(210, 330, 290, 20);
+
+        txtEdicion.setEditable(false);
+        txtEdicion.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jdp4.add(txtEdicion);
+        txtEdicion.setBounds(210, 370, 167, 20);
+
+        txtEditorial.setEditable(false);
+        txtEditorial.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jdp4.add(txtEditorial);
+        txtEditorial.setBounds(210, 410, 167, 20);
+
+        txtNumPag.setEditable(false);
+        txtNumPag.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jdp4.add(txtNumPag);
+        txtNumPag.setBounds(210, 450, 167, 20);
+
+        jLabel14.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel14.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel14.setText("Estado Fisico: ");
+        jdp4.add(jLabel14);
+        jLabel14.setBounds(520, 290, 200, 19);
+
+        jLabel13.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel13.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel13.setText("Disponible: ");
+        jdp4.add(jLabel13);
+        jLabel13.setBounds(520, 240, 190, 19);
+
+        jLabel12.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel12.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel12.setText("Tema:");
+        jdp4.add(jLabel12);
+        jLabel12.setBounds(520, 200, 160, 19);
+
         getContentPane().add(jdp4);
         jdp4.setBounds(-30, -40, 950, 600);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    public String codigo = null;
+
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Jdbc cx = new Jdbc();
         PrestamoJdbc fjdbc = new PrestamoJdbc();
-        try {
-            cx.conectarme();
-            fjdbc.setCon(cx.getCon());
+        if (txtDisponible.getSelectedItem() == "Ocupado") {
+            JOptionPane.showMessageDialog(null, "El material que desea prestar se encuentra ocupado!");
+        } else {
+            try {
+                java.util.Date date = new java.util.Date();
+                
+                int horas = 0;
+                if(txtTipoPrestamo.getSelectedItem() == "Interno"){
+                    horas = 3600000*2;
+                } else if(txtTipoPrestamo.getSelectedItem() == "Externo") {
+                    horas = (3600000*24)*7;
+                }
+                long fechaSalida = date.getTime();
+                long FechaLimite = fechaSalida + 3600000;
 
-            java.util.Date now = new java.util.Date();
-            PrestamoBibliografico p1 = new PrestamoBibliografico();
-            //p1.setFechaDevolucion(null);
-            p1.setFechaLimite(new Date(now.getTime() + 9000));
-            p1.setFechaPrestamo(new Date(now.getTime()));
-            p1.setIdMaterial(m1.getIdMaterial());
-            p1.setIdUsuario(u1.getIdPersona());
-            p1.setTipoPrestamo(txtTipoPrestamo.getSelectedItem().toString());
-            p1.setCodigoPrestamo(codigoPrestamo);
+                long enQueDevolvi = date.getTime() + 432000000; //5 dias que dure con el libro        
+                double difF = enQueDevolvi - FechaLimite;
 
-            fjdbc.savePrestamo(p1);
+                long nDias = Math.round(difF / (1000 * 60 * 60 * 24));
 
-        } catch (SQLException ex) {
-            Logger.getLogger(GUI_Modificar_Prestamo.class.getName()).log(Level.SEVERE, null, ex);
+                long multa = nDias * 2000;
+
+                java.util.Date dateDevolver = new java.util.Date(FechaLimite);
+
+                cx.conectarme();
+                fjdbc.setCon(cx.getCon());
+
+                java.util.Date now = new java.util.Date();
+
+                PrestamoBibliografico p1 = new PrestamoBibliografico();
+                p1.setFechaLimite(new Timestamp(now.getTime() + horas));
+                p1.setFechaPrestamo(new Timestamp(now.getTime()));
+                p1.setIdMaterial(m1.getIdMaterial());
+                p1.setIdUsuario(u1.getIdPersona());
+                p1.setTipoPrestamo(txtTipoPrestamo.getSelectedItem().toString());
+                p1.setCodigoPrestamo(codigoPrestamo);
+
+                fjdbc.savePrestamo(p1);
+                JOptionPane.showMessageDialog(null, "Su prestamo ha sido registrado exitosamente, la fecha limite de entrega debe ser: "+new Timestamp(now.getTime() + horas));
+
+            } catch (SQLException ex) {
+                Logger.getLogger(GUI_Modificar_Prestamo.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
 
@@ -359,10 +387,11 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
-
+    public String codigo = "9F 4D AC 89";
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         PanamaHitek_Arduino ino = new PanamaHitek_Arduino();
+
         SerialPortEventListener listener;
         listener = (SerialPortEvent serialPortEvent) -> {
 
@@ -435,8 +464,6 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

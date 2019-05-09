@@ -2,15 +2,16 @@
 package modelo;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 
 public class PrestamoBibliografico {
     
     private int idPrestamo;
     private String codigoPrestamo;
-    private Date fechaPrestamo;
-    private Date fechaLimite;
-    private Date fechaDevolucion;
+    private Timestamp fechaPrestamo;
+    private Timestamp fechaLimite;
+    private Timestamp fechaDevolucion;
     private String tipoPrestamo;
     private int idMaterial;
     private int idUsuario;    
@@ -33,27 +34,27 @@ public class PrestamoBibliografico {
         this.codigoPrestamo = codigoPrestamo;
     }
 
-    public Date getFechaPrestamo() {
+    public Timestamp getFechaPrestamo() {
         return fechaPrestamo;
     }
 
-    public void setFechaPrestamo(Date fechaPrestamo) {
+    public void setFechaPrestamo(Timestamp fechaPrestamo) {
         this.fechaPrestamo = fechaPrestamo;
     }
 
-    public Date getFechaLimite() {
+    public Timestamp getFechaLimite() {
         return fechaLimite;
     }
 
-    public void setFechaLimite(Date fechaLimite) {
+    public void setFechaLimite(Timestamp fechaLimite) {
         this.fechaLimite = fechaLimite;
     }
 
-    public Date getFechaDevolucion() {
+    public Timestamp getFechaDevolucion() {
         return fechaDevolucion;
     }
 
-    public void setFechaDevolucion(Date fechaDevolucion) {
+    public void setFechaDevolucion(Timestamp fechaDevolucion) {
         this.fechaDevolucion = fechaDevolucion;
     }
 
@@ -96,4 +97,5 @@ public class PrestamoBibliografico {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+
 }

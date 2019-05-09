@@ -20,12 +20,12 @@ public class PrestamoJdbc extends Jdbc {
 
             pstt.setString(1, null);            
             pstt.setString(2, p1.getCodigoPrestamo());
-            pstt.setDate(3, p1.getFechaPrestamo());
-            pstt.setDate(4, p1.getFechaLimite());
-            pstt.setDate(5, null);
+            pstt.setTimestamp(3, p1.getFechaPrestamo());
+            pstt.setTimestamp(4, p1.getFechaLimite());
+            pstt.setTimestamp(5, null);
             pstt.setString(6, p1.getTipoPrestamo());
-            pstt.setInt(7, p1.getIdUsuario());
-            pstt.setInt(8, p1.getIdMaterial());
+            pstt.setInt(7, p1.getIdMaterial());
+            pstt.setInt(8, p1.getIdUsuario());
 
             pstt.executeUpdate();
             JOptionPane.showMessageDialog(null, "El Prestamo fue registrado exitosamente!");
@@ -42,11 +42,11 @@ public class PrestamoJdbc extends Jdbc {
         try {
             pstt = this.getCon().prepareStatement("UPDATE Prestamo SET fechaPrestamo=?,fechaLimite=?,tipoPersona=?idPersona=?,idMaterrial=? where idPrestamo = ?");
 
-            pstt.setDate(1, p1.getFechaPrestamo());
-            pstt.setDate(2, p1.getFechaLimite());
+            pstt.setTimestamp(1, p1.getFechaPrestamo());
+            pstt.setTimestamp(2, p1.getFechaLimite());
             pstt.setString(3, p1.getTipoPrestamo());
-            pstt.setInt(4, p1.getIdUsuario());
-            pstt.setInt(5, p1.getIdMaterial());
+            pstt.setInt(4, p1.getIdMaterial());
+            pstt.setInt(5, p1.getIdUsuario());
             pstt.setInt(6, p1.getIdPrestamo());
             pstt.setString(7, p1.getCodigoPrestamo());
 
@@ -109,9 +109,9 @@ public class PrestamoJdbc extends Jdbc {
         PrestamoBibliografico pb = new PrestamoBibliografico();
         
         pb.setIdPrestamo(rs.getInt(1));
-        pb.setFechaPrestamo(rs.getDate(2));
-        pb.setFechaLimite(rs.getDate(3));
-        pb.setFechaDevolucion(rs.getDate(4));
+        pb.setFechaPrestamo(rs.getTimestamp(2));
+        pb.setFechaLimite(rs.getTimestamp(3));
+        pb.setFechaDevolucion(rs.getTimestamp(4));
         pb.setTipoPrestamo(rs.getString(5));
         pb.setIdMaterial(rs.getInt(6));
         pb.setIdUsuario(rs.getInt(7));
