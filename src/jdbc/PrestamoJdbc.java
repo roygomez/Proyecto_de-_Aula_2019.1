@@ -5,26 +5,30 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import modelo.PrestamoBibliografico;
 
 public class PrestamoJdbc extends Jdbc {
 
     private List listaPrestamo;
     Jdbc cone = new Jdbc();
-
+//
     public void savePrestamo(PrestamoBibliografico p1) throws SQLException {
         PreparedStatement pstt = null;
         try {
-            pstt = getCon().prepareStatement("insert into prestamo values(?,?,?,?,?,?)");
+            pstt = getCon().prepareStatement("insert into prestamo values(?,?,?,?,?,?,?,?)");
 
-            pstt.setString(1, null);
-            pstt.setDate(2, p1.getFechaPrestamo());
-            pstt.setDate(3, p1.getFechaLimite());
-            pstt.setString(5, p1.getTipoPrestamo());
-            pstt.setInt(5, p1.getIdPersona());
-            pstt.setInt(5, p1.getIdMaterial());
+            pstt.setString(1, null);            
+            pstt.setString(2, p1.getCodigoPrestamo());
+            pstt.setDate(3, p1.getFechaPrestamo());
+            pstt.setDate(4, p1.getFechaLimite());
+            pstt.setDate(5, null);
+            pstt.setString(6, p1.getTipoPrestamo());
+            pstt.setInt(7, p1.getIdUsuario());
+            pstt.setInt(8, p1.getIdMaterial());
 
             pstt.executeUpdate();
+            JOptionPane.showMessageDialog(null, "El Prestamo fue registrado exitosamente!");
 
         } finally {
             if (pstt != null) {
@@ -36,12 +40,15 @@ public class PrestamoJdbc extends Jdbc {
     public void updatePrestamo(PrestamoBibliografico p1) throws SQLException {
         PreparedStatement pstt = null;
         try {
-            pstt = this.getCon().prepareStatement("UPDATE Prestamo SET ,identificacion = ?,nombre1 = ?,nombre2 = ?,apellido1 = ?,apellido2 = ?,fechaNacimiento = ?,sexo = ?,correo = ?,telefono = ?,password = ?,rol = ? where idPersona = ?");
+            pstt = this.getCon().prepareStatement("UPDATE Prestamo SET fechaPrestamo=?,fechaLimite=?,tipoPersona=?idPersona=?,idMaterrial=? where idPrestamo = ?");
 
-            pstt.setDate(2, p1.getFechaPrestamo());
-            pstt.setDate(3, p1.getFechaLimite());
-            pstt.setDate(4, p1.getFechaDevolucion());
-            pstt.setString(5, p1.getTipoPrestamo());
+            pstt.setDate(1, p1.getFechaPrestamo());
+            pstt.setDate(2, p1.getFechaLimite());
+            pstt.setString(3, p1.getTipoPrestamo());
+            pstt.setInt(4, p1.getIdUsuario());
+            pstt.setInt(5, p1.getIdMaterial());
+            pstt.setInt(6, p1.getIdPrestamo());
+            pstt.setString(7, p1.getCodigoPrestamo());
 
             pstt.executeUpdate();
         } finally {
@@ -76,13 +83,13 @@ public class PrestamoJdbc extends Jdbc {
         return p1;
     }
 
-    public List getPrestamo() throws SQLException {
+    public List getPrestamo(int idUsuario) throws SQLException {
 
         listaPrestamo = new LinkedList();
         PreparedStatement pstt = null;
         ResultSet rs = null;
         try {
-            pstt = this.getCon().prepareStatement("select * from Prestamo where idPrestamo = ?");
+            pstt = this.getCon().prepareStatement("SELECT prestamo.tipoPrestamo, material.titulo, material.disponible, usuario.nombre1, usuario.apellido1 FROM prestamo INNER JOIN usuario, material WHERE usuario."+idUsuario+" = prestamo."+idUsuario);
             rs = pstt.executeQuery();
             while (rs.next()) {
                 listaPrestamo.add(load(rs));
@@ -100,11 +107,15 @@ public class PrestamoJdbc extends Jdbc {
 
     private PrestamoBibliografico load(ResultSet rs) throws SQLException {
         PrestamoBibliografico pb = new PrestamoBibliografico();
-
+        
+        pb.setIdPrestamo(rs.getInt(1));
         pb.setFechaPrestamo(rs.getDate(2));
         pb.setFechaLimite(rs.getDate(3));
         pb.setFechaDevolucion(rs.getDate(4));
         pb.setTipoPrestamo(rs.getString(5));
+        pb.setIdMaterial(rs.getInt(6));
+        pb.setIdUsuario(rs.getInt(7));
+        pb.setCodigoPrestamo(rs.getString(8));
 
         return pb;
     }

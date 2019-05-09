@@ -75,32 +75,31 @@ repaint();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        txtCodigo = new javax.swing.JTextField();
-        txtTipo = new javax.swing.JTextField();
-        txtAutor = new javax.swing.JTextField();
-        txtTitulo = new javax.swing.JTextField();
-        txtDescripcion = new javax.swing.JTextField();
-        txtEdicion = new javax.swing.JTextField();
-        txtEditorial = new javax.swing.JTextField();
-        txtNumPag = new javax.swing.JTextField();
-        txtTema = new javax.swing.JTextField();
-        txtEstadoF = new javax.swing.JTextField();
-        txtCodigoAsig = new javax.swing.JTextField();
-        txtLetraUb = new javax.swing.JTextField();
-        txtEjemplar = new javax.swing.JTextField();
-        txtDisponible = new javax.swing.JComboBox();
         jdp4 = new javax.swing.JDesktopPane();
         jButton4 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        txtTitulo = new javax.swing.JTextField();
+        txtNumPag = new javax.swing.JTextField();
+        txtEditorial = new javax.swing.JTextField();
+        txtEdicion = new javax.swing.JTextField();
+        txtDescripcion = new javax.swing.JTextField();
+        txtAutor = new javax.swing.JTextField();
+        txtTipo = new javax.swing.JTextField();
+        txtCodigo = new javax.swing.JTextField();
+        txtEjemplar = new javax.swing.JTextField();
+        txtLetraUb = new javax.swing.JTextField();
+        txtCodigoAsig = new javax.swing.JTextField();
+        txtDisponible = new javax.swing.JComboBox();
+        txtTema = new javax.swing.JTextField();
+        txtEstadoF = new javax.swing.JTextField();
 
         setBorder(null);
         setClosable(true);
@@ -149,73 +148,6 @@ repaint();
         getContentPane().add(jLabel8);
         jLabel8.setBounds(47, 318, 210, 17);
 
-        jLabel9.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel9.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel9.setText("Tema:");
-        getContentPane().add(jLabel9);
-        jLabel9.setBounds(470, 70, 160, 17);
-
-        jLabel10.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel10.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel10.setText("Disponible: ");
-        getContentPane().add(jLabel10);
-        jLabel10.setBounds(470, 110, 190, 17);
-
-        jLabel11.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel11.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel11.setText("Estado Fisico: ");
-        getContentPane().add(jLabel11);
-        jLabel11.setBounds(470, 150, 200, 17);
-
-        jLabel12.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel12.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel12.setText("Codigo De Asignatura:");
-        getContentPane().add(jLabel12);
-        jLabel12.setBounds(470, 180, 240, 17);
-
-        jLabel13.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel13.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel13.setText("Letra De Ubicacion:");
-        getContentPane().add(jLabel13);
-        jLabel13.setBounds(470, 220, 230, 17);
-
-        jLabel14.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel14.setText("Ejemplar:");
-        getContentPane().add(jLabel14);
-        jLabel14.setBounds(470, 260, 180, 17);
-
-        txtCodigo.setEnabled(false);
-        getContentPane().add(txtCodigo);
-        txtCodigo.setBounds(210, 50, 167, 20);
-        getContentPane().add(txtTipo);
-        txtTipo.setBounds(210, 90, 167, 20);
-        getContentPane().add(txtAutor);
-        txtAutor.setBounds(210, 130, 167, 20);
-        getContentPane().add(txtTitulo);
-        txtTitulo.setBounds(210, 160, 167, 20);
-        getContentPane().add(txtDescripcion);
-        txtDescripcion.setBounds(210, 200, 167, 20);
-        getContentPane().add(txtEdicion);
-        txtEdicion.setBounds(210, 240, 167, 20);
-        getContentPane().add(txtEditorial);
-        txtEditorial.setBounds(210, 280, 167, 20);
-        getContentPane().add(txtNumPag);
-        txtNumPag.setBounds(210, 320, 167, 20);
-        getContentPane().add(txtTema);
-        txtTema.setBounds(660, 60, 165, 20);
-        getContentPane().add(txtEstadoF);
-        txtEstadoF.setBounds(660, 140, 165, 20);
-        getContentPane().add(txtCodigoAsig);
-        txtCodigoAsig.setBounds(660, 180, 165, 20);
-        getContentPane().add(txtLetraUb);
-        txtLetraUb.setBounds(660, 220, 165, 20);
-        getContentPane().add(txtEjemplar);
-        txtEjemplar.setBounds(660, 260, 165, 20);
-
-        txtDisponible.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Disponible", "Ocupado", " " }));
-        getContentPane().add(txtDisponible);
-        txtDisponible.setBounds(660, 100, 170, 20);
-
         jdp4.setBackground(new java.awt.Color(255, 255, 255));
 
         jButton4.setBackground(new java.awt.Color(0, 0, 0));
@@ -228,20 +160,12 @@ repaint();
             }
         });
         jdp4.add(jButton4);
-        jButton4.setBounds(400, 80, 70, 20);
-
-        jButton2.setBackground(new java.awt.Color(0, 0, 0));
-        jButton2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Volver");
-        jButton2.setBorder(null);
-        jdp4.add(jButton2);
-        jButton2.setBounds(400, 400, 150, 30);
+        jButton4.setBounds(400, 50, 70, 20);
 
         jButton1.setBackground(new java.awt.Color(0, 0, 0));
         jButton1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Registrar");
+        jButton1.setText("REGISTRAR");
         jButton1.setBorder(null);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -254,7 +178,7 @@ repaint();
         jButton3.setBackground(new java.awt.Color(0, 0, 0));
         jButton3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Salir");
+        jButton3.setText("CERRAR");
         jButton3.setBorder(null);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -268,6 +192,73 @@ repaint();
         jLabel15.setText("CREAR MATERIAL");
         jdp4.add(jLabel15);
         jLabel15.setBounds(370, 0, 190, 22);
+
+        jLabel14.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel14.setText("Ejemplar:");
+        jdp4.add(jLabel14);
+        jLabel14.setBounds(500, 250, 180, 17);
+
+        jLabel13.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel13.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel13.setText("Letra De Ubicacion:");
+        jdp4.add(jLabel13);
+        jLabel13.setBounds(500, 210, 230, 17);
+
+        jLabel12.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel12.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel12.setText("Codigo De Asignatura:");
+        jdp4.add(jLabel12);
+        jLabel12.setBounds(500, 170, 240, 17);
+
+        jLabel11.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel11.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel11.setText("Estado Fisico: ");
+        jdp4.add(jLabel11);
+        jLabel11.setBounds(500, 140, 200, 17);
+
+        jLabel10.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel10.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel10.setText("Disponible: ");
+        jdp4.add(jLabel10);
+        jLabel10.setBounds(500, 100, 190, 17);
+
+        jLabel9.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel9.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel9.setText("Tema:");
+        jdp4.add(jLabel9);
+        jLabel9.setBounds(500, 60, 160, 17);
+        jdp4.add(txtTitulo);
+        txtTitulo.setBounds(180, 160, 270, 20);
+        jdp4.add(txtNumPag);
+        txtNumPag.setBounds(180, 320, 167, 20);
+        jdp4.add(txtEditorial);
+        txtEditorial.setBounds(180, 280, 167, 20);
+        jdp4.add(txtEdicion);
+        txtEdicion.setBounds(180, 240, 167, 20);
+        jdp4.add(txtDescripcion);
+        txtDescripcion.setBounds(180, 200, 270, 20);
+        jdp4.add(txtAutor);
+        txtAutor.setBounds(180, 130, 240, 20);
+        jdp4.add(txtTipo);
+        txtTipo.setBounds(180, 90, 167, 20);
+
+        txtCodigo.setEnabled(false);
+        jdp4.add(txtCodigo);
+        txtCodigo.setBounds(180, 50, 167, 20);
+        jdp4.add(txtEjemplar);
+        txtEjemplar.setBounds(640, 260, 165, 20);
+        jdp4.add(txtLetraUb);
+        txtLetraUb.setBounds(640, 220, 165, 20);
+        jdp4.add(txtCodigoAsig);
+        txtCodigoAsig.setBounds(640, 180, 165, 20);
+
+        txtDisponible.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Disponible", "Ocupado", " " }));
+        jdp4.add(txtDisponible);
+        txtDisponible.setBounds(640, 100, 170, 20);
+        jdp4.add(txtTema);
+        txtTema.setBounds(640, 60, 165, 20);
+        jdp4.add(txtEstadoF);
+        txtEstadoF.setBounds(640, 140, 200, 20);
 
         getContentPane().add(jdp4);
         jdp4.setBounds(-10, 0, 890, 510);
@@ -347,7 +338,6 @@ repaint();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;

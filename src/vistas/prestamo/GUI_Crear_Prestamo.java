@@ -38,36 +38,38 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
 
     private MaterialBibliografico m1 = new MaterialBibliografico();
     public Usuario u1 = new Usuario();
+    private String codigoPrestamo = Long.toString(new java.util.Date().getTime());
 
     /**
      * Creates new form GUI_Crear_Prestamo
      */
     public GUI_Crear_Prestamo() {
         initComponents();
-                                 cargarImagen(jdp4,foto1);
+        cargarImagen(jdp4, foto1);
         ocultarBarraTitulo();
-        
-    }
-      public InputStream foto1=this.getClass().getResourceAsStream("/imagenes/bl.jpg");
-            public  void cargarImagen(javax.swing.JDesktopPane jDeskp,InputStream fileImagen)
-    {   
-        try{   
-            BufferedImage image = ImageIO.read(fileImagen);        
-              jDeskp.setBorder(new Fondo(image)); }
-        catch (Exception e){   System.out.println("Imagen no disponible");   }        
-    }
-    
-    private JComponent Barra = ((javax.swing.plaf.basic.BasicInternalFrameUI) getUI()).getNorthPane();
-private Dimension dimBarra = null; 
-public void ocultarBarraTitulo()
-{ 
-Barra = ((javax.swing.plaf.basic.BasicInternalFrameUI) getUI()).getNorthPane(); 
-dimBarra = Barra.getPreferredSize(); 
-Barra.setSize(0,0); 
-Barra.setPreferredSize(new Dimension(0,0)); 
-repaint(); 
-}
 
+    }
+    public InputStream foto1 = this.getClass().getResourceAsStream("/imagenes/bl.jpg");
+
+    public void cargarImagen(javax.swing.JDesktopPane jDeskp, InputStream fileImagen) {
+        try {
+            BufferedImage image = ImageIO.read(fileImagen);
+            jDeskp.setBorder(new Fondo(image));
+        } catch (Exception e) {
+            System.out.println("Imagen no disponible");
+        }
+    }
+
+    private JComponent Barra = ((javax.swing.plaf.basic.BasicInternalFrameUI) getUI()).getNorthPane();
+    private Dimension dimBarra = null;
+
+    public void ocultarBarraTitulo() {
+        Barra = ((javax.swing.plaf.basic.BasicInternalFrameUI) getUI()).getNorthPane();
+        dimBarra = Barra.getPreferredSize();
+        Barra.setSize(0, 0);
+        Barra.setPreferredSize(new Dimension(0, 0));
+        repaint();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -118,8 +120,6 @@ repaint();
 
         setBorder(null);
         setClosable(true);
-        setIconifiable(true);
-        setMaximizable(true);
         setTitle("Crear Prestamo");
         setMinimumSize(new java.awt.Dimension(906, 543));
         setPreferredSize(new java.awt.Dimension(906, 543));
@@ -156,7 +156,7 @@ repaint();
         jButton3.setBackground(new java.awt.Color(0, 0, 0));
         jButton3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("VOLVER");
+        jButton3.setText("CERRAR");
         jButton3.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -340,11 +340,12 @@ repaint();
             java.util.Date now = new java.util.Date();
             PrestamoBibliografico p1 = new PrestamoBibliografico();
             //p1.setFechaDevolucion(null);
-            p1.setFechaLimite(new Date(now.getTime()+9000));
+            p1.setFechaLimite(new Date(now.getTime() + 9000));
             p1.setFechaPrestamo(new Date(now.getTime()));
             p1.setIdMaterial(m1.getIdMaterial());
-            p1.setIdPersona(u1.getIdPersona());
+            p1.setIdUsuario(u1.getIdPersona());
             p1.setTipoPrestamo(txtTipoPrestamo.getSelectedItem().toString());
+            p1.setCodigoPrestamo(codigoPrestamo);
 
             fjdbc.savePrestamo(p1);
 
@@ -356,7 +357,7 @@ repaint();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-this.dispose();        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -377,18 +378,19 @@ this.dispose();        // TODO add your handling code here:
         }; //Si se recibe algun dato en el puerto serie, se ejecuta el siguiente metodo
         try {
             ino.arduinoRXTX("COM5", 9600, listener);
+
         } catch (ArduinoException ex) {
             Logger.getLogger(GUI_Crear_Prestamo.class.getName()).log(Level.SEVERE, null, ex);
         }
         if (codigo != null) {
-            Jdbc cx = new Jdbc();
-            MaterialJdbc fjdbc = new MaterialJdbc();
             try {
+                Jdbc cx = new Jdbc();
+                MaterialJdbc fjdbc = new MaterialJdbc();
+
                 cx.conectarme();
                 fjdbc.setCon(cx.getCon());
+                m1 = fjdbc.getMaterial(codigo.trim());
 
-                m1 = fjdbc.getMaterial(codigo);
-                
                 String dispo = "";
                 if (m1.isDisponible()) {
                     dispo = "Disponible";

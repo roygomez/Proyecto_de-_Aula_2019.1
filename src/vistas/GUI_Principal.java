@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 import jdbc.FuncionarioJdbc;
 import vistas.funcionario.GUI_ModificarFuncionario;
 import vistas.funcionario.GUI_ListarFuncionarios;
@@ -27,6 +28,7 @@ import modelo.Funcionario;
 import modelo.Usuario;
 import vistas.material.GUI_Crear_Material_Bibliografico;
 import vistas.material.GUI_ListarMateriales;
+import vistas.prestamo.GUI_ListarPrestamos;
 import vistas.prestamo.GUI_Modificar_Prestamo;
 
 /**
@@ -34,12 +36,11 @@ import vistas.prestamo.GUI_Modificar_Prestamo;
  * @author Usuario
  */
 public class GUI_Principal extends javax.swing.JFrame {
-    
-public InputStream foto1=this.getClass().getResourceAsStream("/imagenes/bliii1.jpg");
-public InputStream foto2=this.getClass().getResourceAsStream("/imagenes/bl.jpg");
-public InputStream foto3=this.getClass().getResourceAsStream("/imagenes/invi.jpg");
-public InputStream foto4=this.getClass().getResourceAsStream("/imagenes/fondo6.jpg");
 
+    public InputStream foto1 = this.getClass().getResourceAsStream("/imagenes/bliii1.jpg");
+    public InputStream foto2 = this.getClass().getResourceAsStream("/imagenes/bl.jpg");
+    public InputStream foto3 = this.getClass().getResourceAsStream("/imagenes/invi.jpg");
+    public InputStream foto4 = this.getClass().getResourceAsStream("/imagenes/fondo6.jpg");
 
     private Funcionario dataF1 = new Funcionario();
     private Usuario dataU1 = new Usuario();
@@ -49,7 +50,6 @@ public InputStream foto4=this.getClass().getResourceAsStream("/imagenes/fondo6.j
      */
     public GUI_Principal() {
         initComponents();
-
         this.setExtendedState(MAXIMIZED_BOTH);
         jMenu1.setVisible(false);
         jMenu2.setVisible(false);
@@ -57,19 +57,21 @@ public InputStream foto4=this.getClass().getResourceAsStream("/imagenes/fondo6.j
         jMenu4.setVisible(false);
         jMenu5.setVisible(false);
         jMenu6.setVisible(false);
-        cargarImagen(jdp,foto1);
-        cargarImagen(jdp2,foto2);
-        cargarImagen(jdp3,foto3);
+        cargarImagen(jdp, foto1);
+        cargarImagen(jdp2, foto2);
+        cargarImagen(jdp3, foto3);
         jMenuBar1.setVisible(false);
         labeltitulo.setVisible(false);
         labelsubt.setVisible(false);
     }
-        public  void cargarImagen(javax.swing.JDesktopPane jDeskp,InputStream fileImagen)
-    {   
-        try{   
-            BufferedImage image = ImageIO.read(fileImagen);        
-              jDeskp.setBorder(new Fondo(image)); }
-        catch (Exception e){   System.out.println("Imagen no disponible");   }        
+
+    public void cargarImagen(javax.swing.JDesktopPane jDeskp, InputStream fileImagen) {
+        try {
+            BufferedImage image = ImageIO.read(fileImagen);
+            jDeskp.setBorder(new Fondo(image));
+        } catch (Exception e) {
+            System.out.println("Imagen no disponible");
+        }
     }
 
     /**
@@ -89,7 +91,7 @@ public InputStream foto4=this.getClass().getResourceAsStream("/imagenes/fondo6.j
         jLabel2 = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
-        txtTipo = new javax.swing.JComboBox<>();
+        txtTipo = new javax.swing.JComboBox<String>();
         btnIniciar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jdp3 = new javax.swing.JDesktopPane();
@@ -142,7 +144,7 @@ public InputStream foto4=this.getClass().getResourceAsStream("/imagenes/fondo6.j
         jLabel3.setText("TIPO");
 
         txtTipo.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        txtTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Funcionario", "Usuario" }));
+        txtTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Funcionario", "Usuario" }));
         txtTipo.setBorder(javax.swing.BorderFactory.createCompoundBorder());
 
         btnIniciar.setBackground(new java.awt.Color(0, 0, 0));
@@ -158,15 +160,6 @@ public InputStream foto4=this.getClass().getResourceAsStream("/imagenes/fondo6.j
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
         jLabel4.setText("Login");
-
-        jdp2.setLayer(txtUsuario, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jdp2.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jdp2.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jdp2.setLayer(txtPassword, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jdp2.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jdp2.setLayer(txtTipo, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jdp2.setLayer(btnIniciar, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jdp2.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jdp2Layout = new javax.swing.GroupLayout(jdp2);
         jdp2.setLayout(jdp2Layout);
@@ -207,10 +200,18 @@ public InputStream foto4=this.getClass().getResourceAsStream("/imagenes/fondo6.j
                 .addComponent(btnIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44))
         );
+        jdp2.setLayer(txtUsuario, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdp2.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdp2.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdp2.setLayer(txtPassword, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdp2.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdp2.setLayer(txtTipo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdp2.setLayer(btnIniciar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdp2.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jdp.setLayer(jdp2, javax.swing.JLayeredPane.DRAG_LAYER);
         jdp.add(jdp2);
         jdp2.setBounds(570, 160, 650, 440);
+        jdp.setLayer(jdp2, javax.swing.JLayeredPane.DRAG_LAYER);
 
         jdp3.setBackground(new java.awt.Color(153, 153, 153));
         jdp3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -220,40 +221,18 @@ public InputStream foto4=this.getClass().getResourceAsStream("/imagenes/fondo6.j
         jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 48)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("  Welcome");
+        jdp3.add(jLabel5);
+        jLabel5.setBounds(13, 169, 363, 56);
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Your library system");
+        jdp3.add(jLabel6);
+        jLabel6.setBounds(23, 231, 363, 30);
 
-        jdp3.setLayer(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jdp3.setLayer(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout jdp3Layout = new javax.swing.GroupLayout(jdp3);
-        jdp3.setLayout(jdp3Layout);
-        jdp3Layout.setHorizontalGroup(
-            jdp3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jdp3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jdp3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jdp3Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(21, Short.MAX_VALUE))
-        );
-        jdp3Layout.setVerticalGroup(
-            jdp3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jdp3Layout.createSequentialGroup()
-                .addGap(96, 96, 96)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(246, Short.MAX_VALUE))
-        );
-
-        jdp.setLayer(jdp3, javax.swing.JLayeredPane.DRAG_LAYER);
         jdp.add(jdp3);
         jdp3.setBounds(160, 160, 410, 440);
+        jdp.setLayer(jdp3, javax.swing.JLayeredPane.DRAG_LAYER);
 
         btnCerrar.setBackground(new java.awt.Color(0, 0, 0));
         btnCerrar.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
@@ -261,13 +240,14 @@ public InputStream foto4=this.getClass().getResourceAsStream("/imagenes/fondo6.j
         btnCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/menu-close-x.png"))); // NOI18N
         btnCerrar.setText("EXIT");
         btnCerrar.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+        btnCerrar.setPreferredSize(new java.awt.Dimension(37, 37));
         btnCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCerrarActionPerformed(evt);
             }
         });
         jdp.add(btnCerrar);
-        btnCerrar.setBounds(10, 10, 60, 30);
+        btnCerrar.setBounds(20, 20, 90, 40);
 
         labelsubt.setFont(new java.awt.Font("Times New Roman", 0, 70)); // NOI18N
         labelsubt.setText("Unicolombo");
@@ -427,11 +407,11 @@ public InputStream foto4=this.getClass().getResourceAsStream("/imagenes/fondo6.j
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jdp, javax.swing.GroupLayout.DEFAULT_SIZE, 1348, Short.MAX_VALUE)
+            .addComponent(jdp, javax.swing.GroupLayout.PREFERRED_SIZE, 1348, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jdp, javax.swing.GroupLayout.DEFAULT_SIZE, 711, Short.MAX_VALUE)
+            .addComponent(jdp, javax.swing.GroupLayout.PREFERRED_SIZE, 711, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -452,7 +432,7 @@ public InputStream foto4=this.getClass().getResourceAsStream("/imagenes/fondo6.j
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-               labeltitulo.setVisible(false);
+        labeltitulo.setVisible(false);
         labelsubt.setVisible(false);
         GUI_Crear_Funcionario cf = new GUI_Crear_Funcionario();
         jdp.add(cf);
@@ -533,7 +513,7 @@ public InputStream foto4=this.getClass().getResourceAsStream("/imagenes/fondo6.j
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         labeltitulo.setVisible(false);
         labelsubt.setVisible(false);
-        // TODO add your handling code here:
+        
         GUI_ListarUsuarios lu = new GUI_ListarUsuarios();
         jdp.add(lu);
         //Centra en JInternalFrame
@@ -566,12 +546,15 @@ public InputStream foto4=this.getClass().getResourceAsStream("/imagenes/fondo6.j
         // TODO add your handling code here:
         dataF1 = null;
         dataU1 = null;
-        jMenu1.setVisible(false);
-        jMenu2.setVisible(false);
-        jMenu3.setVisible(false);
+
+        jMenuBar1.setVisible(false);
         jMenu4.setVisible(false);
-        jMenu5.setVisible(false);
         jMenu6.setVisible(false);
+        jdp2.setVisible(true);
+        jdp3.setVisible(true);
+        btnCerrar.setVisible(true);
+        labeltitulo.setVisible(false);
+        labelsubt.setVisible(false);
     }//GEN-LAST:event_jMenuItem17ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
@@ -590,7 +573,7 @@ public InputStream foto4=this.getClass().getResourceAsStream("/imagenes/fondo6.j
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
 
-        if (txtTipo.getSelectedItem().equals("Funcionario")) {
+        if ("Funcionario" == txtTipo.getSelectedItem()) {
 
             Jdbc cx = new Jdbc();
             FuncionarioJdbc fjdbc = new FuncionarioJdbc();
@@ -601,60 +584,103 @@ public InputStream foto4=this.getClass().getResourceAsStream("/imagenes/fondo6.j
                 char[] arrayC = txtPassword.getPassword();
                 String pass = new String(arrayC);
                 dataF1 = fjdbc.Login(txtUsuario.getText().trim(), pass);
-                if (dataF1 != null) {
-                    System.out.println(dataF1.getApellido1());
-                    jMenuBar1.setVisible(true);
-                    jMenu1.setEnabled(true);
-                    jMenu2.setEnabled(true);
-                    jMenu3.setEnabled(true);
-                    jMenu4.setEnabled(true);
-                    jMenu5.setEnabled(true);
+
+                if (dataF1.getIdentificacion() != null) {
+                    JOptionPane.showMessageDialog(null, "Bienvenido/a " + dataF1.getNombre1() + " " + dataF1.getApellido1());
+                    jMenu6.setText(dataF1.getNombre1() + " " + dataF1.getApellido1());
                     jMenu1.setVisible(true);
                     jMenu2.setVisible(true);
                     jMenu3.setVisible(true);
                     jMenu4.setVisible(true);
                     jMenu5.setVisible(true);
+                    jMenu6.setVisible(true);
+                    jMenuBar1.setVisible(true);
                     jdp2.setVisible(false);
                     jdp3.setVisible(false);
                     btnCerrar.setVisible(false);
                     labeltitulo.setVisible(true);
                     labelsubt.setVisible(true);
-                }else {
-                    System.out.println(dataF1.getApellido1());
+                } else {
+                    JOptionPane.showMessageDialog(null, "Usuario y/o contraseña incorrecta!");
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(GUI_Crear_Funcionario.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(GUI_Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } else if (txtTipo.getSelectedItem() == "Usuario") {
+
+            Jdbc cx = new Jdbc();
+            UsuarioJdbc ujdbc = new UsuarioJdbc();
+            try {
+                cx.conectarme();
+                ujdbc.setCon(cx.getCon());
+
+                char[] arrayC = txtPassword.getPassword();
+                String pass = new String(arrayC);
+                dataU1 = ujdbc.Login(txtUsuario.getText().trim(), pass);
+
+                if (dataU1.getIdentificacion() != null) {
+                    JOptionPane.showMessageDialog(null, "Bienvenido/a " + dataU1.getNombre1() + " " + dataU1.getApellido1());
+                    jMenu6.setText(dataU1.getNombre1() + " " + dataU1.getApellido1());
+                    jMenuBar1.setVisible(true);
+                    jMenu1.setVisible(false);
+                    jMenu4.setVisible(true);
+                    jMenu6.setVisible(true);
+
+                    jMenu2.setVisible(false);
+                    jMenu3.setVisible(false);
+                    jMenu5.setVisible(false);
+
+                    jdp2.setVisible(false);
+                    jdp3.setVisible(false);
+                    btnCerrar.setVisible(false);
+                    labeltitulo.setVisible(true);
+                    labelsubt.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Usuario y/o contraseña incorrecta!");
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(GUI_Principal.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }
     }//GEN-LAST:event_btnIniciarActionPerformed
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
-    this.dispose();
-    
-        // TODO add your handling code here:
+        this.dispose();
+
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-this.dispose();        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
         labeltitulo.setVisible(false);
-        labelsubt.setVisible(false); 
-                GUI_Modificar_Prestamo cf = new GUI_Modificar_Prestamo();
+        labelsubt.setVisible(false);
+        GUI_Modificar_Prestamo cf = new GUI_Modificar_Prestamo();
         jdp.add(cf);
         //Centra en JInternalFrame
         Dimension desktopSize = jdp.getSize();
         Dimension FrameSize = cf.getSize();
         cf.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
         //
-        cf.setVisible(true);// TODO add your handling code here:
+        cf.setVisible(true);
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
         labeltitulo.setVisible(false);
-        labelsubt.setVisible(false);        // TODO add your handling code here:
+        labelsubt.setVisible(false);
+        
+        GUI_ListarPrestamos cf = new GUI_ListarPrestamos();
+        jdp.add(cf);
+        cf.usuarioActual = dataU1.getIdPersona();
+        //Centra en JInternalFrame
+        Dimension desktopSize = jdp.getSize();
+        Dimension FrameSize = cf.getSize();
+        cf.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+        //
+        cf.setVisible(true);
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     /**

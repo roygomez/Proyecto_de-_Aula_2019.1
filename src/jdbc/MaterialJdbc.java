@@ -81,8 +81,7 @@ public class MaterialJdbc extends Jdbc{
         ResultSet rs = null;
         try {
 
-            pstt = this.getCon().prepareStatement("select * from material where codigoMaterial = ?");
-            pstt.setString(1, codigo);
+            pstt = this.getCon().prepareStatement("select * from material where codigoMaterial = '"+codigo+"'");
             rs = pstt.executeQuery();
             while (rs.next()) {
                 m1 = load(rs);
@@ -95,7 +94,6 @@ public class MaterialJdbc extends Jdbc{
                 rs.close();
             }
         }
-        System.out.println(m1.getIdMaterial() +" hola "+ m1.getCodigoMaterial());
 
         return m1;
     }

@@ -88,7 +88,7 @@ repaint();
         jLabel12 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
-        txtRol = new javax.swing.JComboBox<>();
+        txtRol = new javax.swing.JComboBox<String>();
         txtTelefono = new javax.swing.JTextField();
         txtCorreo = new javax.swing.JTextField();
         rBtn2 = new javax.swing.JRadioButton();
@@ -194,7 +194,7 @@ repaint();
         jdp4.add(txtPassword);
         txtPassword.setBounds(580, 290, 178, 20);
 
-        txtRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administardor", "Auxiliar", "Coordinador" }));
+        txtRol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Administardor", "Auxiliar", "Coordinador" }));
         jdp4.add(txtRol);
         txtRol.setBounds(580, 250, 178, 20);
         jdp4.add(txtTelefono);
@@ -209,7 +209,7 @@ repaint();
         jButton3.setBackground(new java.awt.Color(0, 0, 0));
         jButton3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("VOLVER");
+        jButton3.setText("CERRAR");
         jButton3.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -282,8 +282,8 @@ repaint();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-                   GUI_Principal.labeltitulo.setVisible(true);
-                    GUI_Principal.labelsubt.setVisible(true);        // TODO add your handling code here:
+                  // GUI_Principal.labeltitulo.setVisible(true);
+                  //  GUI_Principal.labelsubt.setVisible(true);        // TODO add your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
 

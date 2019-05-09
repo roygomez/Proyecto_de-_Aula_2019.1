@@ -85,11 +85,10 @@ repaint();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        txtRol = new javax.swing.JComboBox<>();
+        txtRol = new javax.swing.JComboBox<String>();
         txtTelefono = new javax.swing.JTextField();
         txtPassword = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         txtFechaNacimiento = new com.toedter.calendar.JDateChooser();
         txtBuscarById = new javax.swing.JTextField();
@@ -191,7 +190,7 @@ repaint();
         getContentPane().add(jLabel12);
         jLabel12.setBounds(450, 270, 100, 17);
 
-        txtRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administardor", "Auxiliar", "Coordinador" }));
+        txtRol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Administardor", "Auxiliar", "Coordinador" }));
         getContentPane().add(txtRol);
         txtRol.setBounds(620, 270, 178, 20);
         getContentPane().add(txtTelefono);
@@ -212,18 +211,10 @@ repaint();
         getContentPane().add(jButton1);
         jButton1.setBounds(230, 400, 120, 30);
 
-        jButton2.setBackground(new java.awt.Color(0, 0, 0));
-        jButton2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("VOLVER");
-        jButton2.setBorder(javax.swing.BorderFactory.createCompoundBorder());
-        getContentPane().add(jButton2);
-        jButton2.setBounds(410, 400, 120, 30);
-
         jButton3.setBackground(new java.awt.Color(0, 0, 0));
         jButton3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("SALIR");
+        jButton3.setText("CERRAR");
         jButton3.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -359,7 +350,6 @@ repaint();
     private java.awt.Button button1;
     private javax.swing.ButtonGroup groupBtnSexo;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;

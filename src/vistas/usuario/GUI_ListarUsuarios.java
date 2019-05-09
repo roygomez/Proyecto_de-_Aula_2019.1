@@ -31,7 +31,7 @@ public class GUI_ListarUsuarios extends javax.swing.JInternalFrame {
      */
     public GUI_ListarUsuarios() {
         initComponents();
-        
+
         DefaultTableModel modelo = (DefaultTableModel) tblUsuarios.getModel();
 
         Jdbc cx = new Jdbc();
@@ -40,13 +40,13 @@ public class GUI_ListarUsuarios extends javax.swing.JInternalFrame {
         try {
             cx.conectarme();
             fjdbc.setCon(cx.getCon());
-            
+
             List<Usuario> usuarios = fjdbc.getUsuario();
 
             for (Usuario u : usuarios) {
-                modelo.addRow(new Object[] {
-                    u.getIdentificacion(), u.getNombre1(), u.getNombre2(), u.getApellido1(), u.getApellido2(), 
-                    u.getFechaNacimiento(), u.getSexo(), u.getCorreo(), u.getTelefono(), u.getTipoUsuario(), 
+                modelo.addRow(new Object[]{
+                    u.getIdentificacion(), u.getNombre1(), u.getNombre2(), u.getApellido1(), u.getApellido2(),
+                    u.getFechaNacimiento(), u.getSexo(), u.getCorreo(), u.getTelefono(), u.getTipoUsuario(),
                     u.isInscrito(), u.getCodigoInstitucional(), u.getPagoAnual(), u.isControlPago()
                 });
             }
@@ -54,30 +54,31 @@ public class GUI_ListarUsuarios extends javax.swing.JInternalFrame {
         } catch (SQLException ex) {
             Logger.getLogger(GUI_ListarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
         }
-                            cargarImagen(jdp4,foto1);
+        cargarImagen(jdp4, foto1);
         ocultarBarraTitulo();
-        
-    }
-    
-    private JComponent Barra = ((javax.swing.plaf.basic.BasicInternalFrameUI) getUI()).getNorthPane();
-private Dimension dimBarra = null; 
-public void ocultarBarraTitulo()
-{ 
-Barra = ((javax.swing.plaf.basic.BasicInternalFrameUI) getUI()).getNorthPane(); 
-dimBarra = Barra.getPreferredSize(); 
-Barra.setSize(0,0); 
-Barra.setPreferredSize(new Dimension(0,0)); 
-repaint(); 
-}
-  public InputStream foto1=this.getClass().getResourceAsStream("/imagenes/bl.jpg");
-            public  void cargarImagen(javax.swing.JDesktopPane jDeskp,InputStream fileImagen)
-    {   
-        try{   
-            BufferedImage image = ImageIO.read(fileImagen);        
-              jDeskp.setBorder(new Fondo(image)); }
-        catch (Exception e){   System.out.println("Imagen no disponible");   }        
+
     }
 
+    private JComponent Barra = ((javax.swing.plaf.basic.BasicInternalFrameUI) getUI()).getNorthPane();
+    private Dimension dimBarra = null;
+
+    public void ocultarBarraTitulo() {
+        Barra = ((javax.swing.plaf.basic.BasicInternalFrameUI) getUI()).getNorthPane();
+        dimBarra = Barra.getPreferredSize();
+        Barra.setSize(0, 0);
+        Barra.setPreferredSize(new Dimension(0, 0));
+        repaint();
+    }
+    public InputStream foto1 = this.getClass().getResourceAsStream("/imagenes/bl.jpg");
+
+    public void cargarImagen(javax.swing.JDesktopPane jDeskp, InputStream fileImagen) {
+        try {
+            BufferedImage image = ImageIO.read(fileImagen);
+            jDeskp.setBorder(new Fondo(image));
+        } catch (Exception e) {
+            System.out.println("Imagen no disponible");
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -204,8 +205,8 @@ repaint();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-this.setVisible(false);
-;        // TODO add your handling code here:
+        this.setVisible(false);
+        ;        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

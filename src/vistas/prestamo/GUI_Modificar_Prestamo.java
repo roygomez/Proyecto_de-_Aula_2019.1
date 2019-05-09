@@ -23,30 +23,31 @@ public class GUI_Modificar_Prestamo extends javax.swing.JInternalFrame {
      */
     public GUI_Modificar_Prestamo() {
         initComponents();
-                                         cargarImagen(jDesktopPane2,foto1);
+        cargarImagen(jDesktopPane2, foto1);
         ocultarBarraTitulo();
-        
-    }
-      public InputStream foto1=this.getClass().getResourceAsStream("/imagenes/bl.jpg");
-            public  void cargarImagen(javax.swing.JDesktopPane jDeskp,InputStream fileImagen)
-    {   
-        try{   
-            BufferedImage image = ImageIO.read(fileImagen);        
-              jDeskp.setBorder(new Fondo(image)); }
-        catch (Exception e){   System.out.println("Imagen no disponible");   }        
-    }
-    
-    private JComponent Barra = ((javax.swing.plaf.basic.BasicInternalFrameUI) getUI()).getNorthPane();
-private Dimension dimBarra = null; 
-public void ocultarBarraTitulo()
-{ 
-Barra = ((javax.swing.plaf.basic.BasicInternalFrameUI) getUI()).getNorthPane(); 
-dimBarra = Barra.getPreferredSize(); 
-Barra.setSize(0,0); 
-Barra.setPreferredSize(new Dimension(0,0)); 
-repaint(); 
-}
 
+    }
+    public InputStream foto1 = this.getClass().getResourceAsStream("/imagenes/bl.jpg");
+
+    public void cargarImagen(javax.swing.JDesktopPane jDeskp, InputStream fileImagen) {
+        try {
+            BufferedImage image = ImageIO.read(fileImagen);
+            jDeskp.setBorder(new Fondo(image));
+        } catch (Exception e) {
+            System.out.println("Imagen no disponible");
+        }
+    }
+
+    private JComponent Barra = ((javax.swing.plaf.basic.BasicInternalFrameUI) getUI()).getNorthPane();
+    private Dimension dimBarra = null;
+
+    public void ocultarBarraTitulo() {
+        Barra = ((javax.swing.plaf.basic.BasicInternalFrameUI) getUI()).getNorthPane();
+        dimBarra = Barra.getPreferredSize();
+        Barra.setSize(0, 0);
+        Barra.setPreferredSize(new Dimension(0, 0));
+        repaint();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -242,7 +243,7 @@ repaint();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-this.dispose();        // TODO add your handling code here:
+        this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
 

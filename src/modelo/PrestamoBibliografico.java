@@ -7,15 +7,15 @@ import java.sql.Date;
 public class PrestamoBibliografico {
     
     private int idPrestamo;
-    private int arraydelibros;
+    private String codigoPrestamo;
     private Date fechaPrestamo;
     private Date fechaLimite;
     private Date fechaDevolucion;
     private String tipoPrestamo;
     private int idMaterial;
-    private int idPersona;    
+    private int idUsuario;    
     private MaterialBibliografico material;
-    private Persona persona;
+    private Usuario usuario;
 
     public int getIdPrestamo() {
         return idPrestamo;
@@ -23,6 +23,14 @@ public class PrestamoBibliografico {
 
     public void setIdPrestamo(int idPrestamo) {
         this.idPrestamo = idPrestamo;
+    }
+
+    public String getCodigoPrestamo() {
+        return codigoPrestamo;
+    }
+
+    public void setCodigoPrestamo(String codigoPrestamo) {
+        this.codigoPrestamo = codigoPrestamo;
     }
 
     public Date getFechaPrestamo() {
@@ -65,12 +73,12 @@ public class PrestamoBibliografico {
         this.idMaterial = idMaterial;
     }
 
-    public int getIdPersona() {
-        return idPersona;
+    public int getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setIdPersona(int idPersona) {
-        this.idPersona = idPersona;
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public MaterialBibliografico getMaterial() {
@@ -81,11 +89,11 @@ public class PrestamoBibliografico {
         this.material = material;
     }
 
-    public Persona getPersona() {
-        return persona;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setPersona(Persona persona) {
-        this.persona = persona;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }
