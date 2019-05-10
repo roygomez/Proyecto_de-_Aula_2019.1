@@ -17,46 +17,21 @@ import javax.swing.JComponent;
 import javax.swing.table.DefaultTableModel;
 import jdbc.Jdbc;
 import jdbc.PrestamoJdbc;
-import modelo.MaterialBibliografico;
 import modelo.PrestamoBibliografico;
 import vistas.Fondo;
 
-/**
- *
- * @author EstiRasta
- */
 public class GUI_ListarPrestamos extends javax.swing.JInternalFrame {
-public int usuarioActual;
+
+    public String usuarioId;
+
     /**
      * Creates new form GUI_ListarPrestamos
      */
     public GUI_ListarPrestamos() {
         initComponents();
+
         
-        DefaultTableModel modelo = (DefaultTableModel) tblUsuarios.getModel();
-
-        Jdbc cx = new Jdbc();
-        PrestamoJdbc fjdbc = new PrestamoJdbc();
-
-        try {
-            cx.conectarme();
-            fjdbc.setCon(cx.getCon());
-
-            List<PrestamoBibliografico> prestamos = fjdbc.getPrestamo();
-
-           for (PrestamoBibliografico p : prestamos) {
-                modelo.addRow(new Object[]{
-                    p.getCodigoPrestamo(),p.getFechaPrestamo(), p.getFechaLimite(),p.getFechaDevolucion(), p.getTipoPrestamo(),
-                    p.getUsuario().getIdentificacion(), p.getUsuario().getNombre1(), p.getUsuario().getApellido1(), p.getUsuario().getTelefono(),
-                    p.getMaterial().getTitulo(), p.getMaterial().isDisponible(), p.getMaterial().getTipoMaterial()
-
-                });
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(GUI_ListarPrestamos.class.getName()).log(Level.SEVERE, null, ex);
-        }
-          cargarImagen(jdp4, foto1);
+        cargarImagen(jdp4, foto1);
         ocultarBarraTitulo();
 
     }
@@ -92,15 +67,16 @@ public int usuarioActual;
     private void initComponents() {
 
         jScrollPane2 = new javax.swing.JScrollPane();
-        tblUsuarios = new javax.swing.JTable();
+        tblPrestamos = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jdp4 = new javax.swing.JDesktopPane();
+        jButton2 = new javax.swing.JButton();
 
         setBorder(null);
         setOpaque(true);
 
-        tblUsuarios.setModel(new javax.swing.table.DefaultTableModel(
+        tblPrestamos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -123,8 +99,8 @@ public int usuarioActual;
                 return canEdit [columnIndex];
             }
         });
-        tblUsuarios.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
-        jScrollPane2.setViewportView(tblUsuarios);
+        tblPrestamos.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        jScrollPane2.setViewportView(tblPrestamos);
 
         jButton1.setBackground(new java.awt.Color(0, 0, 0));
         jButton1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -149,8 +125,15 @@ public int usuarioActual;
         );
         jdp4Layout.setVerticalGroup(
             jdp4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 673, Short.MAX_VALUE)
+            .addGap(0, 684, Short.MAX_VALUE)
         );
+
+        jButton2.setText("Actualizar tabla");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -160,14 +143,16 @@ public int usuarioActual;
                 .addContainerGap()
                 .addComponent(jScrollPane2)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 453, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(523, 523, 523))
             .addGroup(layout.createSequentialGroup()
                 .addGap(421, 421, 421)
                 .addComponent(jLabel1)
-                .addContainerGap(541, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(523, 523, 523))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jdp4))
         );
@@ -179,27 +164,59 @@ public int usuarioActual;
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
                 .addGap(41, 41, 41))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addGap(0, 11, Short.MAX_VALUE)
-                    .addComponent(jdp4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(jdp4, javax.swing.GroupLayout.Alignment.TRAILING))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-this.dispose();        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        DefaultTableModel modelo = (DefaultTableModel) tblPrestamos.getModel();       
+                
+        Jdbc cx = new Jdbc();
+        PrestamoJdbc fjdbc = new PrestamoJdbc();
+
+        try {
+            cx.conectarme();
+            fjdbc.setCon(cx.getCon());
+            
+            List<PrestamoBibliografico> prestamos;
+            if(this.usuarioId == null){
+                prestamos = fjdbc.getPrestamo();                
+            } else {
+                prestamos = fjdbc.getPrestamoUsuario(this.usuarioId);
+            }
+            
+            for (PrestamoBibliografico p : prestamos) {
+                modelo.addRow(new Object[]{
+                    p.getCodigoPrestamo(), p.getFechaPrestamo(), p.getFechaLimite(), p.getFechaDevolucion(), p.getTipoPrestamo(),
+                    p.getUsuario().getIdentificacion(), p.getUsuario().getNombre1(), p.getUsuario().getApellido1(), p.getUsuario().getTelefono(),
+                    p.getMaterial().getTitulo(), p.getMaterial().isDisponible(), p.getMaterial().getTipoMaterial()
+
+                });
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(GUI_ListarPrestamos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JDesktopPane jdp4;
-    private javax.swing.JTable tblUsuarios;
+    private javax.swing.JTable tblPrestamos;
     // End of variables declaration//GEN-END:variables
 }

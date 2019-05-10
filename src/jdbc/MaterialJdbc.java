@@ -158,4 +158,19 @@ public class MaterialJdbc extends Jdbc{
             }
         }
     }
+    
+    public void updateDisponible(String codigo, boolean estado) throws SQLException {
+        PreparedStatement pstt = null;
+        try {
+            pstt = this.getCon().prepareStatement("UPDATE material SET disponible=? WHERE codigoMaterial=?");            
+            pstt.setBoolean(1, estado);
+            pstt.setString(2, codigo);
+
+            pstt.executeUpdate();
+        } finally {
+            if (pstt != null) {
+                pstt.close();
+            }
+        }
+    }
 }

@@ -5,7 +5,7 @@ import java.sql.*;
 public class Jdbc {
 
     private String driver = "com.mysql.jdbc.Driver";
-    private String url = "jdbc:mysql://localhost:3307/sistema_bibliotecario?serverTimezone=UTC";
+    private String url = "jdbc:mysql://localhost:3306/sistema_bibliotecario?serverTimezone=UTC";
     private Connection con;
 
     public Connection getCon() {

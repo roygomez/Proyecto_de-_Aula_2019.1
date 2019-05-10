@@ -335,7 +335,8 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Jdbc cx = new Jdbc();
         PrestamoJdbc fjdbc = new PrestamoJdbc();
-        if (txtDisponible.getText() == "Ocupado") {
+        MaterialJdbc mjdbc = new MaterialJdbc();
+        if ("Ocupado".equals(txtDisponible.getText())) {
             JOptionPane.showMessageDialog(null, "El material que desea prestar se encuentra ocupado!");
         } else {
             try {
@@ -347,20 +348,11 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
                 } else if(txtTipoPrestamo.getSelectedItem() == "Externo") {
                     horas = (3600000*24)*7;
                 }
-                long fechaSalida = date.getTime();
-                long FechaLimite = fechaSalida + 3600000;
-
-                long enQueDevolvi = date.getTime() + 432000000; //5 dias que dure con el libro        
-                double difF = enQueDevolvi - FechaLimite;
-
-                long nDias = Math.round(difF / (1000 * 60 * 60 * 24));
-
-                long multa = nDias * 2000;
-
-                java.util.Date dateDevolver = new java.util.Date(FechaLimite);
 
                 cx.conectarme();
                 fjdbc.setCon(cx.getCon());
+                mjdbc.setCon(cx.getCon());
+                mjdbc.updateDisponible(m1.getCodigoMaterial(), false);
 
                 java.util.Date now = new java.util.Date();
 
@@ -376,7 +368,7 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, "Su prestamo ha sido registrado exitosamente, la fecha limite de entrega debe ser: "+new Timestamp(now.getTime() + horas));
 
             } catch (SQLException ex) {
-                Logger.getLogger(GUI_Modificar_Prestamo.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(GUI_Crear_Prestamo.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
@@ -386,11 +378,10 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
-    public String codigo = "9F 4D AC 89";
+    public String codigo = null;
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         PanamaHitek_Arduino ino = new PanamaHitek_Arduino();
-
         SerialPortEventListener listener;
         listener = (SerialPortEvent serialPortEvent) -> {
 
@@ -442,7 +433,7 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
                 txtDisponible.setText(dispo);
 
             } catch (SQLException ex) {
-                Logger.getLogger(GUI_Modificar_Prestamo.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(GUI_Crear_Prestamo.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_jButton2ActionPerformed

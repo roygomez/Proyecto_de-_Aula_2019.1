@@ -3,6 +3,7 @@ package jdbc;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -39,18 +40,13 @@ public class PrestamoJdbc extends Jdbc {
         }
     }
 
-    public void updatePrestamo(PrestamoBibliografico p1) throws SQLException {
+    public void updatePrestamo(Timestamp now, String codigo) throws SQLException {
         PreparedStatement pstt = null;
         try {
-            pstt = this.getCon().prepareStatement("UPDATE Prestamo SET fechaPrestamo=?,fechaLimite=?,tipoPersona=?idPersona=?,idMaterrial=? where idPrestamo = ?");
+            pstt = this.getCon().prepareStatement("UPDATE prestamo p SET p.fechaDevolucion = ? where material.codigoMaterial = ? AND material.disponible = 0");
 
-            pstt.setTimestamp(1, p1.getFechaPrestamo());
-            pstt.setTimestamp(2, p1.getFechaLimite());
-            pstt.setString(3, p1.getTipoPrestamo());
-            pstt.setInt(4, p1.getIdMaterial());
-            pstt.setInt(5, p1.getIdUsuario());
-            pstt.setInt(6, p1.getIdPrestamo());
-            pstt.setString(7, p1.getCodigoPrestamo());
+            pstt.setTimestamp(1, now);
+            pstt.setString(2, codigo);
 
             pstt.executeUpdate();
         } finally {
@@ -106,6 +102,29 @@ public class PrestamoJdbc extends Jdbc {
         }
         return listaPrestamo;
     }
+    
+    public List getPrestamoUsuario(String identificacion) throws SQLException {
+
+        listaPrestamo = new LinkedList();
+        PreparedStatement pstt = null;
+        ResultSet rs = null;
+        try {
+            pstt = this.getCon().prepareStatement("SELECT p.codigoPrestamo, p.fechaPrestamo,p.fechaLimite,p.fechaDevolucion,p.tipoPrestamo, u.identificacion , u.nombre1,u.apellido1, u.telefono,m.tipoMaterial, m.titulo, m.disponible FROM prestamo p, usuario u, material m WHERE p.idMaterial = m.idMaterial AND identificacion = ?");
+            pstt.setString(1, identificacion);
+            rs = pstt.executeQuery();
+            while (rs.next()) {
+                listaPrestamo.add(load(rs));
+            }
+        } finally {
+            if (pstt != null) {
+                pstt.close();
+            }
+            if (rs != null) {
+                rs.close();
+            }
+        }
+        return listaPrestamo;
+    }
 
     private PrestamoBibliografico load(ResultSet rs) throws SQLException {
         PrestamoBibliografico pb = new PrestamoBibliografico();
@@ -146,4 +165,5 @@ public class PrestamoJdbc extends Jdbc {
             }
         }
     }
+    
 }

@@ -28,8 +28,8 @@ import modelo.Funcionario;
 import modelo.Usuario;
 import vistas.material.GUI_Crear_Material_Bibliografico;
 import vistas.material.GUI_ListarMateriales;
+import vistas.prestamo.GUI_DevolucionPrestamo;
 import vistas.prestamo.GUI_ListarPrestamos;
-import vistas.prestamo.GUI_Modificar_Prestamo;
 
 /**
  *
@@ -91,7 +91,7 @@ public class GUI_Principal extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
-        txtTipo = new javax.swing.JComboBox<>();
+        txtTipo = new javax.swing.JComboBox<String>();
         btnIniciar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jdp3 = new javax.swing.JDesktopPane();
@@ -102,6 +102,8 @@ public class GUI_Principal extends javax.swing.JFrame {
         labeltitulo = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu6 = new javax.swing.JMenu();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem12 = new javax.swing.JMenuItem();
         jMenuItem17 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -109,7 +111,6 @@ public class GUI_Principal extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem13 = new javax.swing.JMenuItem();
-        jMenuItem14 = new javax.swing.JMenuItem();
         jMenuItem15 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem9 = new javax.swing.JMenuItem();
@@ -158,7 +159,7 @@ public class GUI_Principal extends javax.swing.JFrame {
         jLabel3.setBounds(21, 235, 42, 26);
 
         txtTipo.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        txtTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Funcionario", "Usuario" }));
+        txtTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Funcionario", "Usuario" }));
         txtTipo.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         jdp2.add(txtTipo);
         txtTipo.setBounds(21, 267, 397, 26);
@@ -216,12 +217,6 @@ public class GUI_Principal extends javax.swing.JFrame {
         labeltitulo.setFont(new java.awt.Font("Times New Roman", 0, 100)); // NOI18N
         labeltitulo.setText("Unicolombo Library System");
 
-        jdp.setLayer(jdp2, javax.swing.JLayeredPane.DRAG_LAYER);
-        jdp.setLayer(jdp3, javax.swing.JLayeredPane.DRAG_LAYER);
-        jdp.setLayer(btnCerrar, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jdp.setLayer(labelsubt, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jdp.setLayer(labeltitulo, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         javax.swing.GroupLayout jdpLayout = new javax.swing.GroupLayout(jdp);
         jdp.setLayout(jdpLayout);
         jdpLayout.setHorizontalGroup(
@@ -257,17 +252,38 @@ public class GUI_Principal extends javax.swing.JFrame {
                     .addComponent(labeltitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelsubt, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(99, 99, 99)
+                .addGap(96, 96, 96)
                 .addGroup(jdpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jdp3, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jdp2, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
+        jdp.setLayer(jdp2, javax.swing.JLayeredPane.DRAG_LAYER);
+        jdp.setLayer(jdp3, javax.swing.JLayeredPane.DRAG_LAYER);
+        jdp.setLayer(btnCerrar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdp.setLayer(labelsubt, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdp.setLayer(labeltitulo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         getContentPane().add(jdp);
         jdp.setBounds(0, 0, 1460, 840);
 
         jMenu6.setText("jMenu6");
+
+        jMenuItem8.setText("Mis prestamos");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem8);
+
+        jMenuItem12.setText("Delvolver material");
+        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem12ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem12);
 
         jMenuItem17.setText("Cerrar sesion");
         jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
@@ -317,14 +333,6 @@ public class GUI_Principal extends javax.swing.JFrame {
             }
         });
         jMenu4.add(jMenuItem13);
-
-        jMenuItem14.setText("Modificar Prestamo");
-        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem14ActionPerformed(evt);
-            }
-        });
-        jMenu4.add(jMenuItem14);
 
         jMenuItem15.setText("Listar Prestamo");
         jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
@@ -399,7 +407,7 @@ public class GUI_Principal extends javax.swing.JFrame {
             }
         });
 
-        jMenuItem4.setText("Cerrar");
+        jMenuItem4.setText("Confirmar salida");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem4ActionPerformed(evt);
@@ -535,8 +543,7 @@ public class GUI_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenu5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5ActionPerformed
-        // TODO add your handling code here:
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_jMenu5ActionPerformed
 
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
@@ -586,6 +593,7 @@ public class GUI_Principal extends javax.swing.JFrame {
                 if (dataF1.getIdentificacion() != null) {
                     txtUsuario.setText("");
                     txtPassword.setText("");
+                    
                     JOptionPane.showMessageDialog(null, "Welcome " + dataF1.getNombre1() + " " + dataF1.getApellido1());
                     jMenu6.setText(dataF1.getNombre1() + " " + dataF1.getApellido1());
                     labelsubt.setText("Hi "+dataF1.getNombre1() );
@@ -595,6 +603,9 @@ public class GUI_Principal extends javax.swing.JFrame {
                     jMenu4.setVisible(true);
                     jMenu5.setVisible(true);
                     jMenu6.setVisible(true);
+                    jMenuItem15.setVisible(true);
+                    jMenuItem8.setVisible(false);
+                    jMenuItem12.setVisible(false);
                     jMenuBar1.setVisible(true);
                     jdp2.setVisible(false);
                     jdp3.setVisible(false);
@@ -623,6 +634,7 @@ public class GUI_Principal extends javax.swing.JFrame {
                 if (dataU1.getIdentificacion() != null) {
                     txtUsuario.setText("");
                     txtPassword.setText("");
+                    
                     JOptionPane.showMessageDialog(null, "Bienvenido/a " + dataU1.getNombre1() + " " + dataU1.getApellido1());
                     jMenu6.setText(dataU1.getNombre1() + " " + dataU1.getApellido1());
                     labelsubt.setText("Hi "+dataU1.getNombre1()  );
@@ -632,10 +644,13 @@ public class GUI_Principal extends javax.swing.JFrame {
                     jMenu6.setVisible(true);
                     jMenuItem9.setVisible(false);
                     jMenuItem10.setVisible(false);
+                    jMenuItem15.setVisible(false);
+                    jMenuItem8.setVisible(true);                    
+                    jMenuItem12.setVisible(true);
 
                     jMenu2.setVisible(false);
                     jMenu3.setVisible(true);
-                    jMenu5.setVisible(false);
+                    jMenu5.setVisible(true);
 
                     jdp2.setVisible(false);
                     jdp3.setVisible(false);
@@ -661,26 +676,12 @@ public class GUI_Principal extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
-    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
-        labeltitulo.setVisible(false);
-        labelsubt.setVisible(false);
-        GUI_Modificar_Prestamo cf = new GUI_Modificar_Prestamo();
-        jdp.add(cf);
-        //Centra en JInternalFrame
-        Dimension desktopSize = jdp.getSize();
-        Dimension FrameSize = cf.getSize();
-        cf.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-        //
-        cf.setVisible(true);
-    }//GEN-LAST:event_jMenuItem14ActionPerformed
-
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
         labeltitulo.setVisible(false);
         labelsubt.setVisible(false);
         
         GUI_ListarPrestamos cf = new GUI_ListarPrestamos();
         jdp.add(cf);
-        cf.usuarioActual = dataU1.getIdPersona();
         //Centra en JInternalFrame
         Dimension desktopSize = jdp.getSize();
         Dimension FrameSize = cf.getSize();
@@ -688,6 +689,29 @@ public class GUI_Principal extends javax.swing.JFrame {
         //
         cf.setVisible(true);
     }//GEN-LAST:event_jMenuItem15ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        GUI_ListarPrestamos lp = new GUI_ListarPrestamos();        
+        jdp.add(lp);
+        lp.usuarioId = dataU1.getIdentificacion();
+        //Centra en JInternalFrame
+        Dimension desktopSize = jdp.getSize();
+        Dimension FrameSize = lp.getSize();
+        lp.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+        //
+        lp.setVisible(true);
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+        GUI_DevolucionPrestamo dp = new GUI_DevolucionPrestamo();        
+        jdp.add(dp);
+        //Centra en JInternalFrame
+        Dimension desktopSize = jdp.getSize();
+        Dimension FrameSize = dp.getSize();
+        dp.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+        //
+        dp.setVisible(true);
+    }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -745,8 +769,8 @@ public class GUI_Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
+    private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
-    private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem2;
@@ -755,6 +779,7 @@ public class GUI_Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JDesktopPane jdp;
     private javax.swing.JDesktopPane jdp2;
