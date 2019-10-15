@@ -91,8 +91,8 @@ public class GUI_Principal extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
-        txtTipo = new javax.swing.JComboBox<String>();
-        btnIniciar = new javax.swing.JButton();
+        txtTipo = new javax.swing.JComboBox<>();
+        btnIniciarSecion = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jdp3 = new javax.swing.JDesktopPane();
         jLabel5 = new javax.swing.JLabel();
@@ -105,10 +105,6 @@ public class GUI_Principal extends javax.swing.JFrame {
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenuItem17 = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem15 = new javax.swing.JMenuItem();
@@ -122,6 +118,10 @@ public class GUI_Principal extends javax.swing.JFrame {
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(750, 494));
@@ -159,23 +159,23 @@ public class GUI_Principal extends javax.swing.JFrame {
         jLabel3.setBounds(21, 235, 42, 26);
 
         txtTipo.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        txtTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Funcionario", "Usuario" }));
+        txtTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Funcionario", "Usuario" }));
         txtTipo.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         jdp2.add(txtTipo);
         txtTipo.setBounds(21, 267, 397, 26);
 
-        btnIniciar.setBackground(new java.awt.Color(0, 0, 0));
-        btnIniciar.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        btnIniciar.setForeground(new java.awt.Color(255, 255, 255));
-        btnIniciar.setText("LOGIN");
-        btnIniciar.setBorder(javax.swing.BorderFactory.createCompoundBorder());
-        btnIniciar.addActionListener(new java.awt.event.ActionListener() {
+        btnIniciarSecion.setBackground(new java.awt.Color(0, 0, 0));
+        btnIniciarSecion.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        btnIniciarSecion.setForeground(new java.awt.Color(255, 255, 255));
+        btnIniciarSecion.setText("LOGIN");
+        btnIniciarSecion.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+        btnIniciarSecion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIniciarActionPerformed(evt);
+                btnIniciarSecionActionPerformed(evt);
             }
         });
-        jdp2.add(btnIniciar);
-        btnIniciar.setBounds(21, 352, 137, 41);
+        jdp2.add(btnIniciarSecion);
+        btnIniciarSecion.setBounds(21, 352, 137, 41);
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
         jLabel4.setText("Login");
@@ -216,6 +216,12 @@ public class GUI_Principal extends javax.swing.JFrame {
 
         labeltitulo.setFont(new java.awt.Font("Times New Roman", 0, 100)); // NOI18N
         labeltitulo.setText("Unicolombo Library System");
+
+        jdp.setLayer(jdp2, javax.swing.JLayeredPane.DRAG_LAYER);
+        jdp.setLayer(jdp3, javax.swing.JLayeredPane.DRAG_LAYER);
+        jdp.setLayer(btnCerrar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdp.setLayer(labelsubt, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdp.setLayer(labeltitulo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jdpLayout = new javax.swing.GroupLayout(jdp);
         jdp.setLayout(jdpLayout);
@@ -258,11 +264,6 @@ public class GUI_Principal extends javax.swing.JFrame {
                     .addComponent(jdp2, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
-        jdp.setLayer(jdp2, javax.swing.JLayeredPane.DRAG_LAYER);
-        jdp.setLayer(jdp3, javax.swing.JLayeredPane.DRAG_LAYER);
-        jdp.setLayer(btnCerrar, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jdp.setLayer(labelsubt, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jdp.setLayer(labeltitulo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         getContentPane().add(jdp);
         jdp.setBounds(0, 0, 1460, 840);
@@ -294,35 +295,6 @@ public class GUI_Principal extends javax.swing.JFrame {
         jMenu6.add(jMenuItem17);
 
         jMenuBar1.add(jMenu6);
-
-        jMenu1.setText("Funcionario");
-        jMenu1.setName(""); // NOI18N
-
-        jMenuItem1.setText("Crear Funcionario");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem1);
-
-        jMenuItem2.setText("Modificar Funcionario");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem2);
-
-        jMenuItem3.setText("Listar Funcionarios");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem3);
-
-        jMenuBar1.add(jMenu1);
 
         jMenu4.setText("Prestamo");
 
@@ -416,6 +388,35 @@ public class GUI_Principal extends javax.swing.JFrame {
         jMenu5.add(jMenuItem4);
 
         jMenuBar1.add(jMenu5);
+
+        jMenu1.setText("Funcionario");
+        jMenu1.setName(""); // NOI18N
+
+        jMenuItem1.setText("Crear Funcionario");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuItem2.setText("Modificar Funcionario");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
+
+        jMenuItem3.setText("Listar Funcionarios");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem3);
+
+        jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
 
@@ -575,97 +576,103 @@ public class GUI_Principal extends javax.swing.JFrame {
         lm.setVisible(true);
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
-    private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
+    private void btnIniciarSecionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSecionActionPerformed
+        
+        if (txtUsuario.getText().trim().equals("") || txtPassword.getPassword().toString().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Por favor no deje campos vacios", "Error", (0));
+        } else {
+            if (txtTipo.getSelectedItem() == "Funcionario") {
 
-        if (txtTipo.getSelectedItem() == "Funcionario") {
+                Jdbc cx = new Jdbc();
+                FuncionarioJdbc fjdbc = new FuncionarioJdbc();
+                try {
+                    cx.conectarme();
+                    fjdbc.setCon(cx.getCon());
 
-            Jdbc cx = new Jdbc();
-            FuncionarioJdbc fjdbc = new FuncionarioJdbc();
-            try {
-                cx.conectarme();
-                fjdbc.setCon(cx.getCon());
+                    char[] arrayC = txtPassword.getPassword();
+                    String pass = new String(arrayC);
 
-                char[] arrayC = txtPassword.getPassword();
-                String pass = new String(arrayC);
-                
-                dataF1 = fjdbc.Login(txtUsuario.getText().trim(), pass);
+                    dataF1 = fjdbc.Login(txtUsuario.getText().trim(), pass);
 
-                if (dataF1.getIdentificacion() != null) {
-                    txtUsuario.setText("");
-                    txtPassword.setText("");
-                    
-                    JOptionPane.showMessageDialog(null, "Welcome " + dataF1.getNombre1() + " " + dataF1.getApellido1());
-                    jMenu6.setText(dataF1.getNombre1() + " " + dataF1.getApellido1());
-                    labelsubt.setText("Hi "+dataF1.getNombre1() );
-                    jMenu1.setVisible(true);
-                    jMenu2.setVisible(true);
-                    jMenu3.setVisible(true);
-                    jMenu4.setVisible(true);
-                    jMenu5.setVisible(true);
-                    jMenu6.setVisible(true);
-                    jMenuItem15.setVisible(true);
-                    jMenuItem8.setVisible(false);
-                    jMenuItem12.setVisible(false);
-                    jMenuBar1.setVisible(true);
-                    jdp2.setVisible(false);
-                    jdp3.setVisible(false);
-                    btnCerrar.setVisible(false);
-                    labeltitulo.setVisible(true);
-                    labelsubt.setVisible(true);
-                } else {
-                    JOptionPane.showMessageDialog(null, "Usuario y/o contraseña incorrecta!");
+                    if (dataF1.getIdentificacion() != null) {
+                        txtUsuario.setText("");
+                        txtPassword.setText("");
+
+                        JOptionPane.showMessageDialog(null, "Welcome " + dataF1.getNombre1() + " " + dataF1.getApellido1());
+                        jMenu6.setText(dataF1.getNombre1() + " " + dataF1.getApellido1());
+                        labelsubt.setText("Hi " + dataF1.getNombre1());
+                        jMenu1.setVisible(true);
+                        jMenu2.setVisible(true);
+                        jMenu3.setVisible(true);
+                        jMenu4.setVisible(true);
+                        jMenu5.setVisible(true);
+                        jMenu6.setVisible(true);
+                        jMenuItem15.setVisible(true);
+                        jMenuItem8.setVisible(false);
+                        jMenuItem12.setVisible(false);
+                        jMenuBar1.setVisible(true);
+                        jdp2.setVisible(false);
+                        jdp3.setVisible(false);
+                        btnCerrar.setVisible(false);
+                        labeltitulo.setVisible(true);
+                        labelsubt.setVisible(true);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Usuario y/o contraseña incorrecta!");
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(GUI_Principal.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            } catch (SQLException ex) {
-                Logger.getLogger(GUI_Principal.class.getName()).log(Level.SEVERE, null, ex);
-            }
 
-        } else if (txtTipo.getSelectedItem() == "Usuario") {
+            } else if (txtTipo.getSelectedItem() == "Usuario") {
 
-            Jdbc cx = new Jdbc();
-            UsuarioJdbc ujdbc = new UsuarioJdbc();
-            try {
-                cx.conectarme();
-                ujdbc.setCon(cx.getCon());
+                Jdbc cx = new Jdbc();
+                UsuarioJdbc ujdbc = new UsuarioJdbc();
+                try {
+                    cx.conectarme();
+                    ujdbc.setCon(cx.getCon());
 
-                char[] arrayC = txtPassword.getPassword();
-                String pass = new String(arrayC);
-                dataU1 = ujdbc.Login(txtUsuario.getText().trim(), pass);
+                    char[] arrayC = txtPassword.getPassword();
+                    String pass = new String(arrayC);
+                    dataU1 = ujdbc.Login(txtUsuario.getText().trim(), pass);
 
-                if (dataU1.getIdentificacion() != null) {
-                    txtUsuario.setText("");
-                    txtPassword.setText("");
-                    
-                    JOptionPane.showMessageDialog(null, "Bienvenido/a " + dataU1.getNombre1() + " " + dataU1.getApellido1());
-                    jMenu6.setText(dataU1.getNombre1() + " " + dataU1.getApellido1());
-                    labelsubt.setText("Hi "+dataU1.getNombre1()  );
-                    jMenuBar1.setVisible(true);
-                    jMenu1.setVisible(false);
-                    jMenu4.setVisible(true);
-                    jMenu6.setVisible(true);
-                    jMenuItem9.setVisible(false);
-                    jMenuItem10.setVisible(false);
-                    jMenuItem15.setVisible(false);
-                    jMenuItem8.setVisible(true);                    
-                    jMenuItem12.setVisible(true);
+                    if (dataU1.getIdentificacion() != null) {
+                        txtUsuario.setText("");
+                        txtPassword.setText("");
 
-                    jMenu2.setVisible(false);
-                    jMenu3.setVisible(true);
-                    jMenu5.setVisible(true);
+                        JOptionPane.showMessageDialog(null, "Bienvenido/a " + dataU1.getNombre1() + " " + dataU1.getApellido1());
+                        jMenu6.setText(dataU1.getNombre1() + " " + dataU1.getApellido1());
+                        labelsubt.setText("Hi " + dataU1.getNombre1());
+                        jMenuBar1.setVisible(true);
+                        jMenu1.setVisible(false);
+                        jMenu4.setVisible(true);
+                        jMenu6.setVisible(true);
+                        jMenuItem9.setVisible(false);
+                        jMenuItem10.setVisible(false);
+                        jMenuItem15.setVisible(false);
+                        jMenuItem8.setVisible(true);
+                        jMenuItem12.setVisible(true);
 
-                    jdp2.setVisible(false);
-                    jdp3.setVisible(false);
-                    btnCerrar.setVisible(false);
-                    labeltitulo.setVisible(true);
-                    labelsubt.setVisible(true);
-                } else {
-                    JOptionPane.showMessageDialog(null, "Usuario y/o contraseña incorrecta!");
+                        jMenu2.setVisible(false);
+                        jMenu3.setVisible(true);
+                        jMenu5.setVisible(true);
+
+                        jdp2.setVisible(false);
+                        jdp3.setVisible(false);
+                        btnCerrar.setVisible(false);
+                        labeltitulo.setVisible(true);
+                        labelsubt.setVisible(true);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Usuario y/o contraseña incorrecta!");
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(GUI_Principal.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            } catch (SQLException ex) {
-                Logger.getLogger(GUI_Principal.class.getName()).log(Level.SEVERE, null, ex);
-            }
 
+            }
         }
-    }//GEN-LAST:event_btnIniciarActionPerformed
+        
+        
+    }//GEN-LAST:event_btnIniciarSecionActionPerformed
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         this.dispose();
@@ -751,7 +758,7 @@ public class GUI_Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCerrar;
-    private javax.swing.JButton btnIniciar;
+    private javax.swing.JButton btnIniciarSecion;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

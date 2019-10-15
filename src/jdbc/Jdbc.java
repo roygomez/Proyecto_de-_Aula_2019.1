@@ -19,7 +19,7 @@ public class Jdbc {
     public void conectarme() throws SQLException {
 
         try {
-            setCon(DriverManager.getConnection(url, "biblioteca", "vZ7XPPN5qfPT6EIw"));
+            setCon(DriverManager.getConnection(url, "root", ""));
             Class.forName(driver);
         } catch (ClassNotFoundException cl) {
             System.out.println(cl.getMessage());

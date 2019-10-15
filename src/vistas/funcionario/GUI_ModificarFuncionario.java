@@ -85,14 +85,14 @@ repaint();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        txtRol = new javax.swing.JComboBox<String>();
+        txtRol = new javax.swing.JComboBox<>();
         txtTelefono = new javax.swing.JTextField();
         txtPassword = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnActualizarFuncionario = new javax.swing.JButton();
+        btnCerrarVistaActualizarFuncionario = new javax.swing.JButton();
         txtFechaNacimiento = new com.toedter.calendar.JDateChooser();
         txtBuscarById = new javax.swing.JTextField();
-        button1 = new java.awt.Button();
+        btnBuscarFuncionario = new java.awt.Button();
         label3 = new java.awt.Label();
         jLabel9 = new javax.swing.JLabel();
         jDesktopPane1 = new javax.swing.JDesktopPane();
@@ -190,7 +190,7 @@ repaint();
         getContentPane().add(jLabel12);
         jLabel12.setBounds(450, 270, 100, 17);
 
-        txtRol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Administardor", "Auxiliar", "Coordinador" }));
+        txtRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administardor", "Auxiliar", "Coordinador" }));
         getContentPane().add(txtRol);
         txtRol.setBounds(620, 270, 178, 20);
         getContentPane().add(txtTelefono);
@@ -198,31 +198,31 @@ repaint();
         getContentPane().add(txtPassword);
         txtPassword.setBounds(620, 310, 178, 20);
 
-        jButton1.setBackground(new java.awt.Color(0, 0, 0));
-        jButton1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("GUARDAR");
-        jButton1.setBorder(javax.swing.BorderFactory.createCompoundBorder());
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnActualizarFuncionario.setBackground(new java.awt.Color(0, 0, 0));
+        btnActualizarFuncionario.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        btnActualizarFuncionario.setForeground(new java.awt.Color(255, 255, 255));
+        btnActualizarFuncionario.setText("GUARDAR");
+        btnActualizarFuncionario.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+        btnActualizarFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnActualizarFuncionarioActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(230, 400, 120, 30);
+        getContentPane().add(btnActualizarFuncionario);
+        btnActualizarFuncionario.setBounds(230, 400, 120, 30);
 
-        jButton3.setBackground(new java.awt.Color(0, 0, 0));
-        jButton3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("CERRAR");
-        jButton3.setBorder(javax.swing.BorderFactory.createCompoundBorder());
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnCerrarVistaActualizarFuncionario.setBackground(new java.awt.Color(0, 0, 0));
+        btnCerrarVistaActualizarFuncionario.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        btnCerrarVistaActualizarFuncionario.setForeground(new java.awt.Color(255, 255, 255));
+        btnCerrarVistaActualizarFuncionario.setText("CERRAR");
+        btnCerrarVistaActualizarFuncionario.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+        btnCerrarVistaActualizarFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnCerrarVistaActualizarFuncionarioActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3);
-        jButton3.setBounds(620, 400, 110, 30);
+        getContentPane().add(btnCerrarVistaActualizarFuncionario);
+        btnCerrarVistaActualizarFuncionario.setBounds(620, 400, 110, 30);
         getContentPane().add(txtFechaNacimiento);
         txtFechaNacimiento.setBounds(210, 350, 180, 20);
 
@@ -234,17 +234,17 @@ repaint();
         getContentPane().add(txtBuscarById);
         txtBuscarById.setBounds(560, 110, 180, 20);
 
-        button1.setBackground(new java.awt.Color(0, 0, 0));
-        button1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        button1.setForeground(new java.awt.Color(255, 255, 255));
-        button1.setLabel("Buscar");
-        button1.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscarFuncionario.setBackground(new java.awt.Color(0, 0, 0));
+        btnBuscarFuncionario.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        btnBuscarFuncionario.setForeground(new java.awt.Color(255, 255, 255));
+        btnBuscarFuncionario.setLabel("Buscar");
+        btnBuscarFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button1ActionPerformed(evt);
+                btnBuscarFuncionarioActionPerformed(evt);
             }
         });
-        getContentPane().add(button1);
-        button1.setBounds(750, 110, 70, 25);
+        getContentPane().add(btnBuscarFuncionario);
+        btnBuscarFuncionario.setBounds(750, 110, 70, 25);
 
         label3.setBackground(new java.awt.Color(153, 153, 153));
         label3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
@@ -267,7 +267,7 @@ repaint();
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnActualizarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarFuncionarioActionPerformed
         // TODO add your handling code here:
         String sexo = "";
 
@@ -302,9 +302,9 @@ repaint();
         } catch (SQLException ex) {
             Logger.getLogger(GUI_ModificarFuncionario.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnActualizarFuncionarioActionPerformed
 
-    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+    private void btnBuscarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarFuncionarioActionPerformed
         // TODO add your handling code here:
         Jdbc cx = new Jdbc();
         FuncionarioJdbc fjdbc = new FuncionarioJdbc();
@@ -334,23 +334,23 @@ repaint();
         } catch (SQLException ex) {
             Logger.getLogger(GUI_ModificarFuncionario.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_button1ActionPerformed
+    }//GEN-LAST:event_btnBuscarFuncionarioActionPerformed
 
     private void txtBuscarByIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarByIdActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBuscarByIdActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnCerrarVistaActualizarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarVistaActualizarFuncionarioActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnCerrarVistaActualizarFuncionarioActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Button button1;
+    private javax.swing.JButton btnActualizarFuncionario;
+    private java.awt.Button btnBuscarFuncionario;
+    private javax.swing.JButton btnCerrarVistaActualizarFuncionario;
     private javax.swing.ButtonGroup groupBtnSexo;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

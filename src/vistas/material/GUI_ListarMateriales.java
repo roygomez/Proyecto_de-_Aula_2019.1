@@ -90,10 +90,10 @@ repaint();
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tblMateriales = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
         txtCodigo = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        btnVolver = new javax.swing.JButton();
+        btnCerrarVistaListarMaterial = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jdp4 = new javax.swing.JDesktopPane();
 
@@ -128,13 +128,13 @@ repaint();
         tblMateriales.setAutoscrolls(false);
         jScrollPane1.setViewportView(tblMateriales);
 
-        jButton1.setBackground(new java.awt.Color(0, 0, 0));
-        jButton1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Eliminar Material");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminar.setBackground(new java.awt.Color(0, 0, 0));
+        btnEliminar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminar.setText("Eliminar Material");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnEliminarActionPerformed(evt);
             }
         });
 
@@ -148,13 +148,13 @@ repaint();
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel1.setText("Codigo del Material:");
 
-        btnVolver.setBackground(new java.awt.Color(0, 0, 0));
-        btnVolver.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        btnVolver.setForeground(new java.awt.Color(255, 255, 255));
-        btnVolver.setText("CERRAR");
-        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+        btnCerrarVistaListarMaterial.setBackground(new java.awt.Color(0, 0, 0));
+        btnCerrarVistaListarMaterial.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        btnCerrarVistaListarMaterial.setForeground(new java.awt.Color(255, 255, 255));
+        btnCerrarVistaListarMaterial.setText("CERRAR");
+        btnCerrarVistaListarMaterial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVolverActionPerformed(evt);
+                btnCerrarVistaListarMaterialActionPerformed(evt);
             }
         });
 
@@ -188,9 +188,9 @@ repaint();
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(btnEliminar)
                 .addGap(79, 79, 79)
-                .addComponent(btnVolver)
+                .addComponent(btnCerrarVistaListarMaterial)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(510, Short.MAX_VALUE)
@@ -209,12 +209,12 @@ repaint();
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE)
                 .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton1)
+                        .addComponent(btnEliminar)
                         .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnVolver)))
+                        .addComponent(btnCerrarVistaListarMaterial))
+                    .addComponent(jLabel1))
                 .addGap(34, 34, 34))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -229,7 +229,7 @@ repaint();
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCodigoActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
         Jdbc cx = new Jdbc();
         MaterialJdbc mjdbc = new MaterialJdbc();
@@ -245,16 +245,16 @@ repaint();
         } catch (SQLException ex) {
             Logger.getLogger(GUI_ListarMateriales.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-this.dispose();        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVolverActionPerformed
+    private void btnCerrarVistaListarMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarVistaListarMaterialActionPerformed
+        this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCerrarVistaListarMaterialActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnVolver;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnCerrarVistaListarMaterial;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

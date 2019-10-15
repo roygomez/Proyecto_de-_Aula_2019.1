@@ -98,13 +98,13 @@ repaint();
         txtLetraUb = new javax.swing.JTextField();
         txtEjemplar = new javax.swing.JTextField();
         txtDisponible = new javax.swing.JComboBox();
-        jButton4 = new javax.swing.JButton();
+        btnLeerCodigoNuevo = new javax.swing.JButton();
         txtBuscarByCode = new javax.swing.JTextField();
-        button1 = new java.awt.Button();
+        btnBuscarMaterial = new java.awt.Button();
         label3 = new java.awt.Label();
         jdp4 = new javax.swing.JDesktopPane();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnActualizarMaterial = new javax.swing.JButton();
+        btnCerrarVistaActualizarMaterial = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -226,17 +226,17 @@ repaint();
         getContentPane().add(txtDisponible);
         txtDisponible.setBounds(690, 210, 170, 20);
 
-        jButton4.setBackground(new java.awt.Color(0, 0, 0));
-        jButton4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Read");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnLeerCodigoNuevo.setBackground(new java.awt.Color(0, 0, 0));
+        btnLeerCodigoNuevo.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        btnLeerCodigoNuevo.setForeground(new java.awt.Color(255, 255, 255));
+        btnLeerCodigoNuevo.setText("Read");
+        btnLeerCodigoNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnLeerCodigoNuevoActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4);
-        jButton4.setBounds(400, 140, 100, 20);
+        getContentPane().add(btnLeerCodigoNuevo);
+        btnLeerCodigoNuevo.setBounds(400, 140, 100, 20);
 
         txtBuscarByCode.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -246,17 +246,17 @@ repaint();
         getContentPane().add(txtBuscarByCode);
         txtBuscarByCode.setBounds(590, 120, 180, 20);
 
-        button1.setBackground(new java.awt.Color(0, 0, 0));
-        button1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        button1.setForeground(new java.awt.Color(255, 255, 255));
-        button1.setLabel("Buscar");
-        button1.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscarMaterial.setBackground(new java.awt.Color(0, 0, 0));
+        btnBuscarMaterial.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        btnBuscarMaterial.setForeground(new java.awt.Color(255, 255, 255));
+        btnBuscarMaterial.setLabel("Buscar");
+        btnBuscarMaterial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button1ActionPerformed(evt);
+                btnBuscarMaterialActionPerformed(evt);
             }
         });
-        getContentPane().add(button1);
-        button1.setBounds(780, 114, 70, 30);
+        getContentPane().add(btnBuscarMaterial);
+        btnBuscarMaterial.setBounds(780, 114, 70, 30);
 
         label3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         label3.setText("Busqueda por Codigo:");
@@ -265,29 +265,29 @@ repaint();
 
         jdp4.setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton1.setBackground(new java.awt.Color(0, 0, 0));
-        jButton1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("GUARDAR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnActualizarMaterial.setBackground(new java.awt.Color(0, 0, 0));
+        btnActualizarMaterial.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        btnActualizarMaterial.setForeground(new java.awt.Color(255, 255, 255));
+        btnActualizarMaterial.setText("GUARDAR");
+        btnActualizarMaterial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnActualizarMaterialActionPerformed(evt);
             }
         });
-        jdp4.add(jButton1);
-        jButton1.setBounds(370, 490, 160, 30);
+        jdp4.add(btnActualizarMaterial);
+        btnActualizarMaterial.setBounds(370, 490, 160, 30);
 
-        jButton3.setBackground(new java.awt.Color(0, 0, 0));
-        jButton3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("CERRAR");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnCerrarVistaActualizarMaterial.setBackground(new java.awt.Color(0, 0, 0));
+        btnCerrarVistaActualizarMaterial.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        btnCerrarVistaActualizarMaterial.setForeground(new java.awt.Color(255, 255, 255));
+        btnCerrarVistaActualizarMaterial.setText("CERRAR");
+        btnCerrarVistaActualizarMaterial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnCerrarVistaActualizarMaterialActionPerformed(evt);
             }
         });
-        jdp4.add(jButton3);
-        jButton3.setBounds(580, 490, 140, 30);
+        jdp4.add(btnCerrarVistaActualizarMaterial);
+        btnCerrarVistaActualizarMaterial.setBounds(580, 490, 140, 30);
 
         jLabel15.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel15.setText("ACTUALIZAR DATOS DEL MATERIAL");
@@ -300,12 +300,12 @@ repaint();
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnCerrarVistaActualizarMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarVistaActualizarMaterialActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnCerrarVistaActualizarMaterialActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnLeerCodigoNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLeerCodigoNuevoActionPerformed
 
         PanamaHitek_Arduino ino = new PanamaHitek_Arduino();
         SerialPortEventListener listener;
@@ -327,9 +327,9 @@ repaint();
             Logger.getLogger(GUI_Crear_Material_Bibliografico.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btnLeerCodigoNuevoActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnActualizarMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarMaterialActionPerformed
 
         // TODO add your handling code here:
         boolean dispo = false;
@@ -365,13 +365,13 @@ repaint();
             Logger.getLogger(GUI_Crear_Material_Bibliografico.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnActualizarMaterialActionPerformed
 
     private void txtBuscarByCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarByCodeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBuscarByCodeActionPerformed
 
-    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+    private void btnBuscarMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarMaterialActionPerformed
         // TODO add your handling code here:
         Jdbc cx = new Jdbc();
         MaterialJdbc fjdbc = new MaterialJdbc();
@@ -406,14 +406,14 @@ repaint();
         } catch (SQLException ex) {
             Logger.getLogger(GUI_Modificar_Material_Bibliografico.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_button1ActionPerformed
+    }//GEN-LAST:event_btnBuscarMaterialActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Button button1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton btnActualizarMaterial;
+    private java.awt.Button btnBuscarMaterial;
+    private javax.swing.JButton btnCerrarVistaActualizarMaterial;
+    private javax.swing.JButton btnLeerCodigoNuevo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

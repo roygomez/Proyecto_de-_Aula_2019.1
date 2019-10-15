@@ -61,8 +61,8 @@ public class GUI_DevolucionPrestamo extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnDevolver = new javax.swing.JButton();
-        btnCerrar = new javax.swing.JButton();
+        btnDevolverMaterial = new javax.swing.JButton();
+        btnCerrarVistaDevolvelMaterial = new javax.swing.JButton();
         label2 = new java.awt.Label();
         lblCodigo = new java.awt.Label();
 
@@ -74,18 +74,18 @@ public class GUI_DevolucionPrestamo extends javax.swing.JInternalFrame {
         setName(""); // NOI18N
         getContentPane().setLayout(null);
 
-        btnDevolver.setText("Devolver");
-        btnDevolver.addActionListener(new java.awt.event.ActionListener() {
+        btnDevolverMaterial.setText("Devolver");
+        btnDevolverMaterial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDevolverActionPerformed(evt);
+                btnDevolverMaterialActionPerformed(evt);
             }
         });
-        getContentPane().add(btnDevolver);
-        btnDevolver.setBounds(182, 343, 152, 52);
+        getContentPane().add(btnDevolverMaterial);
+        btnDevolverMaterial.setBounds(182, 343, 152, 52);
 
-        btnCerrar.setText("Cerrar");
-        getContentPane().add(btnCerrar);
-        btnCerrar.setBounds(459, 343, 152, 52);
+        btnCerrarVistaDevolvelMaterial.setText("Cerrar");
+        getContentPane().add(btnCerrarVistaDevolvelMaterial);
+        btnCerrarVistaDevolvelMaterial.setBounds(459, 343, 152, 52);
 
         label2.setText("Por favor Escanee el libro para la devolucion!");
         getContentPane().add(label2);
@@ -98,7 +98,7 @@ public class GUI_DevolucionPrestamo extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnDevolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDevolverActionPerformed
+    private void btnDevolverMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDevolverMaterialActionPerformed
         // TODO add your handling code here:
         if (!"".equals(lblCodigo.getText())) {
             Jdbc cx = new Jdbc();
@@ -120,12 +120,12 @@ public class GUI_DevolucionPrestamo extends javax.swing.JInternalFrame {
         }
 
 
-    }//GEN-LAST:event_btnDevolverActionPerformed
+    }//GEN-LAST:event_btnDevolverMaterialActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCerrar;
-    private javax.swing.JButton btnDevolver;
+    private javax.swing.JButton btnCerrarVistaDevolvelMaterial;
+    private javax.swing.JButton btnDevolverMaterial;
     private java.awt.Label label2;
     private java.awt.Label lblCodigo;
     // End of variables declaration//GEN-END:variables

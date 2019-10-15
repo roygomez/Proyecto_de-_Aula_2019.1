@@ -92,10 +92,10 @@ repaint();
         txtPagoAnual = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnRegistrarUsuario = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        btnCerrarVistaCrearUsuario = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         txtIdentificacion = new javax.swing.JTextField();
         txtNombre1 = new javax.swing.JTextField();
@@ -104,7 +104,6 @@ repaint();
         txtApellido2 = new javax.swing.JTextField();
         txtFechaNacimiento = new com.toedter.calendar.JDateChooser();
         rBtn1 = new javax.swing.JRadioButton();
-        rBtn2 = new javax.swing.JRadioButton();
         txtCorreo = new javax.swing.JTextField();
         txtTelefono = new javax.swing.JTextField();
         txtRol = new javax.swing.JComboBox<>();
@@ -114,6 +113,7 @@ repaint();
         jLabel9 = new javax.swing.JLabel();
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jdp4 = new javax.swing.JDesktopPane();
+        rBtn2 = new javax.swing.JRadioButton();
 
         setBorder(null);
         setClosable(true);
@@ -207,7 +207,7 @@ repaint();
         txtPagoAnual.setBounds(630, 170, 178, 23);
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel3.setText("Primier Apellido: ");
+        jLabel3.setText("Primer Apellido: ");
         getContentPane().add(jLabel3);
         jLabel3.setBounds(40, 180, 140, 17);
 
@@ -217,17 +217,17 @@ repaint();
         getContentPane().add(jLabel12);
         jLabel12.setBounds(480, 310, 80, 17);
 
-        jButton1.setBackground(new java.awt.Color(0, 0, 0));
-        jButton1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("REGISTRAR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistrarUsuario.setBackground(new java.awt.Color(0, 0, 0));
+        btnRegistrarUsuario.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        btnRegistrarUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegistrarUsuario.setText("REGISTRAR");
+        btnRegistrarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnRegistrarUsuarioActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(310, 440, 150, 30);
+        getContentPane().add(btnRegistrarUsuario);
+        btnRegistrarUsuario.setBounds(310, 440, 150, 30);
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel4.setText("Primer Nombre: ");
@@ -239,17 +239,17 @@ repaint();
         getContentPane().add(jLabel5);
         jLabel5.setBounds(40, 140, 150, 17);
 
-        jButton3.setBackground(new java.awt.Color(0, 0, 0));
-        jButton3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("VOLVER");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnCerrarVistaCrearUsuario.setBackground(new java.awt.Color(0, 0, 0));
+        btnCerrarVistaCrearUsuario.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        btnCerrarVistaCrearUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        btnCerrarVistaCrearUsuario.setText("VOLVER");
+        btnCerrarVistaCrearUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnCerrarVistaCrearUsuarioActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3);
-        jButton3.setBounds(490, 440, 110, 30);
+        getContentPane().add(btnCerrarVistaCrearUsuario);
+        btnCerrarVistaCrearUsuario.setBounds(490, 440, 110, 30);
 
         jLabel13.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel13.setText("Tipo De Usuario: ");
@@ -283,13 +283,9 @@ repaint();
         getContentPane().add(txtFechaNacimiento);
         txtFechaNacimiento.setBounds(190, 250, 180, 20);
 
-        rBtn1.setText("Hombre");
+        rBtn1.setText("Masculino");
         getContentPane().add(rBtn1);
-        rBtn1.setBounds(190, 290, 63, 23);
-
-        rBtn2.setText("Mujer");
-        getContentPane().add(rBtn2);
-        rBtn2.setBounds(270, 290, 53, 23);
+        rBtn1.setBounds(190, 290, 90, 23);
 
         txtCorreo.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         getContentPane().add(txtCorreo);
@@ -326,13 +322,18 @@ repaint();
         jDesktopPane1.setBounds(-1, -1, 0, 0);
 
         jdp4.setBackground(new java.awt.Color(255, 255, 255));
+
+        rBtn2.setText("Femenino");
+        jdp4.add(rBtn2);
+        rBtn2.setBounds(310, 330, 80, 23);
+
         getContentPane().add(jdp4);
         jdp4.setBounds(-20, -40, 890, 570);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnRegistrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarUsuarioActionPerformed
         // TODO add your handling code here:
         
         String sexo = "";
@@ -387,20 +388,20 @@ repaint();
         } catch (SQLException ex) {
             Logger.getLogger(GUI_Crear_Usuario.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnRegistrarUsuarioActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnCerrarVistaCrearUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarVistaCrearUsuarioActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnCerrarVistaCrearUsuarioActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCerrarVistaCrearUsuario;
+    private javax.swing.JButton btnRegistrarUsuario;
     private javax.swing.ButtonGroup groupControlPagoBtn;
     private javax.swing.ButtonGroup groupInscritoBtn;
     private javax.swing.ButtonGroup groupSexoBtn;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

@@ -83,8 +83,8 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel6 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnCrearPrestamo = new javax.swing.JButton();
+        btnCerrarVistaCrearPrestamo = new javax.swing.JButton();
         txtTipoPrestamo = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -102,7 +102,7 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
         txtCodigoAsig = new javax.swing.JTextField();
         txtLetraUb = new javax.swing.JTextField();
         txtEjemplar = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        btnEscanearMaterial = new javax.swing.JButton();
         jdp4 = new javax.swing.JDesktopPane();
         jLabel18 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
@@ -130,31 +130,31 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel6);
         jLabel6.setBounds(70, 500, 150, 14);
 
-        jButton1.setBackground(new java.awt.Color(0, 0, 0));
-        jButton1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("INICIAR PRESTAMO");
-        jButton1.setBorder(javax.swing.BorderFactory.createCompoundBorder());
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnCrearPrestamo.setBackground(new java.awt.Color(0, 0, 0));
+        btnCrearPrestamo.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        btnCrearPrestamo.setForeground(new java.awt.Color(255, 255, 255));
+        btnCrearPrestamo.setText("INICIAR PRESTAMO");
+        btnCrearPrestamo.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+        btnCrearPrestamo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnCrearPrestamoActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(440, 490, 170, 30);
+        getContentPane().add(btnCrearPrestamo);
+        btnCrearPrestamo.setBounds(440, 490, 170, 30);
 
-        jButton3.setBackground(new java.awt.Color(0, 0, 0));
-        jButton3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("CERRAR");
-        jButton3.setBorder(javax.swing.BorderFactory.createCompoundBorder());
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnCerrarVistaCrearPrestamo.setBackground(new java.awt.Color(0, 0, 0));
+        btnCerrarVistaCrearPrestamo.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        btnCerrarVistaCrearPrestamo.setForeground(new java.awt.Color(255, 255, 255));
+        btnCerrarVistaCrearPrestamo.setText("CERRAR");
+        btnCerrarVistaCrearPrestamo.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+        btnCerrarVistaCrearPrestamo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnCerrarVistaCrearPrestamoActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3);
-        jButton3.setBounds(670, 490, 120, 30);
+        getContentPane().add(btnCerrarVistaCrearPrestamo);
+        btnCerrarVistaCrearPrestamo.setBounds(670, 490, 120, 30);
 
         txtTipoPrestamo.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         txtTipoPrestamo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Interno", "Externo" }));
@@ -243,18 +243,18 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
         getContentPane().add(txtEjemplar);
         txtEjemplar.setBounds(620, 360, 120, 20);
 
-        jButton2.setBackground(new java.awt.Color(0, 0, 0));
-        jButton2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Escanear Libro");
-        jButton2.setBorder(javax.swing.BorderFactory.createCompoundBorder());
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnEscanearMaterial.setBackground(new java.awt.Color(0, 0, 0));
+        btnEscanearMaterial.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        btnEscanearMaterial.setForeground(new java.awt.Color(255, 255, 255));
+        btnEscanearMaterial.setText("Escanear Libro");
+        btnEscanearMaterial.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+        btnEscanearMaterial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnEscanearMaterialActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2);
-        jButton2.setBounds(690, 90, 170, 40);
+        getContentPane().add(btnEscanearMaterial);
+        btnEscanearMaterial.setBounds(690, 90, 170, 40);
 
         jdp4.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -332,7 +332,7 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnCrearPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearPrestamoActionPerformed
         Jdbc cx = new Jdbc();
         PrestamoJdbc fjdbc = new PrestamoJdbc();
         MaterialJdbc mjdbc = new MaterialJdbc();
@@ -373,13 +373,13 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
         }
 
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnCrearPrestamoActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnCerrarVistaCrearPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarVistaCrearPrestamoActionPerformed
         this.dispose();
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnCerrarVistaCrearPrestamoActionPerformed
     public String codigo = null;
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnEscanearMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEscanearMaterialActionPerformed
         // TODO add your handling code here:
         PanamaHitek_Arduino ino = new PanamaHitek_Arduino();
         SerialPortEventListener listener;
@@ -436,13 +436,13 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
                 Logger.getLogger(GUI_Crear_Prestamo.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnEscanearMaterialActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnCerrarVistaCrearPrestamo;
+    private javax.swing.JButton btnCrearPrestamo;
+    private javax.swing.JButton btnEscanearMaterial;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
