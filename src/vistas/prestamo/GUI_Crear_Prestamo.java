@@ -31,6 +31,7 @@ import modelo.MaterialBibliografico;
 import modelo.PrestamoBibliografico;
 import modelo.Usuario;
 import vistas.Fondo;
+import vistas.GUI_Principal;
 
 /**
  *
@@ -363,8 +364,9 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
                 p1.setIdUsuario(u1.getIdPersona());
                 p1.setTipoPrestamo(txtTipoPrestamo.getSelectedItem().toString());
                 p1.setCodigoPrestamo(codigoPrestamo);
-
                 fjdbc.savePrestamo(p1);
+                
+                GUI_Principal.t.push(txtTitulo.getText().trim());
                 JOptionPane.showMessageDialog(null, "Su prestamo ha sido registrado exitosamente, la fecha limite de entrega debe ser: "+new Timestamp(now.getTime() + horas));
 
             } catch (SQLException ex) {
@@ -378,7 +380,7 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
     private void btnCerrarVistaCrearPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarVistaCrearPrestamoActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnCerrarVistaCrearPrestamoActionPerformed
-    public String codigo = null;
+    public String codigo = "9F 4D AC 89";
     private void btnEscanearMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEscanearMaterialActionPerformed
         // TODO add your handling code here:
         PanamaHitek_Arduino ino = new PanamaHitek_Arduino();
@@ -405,7 +407,6 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
             try {
                 Jdbc cx = new Jdbc();
                 MaterialJdbc fjdbc = new MaterialJdbc();
-
                 cx.conectarme();
                 fjdbc.setCon(cx.getCon());
                 m1 = fjdbc.getMaterial(codigo.trim());
