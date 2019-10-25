@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import jdbc.FuncionarioJdbc;
 import vistas.funcionario.GUI_ModificarFuncionario;
@@ -25,7 +26,13 @@ import vistas.usuario.GUI_Modificar_Usuario;
 import jdbc.Jdbc;
 import jdbc.UsuarioJdbc;
 import modelo.Funcionario;
+import modelo.Tabla;
 import modelo.Usuario;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 import vistas.material.GUI_Crear_Material_Bibliografico;
 import vistas.material.GUI_ListarMateriales;
 import vistas.prestamo.GUI_DevolucionPrestamo;
@@ -108,6 +115,7 @@ public class GUI_Principal extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem15 = new javax.swing.JMenuItem();
+        jmiEstadistica = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
@@ -116,12 +124,12 @@ public class GUI_Principal extends javax.swing.JFrame {
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(750, 494));
@@ -255,10 +263,10 @@ public class GUI_Principal extends javax.swing.JFrame {
                     .addGroup(jdpLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(labeltitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labeltitulo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelsubt, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(96, 96, 96)
+                .addComponent(labelsubt, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(68, 68, 68)
                 .addGroup(jdpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jdp3, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jdp2, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -313,6 +321,14 @@ public class GUI_Principal extends javax.swing.JFrame {
             }
         });
         jMenu4.add(jMenuItem15);
+
+        jmiEstadistica.setText("Estadistica de Prestamo");
+        jmiEstadistica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiEstadisticaActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jmiEstadistica);
 
         jMenuBar1.add(jMenu4);
 
@@ -372,23 +388,6 @@ public class GUI_Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
-        jMenu5.setText("Salir");
-        jMenu5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu5ActionPerformed(evt);
-            }
-        });
-
-        jMenuItem4.setText("Confirmar salida");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
-            }
-        });
-        jMenu5.add(jMenuItem4);
-
-        jMenuBar1.add(jMenu5);
-
         jMenu1.setText("Funcionario");
         jMenu1.setName(""); // NOI18N
 
@@ -417,6 +416,23 @@ public class GUI_Principal extends javax.swing.JFrame {
         jMenu1.add(jMenuItem3);
 
         jMenuBar1.add(jMenu1);
+
+        jMenu5.setText("Salir");
+        jMenu5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu5ActionPerformed(evt);
+            }
+        });
+
+        jMenuItem4.setText("Confirmar salida");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem4);
+
+        jMenuBar1.add(jMenu5);
 
         setJMenuBar(jMenuBar1);
 
@@ -719,6 +735,32 @@ public class GUI_Principal extends javax.swing.JFrame {
         //
         dp.setVisible(true);
     }//GEN-LAST:event_jMenuItem12ActionPerformed
+    
+    public static Tabla t = new Tabla();
+    
+    private void jmiEstadisticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiEstadisticaActionPerformed
+        JFreeChart Grafica;
+        DefaultCategoryDataset Datos = new DefaultCategoryDataset();
+
+
+        String[][] data = t.getTabla();
+
+        for (int i = 0; i < t.getCantNom(); i++) {
+            Datos.addValue(Integer.parseInt(data[i][1]), "Libros", data[i][0]);
+        }
+
+        Grafica = ChartFactory.createBarChart("Grafica de Prestamos",
+                "Libros", "Num Prestamos", Datos,
+                PlotOrientation.VERTICAL, false, false, false);
+
+        ChartPanel Panel = new ChartPanel(Grafica);
+        JFrame Ventana = new JFrame("JFreeChart");
+
+        Ventana.getContentPane().add(Panel);
+        Ventana.pack();
+        Ventana.setVisible(true);
+        Ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }//GEN-LAST:event_jmiEstadisticaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -791,6 +833,7 @@ public class GUI_Principal extends javax.swing.JFrame {
     private javax.swing.JDesktopPane jdp;
     private javax.swing.JDesktopPane jdp2;
     private javax.swing.JDesktopPane jdp3;
+    private javax.swing.JMenuItem jmiEstadistica;
     public javax.swing.JLabel labelsubt;
     public javax.swing.JLabel labeltitulo;
     private javax.swing.JPasswordField txtPassword;
