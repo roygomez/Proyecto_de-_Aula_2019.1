@@ -1,11 +1,12 @@
-
 package modelo;
 
 import java.sql.Timestamp;
-
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class PrestamoBibliografico {
-    
+
     private int idPrestamo;
     private String codigoPrestamo;
     private Timestamp fechaPrestamo;
@@ -13,7 +14,7 @@ public class PrestamoBibliografico {
     private Timestamp fechaDevolucion;
     private String tipoPrestamo;
     private int idMaterial;
-    private int idUsuario;    
+    private int idUsuario;
     private MaterialBibliografico material;
     private Usuario usuario;
 
@@ -95,6 +96,40 @@ public class PrestamoBibliografico {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+    
+    public Date getFechaDev(String tipo) {
+        Calendar c = Calendar.getInstance();
+
+        switch (tipo) {
+            case "Interno": {
+                c.add(Calendar.DAY_OF_YEAR, -1);
+                for (int i = 0; i < 7; i++) {
+                    c.add(Calendar.DAY_OF_YEAR, 1);
+                    if (c.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+                        c.add(Calendar.DAY_OF_YEAR, 1);
+                    }
+                }
+                if (c.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+                    c.add(Calendar.DAY_OF_YEAR, 1);
+                }
+
+                return c.getTime();
+            }
+            case "Externo": {
+                c.add(Calendar.HOUR, 2);
+
+                if (c.get(Calendar.HOUR) >= 9) {
+                    System.out.println("No se puede generar el prestamo");
+                }
+                return c.getTime();
+            }
+            default: {
+                System.out.println("El caso insertado es incorrecto!");
+            }
+        }
+
+        return null;
     }
 
 }

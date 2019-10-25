@@ -11,9 +11,10 @@ import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.InputStream;
-import java.sql.Date;
+import java.util.Date;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -341,33 +342,27 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "El material que desea prestar se encuentra ocupado!");
         } else {
             try {
-                java.util.Date date = new java.util.Date();
-                
-                int horas = 0;
-                if(txtTipoPrestamo.getSelectedItem() == "Interno"){
-                    horas = 3600000*2;
-                } else if(txtTipoPrestamo.getSelectedItem() == "Externo") {
-                    horas = (3600000*24)*7;
-                }
-
                 cx.conectarme();
                 fjdbc.setCon(cx.getCon());
                 mjdbc.setCon(cx.getCon());
                 mjdbc.updateDisponible(m1.getCodigoMaterial(), false);
 
-                java.util.Date now = new java.util.Date();
+                Date now = new Date();
 
                 PrestamoBibliografico p1 = new PrestamoBibliografico();
-                p1.setFechaLimite(new Timestamp(now.getTime() + horas));
+                p1.setFechaLimite(new Timestamp(p1.getFechaDev(txtTipoPrestamo.getSelectedItem().toString()).getTime()));
                 p1.setFechaPrestamo(new Timestamp(now.getTime()));
                 p1.setIdMaterial(m1.getIdMaterial());
                 p1.setIdUsuario(u1.getIdPersona());
                 p1.setTipoPrestamo(txtTipoPrestamo.getSelectedItem().toString());
                 p1.setCodigoPrestamo(codigoPrestamo);
                 fjdbc.savePrestamo(p1);
-                
+
                 GUI_Principal.t.push(txtTitulo.getText().trim());
-                JOptionPane.showMessageDialog(null, "Su prestamo ha sido registrado exitosamente, la fecha limite de entrega debe ser: "+new Timestamp(now.getTime() + horas));
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+                
+                String fechaForm = sdf.format( p1.getFechaDev(txtTipoPrestamo.getSelectedItem().toString()).getTime());
+                JOptionPane.showMessageDialog(null, "Su prestamo ha sido registrado exitosamente, la fecha limite de entrega debe ser: " + fechaForm);
 
             } catch (SQLException ex) {
                 Logger.getLogger(GUI_Crear_Prestamo.class.getName()).log(Level.SEVERE, null, ex);
@@ -380,7 +375,7 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
     private void btnCerrarVistaCrearPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarVistaCrearPrestamoActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnCerrarVistaCrearPrestamoActionPerformed
-    public String codigo = "9F 4D AC 89";
+    public String codigo = null;
     private void btnEscanearMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEscanearMaterialActionPerformed
         // TODO add your handling code here:
         PanamaHitek_Arduino ino = new PanamaHitek_Arduino();
