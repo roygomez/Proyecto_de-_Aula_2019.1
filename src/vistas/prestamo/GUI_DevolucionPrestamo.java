@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import jdbc.Jdbc;
 import jdbc.MaterialJdbc;
 import jdbc.PrestamoJdbc;
@@ -36,7 +37,8 @@ public class GUI_DevolucionPrestamo extends javax.swing.JInternalFrame {
 
             try {
                 if (ino.isMessageAvailable()) {
-                    lblCodigo.setText(ino.printMessage());
+                    String codigo = ino.printMessage();
+                    lblCodigo.setText(codigo);
                     ino.sendData("v");
                     ino.killArduinoConnection();
                 }
@@ -72,6 +74,7 @@ public class GUI_DevolucionPrestamo extends javax.swing.JInternalFrame {
         setTitle("Devolucion de Material");
         setMinimumSize(new java.awt.Dimension(837, 518));
         setName(""); // NOI18N
+        setPreferredSize(new java.awt.Dimension(830, 519));
         getContentPane().setLayout(null);
 
         btnDevolverMaterial.setText("Devolver");
@@ -84,14 +87,17 @@ public class GUI_DevolucionPrestamo extends javax.swing.JInternalFrame {
         btnDevolverMaterial.setBounds(182, 343, 152, 52);
 
         btnCerrarVistaDevolvelMaterial.setText("Cerrar");
+        btnCerrarVistaDevolvelMaterial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarVistaDevolvelMaterialActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnCerrarVistaDevolvelMaterial);
         btnCerrarVistaDevolvelMaterial.setBounds(459, 343, 152, 52);
 
         label2.setText("Por favor Escanee el libro para la devolucion!");
         getContentPane().add(label2);
         label2.setBounds(223, 49, 285, 45);
-
-        lblCodigo.setText("9F 4D AC 89");
         getContentPane().add(lblCodigo);
         lblCodigo.setBounds(310, 90, 194, 20);
 
@@ -108,11 +114,12 @@ public class GUI_DevolucionPrestamo extends javax.swing.JInternalFrame {
             try {
                 cx.conectarme();
                 mjdbc.setCon(cx.getCon());
-                mjdbc.updateDisponible(lblCodigo.getText().trim(), true);
                 
-                 java.util.Date now = new java.util.Date();
+                java.util.Date now = new java.util.Date();
                 pjdbc.setCon(cx.getCon());
                 pjdbc.updatePrestamo(new Timestamp(now.getTime()), lblCodigo.getText().trim());
+                mjdbc.updateDisponible(lblCodigo.getText().trim(), true);
+                JOptionPane.showMessageDialog(null, "El Libro ha sido devuelto exitosamente, por favor dejelo sobre una de las mesas. Gracias!");
 
             } catch (SQLException ex) {
                 Logger.getLogger(GUI_DevolucionPrestamo.class.getName()).log(Level.SEVERE, null, ex);
@@ -121,6 +128,11 @@ public class GUI_DevolucionPrestamo extends javax.swing.JInternalFrame {
 
 
     }//GEN-LAST:event_btnDevolverMaterialActionPerformed
+
+    private void btnCerrarVistaDevolvelMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarVistaDevolvelMaterialActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnCerrarVistaDevolvelMaterialActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

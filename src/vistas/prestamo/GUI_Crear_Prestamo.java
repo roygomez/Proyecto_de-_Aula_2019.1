@@ -222,28 +222,33 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
 
         txtTema.setEditable(false);
         txtTema.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        txtTema.setPreferredSize(new java.awt.Dimension(0, 40));
         getContentPane().add(txtTema);
-        txtTema.setBounds(620, 160, 250, 20);
+        txtTema.setBounds(620, 160, 250, 30);
 
         txtEstadoF.setEditable(false);
         txtEstadoF.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        txtEstadoF.setPreferredSize(new java.awt.Dimension(0, 40));
         getContentPane().add(txtEstadoF);
-        txtEstadoF.setBounds(620, 240, 280, 20);
+        txtEstadoF.setBounds(620, 240, 280, 30);
 
         txtCodigoAsig.setEditable(false);
         txtCodigoAsig.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        txtCodigoAsig.setPreferredSize(new java.awt.Dimension(0, 40));
         getContentPane().add(txtCodigoAsig);
-        txtCodigoAsig.setBounds(620, 280, 130, 20);
+        txtCodigoAsig.setBounds(620, 280, 130, 30);
 
         txtLetraUb.setEditable(false);
         txtLetraUb.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        txtLetraUb.setPreferredSize(new java.awt.Dimension(0, 40));
         getContentPane().add(txtLetraUb);
-        txtLetraUb.setBounds(620, 320, 120, 20);
+        txtLetraUb.setBounds(620, 320, 120, 30);
 
         txtEjemplar.setEditable(false);
         txtEjemplar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        txtEjemplar.setPreferredSize(new java.awt.Dimension(0, 40));
         getContentPane().add(txtEjemplar);
-        txtEjemplar.setBounds(620, 360, 120, 20);
+        txtEjemplar.setBounds(620, 360, 120, 30);
 
         btnEscanearMaterial.setBackground(new java.awt.Color(0, 0, 0));
         btnEscanearMaterial.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -267,43 +272,51 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
 
         txtCodigo.setEditable(false);
         txtCodigo.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        txtCodigo.setPreferredSize(new java.awt.Dimension(0, 40));
         jdp4.add(txtCodigo);
-        txtCodigo.setBounds(210, 180, 167, 20);
+        txtCodigo.setBounds(210, 170, 167, 30);
 
         txtTipo.setEditable(false);
         txtTipo.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        txtTipo.setPreferredSize(new java.awt.Dimension(0, 40));
         jdp4.add(txtTipo);
-        txtTipo.setBounds(210, 220, 167, 20);
+        txtTipo.setBounds(210, 210, 167, 30);
 
         txtAutor.setEditable(false);
         txtAutor.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        txtAutor.setPreferredSize(new java.awt.Dimension(0, 40));
         jdp4.add(txtAutor);
-        txtAutor.setBounds(210, 260, 230, 20);
+        txtAutor.setBounds(210, 250, 230, 30);
 
         txtTitulo.setEditable(false);
         txtTitulo.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        txtTitulo.setPreferredSize(new java.awt.Dimension(0, 40));
         jdp4.add(txtTitulo);
-        txtTitulo.setBounds(210, 290, 290, 20);
+        txtTitulo.setBounds(210, 290, 290, 30);
 
         txtDescripcion.setEditable(false);
         txtDescripcion.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        txtDescripcion.setPreferredSize(new java.awt.Dimension(0, 40));
         jdp4.add(txtDescripcion);
-        txtDescripcion.setBounds(210, 330, 290, 20);
+        txtDescripcion.setBounds(210, 330, 290, 30);
 
         txtEdicion.setEditable(false);
         txtEdicion.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        txtEdicion.setPreferredSize(new java.awt.Dimension(0, 40));
         jdp4.add(txtEdicion);
-        txtEdicion.setBounds(210, 370, 167, 20);
+        txtEdicion.setBounds(210, 370, 167, 30);
 
         txtEditorial.setEditable(false);
         txtEditorial.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        txtEditorial.setPreferredSize(new java.awt.Dimension(0, 40));
         jdp4.add(txtEditorial);
-        txtEditorial.setBounds(210, 410, 167, 20);
+        txtEditorial.setBounds(210, 410, 167, 30);
 
         txtNumPag.setEditable(false);
         txtNumPag.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        txtNumPag.setPreferredSize(new java.awt.Dimension(0, 40));
         jdp4.add(txtNumPag);
-        txtNumPag.setBounds(210, 450, 167, 20);
+        txtNumPag.setBounds(210, 450, 167, 30);
 
         jLabel14.setBackground(new java.awt.Color(255, 255, 255));
         jLabel14.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -324,8 +337,9 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
         jLabel12.setBounds(520, 200, 160, 19);
 
         txtDisponible.setEditable(false);
+        txtDisponible.setPreferredSize(new java.awt.Dimension(0, 40));
         jdp4.add(txtDisponible);
-        txtDisponible.setBounds(650, 240, 170, 20);
+        txtDisponible.setBounds(650, 240, 170, 30);
 
         getContentPane().add(jdp4);
         jdp4.setBounds(-30, -40, 950, 600);
@@ -359,9 +373,9 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
                 fjdbc.savePrestamo(p1);
 
                 GUI_Principal.t.push(txtTitulo.getText().trim());
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-                
-                String fechaForm = sdf.format( p1.getFechaDev(txtTipoPrestamo.getSelectedItem().toString()).getTime());
+                SimpleDateFormat sdf = new SimpleDateFormat("EEE, d MMM yyyy");
+
+                String fechaForm = sdf.format(p1.getFechaDev(txtTipoPrestamo.getSelectedItem().toString()).getTime());
                 JOptionPane.showMessageDialog(null, "Su prestamo ha sido registrado exitosamente, la fecha limite de entrega debe ser: " + fechaForm);
 
             } catch (SQLException ex) {
@@ -377,7 +391,7 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCerrarVistaCrearPrestamoActionPerformed
     public String codigo = null;
     private void btnEscanearMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEscanearMaterialActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:        
         PanamaHitek_Arduino ino = new PanamaHitek_Arduino();
         SerialPortEventListener listener;
         listener = (SerialPortEvent serialPortEvent) -> {
@@ -387,6 +401,40 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
                     codigo = ino.printMessage();
                     ino.sendData("v");
                     ino.killArduinoConnection();
+                    if (codigo != null) {
+                        try {
+                            Jdbc cx = new Jdbc();
+                            MaterialJdbc fjdbc = new MaterialJdbc();
+                            cx.conectarme();
+                            fjdbc.setCon(cx.getCon());
+                            m1 = fjdbc.getMaterial(codigo.trim());
+
+                            String dispo = "";
+                            if (m1.isDisponible()) {
+                                dispo = "Disponible";
+                            } else {
+                                dispo = "Ocupado";
+                            }
+
+                            txtAutor.setText(m1.getAutor());
+                            txtCodigoAsig.setText(m1.getCodigoAsignatura());
+                            txtCodigo.setText(m1.getCodigoMaterial());
+                            txtDescripcion.setText(m1.getDescripcion());
+                            txtEdicion.setText(m1.getEdicion());
+                            txtEditorial.setText(m1.getEditorial());
+                            txtEjemplar.setText(Integer.toString(m1.getEjemplar()));
+                            txtEstadoF.setText(m1.getEstadoFisico());
+                            txtLetraUb.setText(m1.getLetraUbicacion());
+                            txtNumPag.setText(m1.getNumPaginas());
+                            txtTema.setText(m1.getTema());
+                            txtTipo.setText(m1.getTipoMaterial());
+                            txtTitulo.setText(m1.getTitulo());
+                            txtDisponible.setText(dispo);
+
+                        } catch (SQLException ex) {
+                            Logger.getLogger(GUI_Crear_Prestamo.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
                 }
             } catch (SerialPortException | ArduinoException ex) {
                 Logger.getLogger(GUI_Crear_Prestamo.class.getName()).log(Level.SEVERE, null, ex);
@@ -398,40 +446,7 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
         } catch (ArduinoException ex) {
             Logger.getLogger(GUI_Crear_Prestamo.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if (codigo != null) {
-            try {
-                Jdbc cx = new Jdbc();
-                MaterialJdbc fjdbc = new MaterialJdbc();
-                cx.conectarme();
-                fjdbc.setCon(cx.getCon());
-                m1 = fjdbc.getMaterial(codigo.trim());
 
-                String dispo = "";
-                if (m1.isDisponible()) {
-                    dispo = "Disponible";
-                } else {
-                    dispo = "Ocupado";
-                }
-
-                txtAutor.setText(m1.getAutor());
-                txtCodigoAsig.setText(m1.getCodigoAsignatura());
-                txtCodigo.setText(m1.getCodigoMaterial());
-                txtDescripcion.setText(m1.getDescripcion());
-                txtEdicion.setText(m1.getEdicion());
-                txtEditorial.setText(m1.getEditorial());
-                txtEjemplar.setText(Integer.toString(m1.getEjemplar()));
-                txtEstadoF.setText(m1.getEstadoFisico());
-                txtLetraUb.setText(m1.getLetraUbicacion());
-                txtNumPag.setText(m1.getNumPaginas());
-                txtTema.setText(m1.getTema());
-                txtTipo.setText(m1.getTipoMaterial());
-                txtTitulo.setText(m1.getTitulo());
-                txtDisponible.setText(dispo);
-
-            } catch (SQLException ex) {
-                Logger.getLogger(GUI_Crear_Prestamo.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
     }//GEN-LAST:event_btnEscanearMaterialActionPerformed
 
 

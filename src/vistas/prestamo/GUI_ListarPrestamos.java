@@ -191,6 +191,7 @@ public class GUI_ListarPrestamos extends javax.swing.JInternalFrame {
             
             List<PrestamoBibliografico> prestamos;
             if(this.usuarioId == null){
+                System.out.println("rdgd");
                 prestamos = fjdbc.getPrestamo();                
             } else {
                 prestamos = fjdbc.getPrestamoUsuario(this.usuarioId);

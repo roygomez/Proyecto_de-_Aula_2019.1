@@ -43,7 +43,7 @@ public class PrestamoJdbc extends Jdbc {
     public void updatePrestamo(Timestamp now, String codigo) throws SQLException {
         PreparedStatement pstt = null;
         try {
-            pstt = this.getCon().prepareStatement("UPDATE prestamo p SET p.fechaDevolucion = ? where material.codigoMaterial = ? AND material.disponible = 0");
+            pstt = this.getCon().prepareStatement("UPDATE prestamo p, material m SET p.fechaDevolucion = ? where m.codigoMaterial = ? AND m.disponible = 0");
 
             pstt.setTimestamp(1, now);
             pstt.setString(2, codigo);
@@ -129,22 +129,23 @@ public class PrestamoJdbc extends Jdbc {
     private PrestamoBibliografico load(ResultSet rs) throws SQLException {
         PrestamoBibliografico pb = new PrestamoBibliografico();
         
-        pb.setCodigoPrestamo(rs.getString(1));
-        pb.setFechaPrestamo(rs.getTimestamp(2));
-        pb.setFechaLimite(rs.getTimestamp(3));
-        pb.setFechaDevolucion(rs.getTimestamp(4));
-        pb.setTipoPrestamo(rs.getString(5));
+        pb.setIdPrestamo(rs.getInt(1));
+        pb.setCodigoPrestamo(rs.getString(2));
+        pb.setFechaPrestamo(rs.getTimestamp(3));
+        pb.setFechaLimite(rs.getTimestamp(4));
+        pb.setFechaDevolucion(rs.getTimestamp(5));
+        pb.setTipoPrestamo(rs.getString(6));
         
         Usuario u = new Usuario();
-        u.setIdentificacion(rs.getString(6));
-        u.setNombre1(rs.getString(7));
-        u.setApellido1(rs.getString(8));
-        u.setTelefono(rs.getString(9));
+        u.setIdentificacion(rs.getString(7));
+        u.setNombre1(rs.getString(8));
+        u.setApellido1(rs.getString(9));
+        u.setTelefono(rs.getString(10));
         
         MaterialBibliografico m = new MaterialBibliografico();
-        m.setTipoMaterial(rs.getString(10));
-        m.setTitulo(rs.getString(11));
-        m.setDisponible(rs.getBoolean(12));
+        m.setTipoMaterial(rs.getString(11));
+        m.setTitulo(rs.getString(12));
+        m.setDisponible(rs.getBoolean(13));
         
         pb.setUsuario(u);
         pb.setMaterial(m);
