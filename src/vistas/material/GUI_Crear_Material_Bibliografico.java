@@ -84,7 +84,6 @@ repaint();
         jLabel13 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         txtTitulo = new javax.swing.JTextField();
         txtNumPag = new javax.swing.JTextField();
@@ -97,7 +96,6 @@ repaint();
         txtEjemplar = new javax.swing.JTextField();
         txtLetraUb = new javax.swing.JTextField();
         txtCodigoAsig = new javax.swing.JTextField();
-        txtDisponible = new javax.swing.JComboBox();
         txtTema = new javax.swing.JTextField();
         txtEstadoF = new javax.swing.JTextField();
 
@@ -216,49 +214,39 @@ repaint();
         jdp4.add(jLabel11);
         jLabel11.setBounds(500, 140, 200, 17);
 
-        jLabel10.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel10.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel10.setText("Disponible: ");
-        jdp4.add(jLabel10);
-        jLabel10.setBounds(500, 100, 190, 17);
-
         jLabel9.setBackground(new java.awt.Color(255, 255, 255));
         jLabel9.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel9.setText("Tema:");
         jdp4.add(jLabel9);
         jLabel9.setBounds(500, 60, 160, 17);
         jdp4.add(txtTitulo);
-        txtTitulo.setBounds(180, 160, 270, 20);
+        txtTitulo.setBounds(180, 160, 270, 22);
         jdp4.add(txtNumPag);
-        txtNumPag.setBounds(180, 320, 167, 20);
+        txtNumPag.setBounds(180, 320, 167, 22);
         jdp4.add(txtEditorial);
-        txtEditorial.setBounds(180, 280, 167, 20);
+        txtEditorial.setBounds(180, 280, 167, 22);
         jdp4.add(txtEdicion);
-        txtEdicion.setBounds(180, 240, 167, 20);
+        txtEdicion.setBounds(180, 240, 167, 22);
         jdp4.add(txtDescripcion);
-        txtDescripcion.setBounds(180, 200, 270, 20);
+        txtDescripcion.setBounds(180, 200, 270, 22);
         jdp4.add(txtAutor);
-        txtAutor.setBounds(180, 130, 240, 20);
+        txtAutor.setBounds(180, 130, 240, 22);
         jdp4.add(txtTipo);
-        txtTipo.setBounds(180, 90, 167, 20);
+        txtTipo.setBounds(180, 90, 167, 22);
 
         txtCodigo.setEnabled(false);
         jdp4.add(txtCodigo);
-        txtCodigo.setBounds(180, 50, 167, 20);
+        txtCodigo.setBounds(180, 50, 167, 22);
         jdp4.add(txtEjemplar);
-        txtEjemplar.setBounds(640, 260, 165, 20);
+        txtEjemplar.setBounds(640, 260, 165, 22);
         jdp4.add(txtLetraUb);
-        txtLetraUb.setBounds(640, 220, 165, 20);
+        txtLetraUb.setBounds(640, 220, 165, 22);
         jdp4.add(txtCodigoAsig);
-        txtCodigoAsig.setBounds(640, 180, 165, 20);
-
-        txtDisponible.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Disponible", "Ocupado", " " }));
-        jdp4.add(txtDisponible);
-        txtDisponible.setBounds(640, 100, 170, 20);
+        txtCodigoAsig.setBounds(640, 180, 165, 22);
         jdp4.add(txtTema);
-        txtTema.setBounds(640, 60, 165, 20);
+        txtTema.setBounds(640, 60, 165, 22);
         jdp4.add(txtEstadoF);
-        txtEstadoF.setBounds(640, 140, 200, 20);
+        txtEstadoF.setBounds(640, 140, 200, 22);
 
         getContentPane().add(jdp4);
         jdp4.setBounds(-10, 0, 890, 510);
@@ -269,18 +257,12 @@ repaint();
     private void btnRegistrarMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarMaterialActionPerformed
 
         // TODO add your handling code here:
-        boolean dispo = false;
-        if (txtDisponible.getSelectedItem() == "Disponible") {
-            dispo = true;
-        } else {
-            dispo = false;
-        }
         MaterialBibliografico m1 = new MaterialBibliografico();
         m1.setAutor(txtAutor.getText().trim());
         m1.setCodigoAsignatura(txtCodigoAsig.getText().trim());
         m1.setCodigoMaterial(txtCodigo.getText().trim());
         m1.setDescripcion(txtDescripcion.getText().trim());
-        m1.setDisponible(dispo);
+        m1.setDisponible(true);
         m1.setEdicion(txtEdicion.getText().trim());
         m1.setEditorial(txtEditorial.getText().trim());
         m1.setEjemplar(Integer.parseInt(txtEjemplar.getText().trim()));
@@ -297,6 +279,20 @@ repaint();
             cx.conectarme();
             fjdbc.setCon(cx.getCon());
             fjdbc.saveMaterial(m1);
+            txtAutor.removeAll();
+            txtCodigo.removeAll();
+            txtCodigoAsig.removeAll();
+            txtDescripcion.removeAll();
+            txtEdicion.removeAll();
+            txtEditorial.removeAll();
+            txtEjemplar.removeAll();
+            txtEstadoF.removeAll();
+            txtLetraUb.removeAll();
+            txtNumPag.removeAll();
+            txtTema.removeAll();
+            txtTipo.removeAll();
+            txtTitulo.removeAll();
+            
 
         } catch (SQLException ex) {
             Logger.getLogger(GUI_Crear_Material_Bibliografico.class.getName()).log(Level.SEVERE, null, ex);
@@ -341,7 +337,6 @@ repaint();
     private javax.swing.JButton btnLeerCodigoMaterial;
     private javax.swing.JButton btnRegistrarMaterial;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -360,7 +355,6 @@ repaint();
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtCodigoAsig;
     private javax.swing.JTextField txtDescripcion;
-    private javax.swing.JComboBox txtDisponible;
     private javax.swing.JTextField txtEdicion;
     private javax.swing.JTextField txtEditorial;
     private javax.swing.JTextField txtEjemplar;

@@ -31,7 +31,7 @@ public class PrestamoJdbc extends Jdbc {
             pstt.setInt(8, p1.getIdUsuario());
 
             pstt.executeUpdate();
-            JOptionPane.showMessageDialog(null, "El Prestamo fue registrado exitosamente!");
+            //JOptionPane.showMessageDialog(null, "El Prestamo fue registrado exitosamente!");
 
         } finally {
             if (pstt != null) {
@@ -87,10 +87,10 @@ public class PrestamoJdbc extends Jdbc {
         PreparedStatement pstt = null;
         ResultSet rs = null;
         try {
-            pstt = this.getCon().prepareStatement("SELECT prestamo.codigoPrestamo,prestamo.fechaPrestamo,prestamo.fechaLimite,prestamo.fechaDevolucion,prestamo.tipoPrestamo, usuario.identificacion , usuario.nombre1,usuario.apellido1, usuario.telefono,material.tipoMaterial, material.titulo, material.disponible FROM prestamo, usuario, material WHERE prestamo.idMaterial = material.idMaterial");
+            pstt = this.getCon().prepareStatement("SELECT prestamo.codigoPrestamo,prestamo.fechaPrestamo,prestamo.fechaLimite,prestamo.fechaDevolucion,prestamo.tipoPrestamo, usuario.identificacion , usuario.nombre1,usuario.apellido1, usuario.telefono,material.tipoMaterial, material.titulo, material.disponible FROM prestamo, usuario, material WHERE prestamo.idMaterial = material.idMaterial AND prestamo.idUsuario=usuario.idPersona");
             rs = pstt.executeQuery();
             while (rs.next()) {
-                listaPrestamo.add(load(rs));
+                listaPrestamo.add(load2(rs));
             }
         } finally {
             if (pstt != null) {
@@ -146,6 +146,32 @@ public class PrestamoJdbc extends Jdbc {
         m.setTipoMaterial(rs.getString(11));
         m.setTitulo(rs.getString(12));
         m.setDisponible(rs.getBoolean(13));
+        
+        pb.setUsuario(u);
+        pb.setMaterial(m);
+        
+
+        return pb;
+    }
+  private PrestamoBibliografico load2(ResultSet rs) throws SQLException {
+        PrestamoBibliografico pb = new PrestamoBibliografico();
+        
+        pb.setCodigoPrestamo(rs.getString(1));
+        pb.setFechaPrestamo(rs.getTimestamp(2));
+        pb.setFechaLimite(rs.getTimestamp(3));
+        pb.setFechaDevolucion(rs.getTimestamp(4));
+        pb.setTipoPrestamo(rs.getString(5));
+        
+        Usuario u = new Usuario();
+        u.setIdentificacion(rs.getString(6));
+        u.setNombre1(rs.getString(7));
+        u.setApellido1(rs.getString(8));
+        u.setTelefono(rs.getString(9));
+        
+        MaterialBibliografico m = new MaterialBibliografico();
+        m.setTipoMaterial(rs.getString(10));
+        m.setTitulo(rs.getString(11));
+        m.setDisponible(rs.getBoolean(12));
         
         pb.setUsuario(u);
         pb.setMaterial(m);

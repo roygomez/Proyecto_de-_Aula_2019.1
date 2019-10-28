@@ -378,6 +378,21 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
                 String fechaForm = sdf.format(p1.getFechaDev(txtTipoPrestamo.getSelectedItem().toString()).getTime());
                 JOptionPane.showMessageDialog(null, "Su prestamo ha sido registrado exitosamente, la fecha limite de entrega debe ser: " + fechaForm);
 
+                txtAutor.removeAll();
+                txtCodigo.removeAll();
+                txtCodigoAsig.removeAll();
+                txtDescripcion.removeAll();
+                txtEdicion.removeAll();
+                txtEditorial.removeAll();
+                txtEjemplar.removeAll();
+                txtEstadoF.removeAll();
+                txtLetraUb.removeAll();
+                txtNumPag.removeAll();
+                txtTema.removeAll();
+                txtTipo.removeAll();
+                txtTitulo.removeAll();
+                txtDisponible.removeAll();
+
             } catch (SQLException ex) {
                 Logger.getLogger(GUI_Crear_Prestamo.class.getName()).log(Level.SEVERE, null, ex);
             }
