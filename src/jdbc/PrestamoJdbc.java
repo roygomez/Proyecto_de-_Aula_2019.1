@@ -113,7 +113,7 @@ public class PrestamoJdbc extends Jdbc {
             pstt.setString(1, identificacion);
             rs = pstt.executeQuery();
             while (rs.next()) {
-                listaPrestamo.add(load(rs));
+                listaPrestamo.add(load3(rs));
             }
         } finally {
             if (pstt != null) {
@@ -154,6 +154,32 @@ public class PrestamoJdbc extends Jdbc {
         return pb;
     }
   private PrestamoBibliografico load2(ResultSet rs) throws SQLException {
+        PrestamoBibliografico pb = new PrestamoBibliografico();
+        
+        pb.setCodigoPrestamo(rs.getString(1));
+        pb.setFechaPrestamo(rs.getTimestamp(2));
+        pb.setFechaLimite(rs.getTimestamp(3));
+        pb.setFechaDevolucion(rs.getTimestamp(4));
+        pb.setTipoPrestamo(rs.getString(5));
+        
+        Usuario u = new Usuario();
+        u.setIdentificacion(rs.getString(6));
+        u.setNombre1(rs.getString(7));
+        u.setApellido1(rs.getString(8));
+        u.setTelefono(rs.getString(9));
+        
+        MaterialBibliografico m = new MaterialBibliografico();
+        m.setTipoMaterial(rs.getString(10));
+        m.setTitulo(rs.getString(11));
+        m.setDisponible(rs.getBoolean(12));
+        
+        pb.setUsuario(u);
+        pb.setMaterial(m);
+        
+
+        return pb;
+    }
+  private PrestamoBibliografico load3(ResultSet rs) throws SQLException {
         PrestamoBibliografico pb = new PrestamoBibliografico();
         
         pb.setCodigoPrestamo(rs.getString(1));

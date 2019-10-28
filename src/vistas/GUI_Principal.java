@@ -493,10 +493,12 @@ public class GUI_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
-        
-        
         GUI_Crear_Prestamo cp = new GUI_Crear_Prestamo();
-        cp.u1 = dataU1;
+        if(dataF1.getIdPersona() == 0) {
+            cp.idPersona = dataU1.getIdPersona();
+        } else {
+            cp.idPersona = dataF1.getIdPersona();
+        }
         jdp.add(cp);
         //Centra en JInternalFrame
         Dimension desktopSize = jdp.getSize();

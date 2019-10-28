@@ -34,29 +34,31 @@ public class GUI_Crear_Material_Bibliografico extends javax.swing.JInternalFrame
      */
     public GUI_Crear_Material_Bibliografico() {
         initComponents();
-                        cargarImagen(jdp4,foto1);
+        cargarImagen(jdp4, foto1);
         ocultarBarraTitulo();
-        
+
     }
-      public InputStream foto1=this.getClass().getResourceAsStream("/imagenes/bl.jpg");
-            public  void cargarImagen(javax.swing.JDesktopPane jDeskp,InputStream fileImagen)
-    {   
-        try{   
-            BufferedImage image = ImageIO.read(fileImagen);        
-              jDeskp.setBorder(new Fondo(image)); }
-        catch (Exception e){   System.out.println("Imagen no disponible");   }        
+    public InputStream foto1 = this.getClass().getResourceAsStream("/imagenes/bl.jpg");
+
+    public void cargarImagen(javax.swing.JDesktopPane jDeskp, InputStream fileImagen) {
+        try {
+            BufferedImage image = ImageIO.read(fileImagen);
+            jDeskp.setBorder(new Fondo(image));
+        } catch (Exception e) {
+            System.out.println("Imagen no disponible");
+        }
     }
-    
+
     private JComponent Barra = ((javax.swing.plaf.basic.BasicInternalFrameUI) getUI()).getNorthPane();
-private Dimension dimBarra = null; 
-public void ocultarBarraTitulo()
-{ 
-Barra = ((javax.swing.plaf.basic.BasicInternalFrameUI) getUI()).getNorthPane(); 
-dimBarra = Barra.getPreferredSize(); 
-Barra.setSize(0,0); 
-Barra.setPreferredSize(new Dimension(0,0)); 
-repaint(); 
-}
+    private Dimension dimBarra = null;
+
+    public void ocultarBarraTitulo() {
+        Barra = ((javax.swing.plaf.basic.BasicInternalFrameUI) getUI()).getNorthPane();
+        dimBarra = Barra.getPreferredSize();
+        Barra.setSize(0, 0);
+        Barra.setPreferredSize(new Dimension(0, 0));
+        repaint();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -279,20 +281,19 @@ repaint();
             cx.conectarme();
             fjdbc.setCon(cx.getCon());
             fjdbc.saveMaterial(m1);
-            txtAutor.removeAll();
-            txtCodigo.removeAll();
-            txtCodigoAsig.removeAll();
-            txtDescripcion.removeAll();
-            txtEdicion.removeAll();
-            txtEditorial.removeAll();
-            txtEjemplar.removeAll();
-            txtEstadoF.removeAll();
-            txtLetraUb.removeAll();
-            txtNumPag.removeAll();
-            txtTema.removeAll();
-            txtTipo.removeAll();
-            txtTitulo.removeAll();
-            
+            txtAutor.setText("");
+            txtCodigo.setText("");
+            txtCodigoAsig.setText("");
+            txtDescripcion.setText("");
+            txtEdicion.setText("");
+            txtEditorial.setText("");
+            txtEjemplar.setText("");
+            txtEstadoF.setText("");
+            txtLetraUb.setText("");
+            txtNumPag.setText("");
+            txtTema.setText("");
+            txtTipo.setText("");
+            txtTitulo.setText("");
 
         } catch (SQLException ex) {
             Logger.getLogger(GUI_Crear_Material_Bibliografico.class.getName()).log(Level.SEVERE, null, ex);
@@ -306,7 +307,7 @@ repaint();
         PanamaHitek_Arduino ino = new PanamaHitek_Arduino();
         SerialPortEventListener listener;
         listener = (SerialPortEvent serialPortEvent) -> {
-            
+
             try {
                 if (ino.isMessageAvailable()) {
                     txtCodigo.setText(ino.printMessage());
@@ -322,7 +323,7 @@ repaint();
         } catch (ArduinoException ex) {
             Logger.getLogger(GUI_Crear_Material_Bibliografico.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
 
     }//GEN-LAST:event_btnLeerCodigoMaterialActionPerformed
 

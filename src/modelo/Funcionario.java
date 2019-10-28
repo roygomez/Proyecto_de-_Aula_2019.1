@@ -6,6 +6,11 @@ public class Funcionario extends Persona {
     
     private String rol;
 
+    @Override
+    public String toString() {
+        return "Funcionario{" + "rol=" + rol + '}';
+    }
+
     /**
      * @return the rol
      */

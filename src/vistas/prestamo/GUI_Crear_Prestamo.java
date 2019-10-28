@@ -41,7 +41,7 @@ import vistas.GUI_Principal;
 public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
 
     private MaterialBibliografico m1 = new MaterialBibliografico();
-    public Usuario u1 = new Usuario();
+    public int idPersona;
     private String codigoPrestamo = Long.toString(new java.util.Date().getTime());
 
     /**
@@ -367,7 +367,7 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
                 p1.setFechaLimite(new Timestamp(p1.getFechaDev(txtTipoPrestamo.getSelectedItem().toString()).getTime()));
                 p1.setFechaPrestamo(new Timestamp(now.getTime()));
                 p1.setIdMaterial(m1.getIdMaterial());
-                p1.setIdUsuario(u1.getIdPersona());
+                p1.setIdUsuario(idPersona);
                 p1.setTipoPrestamo(txtTipoPrestamo.getSelectedItem().toString());
                 p1.setCodigoPrestamo(codigoPrestamo);
                 fjdbc.savePrestamo(p1);
@@ -378,20 +378,20 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
                 String fechaForm = sdf.format(p1.getFechaDev(txtTipoPrestamo.getSelectedItem().toString()).getTime());
                 JOptionPane.showMessageDialog(null, "Su prestamo ha sido registrado exitosamente, la fecha limite de entrega debe ser: " + fechaForm);
 
-                txtAutor.removeAll();
-                txtCodigo.removeAll();
-                txtCodigoAsig.removeAll();
-                txtDescripcion.removeAll();
-                txtEdicion.removeAll();
-                txtEditorial.removeAll();
-                txtEjemplar.removeAll();
-                txtEstadoF.removeAll();
-                txtLetraUb.removeAll();
-                txtNumPag.removeAll();
-                txtTema.removeAll();
-                txtTipo.removeAll();
-                txtTitulo.removeAll();
-                txtDisponible.removeAll();
+                txtAutor.setText("");
+                txtCodigo.setText("");
+                txtCodigoAsig.setText("");
+                txtDescripcion.setText("");
+                txtEdicion.setText("");
+                txtEditorial.setText("");
+                txtEjemplar.setText("");
+                txtEstadoF.setText("");
+                txtLetraUb.setText("");
+                txtNumPag.setText("");
+                txtTema.setText("");
+                txtTipo.setText("");
+                txtTitulo.setText("");
+                txtDisponible.setText("");
 
             } catch (SQLException ex) {
                 Logger.getLogger(GUI_Crear_Prestamo.class.getName()).log(Level.SEVERE, null, ex);

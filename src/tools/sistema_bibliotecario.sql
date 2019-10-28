@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-05-2019 a las 06:57:17
--- Versión del servidor: 10.1.38-MariaDB
--- Versión de PHP: 7.3.3
+-- Tiempo de generación: 28-10-2019 a las 22:35:53
+-- Versión del servidor: 10.4.8-MariaDB
+-- Versión de PHP: 7.3.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -64,11 +64,11 @@ CREATE TABLE `material` (
   `tipoMaterial` varchar(50) NOT NULL,
   `autor` varchar(50) NOT NULL,
   `titulo` varchar(50) NOT NULL,
-  `descripcion` varchar(50) NOT NULL,
+  `descripcion` varchar(225) NOT NULL,
   `editorial` varchar(50) NOT NULL,
   `edicion` varchar(50) NOT NULL,
   `numPaginas` varchar(60) NOT NULL,
-  `tema` varchar(10) NOT NULL,
+  `tema` varchar(225) NOT NULL,
   `disponible` tinyint(1) NOT NULL,
   `estadoFisico` varchar(50) NOT NULL,
   `codigoAsignatura` varchar(50) NOT NULL,
@@ -81,7 +81,8 @@ CREATE TABLE `material` (
 --
 
 INSERT INTO `material` (`idMaterial`, `codigoMaterial`, `tipoMaterial`, `autor`, `titulo`, `descripcion`, `editorial`, `edicion`, `numPaginas`, `tema`, `disponible`, `estadoFisico`, `codigoAsignatura`, `letraUbicacion`, `Ejemplar`) VALUES
-(1, '9F 4D AC 89', 'Libro', 'Gabriel Garcia Marquez', 'EL CORONEL NO TIENE QUIEN LE ESCRIBA', 'ROMANCE', '2', '3', '250', 'LITERATURA', 1, 'EXCELENTE', '556', 'A', 1);
+(4, '01 87 FF 8B', 'libro', 'Gabriel García Márquez', 'El coronel no tiene quien le escriba', 'dwkfm', 'Harper', 'Novela', '92', 'la muerte de su hijo', 1, 'excelente', 'welm', 'f', 1),
+(5, '9F 4D AC 89', 'libro', 'Gabriel García Márquez', 'Cien años de soledad', 'fg', 'Editorial Planeta', 'Ficción épica', '471', 'Saga familiar', 1, 'excelente', 'ret', 'fge', 1);
 
 -- --------------------------------------------------------
 
@@ -91,7 +92,7 @@ INSERT INTO `material` (`idMaterial`, `codigoMaterial`, `tipoMaterial`, `autor`,
 
 CREATE TABLE `multa` (
   `idMulta` int(11) NOT NULL,
-  `fechaMulta` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `fechaMulta` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `valorMulta` double NOT NULL,
   `fechaPago` date NOT NULL,
   `motivoMulta` text NOT NULL,
@@ -106,9 +107,10 @@ CREATE TABLE `multa` (
 --
 
 CREATE TABLE `prestamo` (
+  `idPrestamo` int(11) NOT NULL,
   `codigoPrestamo` varchar(50) NOT NULL,
-  `fechaPrestamo` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `fechaLimite` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `fechaPrestamo` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `fechaLimite` timestamp NOT NULL DEFAULT current_timestamp(),
   `fechaDevolucion` timestamp NULL DEFAULT NULL,
   `tipoPrestamo` varchar(50) NOT NULL,
   `idMaterial` int(11) NOT NULL,
@@ -162,7 +164,8 @@ ALTER TABLE `funcionario`
 -- Indices de la tabla `material`
 --
 ALTER TABLE `material`
-  ADD PRIMARY KEY (`idMaterial`);
+  ADD PRIMARY KEY (`idMaterial`),
+  ADD UNIQUE KEY `codigoMaterial` (`codigoMaterial`);
 
 --
 -- Indices de la tabla `multa`
@@ -170,6 +173,12 @@ ALTER TABLE `material`
 ALTER TABLE `multa`
   ADD PRIMARY KEY (`idMulta`),
   ADD KEY `idUsuario` (`idUsuario`);
+
+--
+-- Indices de la tabla `prestamo`
+--
+ALTER TABLE `prestamo`
+  ADD PRIMARY KEY (`idPrestamo`);
 
 --
 -- Indices de la tabla `usuario`
@@ -191,13 +200,19 @@ ALTER TABLE `funcionario`
 -- AUTO_INCREMENT de la tabla `material`
 --
 ALTER TABLE `material`
-  MODIFY `idMaterial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idMaterial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `multa`
 --
 ALTER TABLE `multa`
   MODIFY `idMulta` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `prestamo`
+--
+ALTER TABLE `prestamo`
+  MODIFY `idPrestamo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
