@@ -12,6 +12,7 @@ import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 import java.io.InputStream;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -24,8 +25,10 @@ import vistas.material.GUI_Modificar_Material_Bibliografico;
 import vistas.usuario.GUI_ListarUsuarios;
 import vistas.usuario.GUI_Modificar_Usuario;
 import jdbc.Jdbc;
+import jdbc.PrestamoJdbc;
 import jdbc.UsuarioJdbc;
 import modelo.Funcionario;
+import modelo.PrestamoBibliografico;
 import modelo.Tabla;
 import modelo.Usuario;
 import org.jfree.chart.ChartFactory;
@@ -494,7 +497,7 @@ public class GUI_Principal extends javax.swing.JFrame {
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
         GUI_Crear_Prestamo cp = new GUI_Crear_Prestamo();
-        if(dataF1.getIdPersona() == 0) {
+        if (dataF1.getIdPersona() == 0) {
             cp.idPersona = dataU1.getIdPersona();
         } else {
             cp.idPersona = dataF1.getIdPersona();
@@ -537,7 +540,7 @@ public class GUI_Principal extends javax.swing.JFrame {
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         labeltitulo.setVisible(false);
         labelsubt.setVisible(false);
-        
+
         GUI_ListarUsuarios lu = new GUI_ListarUsuarios();
         jdp.add(lu);
         //Centra en JInternalFrame
@@ -595,7 +598,7 @@ public class GUI_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     private void btnIniciarSecionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSecionActionPerformed
-        
+
         if (txtUsuario.getText().trim().equals("") || txtPassword.getPassword().toString().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Por favor no deje campos vacios", "Error", (0));
         } else {
@@ -688,8 +691,8 @@ public class GUI_Principal extends javax.swing.JFrame {
 
             }
         }
-        
-        
+
+
     }//GEN-LAST:event_btnIniciarSecionActionPerformed
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
@@ -704,7 +707,7 @@ public class GUI_Principal extends javax.swing.JFrame {
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
         labeltitulo.setVisible(false);
         labelsubt.setVisible(false);
-        
+
         GUI_ListarPrestamos cf = new GUI_ListarPrestamos();
         jdp.add(cf);
         //Centra en JInternalFrame
@@ -716,7 +719,7 @@ public class GUI_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        GUI_ListarPrestamos lp = new GUI_ListarPrestamos();        
+        GUI_ListarPrestamos lp = new GUI_ListarPrestamos();
         jdp.add(lp);
         lp.usuarioId = dataU1.getIdentificacion();
         //Centra en JInternalFrame
@@ -728,7 +731,7 @@ public class GUI_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
-        GUI_DevolucionPrestamo dp = new GUI_DevolucionPrestamo();        
+        GUI_DevolucionPrestamo dp = new GUI_DevolucionPrestamo();
         jdp.add(dp);
         //Centra en JInternalFrame
         Dimension desktopSize = jdp.getSize();
@@ -737,15 +740,32 @@ public class GUI_Principal extends javax.swing.JFrame {
         //
         dp.setVisible(true);
     }//GEN-LAST:event_jMenuItem12ActionPerformed
-    
+
     public static Tabla t = new Tabla();
-    
+
     private void jmiEstadisticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiEstadisticaActionPerformed
         JFreeChart Grafica;
         DefaultCategoryDataset Datos = new DefaultCategoryDataset();
 
-
         String[][] data = t.getTabla();
+
+        Jdbc cx = new Jdbc();
+        PrestamoJdbc fjdbc = new PrestamoJdbc();
+        System.out.println("refsdf");
+        try {
+            cx.conectarme();
+            fjdbc.setCon(cx.getCon());
+
+            List<PrestamoBibliografico> prestamos;
+            prestamos = fjdbc.getPrestamo();
+            for (PrestamoBibliografico p : prestamos) {
+                t.push(p.getMaterial().getTitulo());
+                System.out.println("wsfc");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(GUI_ListarPrestamos.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         for (int i = 0; i < t.getCantNom(); i++) {
             Datos.addValue(Integer.parseInt(data[i][1]), "Libros", data[i][0]);
@@ -777,7 +797,7 @@ public class GUI_Principal extends javax.swing.JFrame {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                   break;
+                    break;
                 }
             }
         } catch (ClassNotFoundException ex) {
