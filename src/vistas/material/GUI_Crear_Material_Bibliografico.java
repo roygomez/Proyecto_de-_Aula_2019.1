@@ -5,6 +5,7 @@
  */
 package vistas.material;
 
+import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 import com.panamahitek.ArduinoException;
 import com.panamahitek.PanamaHitek_Arduino;
 import java.awt.Dimension;
@@ -15,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 import jdbc.Jdbc;
 import jdbc.MaterialJdbc;
 import jssc.SerialPortEvent;
@@ -295,7 +297,11 @@ public class GUI_Crear_Material_Bibliografico extends javax.swing.JInternalFrame
             txtTipo.setText("");
             txtTitulo.setText("");
 
-        } catch (SQLException ex) {
+        } catch(com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException e) {
+            
+            JOptionPane.showMessageDialog(null, "El código que desea registrar se encuentra registrado!");
+        }
+        catch (SQLException ex) {
             Logger.getLogger(GUI_Crear_Material_Bibliografico.class.getName()).log(Level.SEVERE, null, ex);
         }
 

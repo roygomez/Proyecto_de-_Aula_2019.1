@@ -13,6 +13,8 @@ import modelo.PrestamoBibliografico;
 import modelo.Usuario;
 
 public class PrestamoJdbc extends Jdbc {
+    
+    
 
     private List listaPrestamo;
     Jdbc cone = new Jdbc();
@@ -154,6 +156,29 @@ public class PrestamoJdbc extends Jdbc {
 
         return pb;
     }
+    
+    public List getNombreLibro() throws SQLException{
+        listaPrestamo = new LinkedList();
+        PreparedStatement pstt = null;
+        ResultSet rs = null;
+        try {
+            pstt = this.getCon().prepareStatement("SELECT material.titulo FROM material,prestamo WHERE material.idMaterial=prestamo.idMaterial");
+      
+            rs = pstt.executeQuery();
+            while (rs.next()) {
+                listaPrestamo.add(load4(rs));
+            }
+        } finally {
+            if (pstt != null) {
+                pstt.close();
+            }
+            if (rs != null) {
+                rs.close();
+            }
+        }
+        return listaPrestamo;
+    }
+    
   private PrestamoBibliografico load2(ResultSet rs) throws SQLException {
         PrestamoBibliografico pb = new PrestamoBibliografico();
         
@@ -205,6 +230,14 @@ public class PrestamoJdbc extends Jdbc {
         
 
         return pb;
+    }
+  
+     private MaterialBibliografico load4(ResultSet rs) throws SQLException {
+
+        MaterialBibliografico m = new MaterialBibliografico();
+        m.setTitulo(rs.getString(1));
+     
+        return m;
     }
 
     public void DeletePrestamo(String identificacion) throws SQLException {

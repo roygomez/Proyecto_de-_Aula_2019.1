@@ -28,6 +28,7 @@ import jdbc.Jdbc;
 import jdbc.PrestamoJdbc;
 import jdbc.UsuarioJdbc;
 import modelo.Funcionario;
+import modelo.MaterialBibliografico;
 import modelo.PrestamoBibliografico;
 import modelo.Tabla;
 import modelo.Usuario;
@@ -748,19 +749,17 @@ public class GUI_Principal extends javax.swing.JFrame {
         DefaultCategoryDataset Datos = new DefaultCategoryDataset();
 
         String[][] data = t.getTabla();
-
+        
         Jdbc cx = new Jdbc();
         PrestamoJdbc fjdbc = new PrestamoJdbc();
-        System.out.println("refsdf");
         try {
             cx.conectarme();
             fjdbc.setCon(cx.getCon());
 
-            List<PrestamoBibliografico> prestamos;
-            prestamos = fjdbc.getPrestamo();
-            for (PrestamoBibliografico p : prestamos) {
-                t.push(p.getMaterial().getTitulo());
-                System.out.println("wsfc");
+            List<MaterialBibliografico> prestamos;
+            prestamos = fjdbc.getNombreLibro();
+            for (MaterialBibliografico p : prestamos) {
+                t.push(p.getTitulo());
             }
 
         } catch (SQLException ex) {
@@ -770,6 +769,7 @@ public class GUI_Principal extends javax.swing.JFrame {
         for (int i = 0; i < t.getCantNom(); i++) {
             Datos.addValue(Integer.parseInt(data[i][1]), "Libros", data[i][0]);
         }
+        
 
         Grafica = ChartFactory.createBarChart("Grafica de Prestamos",
                 "Libros", "Num Prestamos", Datos,
@@ -781,7 +781,7 @@ public class GUI_Principal extends javax.swing.JFrame {
         Ventana.getContentPane().add(Panel);
         Ventana.pack();
         Ventana.setVisible(true);
-        Ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Ventana.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
     }//GEN-LAST:event_jmiEstadisticaActionPerformed
 
     /**

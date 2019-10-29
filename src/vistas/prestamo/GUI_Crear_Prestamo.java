@@ -326,7 +326,7 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
 
         jLabel13.setBackground(new java.awt.Color(255, 255, 255));
         jLabel13.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel13.setText("Disponible: ");
+        jLabel13.setText("Estado de Prestamo: ");
         jdp4.add(jLabel13);
         jLabel13.setBounds(520, 240, 120, 19);
 
