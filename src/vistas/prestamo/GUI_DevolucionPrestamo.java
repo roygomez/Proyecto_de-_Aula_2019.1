@@ -18,6 +18,7 @@ import jdbc.PrestamoJdbc;
 import jssc.SerialPortEvent;
 import jssc.SerialPortEventListener;
 import jssc.SerialPortException;
+import modelo.MaterialBibliografico;
 
 /**
  *
@@ -110,6 +111,7 @@ public class GUI_DevolucionPrestamo extends javax.swing.JInternalFrame {
             Jdbc cx = new Jdbc();
             MaterialJdbc mjdbc = new MaterialJdbc();
             PrestamoJdbc pjdbc = new PrestamoJdbc();
+            
 
             try {
                 cx.conectarme();
@@ -117,6 +119,8 @@ public class GUI_DevolucionPrestamo extends javax.swing.JInternalFrame {
                 
                 java.util.Date now = new java.util.Date();
                 pjdbc.setCon(cx.getCon());
+                
+                
                 pjdbc.updatePrestamo(new Timestamp(now.getTime()), lblCodigo.getText().trim());
                 mjdbc.updateDisponible(lblCodigo.getText().trim(), true);
                 JOptionPane.showMessageDialog(null, "El Libro ha sido devuelto exitosamente, por favor dejelo sobre una de las mesas. Gracias!");

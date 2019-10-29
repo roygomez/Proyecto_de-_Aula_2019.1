@@ -352,50 +352,57 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
         Jdbc cx = new Jdbc();
         PrestamoJdbc fjdbc = new PrestamoJdbc();
         MaterialJdbc mjdbc = new MaterialJdbc();
+        if (txtCodigo.getText().equals("") || txtCodigo.getText().equals(null)) {
+            JOptionPane.showMessageDialog(null, "Por fsvor escanee un libro");
+        }
         if ("Ocupado".equals(txtDisponible.getText())) {
             JOptionPane.showMessageDialog(null, "El material que desea prestar se encuentra ocupado!");
-        } else {
-            try {
-                cx.conectarme();
-                fjdbc.setCon(cx.getCon());
-                mjdbc.setCon(cx.getCon());
-                mjdbc.updateDisponible(m1.getCodigoMaterial(), false);
+        }
+        if (txtTitulo.getText().equals("") || txtAutor.getText().equals("") || txtCodigoAsig.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Por favor ingrese llene todos los campos");
+            return;
+        }
 
-                Date now = new Date();
+        try {
+            cx.conectarme();
+            fjdbc.setCon(cx.getCon());
+            mjdbc.setCon(cx.getCon());
+            mjdbc.updateDisponible(m1.getCodigoMaterial(), false);
 
-                PrestamoBibliografico p1 = new PrestamoBibliografico();
-                p1.setFechaLimite(new Timestamp(p1.getFechaDev(txtTipoPrestamo.getSelectedItem().toString()).getTime()));
-                p1.setFechaPrestamo(new Timestamp(now.getTime()));
-                p1.setIdMaterial(m1.getIdMaterial());
-                p1.setIdUsuario(idPersona);
-                p1.setTipoPrestamo(txtTipoPrestamo.getSelectedItem().toString());
-                p1.setCodigoPrestamo(codigoPrestamo);
-                fjdbc.savePrestamo(p1);
+            Date now = new Date();
 
-                GUI_Principal.t.push(txtTitulo.getText().trim());
-                SimpleDateFormat sdf = new SimpleDateFormat("EEE, d MMM yyyy");
+            PrestamoBibliografico p1 = new PrestamoBibliografico();
+            p1.setFechaLimite(new Timestamp(p1.getFechaDev(txtTipoPrestamo.getSelectedItem().toString()).getTime()));
+            p1.setFechaPrestamo(new Timestamp(now.getTime()));
+            p1.setIdMaterial(m1.getIdMaterial());
+            p1.setIdUsuario(idPersona);
+            p1.setTipoPrestamo(txtTipoPrestamo.getSelectedItem().toString());
+            p1.setCodigoPrestamo(codigoPrestamo);
+            fjdbc.savePrestamo(p1);
 
-                String fechaForm = sdf.format(p1.getFechaDev(txtTipoPrestamo.getSelectedItem().toString()).getTime());
-                JOptionPane.showMessageDialog(null, "Su prestamo ha sido registrado exitosamente, la fecha limite de entrega debe ser: " + fechaForm);
+            GUI_Principal.t.push(txtTitulo.getText().trim());
+            SimpleDateFormat sdf = new SimpleDateFormat("EEE, d MMM yyyy");
 
-                txtAutor.setText("");
-                txtCodigo.setText("");
-                txtCodigoAsig.setText("");
-                txtDescripcion.setText("");
-                txtEdicion.setText("");
-                txtEditorial.setText("");
-                txtEjemplar.setText("");
-                txtEstadoF.setText("");
-                txtLetraUb.setText("");
-                txtNumPag.setText("");
-                txtTema.setText("");
-                txtTipo.setText("");
-                txtTitulo.setText("");
-                txtDisponible.setText("");
+            String fechaForm = sdf.format(p1.getFechaDev(txtTipoPrestamo.getSelectedItem().toString()).getTime());
+            JOptionPane.showMessageDialog(null, "Su prestamo ha sido registrado exitosamente, la fecha limite de entrega debe ser: " + fechaForm);
 
-            } catch (SQLException ex) {
-                Logger.getLogger(GUI_Crear_Prestamo.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            txtAutor.setText("");
+            txtCodigo.setText("");
+            txtCodigoAsig.setText("");
+            txtDescripcion.setText("");
+            txtEdicion.setText("");
+            txtEditorial.setText("");
+            txtEjemplar.setText("");
+            txtEstadoF.setText("");
+            txtLetraUb.setText("");
+            txtNumPag.setText("");
+            txtTema.setText("");
+            txtTipo.setText("");
+            txtTitulo.setText("");
+            txtDisponible.setText("");
+
+        } catch (SQLException ex) {
+            Logger.getLogger(GUI_Crear_Prestamo.class.getName()).log(Level.SEVERE, null, ex);
         }
 
 
