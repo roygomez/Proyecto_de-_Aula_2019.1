@@ -78,7 +78,6 @@ public class GUI_Crear_Material_Bibliografico extends javax.swing.JInternalFrame
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         jdp4 = new javax.swing.JDesktopPane();
         btnLeerCodigoMaterial = new javax.swing.JButton();
         btnRegistrarMaterial = new javax.swing.JButton();
@@ -102,6 +101,8 @@ public class GUI_Crear_Material_Bibliografico extends javax.swing.JInternalFrame
         txtCodigoAsig = new javax.swing.JTextField();
         txtTema = new javax.swing.JTextField();
         txtEstadoF = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
 
         setBorder(null);
         setClosable(true);
@@ -113,42 +114,37 @@ public class GUI_Crear_Material_Bibliografico extends javax.swing.JInternalFrame
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel1.setText("Codigo: ");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(47, 52, 120, 17);
+        jLabel1.setBounds(47, 52, 50, 17);
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel2.setText("Tipo: ");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(51, 90, 110, 17);
+        jLabel2.setBounds(51, 90, 40, 17);
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel3.setText("Autor:");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(47, 128, 110, 17);
+        jLabel3.setBounds(47, 128, 40, 17);
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel4.setText("Titulo: ");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(47, 166, 120, 17);
+        jLabel4.setBounds(47, 166, 50, 17);
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel5.setText("Descripcion:");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(47, 204, 150, 17);
+        jLabel5.setBounds(47, 204, 80, 17);
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel6.setText("Edicion: ");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(47, 242, 130, 17);
+        jLabel6.setBounds(47, 242, 60, 17);
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel7.setText("Editorial:");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(47, 280, 130, 17);
-
-        jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel8.setText("Numero De Paginas:");
-        getContentPane().add(jLabel8);
-        jLabel8.setBounds(47, 318, 210, 17);
+        jLabel7.setBounds(47, 280, 60, 17);
 
         jdp4.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -204,19 +200,19 @@ public class GUI_Crear_Material_Bibliografico extends javax.swing.JInternalFrame
         jLabel13.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel13.setText("Letra De Ubicacion:");
         jdp4.add(jLabel13);
-        jLabel13.setBounds(500, 210, 230, 17);
+        jLabel13.setBounds(500, 210, 130, 17);
 
         jLabel12.setBackground(new java.awt.Color(255, 255, 255));
         jLabel12.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel12.setText("Codigo De Asignatura:");
         jdp4.add(jLabel12);
-        jLabel12.setBounds(500, 170, 240, 17);
+        jLabel12.setBounds(500, 170, 140, 17);
 
         jLabel11.setBackground(new java.awt.Color(255, 255, 255));
         jLabel11.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel11.setText("Estado Fisico: ");
         jdp4.add(jLabel11);
-        jLabel11.setBounds(500, 140, 200, 17);
+        jLabel11.setBounds(500, 140, 90, 17);
 
         jLabel9.setBackground(new java.awt.Color(255, 255, 255));
         jLabel9.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -224,36 +220,45 @@ public class GUI_Crear_Material_Bibliografico extends javax.swing.JInternalFrame
         jdp4.add(jLabel9);
         jLabel9.setBounds(500, 60, 160, 17);
         jdp4.add(txtTitulo);
-        txtTitulo.setBounds(180, 160, 270, 22);
+        txtTitulo.setBounds(210, 160, 240, 20);
         jdp4.add(txtNumPag);
-        txtNumPag.setBounds(180, 320, 167, 22);
+        txtNumPag.setBounds(680, 100, 160, 20);
         jdp4.add(txtEditorial);
-        txtEditorial.setBounds(180, 280, 167, 22);
+        txtEditorial.setBounds(207, 280, 140, 20);
         jdp4.add(txtEdicion);
-        txtEdicion.setBounds(180, 240, 167, 22);
+        txtEdicion.setBounds(207, 240, 140, 20);
         jdp4.add(txtDescripcion);
-        txtDescripcion.setBounds(180, 200, 270, 22);
+        txtDescripcion.setBounds(210, 200, 240, 20);
         jdp4.add(txtAutor);
-        txtAutor.setBounds(180, 130, 240, 22);
+        txtAutor.setBounds(210, 130, 210, 20);
         jdp4.add(txtTipo);
-        txtTipo.setBounds(180, 90, 167, 22);
+        txtTipo.setBounds(210, 90, 167, 20);
 
         txtCodigo.setEnabled(false);
         jdp4.add(txtCodigo);
-        txtCodigo.setBounds(180, 50, 167, 22);
+        txtCodigo.setBounds(210, 50, 167, 20);
         jdp4.add(txtEjemplar);
-        txtEjemplar.setBounds(640, 260, 165, 22);
+        txtEjemplar.setBounds(680, 260, 160, 20);
         jdp4.add(txtLetraUb);
-        txtLetraUb.setBounds(640, 220, 165, 22);
+        txtLetraUb.setBounds(680, 220, 160, 20);
         jdp4.add(txtCodigoAsig);
-        txtCodigoAsig.setBounds(640, 180, 165, 22);
+        txtCodigoAsig.setBounds(680, 180, 160, 20);
         jdp4.add(txtTema);
-        txtTema.setBounds(640, 60, 165, 22);
+        txtTema.setBounds(680, 60, 160, 20);
         jdp4.add(txtEstadoF);
-        txtEstadoF.setBounds(640, 140, 200, 22);
+        txtEstadoF.setBounds(680, 140, 160, 20);
+
+        jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel8.setText("Numero De Paginas:");
+        jdp4.add(jLabel8);
+        jLabel8.setBounds(490, 100, 120, 17);
+
+        jLabel10.setText("*");
+        jdp4.add(jLabel10);
+        jLabel10.setBounds(200, 50, 20, 20);
 
         getContentPane().add(jdp4);
-        jdp4.setBounds(-10, 0, 890, 510);
+        jdp4.setBounds(0, 0, 890, 510);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -344,6 +349,7 @@ public class GUI_Crear_Material_Bibliografico extends javax.swing.JInternalFrame
     private javax.swing.JButton btnLeerCodigoMaterial;
     private javax.swing.JButton btnRegistrarMaterial;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;

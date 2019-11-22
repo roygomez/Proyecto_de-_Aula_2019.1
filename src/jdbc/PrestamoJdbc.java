@@ -90,7 +90,7 @@ public class PrestamoJdbc extends Jdbc {
         PreparedStatement pstt = null;
         ResultSet rs = null;
         try {
-            pstt = this.getCon().prepareStatement("SELECT prestamo.codigoPrestamo,prestamo.fechaPrestamo,prestamo.fechaLimite,prestamo.fechaDevolucion,prestamo.tipoPrestamo, usuario.identificacion , usuario.nombre1,usuario.apellido1, usuario.telefono,material.tipoMaterial, material.titulo, material.disponible FROM prestamo, usuario, material WHERE prestamo.idMaterial = material.idMaterial AND prestamo.idUsuario=usuario.idPersona");
+            pstt = this.getCon().prepareStatement("SELECT prestamo.codigoPrestamo,prestamo.fechaPrestamo,prestamo.fechaLimite,prestamo.fechaDevolucion,prestamo.tipoPrestamo, usuario.identificacion , usuario.nombre1,usuario.apellido1, usuario.telefono,material.tipoMaterial, material.titulo FROM prestamo, usuario, material WHERE prestamo.idMaterial = material.idMaterial AND prestamo.idUsuario=usuario.idPersona");
             rs = pstt.executeQuery();
             while (rs.next()) {
                 listaPrestamo.add(load2(rs));
@@ -197,7 +197,6 @@ public class PrestamoJdbc extends Jdbc {
         MaterialBibliografico m = new MaterialBibliografico();
         m.setTipoMaterial(rs.getString(10));
         m.setTitulo(rs.getString(11));
-        m.setDisponible(rs.getBoolean(12));
         
         pb.setUsuario(u);
         pb.setMaterial(m);

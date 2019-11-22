@@ -173,6 +173,11 @@ public class GUI_Principal extends javax.swing.JFrame {
         txtTipo.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         txtTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Funcionario", "Usuario" }));
         txtTipo.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+        txtTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTipoActionPerformed(evt);
+            }
+        });
         jdp2.add(txtTipo);
         txtTipo.setBounds(21, 267, 397, 26);
 
@@ -483,10 +488,12 @@ public class GUI_Principal extends javax.swing.JFrame {
         cu.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
+    public GUI_Crear_Material_Bibliografico cmb = new GUI_Crear_Material_Bibliografico();
+    
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         labeltitulo.setVisible(false);
         labelsubt.setVisible(false);
-        GUI_Crear_Material_Bibliografico cmb = new GUI_Crear_Material_Bibliografico();
+        lm.dispose();
         jdp.add(cmb);
         //Centra en JInternalFrame
         Dimension desktopSize = jdp.getSize();
@@ -584,11 +591,10 @@ public class GUI_Principal extends javax.swing.JFrame {
         labelsubt.setVisible(false);
     }//GEN-LAST:event_jMenuItem17ActionPerformed
 
+    public GUI_ListarMateriales lm = new GUI_ListarMateriales();
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
         labeltitulo.setVisible(false);
         labelsubt.setVisible(false);
-        // TODO add your handling code here:
-        GUI_ListarMateriales lm = new GUI_ListarMateriales();
         jdp.add(lm);
         //Centra en JInternalFrame
         Dimension desktopSize = jdp.getSize();
@@ -783,6 +789,10 @@ public class GUI_Principal extends javax.swing.JFrame {
         Ventana.setVisible(true);
         Ventana.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
     }//GEN-LAST:event_jmiEstadisticaActionPerformed
+
+    private void txtTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTipoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTipoActionPerformed
 
     /**
      * @param args the command line arguments

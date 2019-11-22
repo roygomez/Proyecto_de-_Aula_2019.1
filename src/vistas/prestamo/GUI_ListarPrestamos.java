@@ -81,14 +81,14 @@ public class GUI_ListarPrestamos extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "CODIGO PRESTAMO", "FECHA PRESTAMO", "FECHA LIMITE", "FECHA DEVOLUCION", "TIPO PRESTAMO", "IDENTIFICION", "NOMBRE", "APELLIDO", "TELEFON", "TITULO", "DISPONIBLE", "TIPO MATERIAL"
+                "CODIGO PRESTAMO", "FECHA PRESTAMO", "FECHA LIMITE", "FECHA DEVOLUCION", "TIPO PRESTAMO", "IDENTIFICION", "NOMBRE", "APELLIDO", "TELEFON", "TITULO", "TIPO MATERIAL"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -201,7 +201,7 @@ public class GUI_ListarPrestamos extends javax.swing.JInternalFrame {
                 modelo.addRow(new Object[]{
                     p.getCodigoPrestamo(), p.getFechaPrestamo(), p.getFechaLimite(), p.getFechaDevolucion(), p.getTipoPrestamo(),
                     p.getUsuario().getIdentificacion(), p.getUsuario().getNombre1(), p.getUsuario().getApellido1(), p.getUsuario().getTelefono(),
-                    p.getMaterial().getTitulo(), p.getMaterial().isDisponible(), p.getMaterial().getTipoMaterial()
+                    p.getMaterial().getTitulo(), p.getMaterial().getTipoMaterial()
 
                 });
             }

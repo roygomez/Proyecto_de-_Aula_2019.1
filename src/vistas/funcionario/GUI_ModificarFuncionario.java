@@ -108,7 +108,7 @@ repaint();
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel1.setText("Identificacion: ");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(60, 150, 120, 17);
+        jLabel1.setBounds(60, 150, 90, 17);
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel2.setText("Segundo Apellido: ");

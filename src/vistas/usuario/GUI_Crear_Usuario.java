@@ -74,46 +74,44 @@ repaint();
         groupSexoBtn = new javax.swing.ButtonGroup();
         groupInscritoBtn = new javax.swing.ButtonGroup();
         groupControlPagoBtn = new javax.swing.ButtonGroup();
-        txtTipoUsu = new javax.swing.JComboBox<>();
-        jLabel14 = new javax.swing.JLabel();
-        rBtnInscrito1 = new javax.swing.JRadioButton();
-        rBtnInscrito2 = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        txtCodigoInst = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        txtPagoAnual = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
         btnRegistrarUsuario = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         btnCerrarVistaCrearUsuario = new javax.swing.JButton();
-        jLabel13 = new javax.swing.JLabel();
         txtIdentificacion = new javax.swing.JTextField();
         txtNombre1 = new javax.swing.JTextField();
-        txtNombre2 = new javax.swing.JTextField();
-        txtApellido1 = new javax.swing.JTextField();
-        txtApellido2 = new javax.swing.JTextField();
-        txtFechaNacimiento = new com.toedter.calendar.JDateChooser();
-        rBtn1 = new javax.swing.JRadioButton();
-        txtCorreo = new javax.swing.JTextField();
-        txtTelefono = new javax.swing.JTextField();
-        txtRol = new javax.swing.JComboBox<>();
         txtPassword = new javax.swing.JPasswordField();
-        rBtncontrol1 = new javax.swing.JRadioButton();
-        rBtncontrol2 = new javax.swing.JRadioButton();
         jLabel9 = new javax.swing.JLabel();
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jdp4 = new javax.swing.JDesktopPane();
         rBtn2 = new javax.swing.JRadioButton();
+        txtPagoAnual = new javax.swing.JTextField();
+        txtTelefono = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        txtCorreo = new javax.swing.JTextField();
+        rBtncontrol1 = new javax.swing.JRadioButton();
+        rBtncontrol2 = new javax.swing.JRadioButton();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        txtCodigoInst = new javax.swing.JTextField();
+        rBtnInscrito2 = new javax.swing.JRadioButton();
+        rBtnInscrito1 = new javax.swing.JRadioButton();
+        jLabel14 = new javax.swing.JLabel();
+        txtTipoUsu = new javax.swing.JComboBox<>();
+        jLabel13 = new javax.swing.JLabel();
+        rBtn1 = new javax.swing.JRadioButton();
+        jLabel8 = new javax.swing.JLabel();
+        txtFechaNacimiento = new com.toedter.calendar.JDateChooser();
+        jLabel6 = new javax.swing.JLabel();
+        txtApellido2 = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        txtApellido1 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        txtNombre2 = new javax.swing.JTextField();
 
         setBorder(null);
         setClosable(true);
@@ -122,100 +120,16 @@ repaint();
         setPreferredSize(new java.awt.Dimension(854, 540));
         getContentPane().setLayout(null);
 
-        txtTipoUsu.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        txtTipoUsu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estudiante Colombo", "Estudiante Exterior", "Estudiante Unicolombo", "Profesor", " " }));
-        getContentPane().add(txtTipoUsu);
-        txtTipoUsu.setBounds(190, 330, 178, 23);
-
-        jLabel14.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel14.setText("Inscrito: ");
-        getContentPane().add(jLabel14);
-        jLabel14.setBounds(40, 370, 100, 17);
-
-        rBtnInscrito1.setText("Si");
-        rBtnInscrito1.setName("rbtnSi"); // NOI18N
-        getContentPane().add(rBtnInscrito1);
-        rBtnInscrito1.setBounds(190, 370, 80, 23);
-
-        rBtnInscrito2.setText("No");
-        rBtnInscrito2.setName("rbtnNo"); // NOI18N
-        getContentPane().add(rBtnInscrito2);
-        rBtnInscrito2.setBounds(300, 370, 80, 23);
-
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel1.setText("Identificacion: ");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(40, 60, 130, 17);
-
-        jLabel10.setBackground(new java.awt.Color(0, 204, 204));
-        jLabel10.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel10.setText("Telefono: ");
-        getContentPane().add(jLabel10);
-        jLabel10.setBounds(480, 250, 80, 17);
-
-        jLabel16.setBackground(new java.awt.Color(0, 204, 204));
-        jLabel16.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel16.setText("Codigo Institucional: ");
-        getContentPane().add(jLabel16);
-        jLabel16.setBounds(480, 90, 140, 17);
-
-        jLabel17.setBackground(new java.awt.Color(0, 204, 204));
-        jLabel17.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel17.setText("Pagó:");
-        getContentPane().add(jLabel17);
-        jLabel17.setBounds(480, 134, 140, 20);
-
-        jLabel18.setBackground(new java.awt.Color(0, 204, 204));
-        jLabel18.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel18.setText("Pago Anual:");
-        getContentPane().add(jLabel18);
-        jLabel18.setBounds(480, 170, 130, 17);
-
-        txtCodigoInst.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        getContentPane().add(txtCodigoInst);
-        txtCodigoInst.setBounds(630, 90, 178, 23);
-
-        jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel6.setText("Fecha De Nacimiento: ");
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(40, 250, 170, 17);
-
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel2.setText("Segundo Apellido: ");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(40, 210, 150, 17);
-
-        jLabel7.setBackground(new java.awt.Color(0, 204, 204));
-        jLabel7.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel7.setText("Correo Electronico: ");
-        getContentPane().add(jLabel7);
-        jLabel7.setBounds(480, 210, 130, 17);
 
         jLabel11.setBackground(new java.awt.Color(0, 204, 204));
         jLabel11.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel11.setText("Contraseña:");
         getContentPane().add(jLabel11);
         jLabel11.setBounds(480, 350, 130, 17);
-
-        jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel8.setText("Sexo: ");
-        getContentPane().add(jLabel8);
-        jLabel8.setBounds(40, 290, 90, 17);
-
-        txtPagoAnual.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        getContentPane().add(txtPagoAnual);
-        txtPagoAnual.setBounds(630, 170, 178, 23);
-
-        jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel3.setText("Primer Apellido: ");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(40, 180, 140, 17);
-
-        jLabel12.setBackground(new java.awt.Color(0, 204, 204));
-        jLabel12.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel12.setText("Cargo: ");
-        getContentPane().add(jLabel12);
-        jLabel12.setBounds(480, 310, 80, 17);
 
         btnRegistrarUsuario.setBackground(new java.awt.Color(0, 0, 0));
         btnRegistrarUsuario.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -251,11 +165,6 @@ repaint();
         getContentPane().add(btnCerrarVistaCrearUsuario);
         btnCerrarVistaCrearUsuario.setBounds(490, 440, 110, 30);
 
-        jLabel13.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel13.setText("Tipo De Usuario: ");
-        getContentPane().add(jLabel13);
-        jLabel13.setBounds(40, 330, 140, 17);
-
         txtIdentificacion.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         txtIdentificacion.setName("txtIdentificacionF"); // NOI18N
         getContentPane().add(txtIdentificacion);
@@ -266,53 +175,9 @@ repaint();
         getContentPane().add(txtNombre1);
         txtNombre1.setBounds(190, 100, 178, 23);
 
-        txtNombre2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        txtNombre2.setName("txtSegundoNombreF"); // NOI18N
-        getContentPane().add(txtNombre2);
-        txtNombre2.setBounds(190, 140, 178, 23);
-
-        txtApellido1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        txtApellido1.setName("txtPrimerApellidoF"); // NOI18N
-        getContentPane().add(txtApellido1);
-        txtApellido1.setBounds(190, 170, 178, 23);
-
-        txtApellido2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        txtApellido2.setName("txtSegundoApellidoF"); // NOI18N
-        getContentPane().add(txtApellido2);
-        txtApellido2.setBounds(190, 210, 178, 23);
-        getContentPane().add(txtFechaNacimiento);
-        txtFechaNacimiento.setBounds(190, 250, 180, 20);
-
-        rBtn1.setText("Masculino");
-        getContentPane().add(rBtn1);
-        rBtn1.setBounds(190, 290, 90, 23);
-
-        txtCorreo.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        getContentPane().add(txtCorreo);
-        txtCorreo.setBounds(630, 210, 178, 23);
-
-        txtTelefono.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        getContentPane().add(txtTelefono);
-        txtTelefono.setBounds(630, 260, 178, 23);
-
-        txtRol.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        txtRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administardor", "Auxiliar", "Coordinador" }));
-        getContentPane().add(txtRol);
-        txtRol.setBounds(630, 300, 178, 23);
-
         txtPassword.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         getContentPane().add(txtPassword);
         txtPassword.setBounds(630, 340, 178, 23);
-
-        rBtncontrol1.setText("Si");
-        rBtncontrol1.setName("rbtnSi"); // NOI18N
-        getContentPane().add(rBtncontrol1);
-        rBtncontrol1.setBounds(630, 130, 80, 23);
-
-        rBtncontrol2.setText("No");
-        rBtncontrol2.setName("rbtnNo"); // NOI18N
-        getContentPane().add(rBtncontrol2);
-        rBtncontrol2.setBounds(740, 130, 80, 23);
 
         jLabel9.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel9.setText("CREAR USUARIO");
@@ -325,7 +190,129 @@ repaint();
 
         rBtn2.setText("Femenino");
         jdp4.add(rBtn2);
-        rBtn2.setBounds(310, 330, 80, 23);
+        rBtn2.setBounds(310, 340, 80, 23);
+
+        txtPagoAnual.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jdp4.add(txtPagoAnual);
+        txtPagoAnual.setBounds(650, 260, 178, 23);
+
+        txtTelefono.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jdp4.add(txtTelefono);
+        txtTelefono.setBounds(650, 340, 178, 23);
+
+        jLabel10.setBackground(new java.awt.Color(0, 204, 204));
+        jLabel10.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel10.setText("Telefono: ");
+        jdp4.add(jLabel10);
+        jLabel10.setBounds(500, 350, 80, 17);
+
+        jLabel7.setBackground(new java.awt.Color(0, 204, 204));
+        jLabel7.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel7.setText("Correo Electronico: ");
+        jdp4.add(jLabel7);
+        jLabel7.setBounds(500, 300, 130, 17);
+
+        txtCorreo.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jdp4.add(txtCorreo);
+        txtCorreo.setBounds(650, 300, 178, 23);
+
+        rBtncontrol1.setText("Si");
+        rBtncontrol1.setName("rbtnSi"); // NOI18N
+        jdp4.add(rBtncontrol1);
+        rBtncontrol1.setBounds(650, 220, 80, 23);
+
+        rBtncontrol2.setText("No");
+        rBtncontrol2.setName("rbtnNo"); // NOI18N
+        jdp4.add(rBtncontrol2);
+        rBtncontrol2.setBounds(750, 220, 80, 23);
+
+        jLabel18.setBackground(new java.awt.Color(0, 204, 204));
+        jLabel18.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel18.setText("Pago Anual:");
+        jdp4.add(jLabel18);
+        jLabel18.setBounds(500, 260, 130, 17);
+
+        jLabel17.setBackground(new java.awt.Color(0, 204, 204));
+        jLabel17.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel17.setText("Pagó:");
+        jdp4.add(jLabel17);
+        jLabel17.setBounds(500, 220, 140, 20);
+
+        jLabel16.setBackground(new java.awt.Color(0, 204, 204));
+        jLabel16.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel16.setText("Codigo Institucional: ");
+        jdp4.add(jLabel16);
+        jLabel16.setBounds(500, 180, 140, 17);
+
+        txtCodigoInst.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jdp4.add(txtCodigoInst);
+        txtCodigoInst.setBounds(650, 180, 178, 23);
+
+        rBtnInscrito2.setText("No");
+        rBtnInscrito2.setName("rbtnNo"); // NOI18N
+        jdp4.add(rBtnInscrito2);
+        rBtnInscrito2.setBounds(760, 140, 80, 23);
+
+        rBtnInscrito1.setText("Si");
+        rBtnInscrito1.setName("rbtnSi"); // NOI18N
+        jdp4.add(rBtnInscrito1);
+        rBtnInscrito1.setBounds(650, 140, 80, 23);
+
+        jLabel14.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel14.setText("Inscrito: ");
+        jdp4.add(jLabel14);
+        jLabel14.setBounds(500, 150, 100, 17);
+
+        txtTipoUsu.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        txtTipoUsu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estudiante Colombo", "Estudiante Exterior", "Estudiante Unicolombo", "Profesor", " " }));
+        jdp4.add(txtTipoUsu);
+        txtTipoUsu.setBounds(210, 380, 178, 23);
+
+        jLabel13.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel13.setText("Tipo De Usuario: ");
+        jdp4.add(jLabel13);
+        jLabel13.setBounds(60, 380, 140, 17);
+
+        rBtn1.setText("Masculino");
+        jdp4.add(rBtn1);
+        rBtn1.setBounds(210, 340, 90, 23);
+
+        jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel8.setText("Sexo: ");
+        jdp4.add(jLabel8);
+        jLabel8.setBounds(60, 340, 90, 20);
+        jdp4.add(txtFechaNacimiento);
+        txtFechaNacimiento.setBounds(210, 300, 180, 20);
+
+        jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel6.setText("Fecha De Nacimiento: ");
+        jdp4.add(jLabel6);
+        jLabel6.setBounds(60, 310, 170, 17);
+
+        txtApellido2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        txtApellido2.setName("txtSegundoApellidoF"); // NOI18N
+        jdp4.add(txtApellido2);
+        txtApellido2.setBounds(210, 260, 178, 23);
+
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel2.setText("Segundo Apellido: ");
+        jdp4.add(jLabel2);
+        jLabel2.setBounds(60, 270, 150, 17);
+
+        txtApellido1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        txtApellido1.setName("txtPrimerApellidoF"); // NOI18N
+        jdp4.add(txtApellido1);
+        txtApellido1.setBounds(210, 220, 178, 23);
+
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel3.setText("Primer Apellido: ");
+        jdp4.add(jLabel3);
+        jLabel3.setBounds(60, 230, 140, 17);
+
+        txtNombre2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        txtNombre2.setName("txtSegundoNombreF"); // NOI18N
+        jdp4.add(txtNombre2);
+        txtNombre2.setBounds(210, 180, 178, 23);
 
         getContentPane().add(jdp4);
         jdp4.setBounds(-20, -40, 890, 570);
@@ -406,7 +393,6 @@ repaint();
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel16;
@@ -437,7 +423,6 @@ repaint();
     private javax.swing.JTextField txtNombre2;
     private javax.swing.JTextField txtPagoAnual;
     private javax.swing.JPasswordField txtPassword;
-    private javax.swing.JComboBox<String> txtRol;
     private javax.swing.JTextField txtTelefono;
     private javax.swing.JComboBox<String> txtTipoUsu;
     // End of variables declaration//GEN-END:variables

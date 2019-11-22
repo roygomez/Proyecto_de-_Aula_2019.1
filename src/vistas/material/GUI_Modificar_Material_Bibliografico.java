@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 import jdbc.Jdbc;
 import jdbc.MaterialJdbc;
 import jssc.SerialPortEvent;
@@ -194,6 +195,11 @@ repaint();
         jLabel14.setBounds(500, 370, 180, 17);
 
         txtCodigo.setEnabled(false);
+        txtCodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCodigoActionPerformed(evt);
+            }
+        });
         getContentPane().add(txtCodigo);
         txtCodigo.setBounds(230, 140, 167, 20);
         getContentPane().add(txtTipo);
@@ -223,6 +229,12 @@ repaint();
 
         txtDisponible.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         txtDisponible.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Disponible", "Ocupado", " " }));
+        txtDisponible.setEnabled(false);
+        txtDisponible.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDisponibleActionPerformed(evt);
+            }
+        });
         getContentPane().add(txtDisponible);
         txtDisponible.setBounds(690, 210, 170, 20);
 
@@ -316,7 +328,45 @@ repaint();
                     txtCodigo.setText(ino.printMessage());
                     ino.sendData("v");
                     ino.killArduinoConnection();
+                    
+                    if (txtCodigo != null) {
+                        try {
+                            Jdbc cx = new Jdbc();
+                            MaterialJdbc fjdbc = new MaterialJdbc();
+                            cx.conectarme();
+                            fjdbc.setCon(cx.getCon());
+                            m1 = fjdbc.getMaterial(txtCodigo.getText().trim());
+
+                            String dispo = "";
+                            if (m1.isDisponible()) {
+                                dispo = "Disponible";
+                            } else {
+                                dispo = "Ocupado";
+                            }
+
+                            txtAutor.setText(m1.getAutor());
+                            txtCodigoAsig.setText(m1.getCodigoAsignatura());
+                            txtCodigo.setText(m1.getCodigoMaterial());
+                            txtDescripcion.setText(m1.getDescripcion());
+                            txtEdicion.setText(m1.getEdicion());
+                            txtEditorial.setText(m1.getEditorial());
+                            txtEjemplar.setText(Integer.toString(m1.getEjemplar()));
+                            txtEstadoF.setText(m1.getEstadoFisico());
+                            txtLetraUb.setText(m1.getLetraUbicacion());
+                            txtNumPag.setText(m1.getNumPaginas());
+                            txtTema.setText(m1.getTema());
+                            txtTipo.setText(m1.getTipoMaterial());
+                            txtTitulo.setText(m1.getTitulo());
+                            txtDisponible.setSelectedItem(m1.isDisponible());
+                            
+
+                        } catch (SQLException ex) {
+                            Logger.getLogger(GUI_Modificar_Material_Bibliografico.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
                 }
+                
+                
             } catch (SerialPortException | ArduinoException ex) {
                 Logger.getLogger(GUI_Crear_Material_Bibliografico.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -373,6 +423,10 @@ repaint();
 
     private void btnBuscarMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarMaterialActionPerformed
         // TODO add your handling code here:
+        if (txtBuscarByCode.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Ingrese el codigo del libro");
+            return;
+        }
         Jdbc cx = new Jdbc();
         MaterialJdbc fjdbc = new MaterialJdbc();
         try {
@@ -380,6 +434,12 @@ repaint();
             fjdbc.setCon(cx.getCon());
 
             m1 = fjdbc.getMaterial(txtBuscarByCode.getText().trim());
+            
+            if (m1.getCodigoAsignatura()==null) {
+                JOptionPane.showMessageDialog(null, "Verifique el codigo, No se hallaron resultados");
+                txtBuscarByCode.setText("");
+                return;
+            }
             System.out.println(m1.getIdMaterial());
             String dispo = "";
             if (m1.isDisponible()) {
@@ -407,6 +467,14 @@ repaint();
             Logger.getLogger(GUI_Modificar_Material_Bibliografico.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnBuscarMaterialActionPerformed
+
+    private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodigoActionPerformed
+
+    private void txtDisponibleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDisponibleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDisponibleActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

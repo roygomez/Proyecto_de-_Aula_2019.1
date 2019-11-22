@@ -261,61 +261,61 @@ repaint();
         lbl10.setForeground(new java.awt.Color(255, 0, 0));
         lbl10.setText("*");
         jdp4.add(lbl10);
-        lbl10.setBounds(470, 290, 20, 14);
+        lbl10.setBounds(570, 294, 20, 20);
 
         lbl1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lbl1.setForeground(new java.awt.Color(255, 0, 0));
         lbl1.setText("*");
         jdp4.add(lbl1);
-        lbl1.setBounds(90, 130, 20, 14);
+        lbl1.setBounds(180, 140, 10, 10);
 
         lbl3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lbl3.setForeground(new java.awt.Color(255, 0, 0));
         lbl3.setText("*");
         jdp4.add(lbl3);
-        lbl3.setBounds(110, 250, 20, 14);
+        lbl3.setBounds(180, 260, 20, 10);
 
         lbl2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lbl2.setForeground(new java.awt.Color(255, 0, 0));
         lbl2.setText("*");
         jdp4.add(lbl2);
-        lbl2.setBounds(100, 170, 20, 14);
+        lbl2.setBounds(180, 180, 10, 10);
 
         lbl6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lbl6.setForeground(new java.awt.Color(255, 0, 0));
         lbl6.setText("*");
         jdp4.add(lbl6);
-        lbl6.setBounds(440, 130, 20, 14);
+        lbl6.setBounds(570, 130, 20, 14);
 
         lbl4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lbl4.setForeground(new java.awt.Color(255, 0, 0));
         lbl4.setText("*");
         jdp4.add(lbl4);
-        lbl4.setBounds(110, 290, 20, 14);
+        lbl4.setBounds(180, 300, 20, 10);
 
         lbl5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lbl5.setForeground(new java.awt.Color(255, 0, 0));
         lbl5.setText("*");
         jdp4.add(lbl5);
-        lbl5.setBounds(130, 330, 20, 14);
+        lbl5.setBounds(180, 340, 20, 10);
 
         lbl7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lbl7.setForeground(new java.awt.Color(255, 0, 0));
         lbl7.setText("*");
         jdp4.add(lbl7);
-        lbl7.setBounds(510, 170, 20, 14);
+        lbl7.setBounds(570, 180, 20, 10);
 
         lbl8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lbl8.setForeground(new java.awt.Color(255, 0, 0));
         lbl8.setText("*");
         jdp4.add(lbl8);
-        lbl8.setBounds(460, 210, 20, 14);
+        lbl8.setBounds(570, 210, 10, 20);
 
         lbl9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lbl9.setForeground(new java.awt.Color(255, 0, 0));
         lbl9.setText("*");
         jdp4.add(lbl9);
-        lbl9.setBounds(440, 250, 20, 14);
+        lbl9.setBounds(570, 254, 20, 20);
 
         getContentPane().add(jdp4);
         jdp4.setBounds(-10, -30, 850, 520);
@@ -344,13 +344,18 @@ repaint();
             lbl1.setVisible(true);
             
         }
+        
+        char[] arrayPass = txtPassword.getPassword();
+        String password = new String(arrayPass);
+        if (password.equals("")) {
+            lbl10.setVisible(true);
+        }
         if(txtNombre1.getText().trim().equals("")){
             lbl2.setVisible(true);
            
         }
         if(txtApellido1.getText().trim().equals("")){
             lbl3.setVisible(true);
-            
         }
         if(txtApellido2.getText().trim().equals("")){
             lbl4.setVisible(true);
@@ -363,10 +368,11 @@ repaint();
         }
         if(txtTelefono.getText().trim().equals("")){
             lbl8.setVisible(true);
+            JOptionPane.showMessageDialog(this, "No deje campos vacios\nLos campos con (*) son obligatorios");
             return;
         }
         
-        System.out.println("date: "+ txtFechaNacimiento.getDateFormatString());
+        System.out.println("date: "+ txtFechaNacimiento.getDate());
 
         char[] arrayC = txtPassword.getPassword();
         String pass = new String(arrayC);
