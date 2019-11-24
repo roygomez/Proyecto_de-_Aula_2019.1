@@ -26,25 +26,22 @@ import vistas.Fondo;
  */
 public class GUI_ListarFuncionarios extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form GUI_ListarFuncionarios
-     */
-    public GUI_ListarFuncionarios() {
-        initComponents();
-        
+    public void listarDatos() {
         DefaultTableModel modelo = (DefaultTableModel) tblFuncionarios.getModel();
-
+        while (modelo.getRowCount() > 0) {
+            modelo.removeRow(0);
+        }
         Jdbc cx = new Jdbc();
         FuncionarioJdbc fjdbc = new FuncionarioJdbc();
 
         try {
             cx.conectarme();
             fjdbc.setCon(cx.getCon());
-            
+
             List<Funcionario> funcionarios = fjdbc.getFuncionario();
 
             for (Funcionario f : funcionarios) {
-                modelo.addRow(new Object[] {
+                modelo.addRow(new Object[]{
                     f.getIdentificacion(), f.getNombre1(), f.getNombre2(), f.getApellido1(),
                     f.getApellido2(), f.getFechaNacimiento(), f.getSexo(),
                     f.getCorreo(), f.getTelefono(), f.getRol()
@@ -54,29 +51,38 @@ public class GUI_ListarFuncionarios extends javax.swing.JInternalFrame {
         } catch (SQLException ex) {
             Logger.getLogger(GUI_ListarFuncionarios.class.getName()).log(Level.SEVERE, null, ex);
         }
-                cargarImagen(jdp4,foto1);
-        ocultarBarraTitulo();
-        
-    }
-      public InputStream foto1=this.getClass().getResourceAsStream("/imagenes/bl.jpg");
-            public  void cargarImagen(javax.swing.JDesktopPane jDeskp,InputStream fileImagen)
-    {   
-        try{   
-            BufferedImage image = ImageIO.read(fileImagen);        
-              jDeskp.setBorder(new Fondo(image)); }
-        catch (Exception e){   System.out.println("Imagen no disponible");   }        
     }
     
+    public GUI_ListarFuncionarios() {
+        initComponents();
+
+        listarDatos();
+        cargarImagen(jdp4, foto1);
+        ocultarBarraTitulo();
+
+    }
+    public InputStream foto1 = this.getClass().getResourceAsStream("/imagenes/bl.jpg");
+
+    public void cargarImagen(javax.swing.JDesktopPane jDeskp, InputStream fileImagen) {
+        try {
+            BufferedImage image = ImageIO.read(fileImagen);
+            jDeskp.setBorder(new Fondo(image));
+        } catch (Exception e) {
+            System.out.println("Imagen no disponible");
+        }
+    }
+
     private JComponent Barra = ((javax.swing.plaf.basic.BasicInternalFrameUI) getUI()).getNorthPane();
-private Dimension dimBarra = null; 
-public void ocultarBarraTitulo()
-{ 
-Barra = ((javax.swing.plaf.basic.BasicInternalFrameUI) getUI()).getNorthPane(); 
-dimBarra = Barra.getPreferredSize(); 
-Barra.setSize(0,0); 
-Barra.setPreferredSize(new Dimension(0,0)); 
-repaint(); 
-}
+    private Dimension dimBarra = null;
+
+    public void ocultarBarraTitulo() {
+        Barra = ((javax.swing.plaf.basic.BasicInternalFrameUI) getUI()).getNorthPane();
+        dimBarra = Barra.getPreferredSize();
+        Barra.setSize(0, 0);
+        Barra.setPreferredSize(new Dimension(0, 0));
+        repaint();
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -263,6 +269,7 @@ repaint();
             mjdbc.setCon(cx.getCon());
 
             mjdbc.DeleteFuncionario(txtId.getText().trim());
+            listarDatos();
 
         } catch (SQLException ex) {
             Logger.getLogger(GUI_ListarFuncionarios.class.getName()).log(Level.SEVERE, null, ex);

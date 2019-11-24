@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 import jdbc.Jdbc;
 import jdbc.UsuarioJdbc;
 import modelo.Usuario;
@@ -29,37 +30,39 @@ public class GUI_Crear_Usuario extends javax.swing.JInternalFrame {
      */
     public GUI_Crear_Usuario() {
         initComponents();
-        
+
         groupSexoBtn.add(rBtn1);
         groupSexoBtn.add(rBtn2);
-        
+
         groupInscritoBtn.add(rBtnInscrito1);
         groupInscritoBtn.add(rBtnInscrito2);
-        
+
         groupControlPagoBtn.add(rBtncontrol1);
         groupControlPagoBtn.add(rBtncontrol2);
-                        cargarImagen(jdp4,foto1);
+        cargarImagen(jdp4, foto1);
         ocultarBarraTitulo();
-        
+
     }
-    
+
     private JComponent Barra = ((javax.swing.plaf.basic.BasicInternalFrameUI) getUI()).getNorthPane();
-private Dimension dimBarra = null; 
-public void ocultarBarraTitulo()
-{ 
-Barra = ((javax.swing.plaf.basic.BasicInternalFrameUI) getUI()).getNorthPane(); 
-dimBarra = Barra.getPreferredSize(); 
-Barra.setSize(0,0); 
-Barra.setPreferredSize(new Dimension(0,0)); 
-repaint(); 
-}
-  public InputStream foto1=this.getClass().getResourceAsStream("/imagenes/bl.jpg");
-            public  void cargarImagen(javax.swing.JDesktopPane jDeskp,InputStream fileImagen)
-    {   
-        try{   
-            BufferedImage image = ImageIO.read(fileImagen);        
-              jDeskp.setBorder(new Fondo(image)); }
-        catch (Exception e){   System.out.println("Imagen no disponible");   }        
+    private Dimension dimBarra = null;
+
+    public void ocultarBarraTitulo() {
+        Barra = ((javax.swing.plaf.basic.BasicInternalFrameUI) getUI()).getNorthPane();
+        dimBarra = Barra.getPreferredSize();
+        Barra.setSize(0, 0);
+        Barra.setPreferredSize(new Dimension(0, 0));
+        repaint();
+    }
+    public InputStream foto1 = this.getClass().getResourceAsStream("/imagenes/bl.jpg");
+
+    public void cargarImagen(javax.swing.JDesktopPane jDeskp, InputStream fileImagen) {
+        try {
+            BufferedImage image = ImageIO.read(fileImagen);
+            jDeskp.setBorder(new Fondo(image));
+        } catch (Exception e) {
+            System.out.println("Imagen no disponible");
+        }
     }
 
     /**
@@ -322,23 +325,31 @@ repaint();
 
     private void btnRegistrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarUsuarioActionPerformed
         // TODO add your handling code here:
-        
+        if (txtApellido1.getText().equals("") || txtApellido2.getText().equals("")
+                || txtCodigoInst.getText().equals("") || txtCorreo.getText().equals("")
+                || txtIdentificacion.getText().equals("") || txtNombre1.getText().equals("")
+                || txtNombre2.getText().equals("") || txtPagoAnual.getText().equals("")
+                || txtPassword.getPassword() == null || txtTelefono.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Por favor llene todos los campos!");
+            return;
+        }
+
         String sexo = "";
         boolean inscrito = false;
         boolean controlPago = false;
-        
+
         if (rBtn1.isSelected()) {
             sexo = "Masculino";
         } else if (rBtn2.isSelected()) {
             sexo = "Femenido";
         }
-        
+
         if (rBtnInscrito1.isSelected()) {
             inscrito = true;
         } else if (rBtnInscrito2.isSelected()) {
             inscrito = false;
         }
-        
+
         if (rBtncontrol1.isSelected()) {
             controlPago = true;
         } else if (rBtncontrol2.isSelected()) {
@@ -347,7 +358,7 @@ repaint();
 
         char[] arrayC = txtPassword.getPassword();
         String pass = new String(arrayC);
-        
+
         Usuario u1 = new Usuario();
         u1.setApellido1(txtApellido1.getText().trim());
         u1.setApellido2(txtApellido2.getText().trim());
@@ -358,13 +369,13 @@ repaint();
         u1.setNombre2(txtNombre2.getText().trim());
         u1.setPassword(pass);
         u1.setSexo(sexo);
-        u1.setTelefono(txtTelefono.getText().trim());        
+        u1.setTelefono(txtTelefono.getText().trim());
         u1.setCodigoInstitucional(txtCodigoInst.getText().trim());
         u1.setControlPago(controlPago);
         u1.setInscrito(inscrito);
         u1.setPagoAnual(Double.parseDouble(txtPagoAnual.getText().trim()));
         u1.setTipoUsuario(pass);
-        
+
         Jdbc cx = new Jdbc();
         UsuarioJdbc fjdbc = new UsuarioJdbc();
         try {

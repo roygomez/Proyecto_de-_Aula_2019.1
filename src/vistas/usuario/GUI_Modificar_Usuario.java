@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 import jdbc.Jdbc;
 import jdbc.UsuarioJdbc;
 import modelo.Usuario;
@@ -349,6 +350,14 @@ repaint();
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        if (txtApellido1.getText().equals("") || txtApellido2.getText().equals("")
+                || txtCodigoInst.getText().equals("") || txtCorreo.getText().equals("")
+                || txtIdentificacion.getText().equals("") || txtNombre1.getText().equals("")
+                || txtNombre2.getText().equals("") || txtPagoAnual.getText().equals("")
+                || txtPassword.getPassword() == null || txtTelefono.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Por favor llene todos los campos!");
+            return;
+        }
         String sexo = "";
         boolean inscrito = false;
         boolean controlPago = false;

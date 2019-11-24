@@ -26,14 +26,12 @@ import vistas.Fondo;
  */
 public class GUI_ListarUsuarios extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form LsitarUsuarios
-     */
-    public GUI_ListarUsuarios() {
-        initComponents();
-
+    public void listarDatos() {
         DefaultTableModel modelo = (DefaultTableModel) tblUsuarios.getModel();
-
+        while (modelo.getRowCount() > 0) {
+            modelo.removeRow(0);
+        }
+        
         Jdbc cx = new Jdbc();
         UsuarioJdbc fjdbc = new UsuarioJdbc();
 
@@ -54,6 +52,12 @@ public class GUI_ListarUsuarios extends javax.swing.JInternalFrame {
         } catch (SQLException ex) {
             Logger.getLogger(GUI_ListarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public GUI_ListarUsuarios() {
+        initComponents();
+
+        listarDatos();
         cargarImagen(jdp4, foto1);
         ocultarBarraTitulo();
 
@@ -198,6 +202,7 @@ public class GUI_ListarUsuarios extends javax.swing.JInternalFrame {
             mjdbc.setCon(cx.getCon());
 
             mjdbc.DeleteUsuario(txtId.getText().trim());
+            listarDatos();
 
         } catch (SQLException ex) {
             Logger.getLogger(GUI_ListarUsuarios.class.getName()).log(Level.SEVERE, null, ex);

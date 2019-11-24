@@ -26,13 +26,11 @@ import vistas.Fondo;
  */
 public class GUI_ListarMateriales extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form GUI_ListarMateriales
-     */
-    public GUI_ListarMateriales() {
-        initComponents();
-
+    public void listarDatos() {
         DefaultTableModel modelo = (DefaultTableModel) tblMateriales.getModel();
+        while (modelo.getRowCount() > 0) {
+            modelo.removeRow(0);
+        }
 
         Jdbc cx = new Jdbc();
         MaterialJdbc fjdbc = new MaterialJdbc();
@@ -48,36 +46,43 @@ public class GUI_ListarMateriales extends javax.swing.JInternalFrame {
                     m.getCodigoMaterial(), m.getTipoMaterial(), m.getAutor(), m.getTitulo(), m.getDescripcion(), m.getEditorial(),
                     m.getEdicion(), m.getNumPaginas(), m.getTema(), m.isDisponible(), m.getEstadoFisico(),
                     m.getCodigoAsignatura(), m.getLetraUbicacion(), m.getEjemplar()
-
                 });
             }
 
         } catch (SQLException ex) {
             Logger.getLogger(GUI_ListarMateriales.class.getName()).log(Level.SEVERE, null, ex);
         }
-                                cargarImagen(jdp4,foto1);
+    }
+
+    public GUI_ListarMateriales() {
+        initComponents();
+
+        listarDatos();
+        cargarImagen(jdp4, foto1);
         ocultarBarraTitulo();
-        
+
     }
-      public InputStream foto1=this.getClass().getResourceAsStream("/imagenes/bl.jpg");
-            public  void cargarImagen(javax.swing.JDesktopPane jDeskp,InputStream fileImagen)
-    {   
-        try{   
-            BufferedImage image = ImageIO.read(fileImagen);        
-              jDeskp.setBorder(new Fondo(image)); }
-        catch (Exception e){   System.out.println("Imagen no disponible");   }        
+    public InputStream foto1 = this.getClass().getResourceAsStream("/imagenes/bl.jpg");
+
+    public void cargarImagen(javax.swing.JDesktopPane jDeskp, InputStream fileImagen) {
+        try {
+            BufferedImage image = ImageIO.read(fileImagen);
+            jDeskp.setBorder(new Fondo(image));
+        } catch (Exception e) {
+            System.out.println("Imagen no disponible");
+        }
     }
-    
+
     private JComponent Barra = ((javax.swing.plaf.basic.BasicInternalFrameUI) getUI()).getNorthPane();
-private Dimension dimBarra = null; 
-public void ocultarBarraTitulo()
-{ 
-Barra = ((javax.swing.plaf.basic.BasicInternalFrameUI) getUI()).getNorthPane(); 
-dimBarra = Barra.getPreferredSize(); 
-Barra.setSize(0,0); 
-Barra.setPreferredSize(new Dimension(0,0)); 
-repaint(); 
-}
+    private Dimension dimBarra = null;
+
+    public void ocultarBarraTitulo() {
+        Barra = ((javax.swing.plaf.basic.BasicInternalFrameUI) getUI()).getNorthPane();
+        dimBarra = Barra.getPreferredSize();
+        Barra.setSize(0, 0);
+        Barra.setPreferredSize(new Dimension(0, 0));
+        repaint();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -239,8 +244,7 @@ repaint();
             mjdbc.setCon(cx.getCon());
 
             mjdbc.DeleteMaterial(txtCodigo.getText().trim());
-
-           
+            listarDatos();
 
         } catch (SQLException ex) {
             Logger.getLogger(GUI_ListarMateriales.class.getName()).log(Level.SEVERE, null, ex);
@@ -248,7 +252,7 @@ repaint();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnCerrarVistaListarMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarVistaListarMaterialActionPerformed
-        this.dispose();        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_btnCerrarVistaListarMaterialActionPerformed
 
 

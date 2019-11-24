@@ -29,11 +29,44 @@ public class GUI_ListarPrestamos extends javax.swing.JInternalFrame {
      */
     public GUI_ListarPrestamos() {
         initComponents();
-
         
+        listarDatos();        
         cargarImagen(jdp4, foto1);
         ocultarBarraTitulo();
+    }
+    
+    public void listarDatos() {
+        DefaultTableModel modelo = (DefaultTableModel) tblPrestamos.getModel();  
+        while (modelo.getRowCount() > 0) {
+            modelo.removeRow(0);
+        }
 
+        Jdbc cx = new Jdbc();
+        PrestamoJdbc fjdbc = new PrestamoJdbc();
+
+        try {
+            cx.conectarme();
+            fjdbc.setCon(cx.getCon());
+            
+            List<PrestamoBibliografico> prestamos;
+            if(this.usuarioId == null){
+                prestamos = fjdbc.getPrestamo();                
+            } else {
+                prestamos = fjdbc.getPrestamoUsuario(this.usuarioId);
+            }
+            
+            for (PrestamoBibliografico p : prestamos) {
+                modelo.addRow(new Object[]{
+                    p.getCodigoPrestamo(), p.getFechaPrestamo(), p.getFechaLimite(), p.getFechaDevolucion(), p.getTipoPrestamo(),
+                    p.getUsuario().getIdentificacion(), p.getUsuario().getNombre1(), p.getUsuario().getApellido1(), p.getUsuario().getTelefono(),
+                    p.getMaterial().getTitulo(), p.getMaterial().getTipoMaterial()
+
+                });
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(GUI_ListarPrestamos.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     public InputStream foto1 = this.getClass().getResourceAsStream("/imagenes/bl.jpg");
 
@@ -180,35 +213,7 @@ public class GUI_ListarPrestamos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnActualizarListadoPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarListadoPrestamoActionPerformed
-        DefaultTableModel modelo = (DefaultTableModel) tblPrestamos.getModel();       
-                
-        Jdbc cx = new Jdbc();
-        PrestamoJdbc fjdbc = new PrestamoJdbc();
-
-        try {
-            cx.conectarme();
-            fjdbc.setCon(cx.getCon());
-            
-            List<PrestamoBibliografico> prestamos;
-            if(this.usuarioId == null){
-                System.out.println("rdgd");
-                prestamos = fjdbc.getPrestamo();                
-            } else {
-                prestamos = fjdbc.getPrestamoUsuario(this.usuarioId);
-            }
-            
-            for (PrestamoBibliografico p : prestamos) {
-                modelo.addRow(new Object[]{
-                    p.getCodigoPrestamo(), p.getFechaPrestamo(), p.getFechaLimite(), p.getFechaDevolucion(), p.getTipoPrestamo(),
-                    p.getUsuario().getIdentificacion(), p.getUsuario().getNombre1(), p.getUsuario().getApellido1(), p.getUsuario().getTelefono(),
-                    p.getMaterial().getTitulo(), p.getMaterial().getTipoMaterial()
-
-                });
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(GUI_ListarPrestamos.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        listarDatos();
     }//GEN-LAST:event_btnActualizarListadoPrestamoActionPerformed
 
 
