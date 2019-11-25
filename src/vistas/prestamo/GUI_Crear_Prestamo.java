@@ -354,12 +354,10 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
         MaterialJdbc mjdbc = new MaterialJdbc();
         if (txtCodigo.getText().equals("") || txtCodigo.getText().equals(null)) {
             JOptionPane.showMessageDialog(null, "Por fsvor escanee un libro");
+            return;
         }
         if ("Ocupado".equals(txtDisponible.getText())) {
             JOptionPane.showMessageDialog(null, "El material que desea prestar se encuentra ocupado!");
-        }
-        if (txtTitulo.getText().equals("") || txtAutor.getText().equals("") || txtCodigoAsig.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Por favor ingrese llene todos los campos");
             return;
         }
 
