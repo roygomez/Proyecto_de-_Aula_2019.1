@@ -353,7 +353,7 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
         PrestamoJdbc fjdbc = new PrestamoJdbc();
         MaterialJdbc mjdbc = new MaterialJdbc();
         if (txtCodigo.getText().equals("") || txtCodigo.getText().equals(null)) {
-            JOptionPane.showMessageDialog(null, "Por fsvor escanee un libro");
+            JOptionPane.showMessageDialog(null, "Por favor escanee un libro");
             return;
         }
         if ("Ocupado".equals(txtDisponible.getText())) {
@@ -379,10 +379,17 @@ public class GUI_Crear_Prestamo extends javax.swing.JInternalFrame {
             fjdbc.savePrestamo(p1);
 
             GUI_Principal.t.push(txtTitulo.getText().trim());
-            SimpleDateFormat sdf = new SimpleDateFormat("EEE, d MMM yyyy");
-
-            String fechaForm = sdf.format(p1.getFechaDev(txtTipoPrestamo.getSelectedItem().toString()).getTime());
-            JOptionPane.showMessageDialog(null, "Su prestamo ha sido registrado exitosamente, la fecha limite de entrega debe ser: " + fechaForm);
+            
+            if(txtTipoPrestamo.getSelectedItem().toString().equals("Externo")) {
+                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+                String fechaForm = sdf.format(p1.getFechaDev(txtTipoPrestamo.getSelectedItem().toString()).getTime());
+                JOptionPane.showMessageDialog(null, "Su prestamo ha sido registrado exitosamente, debe devolverlo hoy a las: " + fechaForm);
+            } else {
+                SimpleDateFormat sdf = new SimpleDateFormat("EEE, d MMM yyyy");
+                String fechaForm = sdf.format(p1.getFechaDev(txtTipoPrestamo.getSelectedItem().toString()).getTime());
+                JOptionPane.showMessageDialog(null, "Su prestamo ha sido registrado exitosamente, la fecha limite de entrega debe ser: " + fechaForm);
+            }
+            
 
             txtAutor.setText("");
             txtCodigo.setText("");
